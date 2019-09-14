@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.listbx_users = new System.Windows.Forms.ListBox();
             this.btn_next = new System.Windows.Forms.Button();
+            this.btn_folderImport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -90,11 +91,22 @@
             this.btn_next.UseVisualStyleBackColor = true;
             this.btn_next.Click += new System.EventHandler(this.Btn_next_Click);
             // 
+            // btn_folderImport
+            // 
+            this.btn_folderImport.Location = new System.Drawing.Point(682, 86);
+            this.btn_folderImport.Name = "btn_folderImport";
+            this.btn_folderImport.Size = new System.Drawing.Size(106, 23);
+            this.btn_folderImport.TabIndex = 6;
+            this.btn_folderImport.Text = "Импорт из папки";
+            this.btn_folderImport.UseVisualStyleBackColor = true;
+            this.btn_folderImport.Click += new System.EventHandler(this.Btn_folderImport_Click);
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_folderImport);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.listbx_users);
             this.Controls.Add(this.txtbx_class);
@@ -118,6 +130,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listbx_users;
         private System.Windows.Forms.Button btn_next;
+        private System.Windows.Forms.Button btn_folderImport;
     }
 }
 

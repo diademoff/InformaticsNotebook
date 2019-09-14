@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNotebook.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,7 +41,8 @@ namespace MyNotebook.Forms
             }
 
             this.FullHideForm();
-            MissionSolveForm msf = new MissionSolveForm(CurrentUser, selectedNumsOfMissions.ToArray());
+            CurrentUser.UserTests.Add(new Test(selectedNumsOfMissions.ToArray()));
+            MissionSolveForm msf = new MissionSolveForm(CurrentUser, CurrentUser.UserTests.Last());
             msf.ShowDialog();
             this.FullShowForm();
         }

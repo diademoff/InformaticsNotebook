@@ -2,6 +2,7 @@
 using MyNotebook.ViewModels;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MyNotebook.Forms
@@ -10,26 +11,19 @@ namespace MyNotebook.Forms
     {
         public User CurrentUser { get; set; }
 
-        public MissionSolveForm(User user, int[] numOfMissions)
+        public MissionSolveForm(User user, Test test)
         {
             InitializeComponent();
             CurrentUser = user;
             this.Shown += (s, e) => UpdateUI();
-            AddTabsWithMissions(numOfMissions);
+            AddTabsWithMissions(test);
         }
 
-        private void AddTabsWithMissions(int[] numOfMissions)
+        private void AddTabsWithMissions(Test test)
         {
-            for (int i = 0; i < numOfMissions.Length; i++)
+            for (int i = 0; i < test.AllMissons.Count; i++)
             {
-                if (numOfMissions[i] == 1)
-                {
-                    AddTabWithMission(new Mission1().Generate());
-                }
-                if (numOfMissions[i] == 2)
-                {
-                    AddTabWithMission(new Mission2().Generate());
-                }
+                AddTabWithMission(test.AllMissons[i]);
             }
         }
 
@@ -91,7 +85,7 @@ namespace MyNotebook.Forms
                 btn_answer.Text = mission.IsSolvedRight ? "Верно" : "Ошибка";
                 btn_answer.BackColor = mission.IsSolvedRight ? Color.Green : Color.Red;
 
-                CurrentUser.MissionsDone.Add(mission);
+                CurrentUser.UserTests.Last().MissionsPassed.Add(mission);
             };
 
             #endregion

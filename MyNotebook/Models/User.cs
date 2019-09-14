@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 namespace MyNotebook
 {
+    [Serializable]
     public class User
     {
         public string Name { get; private set; }
         public string Class { get; private set; }
-        public List<Mission> MissionsDone { get; set; } = new List<Mission>();
+        public List<Test> UserTests { get; set; } = new List<Test>();
 
         public User()
         {

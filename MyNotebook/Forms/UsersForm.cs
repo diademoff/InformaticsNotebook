@@ -1,6 +1,5 @@
 ﻿using MyNotebook.Forms;
 using MyNotebook.ViewModels;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace MyNotebook
@@ -12,15 +11,26 @@ namespace MyNotebook
             InitializeComponent();
             txtbx_name.UpperTextBox();
             txtbx_class.UpperTextBox();
-            listbx_users.Items.AddRange(UserCollection.Instance.GetUsers);
+
+            UpdateUsersList();
 
             listbx_users.SelectedIndexChanged += (s, e) =>
             {
+                if (listbx_users.SelectedItem == null)
+                {
+                    return;
+                }
                 var selectedUserName = listbx_users.SelectedItem.ToString();
                 var selectedUser = UserCollection.Instance[selectedUserName];
                 txtbx_name.Text = selectedUser.Name;
                 txtbx_class.Text = selectedUser.Class;
             };
+        }
+
+        private void UpdateUsersList()
+        {
+            listbx_users.Items.Clear();
+            listbx_users.Items.AddRange(UserCollection.Instance.GetUsers);
         }
 
         private void Btn_next_Click(object sender, System.EventArgs e)
@@ -35,11 +45,11 @@ namespace MyNotebook
                 txtbx_class.ErrorTextBox();
                 return;
             }
-            //TODO: check input txtbx
+
             User selectedUser;
-            if (UserCollection.Instance.UserExists(txtbx_name.Text))
+            if (UserCollection.Instance.UserExists($"{txtbx_name.Text} - {txtbx_class.Text}"))
             {
-                selectedUser = UserCollection.Instance[txtbx_name.Text];
+                selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
                 if (MessageBox.Show($"Запустить профиль ученика: {selectedUser.ToString()}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
                     return;
@@ -50,7 +60,7 @@ namespace MyNotebook
                 if (MessageBox.Show("Добавить нового ученика?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     UserCollection.Instance.AddNewUser(new User(txtbx_name.Text, txtbx_class.Text));
-                    selectedUser = UserCollection.Instance[txtbx_name.Text];
+                    selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
                 }
                 else
                     return;
@@ -61,8 +71,20 @@ namespace MyNotebook
             smf.ShowDialog();
             this.FullShowForm();
 
-            txtbx_name.Text = "";
-            txtbx_class.Text = "";
+            txtbx_class.Text = txtbx_name.Text = "";
+
+            UpdateUsersList();
+        }
+
+        private void Btn_folderImport_Click(object sender, System.EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                string path = fbd.SelectedPath;
+                UserCollection.Instance = UserCollection.DeserializeFolder(path);
+                UpdateUsersList();
+            }
         }
     }
 }

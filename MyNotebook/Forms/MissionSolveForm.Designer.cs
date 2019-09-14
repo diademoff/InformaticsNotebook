@@ -50,14 +50,14 @@
             this.tabControl.Location = new System.Drawing.Point(2, 29);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(796, 420);
+            this.tabControl.Size = new System.Drawing.Size(796, 432);
             this.tabControl.TabIndex = 1;
             // 
             // MissionSolveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 463);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.lbl_user);
             this.Name = "MissionSolveForm";

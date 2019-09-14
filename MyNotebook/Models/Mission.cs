@@ -2,6 +2,7 @@
 
 namespace MyNotebook.Models
 {
+    [Serializable]
     public abstract class Mission //task
     {
         protected Random rnd = new Random();

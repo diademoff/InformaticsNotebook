@@ -6,6 +6,7 @@ namespace MyNotebook.ViewModels
     /// <summary>
     /// Перевод между 10-ой и 2-ой сс
     /// </summary>
+    [Serializable]
     public class Mission1 : Mission
     {
         public override Mission Generate()

@@ -6,6 +6,7 @@ namespace MyNotebook.ViewModels
     /// <summary>
     /// Единицы измерения информации. Бит Байт Килобайт Мегабайт Гигабайт
     /// </summary>
+    [Serializable]
     public class Mission2 : Mission
     {
         string[] units = new string[]
