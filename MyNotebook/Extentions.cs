@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MyNotebook
@@ -50,6 +51,11 @@ namespace MyNotebook
                     textBox.BackColor = oldForecolor;
                 }
             }));
+        }
+
+        public static bool RandomBool(this Random rnd)
+        {
+            return rnd.Next(0, 2) == 0;
         }
     }
 }

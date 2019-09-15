@@ -32,6 +32,7 @@
             this.cb_task1 = new System.Windows.Forms.CheckBox();
             this.btn_next = new System.Windows.Forms.Button();
             this.cb_task2 = new System.Windows.Forms.CheckBox();
+            this.cb_task3 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -74,11 +75,22 @@
             this.cb_task2.Text = "2. Единицы измерения информации";
             this.cb_task2.UseVisualStyleBackColor = true;
             // 
+            // cb_task3
+            // 
+            this.cb_task3.AutoSize = true;
+            this.cb_task3.Location = new System.Drawing.Point(17, 107);
+            this.cb_task3.Name = "cb_task3";
+            this.cb_task3.Size = new System.Drawing.Size(353, 17);
+            this.cb_task3.TabIndex = 8;
+            this.cb_task3.Text = "3. Линейный алгоритм, записанный на алгоритмическом языке";
+            this.cb_task3.UseVisualStyleBackColor = true;
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cb_task3);
             this.Controls.Add(this.cb_task2);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.cb_task1);
@@ -97,5 +109,6 @@
         private System.Windows.Forms.CheckBox cb_task1;
         private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.CheckBox cb_task2;
+        private System.Windows.Forms.CheckBox cb_task3;
     }
 }

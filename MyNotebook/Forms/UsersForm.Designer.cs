@@ -35,6 +35,7 @@
             this.listbx_users = new System.Windows.Forms.ListBox();
             this.btn_next = new System.Windows.Forms.Button();
             this.btn_folderImport = new System.Windows.Forms.Button();
+            this.cb_disableCalc = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -101,11 +102,22 @@
             this.btn_folderImport.UseVisualStyleBackColor = true;
             this.btn_folderImport.Click += new System.EventHandler(this.Btn_folderImport_Click);
             // 
+            // cb_disableCalc
+            // 
+            this.cb_disableCalc.AutoSize = true;
+            this.cb_disableCalc.Location = new System.Drawing.Point(18, 421);
+            this.cb_disableCalc.Name = "cb_disableCalc";
+            this.cb_disableCalc.Size = new System.Drawing.Size(146, 17);
+            this.cb_disableCalc.TabIndex = 7;
+            this.cb_disableCalc.Text = "Запретить калькулятор";
+            this.cb_disableCalc.UseVisualStyleBackColor = true;
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cb_disableCalc);
             this.Controls.Add(this.btn_folderImport);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.listbx_users);
@@ -131,6 +143,7 @@
         private System.Windows.Forms.ListBox listbx_users;
         private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.Button btn_folderImport;
+        private System.Windows.Forms.CheckBox cb_disableCalc;
     }
 }
 

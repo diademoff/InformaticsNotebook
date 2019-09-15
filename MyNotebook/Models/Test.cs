@@ -31,6 +31,10 @@ namespace MyNotebook.Models
                 {
                     AllMissons.Add(new Mission2().Generate());
                 }
+                if (numOfMissions[i] == 3)
+                {
+                    AllMissons.Add(new Mission3().Generate());
+                }
             }
 
             TimeStart = DateTime.Now;

@@ -1,5 +1,4 @@
 ﻿using MyNotebook.Models;
-using MyNotebook.ViewModels;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -37,6 +36,7 @@ namespace MyNotebook.Forms
             {
                 Dock = DockStyle.Top,
                 Text = mission.Question,
+                AutoSize = true,
                 Font = new Font("Arial", 13)
             };
             #endregion

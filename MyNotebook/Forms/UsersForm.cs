@@ -1,5 +1,9 @@
 ﻿using MyNotebook.Forms;
 using MyNotebook.ViewModels;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyNotebook
@@ -9,6 +13,10 @@ namespace MyNotebook
         public UsersForm()
         {
             InitializeComponent();
+
+            //start monitoring if calc is active, method depends on bool disable calc
+            new Task(() => DisableCalc()).Start();
+
             txtbx_name.UpperTextBox();
             txtbx_class.UpperTextBox();
 
@@ -66,6 +74,7 @@ namespace MyNotebook
                     return;
             }
 
+
             this.FullHideForm();
             SelectMissionsForm smf = new SelectMissionsForm(selectedUser);
             smf.ShowDialog();
@@ -74,6 +83,26 @@ namespace MyNotebook
             txtbx_class.Text = txtbx_name.Text = "";
 
             UpdateUsersList();
+        }
+
+        void KillCalcProcess()
+        {
+            var p = Process.GetProcessesByName("Calculator").ToList();
+            p.AddRange(Process.GetProcessesByName("calc"));
+            for (int i = 0; i < p.Count; i++)
+            {
+                p[i].Kill();
+            }
+        }
+        bool disableCalc => cb_disableCalc.Checked;
+        private void DisableCalc()
+        {
+            if (disableCalc)
+            {
+                KillCalcProcess();
+            }
+            Thread.Sleep(500);
+            DisableCalc();//recursion
         }
 
         private void Btn_folderImport_Click(object sender, System.EventArgs e)
