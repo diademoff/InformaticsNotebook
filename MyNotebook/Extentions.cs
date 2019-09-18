@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -56,6 +58,17 @@ namespace MyNotebook
         public static bool RandomBool(this Random rnd)
         {
             return rnd.Next(0, 2) == 0;
+        }
+
+        static Random rnd = new Random();
+        public static string RandomElement(this string[] array)
+        {
+            if (array == null || array.Length == 0)
+            {
+                throw new ArgumentException($"{array} is null or empty");
+            }
+
+            return array[rnd.Next(0, array.Length - 1)];
         }
     }
 }

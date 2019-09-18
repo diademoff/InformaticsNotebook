@@ -10,8 +10,8 @@ namespace MyNotebook.Models
         public DateTime TimeStart;
         public DateTime TimeFinish;
         public bool Finished = false;
-        public List<Mission> AllMissons = new List<Mission>();
-        public List<Mission> MissionsPassed = new List<Mission>();
+        public List<MissionBase> AllMissons = new List<MissionBase>();
+        public List<MissionBase> MissionsPassed = new List<MissionBase>();
 
         public void FinishTest()
         {
@@ -35,6 +35,10 @@ namespace MyNotebook.Models
                 {
                     AllMissons.Add(new Mission3().Generate());
                 }
+                if (numOfMissions[i] == 4)
+                {
+                    AllMissons.Add(new Mission4().Generate());
+                }
             }
 
             TimeStart = DateTime.Now;
@@ -44,7 +48,7 @@ namespace MyNotebook.Models
             int result = 0;
             for (int i = 0; i < MissionsPassed.Count; i++)
             {
-                if (MissionsPassed[i].IsSolvedRight)
+                if (MissionsPassed[i].TextIsSolvedRight)
                 {
                     result += 1;
                 }

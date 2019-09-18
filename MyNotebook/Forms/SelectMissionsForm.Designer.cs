@@ -33,6 +33,7 @@
             this.btn_next = new System.Windows.Forms.Button();
             this.cb_task2 = new System.Windows.Forms.CheckBox();
             this.cb_task3 = new System.Windows.Forms.CheckBox();
+            this.cb_task4 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -85,11 +86,22 @@
             this.cb_task3.Text = "3. Линейный алгоритм, записанный на алгоритмическом языке";
             this.cb_task3.UseVisualStyleBackColor = true;
             // 
+            // cb_task4
+            // 
+            this.cb_task4.AutoSize = true;
+            this.cb_task4.Location = new System.Drawing.Point(17, 130);
+            this.cb_task4.Name = "cb_task4";
+            this.cb_task4.Size = new System.Drawing.Size(262, 17);
+            this.cb_task4.TabIndex = 9;
+            this.cb_task4.Text = "4. Определения копьютерных комплектующих";
+            this.cb_task4.UseVisualStyleBackColor = true;
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cb_task4);
             this.Controls.Add(this.cb_task3);
             this.Controls.Add(this.cb_task2);
             this.Controls.Add(this.btn_next);
@@ -110,5 +122,6 @@
         private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.CheckBox cb_task2;
         private System.Windows.Forms.CheckBox cb_task3;
+        private System.Windows.Forms.CheckBox cb_task4;
     }
 }

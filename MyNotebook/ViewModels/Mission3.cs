@@ -7,12 +7,11 @@ namespace MyNotebook.ViewModels
     /// Линейный алгоритм, записанный на алгоритмическом языке
     /// </summary>
     [Serializable]
-    public class Mission3 : Mission
+    public class Mission3 : MissionGenerator
     {
-        public override Mission Generate()
+        public override MissionBase Generate()
         {
-            NumOfMission = 3;
-            Question = "В программе «:=» обозначает оператор присваивания, знаки «+», «-», «*» и «/» —\n\r" +
+            var Question = "В программе «:=» обозначает оператор присваивания, знаки «+», «-», «*» и «/» —\n\r" +
                        "соответственно операции сложения, вычитания, умножения и деления.\n\r" +
                        "Правила выполнения операций и порядок действий соответствуют правилам арифметики.\n\r" +
                        "Определите значение переменной b после выполнения алгоритма:\n\r";
@@ -100,15 +99,17 @@ namespace MyNotebook.ViewModels
             if (rnd.RandomBool())
             {
                 Question += "В ответе укажите одно целое число — значение переменной a.";
-                Answer = x1.ToString();
+                var Answer = x1.ToString();
+
+                return new MissionBase(3, Question, Answer);
             }
             else
             {
                 Question += "В ответе укажите одно целое число — значение переменной b.";
-                Answer = y1.ToString();
-            }
+                var Answer = y1.ToString();
 
-            return this;
+                return new MissionBase(3, Question, Answer);
+            }
         }
     }
 }

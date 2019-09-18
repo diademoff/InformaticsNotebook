@@ -7,7 +7,7 @@ namespace MyNotebook.ViewModels
     /// Единицы измерения информации. Бит Байт Килобайт Мегабайт Гигабайт
     /// </summary>
     [Serializable]
-    public class Mission2 : Mission
+    public class Mission2 : MissionGenerator
     {
         string[] units = new string[]
         {
@@ -18,10 +18,8 @@ namespace MyNotebook.ViewModels
             "Гигабайт"
         };
 
-        public override Mission Generate()
+        public override MissionBase Generate()
         {
-            NumOfMission = 2;
-
             var temp = GetRandomTwoUnits();
             string unit1 = temp[0];
             string unit2 = temp[1];
@@ -33,16 +31,18 @@ namespace MyNotebook.ViewModels
 
             if (rnd.Next(0, 2) == 0)
             {
-                Question = $"Перевидите {num} из {unit1} в {unit2}";
-                Answer = result.ToString();
+                var Question = $"Перевидите {num} из {unit1} в {unit2}";
+                var Answer = result.ToString();
+
+                return new MissionBase(2, Question, Answer);
             }
             else
             {
-                Question = $"Перевидите {result} из {unit2} в {unit1}";
-                Answer = num.ToString();
-            }
+                var Question = $"Перевидите {result} из {unit2} в {unit1}";
+                var Answer = num.ToString();
 
-            return this;
+                return new MissionBase(2, Question, Answer);
+            }
         }
 
         private int ConvertFromTo(int num, string unit1, string unit2)

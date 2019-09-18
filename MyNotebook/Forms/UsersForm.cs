@@ -115,5 +115,11 @@ namespace MyNotebook
                 UpdateUsersList();
             }
         }
+
+        private void Lbl_about_Click(object sender, System.EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+        }
     }
 }

@@ -30,6 +30,10 @@ namespace MyNotebook.Forms
             {
                 selectedNumsOfMissions.Add(3);
             }
+            if (cb_task4.Checked)
+            {
+                selectedNumsOfMissions.Add(4);
+            }
             //TODO: add more tasks
 
 

@@ -36,13 +36,14 @@
             this.btn_next = new System.Windows.Forms.Button();
             this.btn_folderImport = new System.Windows.Forms.Button();
             this.cb_disableCalc = new System.Windows.Forms.CheckBox();
+            this.lbl_about = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.3F);
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 32);
             this.label1.TabIndex = 0;
@@ -51,7 +52,7 @@
             // txtbx_name
             // 
             this.txtbx_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.31F);
-            this.txtbx_name.Location = new System.Drawing.Point(112, 6);
+            this.txtbx_name.Location = new System.Drawing.Point(112, 10);
             this.txtbx_name.Name = "txtbx_name";
             this.txtbx_name.Size = new System.Drawing.Size(676, 38);
             this.txtbx_name.TabIndex = 1;
@@ -59,7 +60,7 @@
             // txtbx_class
             // 
             this.txtbx_class.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.31F);
-            this.txtbx_class.Location = new System.Drawing.Point(112, 57);
+            this.txtbx_class.Location = new System.Drawing.Point(112, 61);
             this.txtbx_class.Name = "txtbx_class";
             this.txtbx_class.Size = new System.Drawing.Size(190, 38);
             this.txtbx_class.TabIndex = 3;
@@ -68,7 +69,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.3F);
-            this.label2.Location = new System.Drawing.Point(12, 60);
+            this.label2.Location = new System.Drawing.Point(12, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 32);
             this.label2.TabIndex = 2;
@@ -77,7 +78,7 @@
             // listbx_users
             // 
             this.listbx_users.FormattingEnabled = true;
-            this.listbx_users.Location = new System.Drawing.Point(18, 115);
+            this.listbx_users.Location = new System.Drawing.Point(18, 119);
             this.listbx_users.Name = "listbx_users";
             this.listbx_users.Size = new System.Drawing.Size(770, 264);
             this.listbx_users.TabIndex = 4;
@@ -94,7 +95,7 @@
             // 
             // btn_folderImport
             // 
-            this.btn_folderImport.Location = new System.Drawing.Point(682, 86);
+            this.btn_folderImport.Location = new System.Drawing.Point(682, 90);
             this.btn_folderImport.Name = "btn_folderImport";
             this.btn_folderImport.Size = new System.Drawing.Size(106, 23);
             this.btn_folderImport.TabIndex = 6;
@@ -112,11 +113,23 @@
             this.cb_disableCalc.Text = "Запретить калькулятор";
             this.cb_disableCalc.UseVisualStyleBackColor = true;
             // 
+            // lbl_about
+            // 
+            this.lbl_about.AutoSize = true;
+            this.lbl_about.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_about.Location = new System.Drawing.Point(2, 0);
+            this.lbl_about.Name = "lbl_about";
+            this.lbl_about.Size = new System.Drawing.Size(13, 13);
+            this.lbl_about.TabIndex = 8;
+            this.lbl_about.Text = "?";
+            this.lbl_about.Click += new System.EventHandler(this.Lbl_about_Click);
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_about);
             this.Controls.Add(this.cb_disableCalc);
             this.Controls.Add(this.btn_folderImport);
             this.Controls.Add(this.btn_next);
@@ -144,6 +157,7 @@
         private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.Button btn_folderImport;
         private System.Windows.Forms.CheckBox cb_disableCalc;
+        private System.Windows.Forms.Label lbl_about;
     }
 }
 
