@@ -34,14 +34,14 @@ namespace MyNotebook.ViewModels
                 var Question = $"Перевидите {num} из {unit1} в {unit2}";
                 var Answer = result.ToString();
 
-                return new MissionBase(2, Question, Answer);
+                return new MissionBase(2, "Единицы измерения информации", Question, Answer);
             }
             else
             {
                 var Question = $"Перевидите {result} из {unit2} в {unit1}";
                 var Answer = num.ToString();
 
-                return new MissionBase(2, Question, Answer);
+                return new MissionBase(2, "Единицы измерения информации", Question, Answer);
             }
         }
 

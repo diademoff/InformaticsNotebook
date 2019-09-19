@@ -1,6 +1,8 @@
 ﻿using MyNotebook.Models;
+using MyNotebook.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,32 +11,37 @@ namespace MyNotebook.Forms
     public partial class SelectMissionsForm : Form
     {
         public User CurrentUser { get; set; }
-        public SelectMissionsForm(User currentUser)
+        List<CheckBox> checkBoxes = new List<CheckBox>();
+        bool calcBlocked;
+        public SelectMissionsForm(User currentUser, bool isCalcBlocked)
         {
             InitializeComponent();
             CurrentUser = currentUser;
+            this.calcBlocked = isCalcBlocked;
+
+            for (int i = 0; i < MissionGeneratorCollection.Missions.Length; i++)
+            {
+                checkBoxes.Add(new CheckBox()
+                {
+                    Location = new Point(17, 60 + (40 * i)), 
+                    Checked = false,
+                    Text = $"{i + 1}. {MissionGeneratorCollection.Missions[i].Generate().Title}",
+                    AutoSize = true
+                });
+            }
+            Controls.AddRange(checkBoxes.ToArray());
         }
 
         private void Btn_next_Click(object sender, EventArgs e)
         {
             List<int> selectedNumsOfMissions = new List<int>();
-            if (cb_task1.Checked)
+            for (int i = 0; i < checkBoxes.Count; i++)
             {
-                selectedNumsOfMissions.Add(1);
+                if (checkBoxes[i].Checked)
+                {
+                    selectedNumsOfMissions.Add(i);
+                }
             }
-            if (cb_task2.Checked)
-            {
-                selectedNumsOfMissions.Add(2);
-            }
-            if (cb_task3.Checked)
-            {
-                selectedNumsOfMissions.Add(3);
-            }
-            if (cb_task4.Checked)
-            {
-                selectedNumsOfMissions.Add(4);
-            }
-            //TODO: add more tasks
 
 
             if (selectedNumsOfMissions.Count == 0)
@@ -44,7 +51,7 @@ namespace MyNotebook.Forms
             }
 
             this.FullHideForm();
-            CurrentUser.UserTests.Add(new Test(selectedNumsOfMissions.ToArray()));
+            CurrentUser.UserTests.Add(new Test(selectedNumsOfMissions.ToArray(), isCalcBlockEnabled:calcBlocked));
             MissionSolveForm msf = new MissionSolveForm(CurrentUser, CurrentUser.UserTests.Last());
             msf.ShowDialog();
             this.FullShowForm();

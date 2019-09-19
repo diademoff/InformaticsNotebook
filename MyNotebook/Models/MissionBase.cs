@@ -13,7 +13,23 @@ namespace MyNotebook.Models
         protected Random rnd = new Random();
 
         public MissionType MissionType;
+        public string Title { get; private set; }
         public int NumOfMission { get; private set; }
+        public bool IsSolved
+        {
+            get
+            {
+                switch (MissionType)
+                {
+                    case MissionType.Text:
+                        return TextIsSolvedRight;
+                    case MissionType.Match:
+                        return MatchIsSolvedRight;
+                }
+                return false;
+            }
+
+        }
 
         public DateTime TimeMissionSolved { get; set; }
 
@@ -65,10 +81,11 @@ namespace MyNotebook.Models
         /// <param name="numOfMission"> number of mission in order </param>
         /// <param name="question"> formulated question </param>
         /// <param name="answer"> expected answer </param>
-        public MissionBase(int numOfMission, string question, string answer)
+        public MissionBase(int numOfMission, string title, string question, string answer)
         {
             this.MissionType = MissionType.Text;
 
+            this.Title = title;
             NumOfMission = numOfMission;
             Question = question;
             TextAnswer = answer;
@@ -154,7 +171,7 @@ namespace MyNotebook.Models
         /// <param name="terms"> terms in this mission </param>
         /// <param name="defenitions"> defenition for each term </param>
         /// <param name="answer"></param>
-        public MissionBase(int numOfMission, string[] terms, string[] defenitions, int[] answer)
+        public MissionBase(int numOfMission, string title, string[] terms, string[] defenitions, int[] answer)
         {
             if (defenitions.Length != terms.Length)
             {
@@ -163,6 +180,7 @@ namespace MyNotebook.Models
 
             this.MissionType = MissionType.Match;
 
+            this.Title = title;
             NumOfMission = numOfMission;
             Terms = terms;
             Definitions = defenitions;
@@ -171,7 +189,7 @@ namespace MyNotebook.Models
 
         public override string ToString()
         {
-            return $"{NumOfMission}";
+            return $"{NumOfMission}. {Title}";
         }
     }
 }

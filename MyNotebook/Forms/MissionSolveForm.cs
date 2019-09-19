@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyNotebook.Forms
@@ -15,10 +17,31 @@ namespace MyNotebook.Forms
         public MissionSolveForm(User user, Test test)
         {
             InitializeComponent();
+            
             CurrentUser = user;
             this.Test = test;
-            this.Shown += (s, e) => UpdateUI();
+            this.Shown += (s, e) =>
+            {
+                new Task(() => StartTimer()).Start();
+                UpdateUI();
+            };
             AddTabsWithMissions(test);
+        }
+
+        private void StartTimer()
+        {
+            while (true)
+            {
+                try
+                {
+                    lbl_timer.Invoke(new MethodInvoker(() =>
+                    {
+                        lbl_timer.Text = $"{(DateTime.Now - Test.TimeStart).TotalMinutes.ToString("00")}:{(DateTime.Now - Test.TimeStart).Seconds.ToString("00")}";
+                    }));
+                }
+                catch { /*if window is closed*/ }
+                Thread.Sleep(200);
+            }
         }
 
         private void AddTabsWithMissions(Test test)
@@ -230,6 +253,18 @@ namespace MyNotebook.Forms
         void UpdateUI()
         {
             lbl_user.Text = CurrentUser.ToString();
+
+            lbl_isCalcBlockEnabled.ForeColor = Test.IsCalcBlockEnabled ? Color.Green : Color.Red;
+            lbl_isCalcBlockEnabled.Text = Test.IsCalcBlockEnabled ? "Блокировка калькулятора включена" : "Блокировка калькулятора выключена";
+        }
+
+        private void Btn_finishTest_Click(object sender, EventArgs e)
+        {
+            Test.FinishTest();
+            this.FullHideForm();
+            TestResultForm trf = new TestResultForm(Test);
+            trf.ShowDialog();
+            this.Close();
         }
     }
 }

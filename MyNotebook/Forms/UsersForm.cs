@@ -76,7 +76,7 @@ namespace MyNotebook
 
 
             this.FullHideForm();
-            SelectMissionsForm smf = new SelectMissionsForm(selectedUser);
+            SelectMissionsForm smf = new SelectMissionsForm(selectedUser, isCalcBlocked:cb_disableCalc.Checked);
             smf.ShowDialog();
             this.FullShowForm();
 

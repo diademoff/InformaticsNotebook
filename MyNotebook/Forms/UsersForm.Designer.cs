@@ -106,6 +106,8 @@
             // cb_disableCalc
             // 
             this.cb_disableCalc.AutoSize = true;
+            this.cb_disableCalc.Checked = true;
+            this.cb_disableCalc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_disableCalc.Location = new System.Drawing.Point(18, 421);
             this.cb_disableCalc.Name = "cb_disableCalc";
             this.cb_disableCalc.Size = new System.Drawing.Size(146, 17);

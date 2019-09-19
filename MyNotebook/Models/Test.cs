@@ -10,6 +10,7 @@ namespace MyNotebook.Models
         public DateTime TimeStart;
         public DateTime TimeFinish;
         public bool Finished = false;
+        public bool IsCalcBlockEnabled;
         public List<MissionBase> AllMissons = new List<MissionBase>();
         public List<MissionBase> MissionsPassed = new List<MissionBase>();
 
@@ -17,32 +18,26 @@ namespace MyNotebook.Models
         {
             Finished = true;
             TimeFinish = DateTime.Now;
-
+            for (int i = 0; i < AllMissons.Count; i++)
+            {
+                if (!AllMissons[i].IsSolved)
+                {
+                    MissionsPassed.Add(AllMissons[i]);
+                }
+            }
         }
-        public Test(int[] numOfMissions)
+        public Test(int[] numOfMissions, bool isCalcBlockEnabled)
         {
+            this.IsCalcBlockEnabled = isCalcBlockEnabled;
+
             for (int i = 0; i < numOfMissions.Length; i++)
             {
-                if (numOfMissions[i] == 1)
-                {
-                    AllMissons.Add(new Mission1().Generate());
-                }
-                if (numOfMissions[i] == 2)
-                {
-                    AllMissons.Add(new Mission2().Generate());
-                }
-                if (numOfMissions[i] == 3)
-                {
-                    AllMissons.Add(new Mission3().Generate());
-                }
-                if (numOfMissions[i] == 4)
-                {
-                    AllMissons.Add(new Mission4().Generate());
-                }
+                AllMissons.Add(MissionGeneratorCollection.Missions[numOfMissions[i]].Generate());
             }
 
             TimeStart = DateTime.Now;
         }
+
         public int GetMissionsSolvedRight()
         {
             int result = 0;

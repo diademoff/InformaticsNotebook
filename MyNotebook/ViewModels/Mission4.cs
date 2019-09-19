@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace MyNotebook.ViewModels
 {
+    /// <summary>
+    /// Определения компьютерных комплектующих
+    /// </summary>
     public class Mission4 : MissionGenerator
     {
+        string title = "Определения компьютерных комплектующих";
         public override MissionBase Generate()
         {
             List<MatchElement> matchElements = new List<MatchElement>();
@@ -33,7 +37,7 @@ namespace MyNotebook.ViewModels
             matchElements.Add(new MatchElement("Мышь", new[] { "координатное устройство для управления курсором и отдачи различных команд компьютеру",
                                                                "периферийное устройство ввода информации для управления курсором и подачи команд ПК"}));
             matchElements.Add(new MatchElement("Принтер", new[] { "периферийное устройство компьютера, предназначенное для вывода текстовой или графической информации, хранящейся в компьютере",
-                                                                  "устройство печати цифровой информации на твёрдый носитель"}));
+                                                                  "устройство печати цифровой информации на вещественный носитель"}));
             matchElements.Add(new MatchElement("Данные", new[] { "это совокупность сведений, зафиксированных на определенном носителе в форме, пригодной для постоянного хранения, передачи и обработки",
                                                                  "представление фактов, понятий или инструкций в форме, приемлемой для обработки ЭВМ",
                                                                  "сведения, факты, показатели, выраженные как в числовой, так и любой другой форме"}));
@@ -74,7 +78,7 @@ namespace MyNotebook.ViewModels
                 (answer[index1], answer[index2]) = (answer[index2], answer[index1]);
             }
 
-            return new MissionBase(4, terms, defs, answer);
+            return new MissionBase(4, title, terms, defs, answer);
         }
     }
 }
