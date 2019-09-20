@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestResultForm));
             this.lbl_state = new System.Windows.Forms.Label();
             this.lbl_timeStart = new System.Windows.Forms.Label();
             this.lbl_timeEnd = new System.Windows.Forms.Label();
@@ -114,6 +115,7 @@
             this.Controls.Add(this.lbl_timeEnd);
             this.Controls.Add(this.lbl_timeStart);
             this.Controls.Add(this.lbl_state);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestResultForm";
             this.Text = "TestResultForm";
             this.ResumeLayout(false);

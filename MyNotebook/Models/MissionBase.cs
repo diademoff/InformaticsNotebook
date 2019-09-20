@@ -142,6 +142,10 @@ namespace MyNotebook.Models
         {
             get
             {
+                if (MatchAnswerGiven == null)
+                {
+                    return false;
+                }
                 if (MatchAnswerGiven.Length != MatchAnswer.Length)
                 {
                     return false;

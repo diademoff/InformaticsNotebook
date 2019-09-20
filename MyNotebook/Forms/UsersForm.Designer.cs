@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersForm));
             this.label1 = new System.Windows.Forms.Label();
             this.txtbx_name = new System.Windows.Forms.TextBox();
             this.txtbx_class = new System.Windows.Forms.TextBox();
@@ -37,6 +38,7 @@
             this.btn_folderImport = new System.Windows.Forms.Button();
             this.cb_disableCalc = new System.Windows.Forms.CheckBox();
             this.lbl_about = new System.Windows.Forms.Label();
+            this.btn_update = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -126,11 +128,22 @@
             this.lbl_about.Text = "?";
             this.lbl_about.Click += new System.EventHandler(this.Lbl_about_Click);
             // 
+            // btn_update
+            // 
+            this.btn_update.Location = new System.Drawing.Point(540, 90);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(136, 23);
+            this.btn_update.TabIndex = 9;
+            this.btn_update.Text = "Проверить обновления";
+            this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.Btn_update_Click);
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_update);
             this.Controls.Add(this.lbl_about);
             this.Controls.Add(this.cb_disableCalc);
             this.Controls.Add(this.btn_folderImport);
@@ -141,6 +154,7 @@
             this.Controls.Add(this.txtbx_name);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsersForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Пользователи";
@@ -160,6 +174,7 @@
         private System.Windows.Forms.Button btn_folderImport;
         private System.Windows.Forms.CheckBox cb_disableCalc;
         private System.Windows.Forms.Label lbl_about;
+        private System.Windows.Forms.Button btn_update;
     }
 }
 

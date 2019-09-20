@@ -32,12 +32,26 @@ namespace MyNotebook.Forms
                 switch (currMission.MissionType)
                 {
                     case MissionType.Text:
-                        answerGiven = currMission.TextAnswerGiven;
                         answerTrue = currMission.TextAnswer;
+                        if (currMission.TextAnswerGiven == null)
+                        {
+                            answerGiven = "";
+                        }
+                        else
+                        {
+                            answerGiven = currMission.TextAnswerGiven;
+                        }
                         break;
                     case MissionType.Match:
-                        answerGiven = string.Join("", currMission.MatchAnswerGiven);
                         answerTrue = string.Join("", currMission.MatchAnswer);
+                        if (currMission.MatchAnswerGiven == null)
+                        {
+                            answerGiven = "";
+                        }
+                        else
+                        {
+                            answerGiven = string.Join("", currMission.MatchAnswerGiven);
+                        }
                         break;
                 }
                 txtbx_log.Text += currMission.IsSolved ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";

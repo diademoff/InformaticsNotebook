@@ -1,4 +1,5 @@
 ﻿using MyNotebook.Forms;
+using MyNotebook.Models;
 using MyNotebook.ViewModels;
 using System.Diagnostics;
 using System.Linq;
@@ -120,6 +121,22 @@ namespace MyNotebook
         {
             AboutBox aboutBox = new AboutBox();
             aboutBox.ShowDialog();
+        }
+
+        private void Btn_update_Click(object sender, System.EventArgs e)
+        {
+            GitUpdater updater = new GitUpdater();
+            if (updater.NeedUpdate)
+            {
+                if (MessageBox.Show("Найдена новая версия, хотите обновить программу?", "Проверка обновлений", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    updater.Update();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Обновления не найдены", "Проверка обновлений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
