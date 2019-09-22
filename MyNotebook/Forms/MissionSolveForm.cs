@@ -17,7 +17,7 @@ namespace MyNotebook.Forms
         public MissionSolveForm(User user, Test test)
         {
             InitializeComponent();
-            
+
             CurrentUser = user;
             this.Test = test;
             this.Shown += (s, e) =>
@@ -62,72 +62,59 @@ namespace MyNotebook.Forms
         private void AddTabWithMatchMission(MissionBase mission)
         {
             TabPage tp = new TabPage(mission.ToString());
+            tp.AutoScroll = true;
             tabControl.TabPages.Add(tp);
 
-            List<Label> terms = new List<Label>();
-            List<Label> answers = new List<Label>();
-            List<TextBox> inputAnswer = new List<TextBox>();
-            int numOfNewLinePrevious = 0;
-            for (int i = 0; i < mission.Terms.Length; i++)
+            Label lbl_title = new Label()
             {
-                #region term labels
-                int index = i;
-                string term = mission.Terms[i];
+                Text = "Соотнесите определения и термины",
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.TopCenter,
+                AutoSize = false,
+                Font = new Font("Arial", 20)
+            };
 
-                var lastYLocation = 10;
-                if (terms.Count >= 1)
+            List<Label> lbl_definitions = new List<Label>();
+            List<ComboBox> cb_terms = new List<ComboBox>();
+            int shiftY = 40;
+            for (int i = 0; i < mission.Definitions.Length; i++)
+            {
+                #region create combobox
+                var cb = new ComboBox()
                 {
-                    lastYLocation = terms.Last().Location.Y;
+                    Location = new Point(20, (i * 40) + shiftY),
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    Width = 170
+                };
+                for (int j = 0; j < mission.Terms.Length; j++)
+                {
+                    cb.Items.Add($"{j + 1}. {mission.Terms[j]}"); //{numOfAnswer}{separator} {term}
                 }
-                
-
-                terms.Add(new Label()
-                {
-                    Text = $"{index + 1}. {term}",
-                    AutoSize = true,
-                    Font = new Font("Arial", 10),
-                    Location = new Point(20, lastYLocation + 20 + (numOfNewLinePrevious * 35))
-                });
+                cb_terms.Add(cb);
                 #endregion
 
-                #region answer labels
-                answers.Add(new Label()
+                #region create lbl definishion
+                Label lbl = new Label()
                 {
+                    Location = new Point(200, (i * 40) + shiftY),
                     AutoSize = true,
-                    Font = new Font("Arial", 10),
-                    Location = new Point(350, lastYLocation + 20 + (numOfNewLinePrevious * 35))
-                });
-
-                string def = mission.Definitions[i];
-                numOfNewLinePrevious = 0;
-                if (def.Length > 70)
+                    Font = new Font("Arial", 10)
+                };
+                #region new line in Definition
+                for (int j = 85; j < mission.Definitions[i].Length; j += 85)
                 {
-                    for (int j = 70; j < def.Length; j += 70)
-                    {
-                        def = def.Insert(j, "\n");
-                        numOfNewLinePrevious++;
-                    }
+                    mission.Definitions[i] = mission.Definitions[i].Insert(j, "\n");
+                    shiftY += 20;
                 }
-
-                answers.Last().Text = def;
                 #endregion
-
-                #region input textbox
-                inputAnswer.Add(new TextBox()
-                {
-                    AutoSize = true,
-                    Font = new Font("Arial", 10),
-                    Location = new Point(220, terms.Last().Location.Y)
-                });
+                lbl.Text = mission.Definitions[i];
+                lbl_definitions.Add(lbl);
                 #endregion
             }
 
-            #region create answer button
-
+            #region create answer btn
             Button btn_answer = new Button()
             {
-                Size = new Size(91, 28),
-                Location = new Point(691, 359),
                 Dock = DockStyle.Bottom,
                 UseVisualStyleBackColor = true,
                 FlatStyle = FlatStyle.Flat,
@@ -135,50 +122,42 @@ namespace MyNotebook.Forms
             };
             btn_answer.Click += (s, e) =>
             {
-                bool isAllInput = true;
-                for (int j = 0; j < inputAnswer.Count; j++)
+                int[] answerGiven = new int[cb_terms.Count];
+                bool allInput = true;
+                for (int i = 0; i < cb_terms.Count; i++)
                 {
-                    if (string.IsNullOrWhiteSpace(inputAnswer[j].Text))
+                    try
                     {
-                        inputAnswer[j].ErrorTextBox();
-                        isAllInput = false;
+                        answerGiven[i] = Convert.ToInt32(cb_terms[i].Text.Split('.')[0]);
+                    }
+                    catch
+                    {
+                        allInput = false;
+                        break;
                     }
                 }
-                if (!isAllInput)
+                if (!allInput)
                 {
+                    MessageBox.Show("Вы выбрали не все значения", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                #region disable elements
-                for (int j = 0; j < inputAnswer.Count; j++)
-                {
-                    inputAnswer[j].Enabled = false;
-                }
-                btn_answer.Enabled = false;
-                #endregion
-                List<int> answerGiven = new List<int>();
-                #region get answer given
-                for (int i = 0; i < inputAnswer.Count; i++)
-                {
-                    answerGiven.Add(int.Parse(inputAnswer[i].Text));
-                }
-                #endregion
 
-                mission.TimeMissionSolved = DateTime.Now;
-                mission.MatchAnswerGiven = answerGiven.ToArray();
+                mission.FinishMatchMission(answerGiven);
+
+                btn_answer.Enabled = false;
+                cb_terms.ForEach(x => x.Enabled = false);
 
                 btn_answer.Text = mission.MatchIsSolvedRight ? "Верно" : "Ошибка";
                 btn_answer.BackColor = mission.MatchIsSolvedRight ? Color.Green : Color.Red;
 
-                CurrentUser.UserTests.Last().MissionsPassed.Add(mission);
             };
-
             #endregion
 
-            tp.Controls.AddRange(terms.ToArray());
-            tp.Controls.AddRange(answers.ToArray());
-            tp.Controls.AddRange(inputAnswer.ToArray());
             tp.Controls.Add(btn_answer);
+            tp.Controls.AddRange(lbl_definitions.ToArray());
+            tp.Controls.AddRange(cb_terms.ToArray());
+            tp.Controls.Add(lbl_title);
         }
 
         void AddTabWithTextMission(MissionBase mission)
@@ -231,8 +210,7 @@ namespace MyNotebook.Forms
                     return;
                 }
 
-                mission.TimeMissionSolved = DateTime.Now;
-                mission.TextAnswerGiven = txtbx_answer.Text;
+                mission.FinishTextMission(answer:txtbx_answer.Text);
 
                 btn_answer.Enabled = false;
                 txtbx_answer.Enabled = false;
@@ -240,7 +218,6 @@ namespace MyNotebook.Forms
                 btn_answer.Text = mission.TextIsSolvedRight ? "Верно" : "Ошибка";
                 btn_answer.BackColor = mission.TextIsSolvedRight ? Color.Green : Color.Red;
 
-                CurrentUser.UserTests.Last().MissionsPassed.Add(mission);
             };
 
             #endregion

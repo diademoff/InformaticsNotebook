@@ -80,6 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbx_log.Location = new System.Drawing.Point(295, 6);
             this.txtbx_log.Name = "txtbx_log";
+            this.txtbx_log.ReadOnly = true;
             this.txtbx_log.Size = new System.Drawing.Size(493, 432);
             this.txtbx_log.TabIndex = 4;
             this.txtbx_log.Text = "";
@@ -117,7 +118,7 @@
             this.Controls.Add(this.lbl_state);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestResultForm";
-            this.Text = "TestResultForm";
+            this.Text = "Результат";
             this.ResumeLayout(false);
             this.PerformLayout();
 

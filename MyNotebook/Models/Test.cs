@@ -12,19 +12,11 @@ namespace MyNotebook.Models
         public bool Finished = false;
         public bool IsCalcBlockEnabled;
         public List<MissionBase> AllMissons = new List<MissionBase>();
-        public List<MissionBase> MissionsPassed = new List<MissionBase>();
 
         public void FinishTest()
         {
             Finished = true;
             TimeFinish = DateTime.Now;
-            for (int i = 0; i < AllMissons.Count; i++)
-            {
-                if (!AllMissons[i].IsSolved)
-                {
-                    MissionsPassed.Add(AllMissons[i]);
-                }
-            }
         }
         public Test(int[] numOfMissions, bool isCalcBlockEnabled)
         {
@@ -41,9 +33,9 @@ namespace MyNotebook.Models
         public int GetMissionsSolvedRight()
         {
             int result = 0;
-            for (int i = 0; i < MissionsPassed.Count; i++)
+            for (int i = 0; i < AllMissons.Count; i++)
             {
-                if (MissionsPassed[i].TextIsSolvedRight)
+                if (AllMissons[i].TextIsSolvedRight)
                 {
                     result += 1;
                 }

@@ -75,6 +75,12 @@ namespace MyNotebook.Models
             }
         }
 
+        public void FinishTextMission(string answer)
+        {
+            TextAnswerGiven = answer;
+            TimeMissionSolved = DateTime.Now;
+        }
+
         /// <summary>
         /// Constructor for Text mission
         /// </summary>
@@ -166,6 +172,12 @@ namespace MyNotebook.Models
             {
                 throw new Exception("this mission is not match");
             }
+        }
+
+        public void FinishMatchMission(int[] answer)
+        {
+            MatchAnswerGiven = answer;
+            TimeMissionSolved = DateTime.Now;
         }
 
         /// <summary>

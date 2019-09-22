@@ -18,9 +18,9 @@ namespace MyNotebook.Forms
 
             int numOfSolved = 0;
             txtbx_log.Text += "Краткая информация:\n";
-            for (int i = 0; i < test.MissionsPassed.Count; i++)
+            for (int i = 0; i < test.AllMissons.Count; i++)
             {
-                var currMission = test.MissionsPassed[i];
+                var currMission = test.AllMissons[i];
                 if (currMission.IsSolved)
                 {
                     numOfSolved += 1;
@@ -55,9 +55,9 @@ namespace MyNotebook.Forms
                         break;
                 }
                 txtbx_log.Text += currMission.IsSolved ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
-                txtbx_log.Text += $"\tОтвет дан: {answerGiven}, верный ответ: {answerTrue}\n\n";
+                txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
             }
-            double percentSolved = ((double)numOfSolved / (double)test.MissionsPassed.Count) * 100;
+            double percentSolved = ((double)numOfSolved / (double)test.AllMissons.Count) * 100;
             lbl_solvedPercent.Text = $"Решено: {percentSolved.ToString("#.##")}%";
             int mark = GetMark(percentSolved);
             lbl_mark.Text = $"Оценка: {mark}";
