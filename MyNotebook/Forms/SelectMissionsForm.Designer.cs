@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectMissionsForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_next = new System.Windows.Forms.Button();
+            this.btn_save = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -43,23 +43,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Выберите задания";
             // 
-            // btn_next
+            // btn_save
             // 
-            this.btn_next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_next.Location = new System.Drawing.Point(640, 396);
-            this.btn_next.Name = "btn_next";
-            this.btn_next.Size = new System.Drawing.Size(148, 42);
-            this.btn_next.TabIndex = 6;
-            this.btn_next.Text = "Далее ->";
-            this.btn_next.UseVisualStyleBackColor = true;
-            this.btn_next.Click += new System.EventHandler(this.Btn_next_Click);
+            this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_save.Location = new System.Drawing.Point(640, 396);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(148, 42);
+            this.btn_save.TabIndex = 6;
+            this.btn_save.Text = "Сохранить";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.Btn_save_Click);
             // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btn_next);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SelectMissionsForm";
@@ -73,6 +73,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_next;
+        private System.Windows.Forms.Button btn_save;
     }
 }

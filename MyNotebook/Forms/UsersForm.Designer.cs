@@ -34,11 +34,12 @@
             this.txtbx_class = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.listbx_users = new System.Windows.Forms.ListBox();
-            this.btn_next = new System.Windows.Forms.Button();
+            this.btn_chooseTest = new System.Windows.Forms.Button();
             this.btn_folderImport = new System.Windows.Forms.Button();
             this.cb_disableCalc = new System.Windows.Forms.CheckBox();
             this.lbl_about = new System.Windows.Forms.Label();
             this.btn_update = new System.Windows.Forms.Button();
+            this.btn_createTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -85,15 +86,15 @@
             this.listbx_users.Size = new System.Drawing.Size(770, 264);
             this.listbx_users.TabIndex = 4;
             // 
-            // btn_next
+            // btn_chooseTest
             // 
-            this.btn_next.Location = new System.Drawing.Point(598, 385);
-            this.btn_next.Name = "btn_next";
-            this.btn_next.Size = new System.Drawing.Size(190, 53);
-            this.btn_next.TabIndex = 5;
-            this.btn_next.Text = "Далее ->";
-            this.btn_next.UseVisualStyleBackColor = true;
-            this.btn_next.Click += new System.EventHandler(this.Btn_next_Click);
+            this.btn_chooseTest.Location = new System.Drawing.Point(621, 389);
+            this.btn_chooseTest.Name = "btn_chooseTest";
+            this.btn_chooseTest.Size = new System.Drawing.Size(167, 49);
+            this.btn_chooseTest.TabIndex = 5;
+            this.btn_chooseTest.Text = "Выбрать тест ->";
+            this.btn_chooseTest.UseVisualStyleBackColor = true;
+            this.btn_chooseTest.Click += new System.EventHandler(this.Btn_choose_Click);
             // 
             // btn_folderImport
             // 
@@ -138,16 +139,27 @@
             this.btn_update.UseVisualStyleBackColor = true;
             this.btn_update.Click += new System.EventHandler(this.Btn_update_Click);
             // 
+            // btn_createTest
+            // 
+            this.btn_createTest.Location = new System.Drawing.Point(457, 389);
+            this.btn_createTest.Name = "btn_createTest";
+            this.btn_createTest.Size = new System.Drawing.Size(158, 47);
+            this.btn_createTest.TabIndex = 10;
+            this.btn_createTest.Text = "Создать тест";
+            this.btn_createTest.UseVisualStyleBackColor = true;
+            this.btn_createTest.Click += new System.EventHandler(this.Btn_createTest_Click);
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_createTest);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.lbl_about);
             this.Controls.Add(this.cb_disableCalc);
             this.Controls.Add(this.btn_folderImport);
-            this.Controls.Add(this.btn_next);
+            this.Controls.Add(this.btn_chooseTest);
             this.Controls.Add(this.listbx_users);
             this.Controls.Add(this.txtbx_class);
             this.Controls.Add(this.label2);
@@ -170,11 +182,12 @@
         private System.Windows.Forms.TextBox txtbx_class;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listbx_users;
-        private System.Windows.Forms.Button btn_next;
+        private System.Windows.Forms.Button btn_chooseTest;
         private System.Windows.Forms.Button btn_folderImport;
         private System.Windows.Forms.CheckBox cb_disableCalc;
         private System.Windows.Forms.Label lbl_about;
         private System.Windows.Forms.Button btn_update;
+        private System.Windows.Forms.Button btn_createTest;
     }
 }
 

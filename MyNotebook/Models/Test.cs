@@ -1,6 +1,8 @@
 ﻿using MyNotebook.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MyNotebook.Models
 {
@@ -13,11 +15,17 @@ namespace MyNotebook.Models
         public bool IsCalcBlockEnabled;
         public List<MissionBase> AllMissons = new List<MissionBase>();
 
+        public void InitTest()
+        {
+            TimeStart = DateTime.Now;
+        }
+
         public void FinishTest()
         {
             Finished = true;
             TimeFinish = DateTime.Now;
         }
+
         public Test(int[] numOfMissions, bool isCalcBlockEnabled)
         {
             this.IsCalcBlockEnabled = isCalcBlockEnabled;
@@ -26,10 +34,7 @@ namespace MyNotebook.Models
             {
                 AllMissons.Add(MissionGeneratorCollection.Missions[numOfMissions[i]].Generate());
             }
-
-            TimeStart = DateTime.Now;
         }
-
         public int GetMissionsSolvedRight()
         {
             int result = 0;
@@ -41,6 +46,25 @@ namespace MyNotebook.Models
                 }
             }
             return result;
+        }
+
+        public void Serialize(string filePath)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                bf.Serialize(fs, this);
+            }
+        }
+
+        public static Test Deserialize(string filePath)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                Test result = bf.Deserialize(fs) as Test;
+                return result;
+            }
         }
     }
 }

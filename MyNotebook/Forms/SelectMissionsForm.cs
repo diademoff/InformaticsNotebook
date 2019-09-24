@@ -10,13 +10,11 @@ namespace MyNotebook.Forms
 {
     public partial class SelectMissionsForm : Form
     {
-        public User CurrentUser { get; set; }
         List<CheckBox> checkBoxes = new List<CheckBox>();
         bool calcBlocked;
-        public SelectMissionsForm(User currentUser, bool isCalcBlocked)
+        public SelectMissionsForm(bool isCalcBlocked)
         {
             InitializeComponent();
-            CurrentUser = currentUser;
             this.calcBlocked = isCalcBlocked;
 
             for (int i = 0; i < MissionGeneratorCollection.Missions.Length; i++)
@@ -32,7 +30,7 @@ namespace MyNotebook.Forms
             Controls.AddRange(checkBoxes.ToArray());
         }
 
-        private void Btn_next_Click(object sender, EventArgs e)
+        private void Btn_save_Click(object sender, EventArgs e)
         {
             List<int> selectedNumsOfMissions = new List<int>();
             for (int i = 0; i < checkBoxes.Count; i++)
@@ -50,11 +48,15 @@ namespace MyNotebook.Forms
                 return;
             }
 
-            this.FullHideForm();
-            CurrentUser.UserTests.Add(new Test(selectedNumsOfMissions.ToArray(), isCalcBlockEnabled:calcBlocked));
-            MissionSolveForm msf = new MissionSolveForm(CurrentUser, CurrentUser.UserTests.Last());
-            msf.ShowDialog();
-            this.FullShowForm();
+            var test = new Test(selectedNumsOfMissions.ToArray(), isCalcBlockEnabled: calcBlocked);
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    test.Serialize(sfd.FileName);
+                    this.Close();
+                }
+            }
         }
     }
 }

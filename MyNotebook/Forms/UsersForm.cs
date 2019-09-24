@@ -42,7 +42,7 @@ namespace MyNotebook
             listbx_users.Items.AddRange(UserCollection.Instance.GetUsers);
         }
 
-        private void Btn_next_Click(object sender, System.EventArgs e)
+        private void Btn_choose_Click(object sender, System.EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtbx_name.Text))
             {
@@ -75,15 +75,38 @@ namespace MyNotebook
                     return;
             }
 
+            UpdateUsersList();
+            Test test;
 
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                MessageBox.Show("Выберите тест");
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        test = Test.Deserialize(ofd.FileName);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось загрузить тест");
+                        return;
+                    }
+                    MissionSolveForm msf = new MissionSolveForm(selectedUser, test);
+                    this.FullHideForm();
+                    msf.ShowDialog();
+                    this.FullShowForm();
+                }
+            }
+            txtbx_class.Text = txtbx_name.Text = "";
+        }
+
+        private void Btn_createTest_Click(object sender, System.EventArgs e)
+        {
             this.FullHideForm();
-            SelectMissionsForm smf = new SelectMissionsForm(selectedUser, isCalcBlocked:cb_disableCalc.Checked);
+            SelectMissionsForm smf = new SelectMissionsForm(isCalcBlocked:disableCalc);
             smf.ShowDialog();
             this.FullShowForm();
-
-            txtbx_class.Text = txtbx_name.Text = "";
-
-            UpdateUsersList();
         }
 
         void KillCalcProcess()
