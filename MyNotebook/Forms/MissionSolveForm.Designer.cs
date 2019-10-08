@@ -34,6 +34,7 @@
             this.lbl_isCalcBlockEnabled = new System.Windows.Forms.Label();
             this.lbl_timer = new System.Windows.Forms.Label();
             this.btn_finishTest = new System.Windows.Forms.Button();
+            this.lbl_isTopMost = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_user
@@ -89,11 +90,22 @@
             this.btn_finishTest.UseVisualStyleBackColor = true;
             this.btn_finishTest.Click += new System.EventHandler(this.Btn_finishTest_Click);
             // 
+            // lbl_isTopMost
+            // 
+            this.lbl_isTopMost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_isTopMost.AutoSize = true;
+            this.lbl_isTopMost.Location = new System.Drawing.Point(278, 502);
+            this.lbl_isTopMost.Name = "lbl_isTopMost";
+            this.lbl_isTopMost.Size = new System.Drawing.Size(57, 13);
+            this.lbl_isTopMost.TabIndex = 5;
+            this.lbl_isTopMost.Text = "IsTopMost";
+            // 
             // MissionSolveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(903, 521);
+            this.Controls.Add(this.lbl_isTopMost);
             this.Controls.Add(this.btn_finishTest);
             this.Controls.Add(this.lbl_timer);
             this.Controls.Add(this.lbl_isCalcBlockEnabled);
@@ -115,5 +127,6 @@
         private System.Windows.Forms.Label lbl_isCalcBlockEnabled;
         private System.Windows.Forms.Label lbl_timer;
         private System.Windows.Forms.Button btn_finishTest;
+        private System.Windows.Forms.Label lbl_isTopMost;
     }
 }

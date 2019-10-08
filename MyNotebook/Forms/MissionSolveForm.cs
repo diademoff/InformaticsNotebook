@@ -18,6 +18,17 @@ namespace MyNotebook.Forms
         {
             InitializeComponent();
 
+            lbl_isTopMost.ForeColor = Color.Red;
+            lbl_isTopMost.Text = "Монопольный режим выключен";
+            if (test.IsTopMost)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.TopMost = true;
+                lbl_isTopMost.ForeColor = Color.Green;
+                lbl_isTopMost.Text = "Монопольный режим включен";
+            }
+
+            test.TimeStart = DateTime.Now;
             CurrentUser = user;
             this.Test = test;
             this.Shown += (s, e) =>

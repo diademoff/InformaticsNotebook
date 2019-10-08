@@ -36,6 +36,7 @@
             this.txtbx_log = new System.Windows.Forms.RichTextBox();
             this.lbl_mark = new System.Windows.Forms.Label();
             this.lbl_solvedPercent = new System.Windows.Forms.Label();
+            this.lbl_timeSpend = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_state
@@ -68,7 +69,7 @@
             // lbl_wasCalcDiabled
             // 
             this.lbl_wasCalcDiabled.AutoSize = true;
-            this.lbl_wasCalcDiabled.Location = new System.Drawing.Point(12, 91);
+            this.lbl_wasCalcDiabled.Location = new System.Drawing.Point(12, 116);
             this.lbl_wasCalcDiabled.Name = "lbl_wasCalcDiabled";
             this.lbl_wasCalcDiabled.Size = new System.Drawing.Size(75, 13);
             this.lbl_wasCalcDiabled.TabIndex = 3;
@@ -89,7 +90,7 @@
             // 
             this.lbl_mark.AutoSize = true;
             this.lbl_mark.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.lbl_mark.Location = new System.Drawing.Point(9, 141);
+            this.lbl_mark.Location = new System.Drawing.Point(9, 166);
             this.lbl_mark.Name = "lbl_mark";
             this.lbl_mark.Size = new System.Drawing.Size(110, 31);
             this.lbl_mark.TabIndex = 5;
@@ -98,17 +99,27 @@
             // lbl_solvedPercent
             // 
             this.lbl_solvedPercent.AutoSize = true;
-            this.lbl_solvedPercent.Location = new System.Drawing.Point(12, 118);
+            this.lbl_solvedPercent.Location = new System.Drawing.Point(12, 143);
             this.lbl_solvedPercent.Name = "lbl_solvedPercent";
             this.lbl_solvedPercent.Size = new System.Drawing.Size(49, 13);
             this.lbl_solvedPercent.TabIndex = 6;
             this.lbl_solvedPercent.Text = "Решено:";
+            // 
+            // lbl_timeSpend
+            // 
+            this.lbl_timeSpend.AutoSize = true;
+            this.lbl_timeSpend.Location = new System.Drawing.Point(12, 90);
+            this.lbl_timeSpend.Name = "lbl_timeSpend";
+            this.lbl_timeSpend.Size = new System.Drawing.Size(101, 13);
+            this.lbl_timeSpend.TabIndex = 7;
+            this.lbl_timeSpend.Text = "Время затрачено: ";
             // 
             // TestResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_timeSpend);
             this.Controls.Add(this.lbl_solvedPercent);
             this.Controls.Add(this.lbl_mark);
             this.Controls.Add(this.txtbx_log);
@@ -133,5 +144,6 @@
         private System.Windows.Forms.RichTextBox txtbx_log;
         private System.Windows.Forms.Label lbl_mark;
         private System.Windows.Forms.Label lbl_solvedPercent;
+        private System.Windows.Forms.Label lbl_timeSpend;
     }
 }

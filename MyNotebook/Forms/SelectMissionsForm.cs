@@ -11,11 +11,9 @@ namespace MyNotebook.Forms
     public partial class SelectMissionsForm : Form
     {
         List<CheckBox> checkBoxes = new List<CheckBox>();
-        bool calcBlocked;
-        public SelectMissionsForm(bool isCalcBlocked)
+        public SelectMissionsForm()
         {
             InitializeComponent();
-            this.calcBlocked = isCalcBlocked;
 
             for (int i = 0; i < MissionGeneratorCollection.Missions.Length; i++)
             {
@@ -48,7 +46,8 @@ namespace MyNotebook.Forms
                 return;
             }
 
-            var test = new Test(selectedNumsOfMissions.ToArray(), isCalcBlockEnabled: calcBlocked);
+            var test = new Test(selectedNumsOfMissions.ToArray(), isCalcBlockEnabled: cb_disableCalc.Checked);
+            test.IsTopMost = cb_topMost.Checked;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 if (sfd.ShowDialog() == DialogResult.OK)

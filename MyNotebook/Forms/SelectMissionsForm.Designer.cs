@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectMissionsForm));
             this.label1 = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
+            this.cb_topMost = new System.Windows.Forms.CheckBox();
+            this.cb_disableCalc = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -54,11 +56,35 @@
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.Btn_save_Click);
             // 
+            // cb_topMost
+            // 
+            this.cb_topMost.AutoSize = true;
+            this.cb_topMost.Location = new System.Drawing.Point(12, 421);
+            this.cb_topMost.Name = "cb_topMost";
+            this.cb_topMost.Size = new System.Drawing.Size(126, 17);
+            this.cb_topMost.TabIndex = 7;
+            this.cb_topMost.Text = "Поверх других окон";
+            this.cb_topMost.UseVisualStyleBackColor = true;
+            // 
+            // cb_disableCalc
+            // 
+            this.cb_disableCalc.AutoSize = true;
+            this.cb_disableCalc.Checked = true;
+            this.cb_disableCalc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_disableCalc.Location = new System.Drawing.Point(12, 398);
+            this.cb_disableCalc.Name = "cb_disableCalc";
+            this.cb_disableCalc.Size = new System.Drawing.Size(146, 17);
+            this.cb_disableCalc.TabIndex = 8;
+            this.cb_disableCalc.Text = "Запретить калькулятор";
+            this.cb_disableCalc.UseVisualStyleBackColor = true;
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cb_disableCalc);
+            this.Controls.Add(this.cb_topMost);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -74,5 +100,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.CheckBox cb_topMost;
+        private System.Windows.Forms.CheckBox cb_disableCalc;
     }
 }

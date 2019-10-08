@@ -92,6 +92,7 @@ namespace MyNotebook
                         MessageBox.Show("Не удалось загрузить тест");
                         return;
                     }
+                    disableCalc = test.IsCalcBlockEnabled;
                     MissionSolveForm msf = new MissionSolveForm(selectedUser, test);
                     this.FullHideForm();
                     msf.ShowDialog();
@@ -104,7 +105,7 @@ namespace MyNotebook
         private void Btn_createTest_Click(object sender, System.EventArgs e)
         {
             this.FullHideForm();
-            SelectMissionsForm smf = new SelectMissionsForm(isCalcBlocked:disableCalc);
+            SelectMissionsForm smf = new SelectMissionsForm();
             smf.ShowDialog();
             this.FullShowForm();
         }
@@ -118,7 +119,7 @@ namespace MyNotebook
                 p[i].Kill();
             }
         }
-        bool disableCalc => cb_disableCalc.Checked;
+        bool disableCalc = false;
         private void DisableCalc()
         {
             if (disableCalc)

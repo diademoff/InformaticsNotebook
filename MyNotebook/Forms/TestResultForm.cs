@@ -1,4 +1,5 @@
 ﻿using MyNotebook.Models;
+using System;
 using System.Windows.Forms;
 
 namespace MyNotebook.Forms
@@ -9,12 +10,14 @@ namespace MyNotebook.Forms
         public TestResultForm(Test test)
         {
             InitializeComponent();
+            test.TimeFinish = DateTime.Now;
             Test = test;
 
             lbl_state.Text = test.Finished ? $"Статус: завершен" : "Статус: не завершен";
             lbl_timeStart.Text = "Время начала: " + test.TimeStart.ToString();
             lbl_timeEnd.Text = "Время завершения: " + test.TimeFinish.ToString();
             lbl_wasCalcDiabled.Text = test.IsCalcBlockEnabled ? "Калькулятор: заблокирован" : "Калькулятор: не заблокирован";
+            lbl_timeSpend.Text = "Время затрачено: " + ($"{(DateTime.Now - Test.TimeStart).TotalMinutes.ToString("00")}:{(DateTime.Now - Test.TimeStart).Seconds.ToString("00")}");
 
             int numOfSolved = 0;
             txtbx_log.Text += "Краткая информация:\n";

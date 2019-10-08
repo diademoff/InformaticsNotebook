@@ -36,7 +36,6 @@
             this.listbx_users = new System.Windows.Forms.ListBox();
             this.btn_chooseTest = new System.Windows.Forms.Button();
             this.btn_folderImport = new System.Windows.Forms.Button();
-            this.cb_disableCalc = new System.Windows.Forms.CheckBox();
             this.lbl_about = new System.Windows.Forms.Label();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_createTest = new System.Windows.Forms.Button();
@@ -106,18 +105,6 @@
             this.btn_folderImport.UseVisualStyleBackColor = true;
             this.btn_folderImport.Click += new System.EventHandler(this.Btn_folderImport_Click);
             // 
-            // cb_disableCalc
-            // 
-            this.cb_disableCalc.AutoSize = true;
-            this.cb_disableCalc.Checked = true;
-            this.cb_disableCalc.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_disableCalc.Location = new System.Drawing.Point(18, 421);
-            this.cb_disableCalc.Name = "cb_disableCalc";
-            this.cb_disableCalc.Size = new System.Drawing.Size(146, 17);
-            this.cb_disableCalc.TabIndex = 7;
-            this.cb_disableCalc.Text = "Запретить калькулятор";
-            this.cb_disableCalc.UseVisualStyleBackColor = true;
-            // 
             // lbl_about
             // 
             this.lbl_about.AutoSize = true;
@@ -157,7 +144,6 @@
             this.Controls.Add(this.btn_createTest);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.lbl_about);
-            this.Controls.Add(this.cb_disableCalc);
             this.Controls.Add(this.btn_folderImport);
             this.Controls.Add(this.btn_chooseTest);
             this.Controls.Add(this.listbx_users);
@@ -184,7 +170,6 @@
         private System.Windows.Forms.ListBox listbx_users;
         private System.Windows.Forms.Button btn_chooseTest;
         private System.Windows.Forms.Button btn_folderImport;
-        private System.Windows.Forms.CheckBox cb_disableCalc;
         private System.Windows.Forms.Label lbl_about;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_createTest;

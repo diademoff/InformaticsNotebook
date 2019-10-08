@@ -107,6 +107,7 @@
     <Compile Include="ViewModels\Mission2.cs" />
     <Compile Include="ViewModels\Mission3.cs" />
     <Compile Include="ViewModels\Mission4.cs" />
+    <Compile Include="ViewModels\Mission5.cs" />
     <Compile Include="ViewModels\MissionGeneratorCollection.cs" />
     <Compile Include="ViewModels\UserCollection.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">

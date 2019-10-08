@@ -13,6 +13,7 @@ namespace MyNotebook.Models
         public DateTime TimeFinish;
         public bool Finished = false;
         public bool IsCalcBlockEnabled;
+        public bool IsTopMost = false;
         public List<MissionBase> AllMissons = new List<MissionBase>();
 
         public void InitTest()
