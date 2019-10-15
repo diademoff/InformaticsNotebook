@@ -35,25 +35,25 @@ namespace MyNotebook.Forms
                 switch (currMission.MissionType)
                 {
                     case MissionType.Text:
-                        answerTrue = currMission.TextAnswer;
-                        if (currMission.TextAnswerGiven == null)
+                        answerTrue = currMission.Text_Answer;
+                        if (currMission.Text_AnswerGiven == null)
                         {
                             answerGiven = "";
                         }
                         else
                         {
-                            answerGiven = currMission.TextAnswerGiven;
+                            answerGiven = currMission.Text_AnswerGiven;
                         }
                         break;
                     case MissionType.Match:
-                        answerTrue = string.Join("", currMission.MatchAnswer);
-                        if (currMission.MatchAnswerGiven == null)
+                        answerTrue = string.Join("", currMission.Match_Answer);
+                        if (currMission.Match_AnswerGiven == null)
                         {
                             answerGiven = "";
                         }
                         else
                         {
-                            answerGiven = string.Join("", currMission.MatchAnswerGiven);
+                            answerGiven = string.Join("", currMission.Match_AnswerGiven);
                         }
                         break;
                 }

@@ -24,9 +24,9 @@ namespace MyNotebook.Models
                 switch (MissionType)
                 {
                     case MissionType.Text:
-                        return TextIsSolvedRight;
+                        return Text_IsSolvedRight;
                     case MissionType.Match:
-                        return MatchIsSolvedRight;
+                        return Match_IsSolvedRight;
                 }
                 return false;
             }
@@ -42,40 +42,40 @@ namespace MyNotebook.Models
         #endregion
 
         #region text mission
-        private string question;
-        public string Question
+        private string text_question;
+        public string Text_Question
         {
             get
             {
-                CheckTextMission();
-                return question;
+                Text_CheckMission();
+                return text_question;
             }
             private set
             {
-                CheckTextMission();
-                question = value;
+                Text_CheckMission();
+                text_question = value;
             }
         }
 
-        private string textAnswer;
-        public string TextAnswer
+        private string text_Answer;
+        public string Text_Answer
         {
             get
             {
-                CheckTextMission();
-                return textAnswer;
+                Text_CheckMission();
+                return text_Answer;
             }
             private set
             {
-                CheckTextMission();
-                textAnswer = value;
+                Text_CheckMission();
+                text_Answer = value;
             }
         }
 
-        public string TextAnswerGiven;
-        public bool TextIsSolvedRight => (TextAnswerGiven == TextAnswer);
+        public string Text_AnswerGiven;
+        public bool Text_IsSolvedRight => (Text_AnswerGiven == Text_Answer);
 
-        private void CheckTextMission()
+        private void Text_CheckMission()
         {
             if (MissionType != MissionType.Text)
             {
@@ -83,9 +83,9 @@ namespace MyNotebook.Models
             }
         }
 
-        public void FinishTextMission(string answer)
+        public void Text_FinishMission(string answer)
         {
-            TextAnswerGiven = answer;
+            Text_AnswerGiven = answer;
             TimeMissionSolved = DateTime.Now;
         }
 
@@ -101,74 +101,74 @@ namespace MyNotebook.Models
 
             this.Title = title;
             NumOfMission = numOfMission;
-            Question = question;
-            TextAnswer = answer;
+            Text_Question = question;
+            Text_Answer = answer;
         }
 
         #endregion
 
         #region match mission
-        private string[] terms;
-        public string[] Terms
+        private string[] match_terms;
+        public string[] Match_Terms
         {
             get
             {
-                CheckMatchMission();
-                return terms;
+                Match_CheckMission();
+                return match_terms;
             }
             private set
             {
-                CheckMatchMission();
-                terms = value;
+                Match_CheckMission();
+                match_terms = value;
             }
         }
 
-        private string[] definitions;
-        public string[] Definitions
+        private string[] match_definitions;
+        public string[] Match_Definitions
         {
             get
             {
-                CheckMatchMission();
-                return definitions;
+                Match_CheckMission();
+                return match_definitions;
             }
             private set
             {
-                CheckMatchMission();
-                definitions = value;
+                Match_CheckMission();
+                match_definitions = value;
             }
         }
 
-        private int[] mathAnswer;
-        public int[] MatchAnswer
+        private int[] math_Answer;
+        public int[] Match_Answer
         {
             get
             {
-                CheckMatchMission();
-                return mathAnswer;
+                Match_CheckMission();
+                return math_Answer;
             }
             private set
             {
-                CheckMatchMission();
-                mathAnswer = value;
+                Match_CheckMission();
+                math_Answer = value;
             }
         }
 
-        public int[] MatchAnswerGiven;
-        public bool MatchIsSolvedRight
+        public int[] Match_AnswerGiven;
+        public bool Match_IsSolvedRight
         {
             get
             {
-                if (MatchAnswerGiven == null)
+                if (Match_AnswerGiven == null)
                 {
                     return false;
                 }
-                if (MatchAnswerGiven.Length != MatchAnswer.Length)
+                if (Match_AnswerGiven.Length != Match_Answer.Length)
                 {
                     return false;
                 }
-                for (int i = 0; i < MatchAnswer.Length; i++)
+                for (int i = 0; i < Match_Answer.Length; i++)
                 {
-                    if (MatchAnswer[i] != MatchAnswerGiven[i])
+                    if (Match_Answer[i] != Match_AnswerGiven[i])
                     {
                         return false;
                     }
@@ -176,7 +176,7 @@ namespace MyNotebook.Models
                 return true;
             }
         }
-        private void CheckMatchMission()
+        private void Match_CheckMission()
         {
             if (MissionType != MissionType.Match)
             {
@@ -184,9 +184,9 @@ namespace MyNotebook.Models
             }
         }
 
-        public void FinishMatchMission(int[] answer)
+        public void Match_FinishMission(int[] answer)
         {
-            MatchAnswerGiven = answer;
+            Match_AnswerGiven = answer;
             TimeMissionSolved = DateTime.Now;
         }
 
@@ -208,9 +208,9 @@ namespace MyNotebook.Models
 
             this.Title = title;
             NumOfMission = numOfMission;
-            Terms = terms;
-            Definitions = defenitions;
-            MatchAnswer = answer;
+            Match_Terms = terms;
+            Match_Definitions = defenitions;
+            Match_Answer = answer;
         }
         #endregion
 
@@ -220,12 +220,12 @@ namespace MyNotebook.Models
         {
             get
             {
-                CheckSelectMission();
+                Select_CheckMission();
                 return select_tasktext;
             }
             private set
             {
-                CheckSelectMission();
+                Select_CheckMission();
                 select_tasktext = value;
             }
         }
@@ -235,12 +235,12 @@ namespace MyNotebook.Models
         {
             get
             {
-                CheckSelectMission();
+                Select_CheckMission();
                 return select_answers;
             }
             private set
             {
-                CheckSelectMission();
+                Select_CheckMission();
                 select_answers = value;
             }
         }
@@ -250,12 +250,12 @@ namespace MyNotebook.Models
         {
             get
             {
-                CheckSelectMission();
+                Select_CheckMission();
                 return select_Answer;
             }
             private set
             {
-                CheckSelectMission();
+                Select_CheckMission();
                 select_Answer = value;
             }
         }
@@ -283,7 +283,7 @@ namespace MyNotebook.Models
                 return true;
             }
         }
-        private void CheckSelectMission()
+        private void Select_CheckMission()
         {
             if (MissionType != MissionType.Select)
             {
@@ -291,7 +291,7 @@ namespace MyNotebook.Models
             }
         }
 
-        public void FinishSelectMission(int[] answer)
+        public void Select_FinishMission(int[] answer)
         {
             SelectAnswerGiven = answer;
             TimeMissionSolved = DateTime.Now;

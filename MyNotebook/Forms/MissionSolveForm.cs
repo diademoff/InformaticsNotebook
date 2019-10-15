@@ -86,7 +86,7 @@ namespace MyNotebook.Forms
             Label lbl_question = new Label()
             {
                 Dock = DockStyle.Top,
-                Text = mission.Question,
+                Text = mission.Text_Question,
                 AutoSize = true,
                 Font = new Font("Arial", 13)
             };
@@ -127,13 +127,13 @@ namespace MyNotebook.Forms
                     return;
                 }
 
-                mission.FinishTextMission(answer: txtbx_answer.Text);
+                mission.Text_FinishMission(answer: txtbx_answer.Text);
 
                 btn_answer.Enabled = false;
                 txtbx_answer.Enabled = false;
 
-                btn_answer.Text = mission.TextIsSolvedRight ? "Верно" : "Ошибка";
-                btn_answer.BackColor = mission.TextIsSolvedRight ? Color.Green : Color.Red;
+                btn_answer.Text = mission.Text_IsSolvedRight ? "Верно" : "Ошибка";
+                btn_answer.BackColor = mission.Text_IsSolvedRight ? Color.Green : Color.Red;
 
             };
 
@@ -161,7 +161,7 @@ namespace MyNotebook.Forms
             List<Label> lbl_definitions = new List<Label>();
             List<ComboBox> cb_terms = new List<ComboBox>();
             int shiftY = 40;
-            for (int i = 0; i < mission.Definitions.Length; i++)
+            for (int i = 0; i < mission.Match_Definitions.Length; i++)
             {
                 #region create combobox
                 var cb = new ComboBox()
@@ -170,9 +170,9 @@ namespace MyNotebook.Forms
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     Width = 170
                 };
-                for (int j = 0; j < mission.Terms.Length; j++)
+                for (int j = 0; j < mission.Match_Terms.Length; j++)
                 {
-                    cb.Items.Add($"{j + 1}. {mission.Terms[j]}"); //{numOfAnswer}{separator} {term}
+                    cb.Items.Add($"{j + 1}. {mission.Match_Terms[j]}"); //{numOfAnswer}{separator} {term}
                 }
                 cb_terms.Add(cb);
                 #endregion
@@ -185,13 +185,13 @@ namespace MyNotebook.Forms
                     Font = new Font("Arial", 10)
                 };
                 #region new line in Definition
-                for (int j = 85; j < mission.Definitions[i].Length; j += 85)
+                for (int j = 85; j < mission.Match_Definitions[i].Length; j += 85)
                 {
-                    mission.Definitions[i] = mission.Definitions[i].Insert(j, "\n");
+                    mission.Match_Definitions[i] = mission.Match_Definitions[i].Insert(j, "\n");
                     shiftY += 20;
                 }
                 #endregion
-                lbl.Text = mission.Definitions[i];
+                lbl.Text = mission.Match_Definitions[i];
                 lbl_definitions.Add(lbl);
                 #endregion
             }
@@ -227,13 +227,13 @@ namespace MyNotebook.Forms
                 }
 
 
-                mission.FinishMatchMission(answerGiven);
+                mission.Match_FinishMission(answerGiven);
 
                 btn_answer.Enabled = false;
                 cb_terms.ForEach(x => x.Enabled = false);
 
-                btn_answer.Text = mission.MatchIsSolvedRight ? "Верно" : "Ошибка";
-                btn_answer.BackColor = mission.MatchIsSolvedRight ? Color.Green : Color.Red;
+                btn_answer.Text = mission.Match_IsSolvedRight ? "Верно" : "Ошибка";
+                btn_answer.BackColor = mission.Match_IsSolvedRight ? Color.Green : Color.Red;
 
             };
             #endregion
@@ -293,7 +293,7 @@ namespace MyNotebook.Forms
 
                 answerGiven.Sort();
 
-                mission.FinishSelectMission(answerGiven.ToArray());
+                mission.Select_FinishMission(answerGiven.ToArray());
 
                 btn_answer.Enabled = false;
                 checkboxes.ForEach(x => x.Enabled = false);

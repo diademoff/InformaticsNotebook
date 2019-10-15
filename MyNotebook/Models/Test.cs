@@ -41,7 +41,7 @@ namespace MyNotebook.Models
             int result = 0;
             for (int i = 0; i < AllMissons.Count; i++)
             {
-                if (AllMissons[i].TextIsSolvedRight)
+                if (AllMissons[i].Text_IsSolvedRight)
                 {
                     result += 1;
                 }
