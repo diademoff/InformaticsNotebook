@@ -29,20 +29,23 @@ namespace MyNotebook.ViewModels
 
             int result = ConvertFromTo(num, unit1, unit2);
 
+            MissionBase generated;
             if (rnd.Next(0, 2) == 0)
             {
                 var Question = $"Перевидите {num} из {unit1} в {unit2}";
                 var Answer = result.ToString();
 
-                return new MissionBase(2, "Единицы измерения информации", Question, Answer);
+                generated = new MissionBase(2, "Единицы измерения информации", Question, Answer);
             }
             else
             {
                 var Question = $"Перевидите {result} из {unit2} в {unit1}";
                 var Answer = num.ToString();
 
-                return new MissionBase(2, "Единицы измерения информации", Question, Answer);
+                generated = new MissionBase(2, "Единицы измерения информации", Question, Answer);
             }
+            generated.Note = $"Единицы: {string.Join(", ", units)}";
+            return generated;
         }
 
         private int ConvertFromTo(int num, string unit1, string unit2)

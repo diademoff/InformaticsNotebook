@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,6 +23,9 @@ namespace MyNotebook.Forms
             {
                 this.WindowState = FormWindowState.Maximized;
                 this.TopMost = true;
+                this.MaximizeBox = false;
+                this.MinimizeBox = false;
+                this.FormBorderStyle = FormBorderStyle.None;
                 lbl_isTopMost.ForeColor = Color.Green;
                 lbl_isTopMost.Text = "Монопольный режим включен";
             }
@@ -67,10 +69,81 @@ namespace MyNotebook.Forms
                 {
                     AddTabWithMatchMission(test.AllMissons[i]);
                 }
+                else if(test.AllMissons[i].MissionType == MissionType.Select)
+                {
+                    AddTabWithSelectMission(test.AllMissons[i]);
+                }
             }
         }
 
-        private void AddTabWithMatchMission(MissionBase mission)
+
+        void AddTabWithTextMission(MissionBase mission)
+        {
+            TabPage tp = new TabPage(mission.ToString());
+            tabControl.TabPages.Add(tp);
+
+            #region create question label
+            Label lbl_question = new Label()
+            {
+                Dock = DockStyle.Top,
+                Text = mission.Question,
+                AutoSize = true,
+                Font = new Font("Arial", 13)
+            };
+            #endregion
+
+            #region create answer textbox
+            TextBox txtbx_answer = new TextBox()
+            {
+                Text = "Введите ответ",
+                Dock = DockStyle.Bottom,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F),
+                Location = new System.Drawing.Point(9, 359)
+            };
+            txtbx_answer.UpperTextBox();
+            txtbx_answer.Click += Txtbx_answer_Click;
+            void Txtbx_answer_Click(object sender, EventArgs e)
+            {
+                txtbx_answer.Text = "";
+                txtbx_answer.Click -= Txtbx_answer_Click;
+            }
+            #endregion
+
+            #region create button answer
+
+            Button btn_answer = new Button()
+            {
+                Size = new Size(91, 28),
+                Location = new Point(691, 359),
+                Dock = DockStyle.Bottom,
+                UseVisualStyleBackColor = true,
+                FlatStyle = FlatStyle.Flat,
+                Text = "Готово"
+            };
+            btn_answer.Click += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtbx_answer.Text))
+                {
+                    return;
+                }
+
+                mission.FinishTextMission(answer: txtbx_answer.Text);
+
+                btn_answer.Enabled = false;
+                txtbx_answer.Enabled = false;
+
+                btn_answer.Text = mission.TextIsSolvedRight ? "Верно" : "Ошибка";
+                btn_answer.BackColor = mission.TextIsSolvedRight ? Color.Green : Color.Red;
+
+            };
+
+            #endregion
+
+            tp.Controls.Add(lbl_question);
+            tp.Controls.Add(txtbx_answer);
+            tp.Controls.Add(btn_answer);
+        }
+        void AddTabWithMatchMission(MissionBase mission)
         {
             TabPage tp = new TabPage(mission.ToString());
             tp.AutoScroll = true;
@@ -170,45 +243,38 @@ namespace MyNotebook.Forms
             tp.Controls.AddRange(cb_terms.ToArray());
             tp.Controls.Add(lbl_title);
         }
-
-        void AddTabWithTextMission(MissionBase mission)
+        void AddTabWithSelectMission(MissionBase mission)
         {
             TabPage tp = new TabPage(mission.ToString());
-            tabControl.TabPages.Add(tp);
+            tp.AutoScroll = true;
 
-            #region create question label
-            Label lbl_question = new Label()
+            Label lbl_title = new Label()
             {
-                Dock = DockStyle.Top,
-                Text = mission.Question,
-                AutoSize = true,
+                Text = mission.Select_Tasktext,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.TopCenter,
+                AutoSize = false,
                 Font = new Font("Arial", 13)
             };
-            #endregion
 
-            #region create answer textbox
-            TextBox txtbx_answer = new TextBox()
+            List<CheckBox> checkboxes = new List<CheckBox>();
+            for (int i = 0; i < mission.Select_Answers.Length; i++)
             {
-                Text = "Введите ответ",
-                Dock = DockStyle.Bottom,
-                Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F),
-                Location = new System.Drawing.Point(9, 359)
-            };
-            txtbx_answer.UpperTextBox();
-            txtbx_answer.Click += Txtbx_answer_Click;
-            void Txtbx_answer_Click(object sender, EventArgs e)
-            {
-                txtbx_answer.Text = "";
-                txtbx_answer.Click -= Txtbx_answer_Click;
+                CheckBox checkBox = new CheckBox()
+                {
+                    Location = new Point(20, (i * 40) + 40),
+                    Text = mission.Select_Answers[i],
+                    Checked = false,
+                    Font = new Font("Arial", 10),
+                    AutoSize = true
+                };
+
+                checkboxes.Add(checkBox);
             }
-            #endregion
 
-            #region create button answer
-
+            #region create answer btn
             Button btn_answer = new Button()
             {
-                Size = new Size(91, 28),
-                Location = new Point(691, 359),
                 Dock = DockStyle.Bottom,
                 UseVisualStyleBackColor = true,
                 FlatStyle = FlatStyle.Flat,
@@ -216,27 +282,35 @@ namespace MyNotebook.Forms
             };
             btn_answer.Click += (s, e) =>
             {
-                if (string.IsNullOrWhiteSpace(txtbx_answer.Text))
+                List<int> answerGiven = new List<int>();
+                for (int i = 0; i < checkboxes.Count; i++)
                 {
-                    return;
+                    if (checkboxes[i].Checked)
+                    {
+                        answerGiven.Add(i);
+                    }
                 }
 
-                mission.FinishTextMission(answer:txtbx_answer.Text);
+                answerGiven.Sort();
+
+                mission.FinishSelectMission(answerGiven.ToArray());
 
                 btn_answer.Enabled = false;
-                txtbx_answer.Enabled = false;
+                checkboxes.ForEach(x => x.Enabled = false);
 
-                btn_answer.Text = mission.TextIsSolvedRight ? "Верно" : "Ошибка";
-                btn_answer.BackColor = mission.TextIsSolvedRight ? Color.Green : Color.Red;
+                btn_answer.Text = mission.SelectIsSolvedRight ? "Верно" : "Ошибка";
+                btn_answer.BackColor = mission.SelectIsSolvedRight ? Color.Green : Color.Red;
 
             };
-
             #endregion
 
-            tp.Controls.Add(lbl_question);
-            tp.Controls.Add(txtbx_answer);
+            tp.Controls.AddRange(checkboxes.ToArray());
+            checkboxes.ForEach(x => x.BringToFront());
+            tp.Controls.Add(lbl_title); 
             tp.Controls.Add(btn_answer);
+            tabControl.TabPages.Add(tp);
         }
+
 
         void UpdateUI()
         {
@@ -245,7 +319,6 @@ namespace MyNotebook.Forms
             lbl_isCalcBlockEnabled.ForeColor = Test.IsCalcBlockEnabled ? Color.Green : Color.Red;
             lbl_isCalcBlockEnabled.Text = Test.IsCalcBlockEnabled ? "Блокировка калькулятора включена" : "Блокировка калькулятора выключена";
         }
-
         private void Btn_finishTest_Click(object sender, EventArgs e)
         {
             Test.FinishTest();

@@ -5,15 +5,17 @@ namespace MyNotebook.Models
     public enum MissionType
     {
         Text,
-        Match // сопоставить
+        Match, // сопоставить
+        Select
     }
     [Serializable]
     public class MissionBase //task
     {
+        #region general
         protected Random rnd = new Random();
 
         public MissionType MissionType;
-        public string Title { get; private set; }
+        public string Title { get; set; }
         public int NumOfMission { get; private set; }
         public bool IsSolved
         {
@@ -30,10 +32,16 @@ namespace MyNotebook.Models
             }
 
         }
-
+        public string Note { get; set; }
         public DateTime TimeMissionSolved { get; set; }
 
+        public override string ToString()
+        {
+            return $"{NumOfMission}. {Title}";
+        }
+        #endregion
 
+        #region text mission
         private string question;
         public string Question
         {
@@ -96,8 +104,10 @@ namespace MyNotebook.Models
             Question = question;
             TextAnswer = answer;
         }
-        
 
+        #endregion
+
+        #region match mission
         private string[] terms;
         public string[] Terms
         {
@@ -202,10 +212,106 @@ namespace MyNotebook.Models
             Definitions = defenitions;
             MatchAnswer = answer;
         }
+        #endregion
 
-        public override string ToString()
+        #region select mission
+        private string select_tasktext;
+        public string Select_Tasktext
         {
-            return $"{NumOfMission}. {Title}";
+            get
+            {
+                CheckSelectMission();
+                return select_tasktext;
+            }
+            private set
+            {
+                CheckSelectMission();
+                select_tasktext = value;
+            }
         }
+
+        private string[] select_answers;
+        public string[] Select_Answers
+        {
+            get
+            {
+                CheckSelectMission();
+                return select_answers;
+            }
+            private set
+            {
+                CheckSelectMission();
+                select_answers = value;
+            }
+        }
+
+        private int[] select_Answer;
+        public int[] Select_Answer
+        {
+            get
+            {
+                CheckSelectMission();
+                return select_Answer;
+            }
+            private set
+            {
+                CheckSelectMission();
+                select_Answer = value;
+            }
+        }
+
+        public int[] SelectAnswerGiven;
+        public bool SelectIsSolvedRight
+        {
+            get
+            {
+                if (SelectAnswerGiven == null)
+                {
+                    return false;
+                }
+                if (SelectAnswerGiven.Length != Select_Answer.Length)
+                {
+                    return false;
+                }
+                for (int i = 0; i < Select_Answer.Length; i++)
+                {
+                    if (Select_Answer[i] != SelectAnswerGiven[i])
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        private void CheckSelectMission()
+        {
+            if (MissionType != MissionType.Select)
+            {
+                throw new Exception("this mission is not select");
+            }
+        }
+
+        public void FinishSelectMission(int[] answer)
+        {
+            SelectAnswerGiven = answer;
+            TimeMissionSolved = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Select mission
+        /// </summary>
+        /// <param name="numOfMission"></param>
+        /// <param name="tasktext"></param>
+        /// <param name="answers"></param>
+        /// <param name="answerExpected"></param>
+        public MissionBase(int numOfMission, string tasktext, string[] answers, int[] answerExpected)
+        {
+            MissionType = MissionType.Select;
+            NumOfMission = numOfMission;
+            Select_Tasktext = tasktext;
+            Select_Answers = answers;
+            Select_Answer = answerExpected;
+        }
+        #endregion
     }
 }

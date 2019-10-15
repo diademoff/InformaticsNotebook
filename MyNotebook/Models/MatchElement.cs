@@ -19,5 +19,10 @@ namespace MyNotebook.Models
             Term = term ?? throw new ArgumentNullException(nameof(term));
             Definitions = definitions ?? throw new ArgumentNullException(nameof(definitions));
         }
+
+        public override string ToString()
+        {
+            return Term;
+        }
     }
 }

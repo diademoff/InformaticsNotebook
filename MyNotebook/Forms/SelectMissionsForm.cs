@@ -17,13 +17,28 @@ namespace MyNotebook.Forms
 
             for (int i = 0; i < MissionGeneratorCollection.Missions.Length; i++)
             {
+                var mission = MissionGeneratorCollection.Missions[i].Generate();
                 checkBoxes.Add(new CheckBox()
                 {
-                    Location = new Point(17, 60 + (40 * i)), 
+                    Location = new Point(17, 60 + (25 * i)),
                     Checked = false,
-                    Text = $"{i + 1}. {MissionGeneratorCollection.Missions[i].Generate().Title}",
+                    Font = new Font(new FontFamily("Arial"), 16, FontStyle.Regular, GraphicsUnit.Pixel),
+                    Text = $"{i + 1}. {mission.Title}",
                     AutoSize = true
                 });
+
+                // Create the ToolTip and associate with the Form container.
+                ToolTip toolTip1 = new ToolTip();
+
+                // Set up the delays for the ToolTip.
+                toolTip1.AutoPopDelay = 0;
+                toolTip1.InitialDelay = 0;
+                toolTip1.ReshowDelay = 0;
+                // Force the ToolTip text to be displayed whether or not the form is active.
+                toolTip1.ShowAlways = true;
+
+                // Set up the ToolTip text for the Button and Checkbox.
+                toolTip1.SetToolTip(checkBoxes.Last(), mission.Note);
             }
             Controls.AddRange(checkBoxes.ToArray());
         }

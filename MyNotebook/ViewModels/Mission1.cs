@@ -12,14 +12,17 @@ namespace MyNotebook.ViewModels
         string title = "Перевод между 10-ой и 2-ой сс";
         public override MissionBase Generate()
         {
+            MissionBase result;
             if (rnd.Next(0, 2) == 0)
             {
-                return Generate2to10();
+                result = Generate2to10();
             }
             else
             {
-                return Generate10to2();
+                result = Generate10to2();
             }
+            result.Note = "Интервал чисел: от 50 до 200";
+            return result;
         }
 
         /// <summary>
