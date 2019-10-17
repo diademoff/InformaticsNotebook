@@ -89,6 +89,12 @@
     <Compile Include="Forms\TestResultForm.Designer.cs">
       <DependentUpon>TestResultForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInfoForm.Designer.cs">
+      <DependentUpon>UserInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\GitUpdater.cs" />
     <Compile Include="Models\MatchElement.cs" />
     <Compile Include="Models\MissionGenerator.cs" />
@@ -109,6 +115,9 @@
     <Compile Include="ViewModels\Mission4.cs" />
     <Compile Include="ViewModels\Mission5.cs" />
     <Compile Include="ViewModels\Mission6.cs" />
+    <Compile Include="ViewModels\Mission7.cs" />
+    <Compile Include="ViewModels\Mission8.cs" />
+    <Compile Include="ViewModels\Mission9.cs" />
     <Compile Include="ViewModels\MissionGeneratorCollection.cs" />
     <Compile Include="ViewModels\UserCollection.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
@@ -122,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TestResultForm.resx">
       <DependentUpon>TestResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInfoForm.resx">
+      <DependentUpon>UserInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -10,7 +10,6 @@ namespace MyNotebook.Forms
         public TestResultForm(Test test)
         {
             InitializeComponent();
-            test.TimeFinish = DateTime.Now;
             Test = test;
 
             lbl_state.Text = test.Finished ? $"Статус: завершен" : "Статус: не завершен";
@@ -18,6 +17,7 @@ namespace MyNotebook.Forms
             lbl_timeEnd.Text = "Время завершения: " + test.TimeFinish.ToString();
             lbl_wasCalcDiabled.Text = test.IsCalcBlockEnabled ? "Калькулятор: заблокирован" : "Калькулятор: не заблокирован";
             lbl_timeSpend.Text = "Время затрачено: " + ($"{(DateTime.Now - Test.TimeStart).TotalMinutes.ToString("00")}:{(DateTime.Now - Test.TimeStart).Seconds.ToString("00")}");
+            lbl_topmost.Text = test.IsTopMost ? "Монополный режим: включен" : "Монополный режим: выключен";
 
             int numOfSolved = 0;
             txtbx_log.Text += "Краткая информация:\n";
@@ -56,6 +56,17 @@ namespace MyNotebook.Forms
                             answerGiven = string.Join("", currMission.Match_AnswerGiven);
                         }
                         break;
+                    case MissionType.Select:
+                        answerTrue = string.Join("", currMission.Select_Answer);
+                        if (currMission.SelectAnswerGiven == null)
+                        {
+                            answerGiven = "";
+                        }
+                        else
+                        {
+                            answerGiven = string.Join("", currMission.SelectAnswerGiven);
+                        }
+                        break;
                 }
                 txtbx_log.Text += currMission.IsSolved ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
                 txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
@@ -64,6 +75,7 @@ namespace MyNotebook.Forms
             lbl_solvedPercent.Text = $"Решено: {percentSolved.ToString("#.##")}%";
             int mark = GetMark(percentSolved);
             lbl_mark.Text = $"Оценка: {mark}";
+            test.Mark = mark;
         }
 
         private static int GetMark(double percentSolved)

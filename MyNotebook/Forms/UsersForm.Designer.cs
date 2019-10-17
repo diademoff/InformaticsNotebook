@@ -39,6 +39,7 @@
             this.lbl_about = new System.Windows.Forms.Label();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_createTest = new System.Windows.Forms.Button();
+            this.btn_info = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -136,11 +137,22 @@
             this.btn_createTest.UseVisualStyleBackColor = true;
             this.btn_createTest.Click += new System.EventHandler(this.Btn_createTest_Click);
             // 
+            // btn_info
+            // 
+            this.btn_info.Location = new System.Drawing.Point(438, 90);
+            this.btn_info.Name = "btn_info";
+            this.btn_info.Size = new System.Drawing.Size(96, 23);
+            this.btn_info.TabIndex = 11;
+            this.btn_info.Text = "Информация";
+            this.btn_info.UseVisualStyleBackColor = true;
+            this.btn_info.Click += new System.EventHandler(this.btn_info_Click);
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_info);
             this.Controls.Add(this.btn_createTest);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.lbl_about);
@@ -175,6 +187,7 @@
         private System.Windows.Forms.Label lbl_about;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_createTest;
+        private System.Windows.Forms.Button btn_info;
     }
 }
 

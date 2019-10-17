@@ -93,6 +93,7 @@ namespace MyNotebook
                         return;
                     }
                     disableCalc = test.IsCalcBlockEnabled;
+                    selectedUser.UserTests.Add(test);
                     MissionSolveForm msf = new MissionSolveForm(selectedUser, test);
                     this.FullHideForm();
                     msf.ShowDialog();
@@ -161,6 +162,22 @@ namespace MyNotebook
             {
                 MessageBox.Show("Обновления не найдены", "Проверка обновлений", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btn_info_Click(object sender, System.EventArgs e)
+        {
+            if (!UserCollection.Instance.UserExists($"{txtbx_name.Text} - {txtbx_class.Text}"))
+            {
+                MessageBox.Show("Ученик не найден");
+                return;
+            }
+
+            var selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
+
+            UserInfoForm userInfo = new UserInfoForm(selectedUser);
+            this.FullHideForm();
+            userInfo.ShowDialog();
+            this.FullShowForm();
         }
     }
 }

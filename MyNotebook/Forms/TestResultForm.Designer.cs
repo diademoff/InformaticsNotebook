@@ -37,6 +37,7 @@
             this.lbl_mark = new System.Windows.Forms.Label();
             this.lbl_solvedPercent = new System.Windows.Forms.Label();
             this.lbl_timeSpend = new System.Windows.Forms.Label();
+            this.lbl_topmost = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_state
@@ -90,7 +91,7 @@
             // 
             this.lbl_mark.AutoSize = true;
             this.lbl_mark.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.lbl_mark.Location = new System.Drawing.Point(9, 166);
+            this.lbl_mark.Location = new System.Drawing.Point(9, 189);
             this.lbl_mark.Name = "lbl_mark";
             this.lbl_mark.Size = new System.Drawing.Size(110, 31);
             this.lbl_mark.TabIndex = 5;
@@ -99,7 +100,7 @@
             // lbl_solvedPercent
             // 
             this.lbl_solvedPercent.AutoSize = true;
-            this.lbl_solvedPercent.Location = new System.Drawing.Point(12, 143);
+            this.lbl_solvedPercent.Location = new System.Drawing.Point(12, 166);
             this.lbl_solvedPercent.Name = "lbl_solvedPercent";
             this.lbl_solvedPercent.Size = new System.Drawing.Size(49, 13);
             this.lbl_solvedPercent.TabIndex = 6;
@@ -114,11 +115,21 @@
             this.lbl_timeSpend.TabIndex = 7;
             this.lbl_timeSpend.Text = "Время затрачено: ";
             // 
+            // lbl_topmost
+            // 
+            this.lbl_topmost.AutoSize = true;
+            this.lbl_topmost.Location = new System.Drawing.Point(12, 140);
+            this.lbl_topmost.Name = "lbl_topmost";
+            this.lbl_topmost.Size = new System.Drawing.Size(118, 13);
+            this.lbl_topmost.TabIndex = 8;
+            this.lbl_topmost.Text = "Монопольный режим:";
+            // 
             // TestResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_topmost);
             this.Controls.Add(this.lbl_timeSpend);
             this.Controls.Add(this.lbl_solvedPercent);
             this.Controls.Add(this.lbl_mark);
@@ -145,5 +156,6 @@
         private System.Windows.Forms.Label lbl_mark;
         private System.Windows.Forms.Label lbl_solvedPercent;
         private System.Windows.Forms.Label lbl_timeSpend;
+        private System.Windows.Forms.Label lbl_topmost;
     }
 }

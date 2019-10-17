@@ -14,6 +14,7 @@ namespace MyNotebook.Models
         public bool Finished = false;
         public bool IsCalcBlockEnabled;
         public bool IsTopMost = false;
+        public int Mark;
         public List<MissionBase> AllMissons = new List<MissionBase>();
 
         public void InitTest()

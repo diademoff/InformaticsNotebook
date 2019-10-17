@@ -151,7 +151,7 @@ namespace MyNotebook.Forms
 
             Label lbl_title = new Label()
             {
-                Text = "Соотнесите определения и термины",
+                Text = "", 
                 Dock = DockStyle.Fill,
                 TextAlign = ContentAlignment.TopCenter,
                 AutoSize = false,
@@ -263,7 +263,7 @@ namespace MyNotebook.Forms
                 CheckBox checkBox = new CheckBox()
                 {
                     Location = new Point(20, (i * 40) + 40),
-                    Text = mission.Select_Answers[i],
+                    Text = $"{i + 1}. {mission.Select_Answers[i]}",
                     Checked = false,
                     Font = new Font("Arial", 10),
                     AutoSize = true
@@ -298,8 +298,8 @@ namespace MyNotebook.Forms
                 btn_answer.Enabled = false;
                 checkboxes.ForEach(x => x.Enabled = false);
 
-                btn_answer.Text = mission.SelectIsSolvedRight ? "Верно" : "Ошибка";
-                btn_answer.BackColor = mission.SelectIsSolvedRight ? Color.Green : Color.Red;
+                btn_answer.Text = mission.Select_IsSolvedRight ? "Верно" : "Ошибка";
+                btn_answer.BackColor = mission.Select_IsSolvedRight ? Color.Green : Color.Red;
 
             };
             #endregion

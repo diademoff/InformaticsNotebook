@@ -27,6 +27,10 @@ namespace MyNotebook.Models
                         return Text_IsSolvedRight;
                     case MissionType.Match:
                         return Match_IsSolvedRight;
+                    case MissionType.Select:
+                        return Select_IsSolvedRight;
+                    default:
+                        throw new Exception();
                 }
                 return false;
             }
@@ -261,7 +265,7 @@ namespace MyNotebook.Models
         }
 
         public int[] SelectAnswerGiven;
-        public bool SelectIsSolvedRight
+        public bool Select_IsSolvedRight
         {
             get
             {
@@ -309,6 +313,7 @@ namespace MyNotebook.Models
             MissionType = MissionType.Select;
             NumOfMission = numOfMission;
             Select_Tasktext = tasktext;
+            Title = Select_Tasktext;
             Select_Answers = answers;
             Select_Answer = answerExpected;
         }

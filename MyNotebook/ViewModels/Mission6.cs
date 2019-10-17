@@ -11,7 +11,7 @@ namespace MyNotebook.ViewModels
     {
         public override MissionBase Generate()
         {
-            int numOfAnswers = 7;
+            int numOfAnswers = 5;
             List<string> rightAnswers = new List<string>();
             rightAnswers.AddRange(new string[] 
             {
