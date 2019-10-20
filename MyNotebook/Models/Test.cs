@@ -17,6 +17,22 @@ namespace MyNotebook.Models
         public int Mark;
         public List<MissionBase> AllMissons = new List<MissionBase>();
 
+        public int NumOfSolved
+        {
+            get
+            {
+                int count = 0;
+                for (int i = 0; i < AllMissons.Count; i++)
+                {
+                    if (AllMissons[i].IsAnswerGiven)
+                    {
+                        count++;
+                    }
+                }
+                return count;
+            }
+        }
+
         public void InitTest()
         {
             TimeStart = DateTime.Now;

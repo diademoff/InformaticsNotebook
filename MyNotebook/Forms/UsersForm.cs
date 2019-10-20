@@ -80,6 +80,7 @@ namespace MyNotebook
 
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
+                ofd.Filter = "Тесты | *.test";
                 MessageBox.Show("Выберите тест");
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {

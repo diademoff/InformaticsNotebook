@@ -65,6 +65,7 @@ namespace MyNotebook.Forms
             test.IsTopMost = cb_topMost.Checked;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
+                sfd.Filter = "Тесты | .test";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     test.Serialize(sfd.FileName);

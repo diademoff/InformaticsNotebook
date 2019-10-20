@@ -140,6 +140,7 @@
             this.Controls.Add(this.lbl_state);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestResultForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Результат";
             this.ResumeLayout(false);
             this.PerformLayout();

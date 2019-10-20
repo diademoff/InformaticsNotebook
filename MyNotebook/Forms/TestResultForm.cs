@@ -24,7 +24,7 @@ namespace MyNotebook.Forms
             for (int i = 0; i < test.AllMissons.Count; i++)
             {
                 var currMission = test.AllMissons[i];
-                if (currMission.IsSolved)
+                if (currMission.IsSolvedRight)
                 {
                     numOfSolved += 1;
                 }
@@ -58,17 +58,17 @@ namespace MyNotebook.Forms
                         break;
                     case MissionType.Select:
                         answerTrue = string.Join("", currMission.Select_Answer);
-                        if (currMission.SelectAnswerGiven == null)
+                        if (currMission.Select_AnswerGiven == null)
                         {
                             answerGiven = "";
                         }
                         else
                         {
-                            answerGiven = string.Join("", currMission.SelectAnswerGiven);
+                            answerGiven = string.Join("", currMission.Select_AnswerGiven);
                         }
                         break;
                 }
-                txtbx_log.Text += currMission.IsSolved ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
+                txtbx_log.Text += currMission.IsSolvedRight ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
                 txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
             }
             double percentSolved = ((double)numOfSolved / (double)test.AllMissons.Count) * 100;

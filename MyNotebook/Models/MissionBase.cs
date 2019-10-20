@@ -17,7 +17,7 @@ namespace MyNotebook.Models
         public MissionType MissionType;
         public string Title { get; set; }
         public int NumOfMission { get; private set; }
-        public bool IsSolved
+        public bool IsSolvedRight
         {
             get
             {
@@ -32,9 +32,26 @@ namespace MyNotebook.Models
                     default:
                         throw new Exception();
                 }
-                return false;
             }
 
+        }
+        public bool IsAnswerGiven
+        {
+            get
+            {
+                return TimeMissionSolved != new DateTime();
+                switch (MissionType)
+                {
+                    case MissionType.Text:
+                        return !string.IsNullOrEmpty(Text_AnswerGiven);
+                    case MissionType.Match:
+                        return Match_AnswerGiven?.Length > 0;
+                    case MissionType.Select:
+                        return Select_AnswerGiven?.Length > 0;
+                    default:
+                        throw new Exception();
+                }
+            }
         }
         public string Note { get; set; }
         public DateTime TimeMissionSolved { get; set; }
@@ -264,22 +281,22 @@ namespace MyNotebook.Models
             }
         }
 
-        public int[] SelectAnswerGiven;
+        public int[] Select_AnswerGiven;
         public bool Select_IsSolvedRight
         {
             get
             {
-                if (SelectAnswerGiven == null)
+                if (Select_AnswerGiven == null)
                 {
                     return false;
                 }
-                if (SelectAnswerGiven.Length != Select_Answer.Length)
+                if (Select_AnswerGiven.Length != Select_Answer.Length)
                 {
                     return false;
                 }
                 for (int i = 0; i < Select_Answer.Length; i++)
                 {
-                    if (Select_Answer[i] != SelectAnswerGiven[i])
+                    if (Select_Answer[i] != Select_AnswerGiven[i])
                     {
                         return false;
                     }
@@ -297,7 +314,7 @@ namespace MyNotebook.Models
 
         public void Select_FinishMission(int[] answer)
         {
-            SelectAnswerGiven = answer;
+            Select_AnswerGiven = answer;
             TimeMissionSolved = DateTime.Now;
         }
 

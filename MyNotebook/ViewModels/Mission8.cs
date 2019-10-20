@@ -1,9 +1,6 @@
 ﻿using MyNotebook.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyNotebook.ViewModels
 {
@@ -11,22 +8,24 @@ namespace MyNotebook.ViewModels
     {
         public override MissionBase Generate()
         {
-            List<MatchElement> matchElements = new List<MatchElement>();
-            matchElements.Add(new MatchElement("exe", new[] { "Программы" }));
-            matchElements.Add(new MatchElement("doc", new[] { "Документы" }));
-            matchElements.Add(new MatchElement("xls", new[] { "Таблицы" }));
-            matchElements.Add(new MatchElement("txt", new[] { "Текстовые документы" }));
-            matchElements.Add(new MatchElement("ppt", new[] { "Презентации" }));
-            matchElements.Add(new MatchElement("html", new[] { "Страницы из Интернета" }));
-            matchElements.Add(new MatchElement("jpg", new[] { "Рисунок, фотография" }));
-            matchElements.Add(new MatchElement("mp3", new[] { "Музыка" }));
-            matchElements.Add(new MatchElement("avi", new[] { "Видео" }));
-            matchElements.Add(new MatchElement("rar", new[] { "Архив" }));
+            List<MatchElement> matchElements = new List<MatchElement>
+            {
+                new MatchElement("exe", new[] { "Программы" }),
+                new MatchElement("doc", new[] { "Документы" }),
+                new MatchElement("xls", new[] { "Таблицы" }),
+                new MatchElement("txt", new[] { "Текстовые документы" }),
+                new MatchElement("ppt", new[] { "Презентации" }),
+                new MatchElement("html", new[] { "Страницы из Интернета" }),
+                new MatchElement("jpg", new[] { "Рисунок, фотография" }),
+                new MatchElement("mp3", new[] { "Музыка" }),
+                new MatchElement("avi", new[] { "Видео" }),
+                new MatchElement("rar", new[] { "Архив" })
+            };
 
             List<MatchElement> matchElementsInResult = new List<MatchElement>();
             for (int i = 0; i < matchElements.Count;)
             {
-                var elToAdd = matchElements[rnd.Next(0, matchElements.Count)];
+                MatchElement elToAdd = matchElements[rnd.Next(0, matchElements.Count)];
                 if (!matchElementsInResult.Contains(elToAdd))
                 {
                     matchElementsInResult.Add(elToAdd);
@@ -39,7 +38,7 @@ namespace MyNotebook.ViewModels
             int[] answer = new int[6];
             for (int i = 0; i < terms.Length; i++)
             {
-                var currentElement = matchElementsInResult[i];
+                MatchElement currentElement = matchElementsInResult[i];
 
                 terms[i] = currentElement.Term;
                 defs[i] = currentElement.Definitions.ToList().OrderBy(x => rnd.Next()).ToArray()[0]; //random element
@@ -55,8 +54,10 @@ namespace MyNotebook.ViewModels
                 (defs[index1], defs[index2]) = (defs[index2], defs[index1]);
                 (answer[index1], answer[index2]) = (answer[index2], answer[index1]);
             }
-            var generated = new MissionBase(5, "Типы (расширения) файлов", terms, defs, answer);
-            generated.Note = $"Расширения: {string.Join(", ", matchElements)}";
+            MissionBase generated = new MissionBase(8, "Типы (расширения) файлов", terms, defs, answer)
+            {
+                Note = $"Расширения: {string.Join(", ", matchElements)}"
+            };
             return generated;
         }
     }

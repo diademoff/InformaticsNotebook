@@ -10,6 +10,7 @@ namespace MyNotebook.Forms
 {
     public partial class MissionSolveForm : Form
     {
+        int MissionsLeft => Test.AllMissons.Count - Test.NumOfSolved;
         public User CurrentUser { get; set; }
         public Test Test;
 
@@ -39,6 +40,13 @@ namespace MyNotebook.Forms
                 UpdateUI();
             };
             AddTabsWithMissions(test);
+
+            System.Windows.Forms.Timer uiUpdater = new System.Windows.Forms.Timer()
+            {
+                Interval = 100,
+                Enabled = true
+            };
+            uiUpdater.Tick += (s, e) => UpdateUI();
         }
 
         private void StartTimer()
@@ -79,23 +87,24 @@ namespace MyNotebook.Forms
 
         void AddTabWithTextMission(MissionBase mission)
         {
+            string beginText = "Введите ответ";
             TabPage tp = new TabPage(mission.ToString());
             tabControl.TabPages.Add(tp);
 
             #region create question label
             Label lbl_question = new Label()
             {
-                Dock = DockStyle.Top,
                 Text = mission.Text_Question,
                 AutoSize = true,
-                Font = new Font("Arial", 13)
+                Font = new Font("Arial", 13),
+                Location = new Point(15, 15)
             };
             #endregion
 
             #region create answer textbox
             TextBox txtbx_answer = new TextBox()
             {
-                Text = "Введите ответ",
+                Text = beginText,
                 Dock = DockStyle.Bottom,
                 Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F),
                 Location = new System.Drawing.Point(9, 359)
@@ -122,7 +131,7 @@ namespace MyNotebook.Forms
             };
             btn_answer.Click += (s, e) =>
             {
-                if (string.IsNullOrWhiteSpace(txtbx_answer.Text))
+                if (string.IsNullOrWhiteSpace(txtbx_answer.Text) || txtbx_answer.Text == beginText)
                 {
                     return;
                 }
@@ -134,7 +143,7 @@ namespace MyNotebook.Forms
 
                 btn_answer.Text = mission.Text_IsSolvedRight ? "Верно" : "Ошибка";
                 btn_answer.BackColor = mission.Text_IsSolvedRight ? Color.Green : Color.Red;
-
+                tp.Text = mission.IsSolvedRight ? "✓" : "✖";
             };
 
             #endregion
@@ -234,7 +243,7 @@ namespace MyNotebook.Forms
 
                 btn_answer.Text = mission.Match_IsSolvedRight ? "Верно" : "Ошибка";
                 btn_answer.BackColor = mission.Match_IsSolvedRight ? Color.Green : Color.Red;
-
+                tp.Text = mission.IsSolvedRight ? "✓" : "✖";
             };
             #endregion
 
@@ -293,6 +302,12 @@ namespace MyNotebook.Forms
 
                 answerGiven.Sort();
 
+                if (answerGiven.Count == 0)
+                {
+                    MessageBox.Show("Вы ничего не выбрали", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 mission.Select_FinishMission(answerGiven.ToArray());
 
                 btn_answer.Enabled = false;
@@ -300,7 +315,7 @@ namespace MyNotebook.Forms
 
                 btn_answer.Text = mission.Select_IsSolvedRight ? "Верно" : "Ошибка";
                 btn_answer.BackColor = mission.Select_IsSolvedRight ? Color.Green : Color.Red;
-
+                tp.Text = mission.IsSolvedRight ? "✓" : "✖";
             };
             #endregion
 
@@ -315,12 +330,21 @@ namespace MyNotebook.Forms
         void UpdateUI()
         {
             lbl_user.Text = CurrentUser.ToString();
-
+            lbl_missionLeft.Text = $"Осталось решить: {MissionsLeft}";
             lbl_isCalcBlockEnabled.ForeColor = Test.IsCalcBlockEnabled ? Color.Green : Color.Red;
             lbl_isCalcBlockEnabled.Text = Test.IsCalcBlockEnabled ? "Блокировка калькулятора включена" : "Блокировка калькулятора выключена";
         }
         private void Btn_finishTest_Click(object sender, EventArgs e)
         {
+            if (MissionsLeft > 0)
+            {
+                var ans = MessageBox.Show("Вы решили не все задания. Хотите продолжить?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (ans == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             Test.FinishTest();
             this.FullHideForm();
             TestResultForm trf = new TestResultForm(Test);
