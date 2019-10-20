@@ -102,7 +102,7 @@ namespace MyNotebook.ViewModels
                 tasktext = "Выберите устройства вывода";
             }
 
-            MissionBase mb = new MissionBase(9, tasktext, task.ToArray(), answer.ToArray());
+            MissionBase mb = new SelectMission(9, tasktext, task.ToArray(), answer.ToArray());
             mb.Note = "Выбрать устройства ввода или вывода";
             return mb;
         }

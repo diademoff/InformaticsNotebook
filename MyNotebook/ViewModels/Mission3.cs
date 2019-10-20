@@ -103,14 +103,14 @@ namespace MyNotebook.ViewModels
                 Question += "В ответе укажите одно целое число — значение переменной a.";
                 var Answer = x1.ToString();
 
-                generated = new MissionBase(3, title, Question, Answer);
+                generated = new TextMission(3, title, Question, Answer);
             }
             else
             {
                 Question += "В ответе укажите одно целое число — значение переменной b.";
                 var Answer = y1.ToString();
 
-                generated = new MissionBase(3, title, Question, Answer);
+                generated = new TextMission(3, title, Question, Answer);
             }
             generated.Note = "Линейный алгоритм";
             return generated;

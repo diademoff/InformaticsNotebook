@@ -97,9 +97,12 @@
     </Compile>
     <Compile Include="Models\GitUpdater.cs" />
     <Compile Include="Models\MatchElement.cs" />
+    <Compile Include="Models\MissionTypes\MatchMission.cs" />
     <Compile Include="Models\MissionGenerator.cs" />
     <Compile Include="Models\MissionBase.cs" />
+    <Compile Include="Models\MissionTypes\SelectMission.cs" />
     <Compile Include="Models\Test.cs" />
+    <Compile Include="Models\MissionTypes\TextMission.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Forms\UsersForm.cs">
       <SubType>Form</SubType>

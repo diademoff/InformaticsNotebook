@@ -13,7 +13,7 @@ namespace MyNotebook.ViewModels
             question = $"Напишите {pow}-ую степень двойки";
             answer = Math.Pow(2, pow).ToString();
 
-            MissionBase mb = new MissionBase(7, "Степени двойки", question, answer);
+            MissionBase mb = new TextMission(7, "Степени двойки", question, answer);
             mb.Note = "Степень от 3 до 12";
             return mb;
         }

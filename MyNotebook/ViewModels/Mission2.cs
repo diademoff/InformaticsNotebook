@@ -35,14 +35,14 @@ namespace MyNotebook.ViewModels
                 var Question = $"Перевидите {num} из {unit1} в {unit2}";
                 var Answer = result.ToString();
 
-                generated = new MissionBase(2, "Единицы измерения информации", Question, Answer);
+                generated = new TextMission(2, "Единицы измерения информации", Question, Answer);
             }
             else
             {
                 var Question = $"Перевидите {result} из {unit2} в {unit1}";
                 var Answer = num.ToString();
 
-                generated = new MissionBase(2, "Единицы измерения информации", Question, Answer);
+                generated = new TextMission(2, "Единицы измерения информации", Question, Answer);
             }
             generated.Note = $"Единицы: {string.Join(", ", units)}";
             return generated;

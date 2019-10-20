@@ -54,7 +54,7 @@ namespace MyNotebook.ViewModels
                 (defs[index1], defs[index2]) = (defs[index2], defs[index1]);
                 (answer[index1], answer[index2]) = (answer[index2], answer[index1]);
             }
-            MissionBase generated = new MissionBase(8, "Типы (расширения) файлов", terms, defs, answer)
+            MissionBase generated = new MatchMission(8, "Типы (расширения) файлов", terms, defs, answer)
             {
                 Note = $"Расширения: {string.Join(", ", matchElements)}"
             };

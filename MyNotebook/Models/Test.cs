@@ -24,7 +24,7 @@ namespace MyNotebook.Models
                 int count = 0;
                 for (int i = 0; i < AllMissons.Count; i++)
                 {
-                    if (AllMissons[i].IsAnswerGiven)
+                    if (AllMissons[i].IsAnswerGiven())
                     {
                         count++;
                     }
@@ -58,7 +58,7 @@ namespace MyNotebook.Models
             int result = 0;
             for (int i = 0; i < AllMissons.Count; i++)
             {
-                if (AllMissons[i].Text_IsSolvedRight)
+                if (AllMissons[i].IsSolvedRight())
                 {
                     result += 1;
                 }

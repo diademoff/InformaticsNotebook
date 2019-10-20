@@ -34,7 +34,7 @@ namespace MyNotebook.ViewModels
             var Question = $"Переведите число {num} из 10-ой с.с в 2-ую";
             var Answer = Convert.ToString(num, 2);
 
-            return new MissionBase(1, title, Question, Answer);
+            return new TextMission(1, title, Question, Answer);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MyNotebook.ViewModels
             var Question = $"Переведите число {Convert.ToString(num, 2)} из 2-ой с.с в 10-ую";
             var Answer = num.ToString();
 
-            return new MissionBase(1, title, Question, Answer);
+            return new TextMission(1, title, Question, Answer);
         }
     }
 }
