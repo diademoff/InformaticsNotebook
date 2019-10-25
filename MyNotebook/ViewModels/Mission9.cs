@@ -1,12 +1,10 @@
 ﻿using MyNotebook.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyNotebook.ViewModels
 {
+    [Serializable]
     public class Mission9 : MissionGenerator
     {
         enum tasktype
@@ -27,7 +25,7 @@ namespace MyNotebook.ViewModels
                 "Графический планшет",
                 "Джойстик",
                 "Геймпад",
-                "Трекбол"                
+                "Трекбол"
             };
 
             string[] output =

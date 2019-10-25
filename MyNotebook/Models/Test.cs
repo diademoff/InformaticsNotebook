@@ -15,16 +15,30 @@ namespace MyNotebook.Models
         public bool IsCalcBlockEnabled;
         public bool IsTopMost = false;
         public int Mark;
-        public List<MissionBase> AllMissons = new List<MissionBase>();
+        private List<MissionGenerator> AllMissonsGenerator = new List<MissionGenerator>();
+        public List<MissionBase> AllMissions = new List<MissionBase>();
+
+        public void RegenerateMissions()
+        {
+            for (int i = 0; i < AllMissonsGenerator.Count; i++)
+            {
+                AllMissonsGenerator[i].rnd = new Random();
+            }
+            AllMissions.Clear();
+            for (int i = 0; i < AllMissonsGenerator.Count; i++)
+            {
+                AllMissions.Add(AllMissonsGenerator[i].Generate());
+            }
+        }
 
         public int NumOfSolved
         {
             get
             {
                 int count = 0;
-                for (int i = 0; i < AllMissons.Count; i++)
+                for (int i = 0; i < AllMissions.Count; i++)
                 {
-                    if (AllMissons[i].IsAnswerGiven())
+                    if (AllMissions[i].IsAnswerGiven())
                     {
                         count++;
                     }
@@ -50,15 +64,15 @@ namespace MyNotebook.Models
 
             for (int i = 0; i < numOfMissions.Length; i++)
             {
-                AllMissons.Add(MissionGeneratorCollection.Missions[numOfMissions[i]].Generate());
+                AllMissonsGenerator.Add(MissionGeneratorCollection.Missions[numOfMissions[i]]);
             }
         }
         public int GetMissionsSolvedRight()
         {
             int result = 0;
-            for (int i = 0; i < AllMissons.Count; i++)
+            for (int i = 0; i < AllMissions.Count; i++)
             {
-                if (AllMissons[i].IsSolvedRight())
+                if (AllMissions[i].IsSolvedRight())
                 {
                     result += 1;
                 }

@@ -1,9 +1,11 @@
 ﻿using MyNotebook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MyNotebook.ViewModels
 {
+    [Serializable]
     public class Mission5 : MissionGenerator
     {
         public override MissionBase Generate()

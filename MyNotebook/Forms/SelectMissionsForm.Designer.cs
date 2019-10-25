@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectMissionsForm));
             this.label1 = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
             this.cb_topMost = new System.Windows.Forms.CheckBox();
             this.cb_disableCalc = new System.Windows.Forms.CheckBox();
+            this.lbl_numOfMissionsSelected = new System.Windows.Forms.Label();
+            this.updateUI = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -78,11 +81,27 @@
             this.cb_disableCalc.Text = "Запретить калькулятор";
             this.cb_disableCalc.UseVisualStyleBackColor = true;
             // 
+            // lbl_numOfMissionsSelected
+            // 
+            this.lbl_numOfMissionsSelected.AutoSize = true;
+            this.lbl_numOfMissionsSelected.Location = new System.Drawing.Point(520, 40);
+            this.lbl_numOfMissionsSelected.Name = "lbl_numOfMissionsSelected";
+            this.lbl_numOfMissionsSelected.Size = new System.Drawing.Size(103, 13);
+            this.lbl_numOfMissionsSelected.TabIndex = 9;
+            this.lbl_numOfMissionsSelected.Text = "Заданий выбрано: ";
+            // 
+            // updateUI
+            // 
+            this.updateUI.Enabled = true;
+            this.updateUI.Interval = 250;
+            this.updateUI.Tick += new System.EventHandler(this.updateUI_Tick);
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_numOfMissionsSelected);
             this.Controls.Add(this.cb_disableCalc);
             this.Controls.Add(this.cb_topMost);
             this.Controls.Add(this.btn_save);
@@ -102,5 +121,7 @@
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.CheckBox cb_topMost;
         private System.Windows.Forms.CheckBox cb_disableCalc;
+        private System.Windows.Forms.Label lbl_numOfMissionsSelected;
+        private System.Windows.Forms.Timer updateUI;
     }
 }

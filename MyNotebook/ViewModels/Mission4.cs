@@ -1,4 +1,5 @@
 ﻿using MyNotebook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,6 +8,7 @@ namespace MyNotebook.ViewModels
     /// <summary>
     /// Определения компьютерных комплектующих
     /// </summary>
+    [Serializable]
     public class Mission4 : MissionGenerator
     {
         string title = "Определения компьютерных комплектующих";

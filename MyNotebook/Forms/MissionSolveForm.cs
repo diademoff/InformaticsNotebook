@@ -10,7 +10,7 @@ namespace MyNotebook.Forms
 {
     public partial class MissionSolveForm : Form
     {
-        int MissionsLeft => Test.AllMissons.Count - Test.NumOfSolved;
+        int MissionsLeft => Test.AllMissions.Count - Test.NumOfSolved;
         public User CurrentUser { get; set; }
         public Test Test;
 
@@ -67,19 +67,19 @@ namespace MyNotebook.Forms
 
         private void AddTabsWithMissions(Test test)
         {
-            for (int i = 0; i < test.AllMissons.Count; i++)
+            for (int i = 0; i < test.AllMissions.Count; i++)
             {
-                if (test.AllMissons[i] is TextMission)
+                if (test.AllMissions[i] is TextMission)
                 {
-                    AddTabWithTextMission((TextMission)test.AllMissons[i]);
+                    AddTabWithTextMission((TextMission)test.AllMissions[i]);
                 }
-                else if (test.AllMissons[i] is MatchMission)
+                else if (test.AllMissions[i] is MatchMission)
                 {
-                    AddTabWithMatchMission((MatchMission)test.AllMissons[i]);
+                    AddTabWithMatchMission((MatchMission)test.AllMissions[i]);
                 }
-                else if(test.AllMissons[i] is SelectMission)
+                else if(test.AllMissions[i] is SelectMission)
                 {
-                    AddTabWithSelectMission((SelectMission)test.AllMissons[i]);
+                    AddTabWithSelectMission((SelectMission)test.AllMissions[i]);
                 }
             }
         }

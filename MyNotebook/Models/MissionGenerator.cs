@@ -2,9 +2,10 @@
 
 namespace MyNotebook.Models
 {
+    [Serializable]
     public abstract class MissionGenerator
     {
-        protected Random rnd = new Random();
+        public Random rnd = new Random();
         public abstract MissionBase Generate();
     }
 }

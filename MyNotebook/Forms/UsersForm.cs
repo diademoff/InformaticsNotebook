@@ -93,6 +93,7 @@ namespace MyNotebook
                         MessageBox.Show("Не удалось загрузить тест");
                         return;
                     }
+                    test.RegenerateMissions();
                     disableCalc = test.IsCalcBlockEnabled;
                     selectedUser.UserTests.Add(test);
                     MissionSolveForm msf = new MissionSolveForm(selectedUser, test);

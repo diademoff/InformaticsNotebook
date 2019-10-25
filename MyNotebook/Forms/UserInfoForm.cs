@@ -30,7 +30,7 @@ namespace MyNotebook.Forms
             int i = 0;
             foreach (var test in user.UserTests)
             {
-                listBox.Items.Add($"{i} Время начала: {test.TimeStart}; Оценка {test.Mark}; Кол-во заданий {test.AllMissons?.Count}");
+                listBox.Items.Add($"{i} Время начала: {test.TimeStart}; Оценка {test.Mark}; Кол-во заданий {test.AllMissions?.Count}");
                 i++;
             }
         }

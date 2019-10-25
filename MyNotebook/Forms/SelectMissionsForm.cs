@@ -10,6 +10,22 @@ namespace MyNotebook.Forms
 {
     public partial class SelectMissionsForm : Form
     {
+        int numOfSelected => checkBoxes.Where(x => x.Checked).Count();
+        List<int> selectedNumsOfMissions
+        {
+            get
+            {
+                List<int> result = new List<int>();
+                for (int i = 0; i < checkBoxes.Count; i++)
+                {
+                    if (checkBoxes[i].Checked)
+                    {
+                        result.Add(i);
+                    }
+                }
+                return result;
+            }
+        }
         List<CheckBox> checkBoxes = new List<CheckBox>();
         public SelectMissionsForm()
         {
@@ -24,7 +40,7 @@ namespace MyNotebook.Forms
                     Checked = false,
                     Font = new Font(new FontFamily("Arial"), 16, FontStyle.Regular, GraphicsUnit.Pixel),
                     Text = $"{i + 1}. {mission.Title}",
-                    AutoSize = true
+                    AutoSize = true                   
                 });
 
                 // Create the ToolTip and associate with the Form container.
@@ -45,16 +61,6 @@ namespace MyNotebook.Forms
 
         private void Btn_save_Click(object sender, EventArgs e)
         {
-            List<int> selectedNumsOfMissions = new List<int>();
-            for (int i = 0; i < checkBoxes.Count; i++)
-            {
-                if (checkBoxes[i].Checked)
-                {
-                    selectedNumsOfMissions.Add(i);
-                }
-            }
-
-
             if (selectedNumsOfMissions.Count == 0)
             {
                 MessageBox.Show("Вы ничего не выбрали!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -72,6 +78,16 @@ namespace MyNotebook.Forms
                     this.Close();
                 }
             }
+        }
+
+        public void RefreshUI()
+        {
+            lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfSelected}";
+        }
+
+        private void updateUI_Tick(object sender, EventArgs e)
+        {
+            RefreshUI();
         }
     }
 }

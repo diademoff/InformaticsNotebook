@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyNotebook.ViewModels
 {
+    [Serializable]
     class Mission6 : MissionGenerator
     {
         public override MissionBase Generate()
