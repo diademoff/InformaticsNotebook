@@ -40,6 +40,7 @@
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_createTest = new System.Windows.Forms.Button();
             this.btn_info = new System.Windows.Forms.Button();
+            this.txtbx_searchUsers = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -81,14 +82,14 @@
             // listbx_users
             // 
             this.listbx_users.FormattingEnabled = true;
-            this.listbx_users.Location = new System.Drawing.Point(18, 119);
+            this.listbx_users.Location = new System.Drawing.Point(12, 129);
             this.listbx_users.Name = "listbx_users";
-            this.listbx_users.Size = new System.Drawing.Size(770, 264);
+            this.listbx_users.Size = new System.Drawing.Size(779, 264);
             this.listbx_users.TabIndex = 4;
             // 
             // btn_chooseTest
             // 
-            this.btn_chooseTest.Location = new System.Drawing.Point(621, 389);
+            this.btn_chooseTest.Location = new System.Drawing.Point(624, 399);
             this.btn_chooseTest.Name = "btn_chooseTest";
             this.btn_chooseTest.Size = new System.Drawing.Size(167, 49);
             this.btn_chooseTest.TabIndex = 5;
@@ -98,7 +99,7 @@
             // 
             // btn_folderImport
             // 
-            this.btn_folderImport.Location = new System.Drawing.Point(682, 90);
+            this.btn_folderImport.Location = new System.Drawing.Point(685, 100);
             this.btn_folderImport.Name = "btn_folderImport";
             this.btn_folderImport.Size = new System.Drawing.Size(106, 23);
             this.btn_folderImport.TabIndex = 6;
@@ -119,7 +120,7 @@
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(540, 90);
+            this.btn_update.Location = new System.Drawing.Point(543, 100);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(136, 23);
             this.btn_update.TabIndex = 9;
@@ -129,7 +130,7 @@
             // 
             // btn_createTest
             // 
-            this.btn_createTest.Location = new System.Drawing.Point(457, 389);
+            this.btn_createTest.Location = new System.Drawing.Point(460, 399);
             this.btn_createTest.Name = "btn_createTest";
             this.btn_createTest.Size = new System.Drawing.Size(158, 47);
             this.btn_createTest.TabIndex = 10;
@@ -139,7 +140,7 @@
             // 
             // btn_info
             // 
-            this.btn_info.Location = new System.Drawing.Point(438, 90);
+            this.btn_info.Location = new System.Drawing.Point(441, 100);
             this.btn_info.Name = "btn_info";
             this.btn_info.Size = new System.Drawing.Size(96, 23);
             this.btn_info.TabIndex = 11;
@@ -147,11 +148,19 @@
             this.btn_info.UseVisualStyleBackColor = true;
             this.btn_info.Click += new System.EventHandler(this.btn_info_Click);
             // 
+            // txtbx_searchUsers
+            // 
+            this.txtbx_searchUsers.Location = new System.Drawing.Point(12, 102);
+            this.txtbx_searchUsers.Name = "txtbx_searchUsers";
+            this.txtbx_searchUsers.Size = new System.Drawing.Size(423, 20);
+            this.txtbx_searchUsers.TabIndex = 12;
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtbx_searchUsers);
             this.Controls.Add(this.btn_info);
             this.Controls.Add(this.btn_createTest);
             this.Controls.Add(this.btn_update);
@@ -188,6 +197,7 @@
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_createTest;
         private System.Windows.Forms.Button btn_info;
+        private System.Windows.Forms.TextBox txtbx_searchUsers;
     }
 }
 

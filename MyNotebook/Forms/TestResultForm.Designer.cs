@@ -38,6 +38,8 @@
             this.lbl_solvedPercent = new System.Windows.Forms.Label();
             this.lbl_timeSpend = new System.Windows.Forms.Label();
             this.lbl_topmost = new System.Windows.Forms.Label();
+            this.picture_diagram = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_diagram)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_state
@@ -124,11 +126,20 @@
             this.lbl_topmost.TabIndex = 8;
             this.lbl_topmost.Text = "Монопольный режим:";
             // 
+            // pictureBox1
+            // 
+            this.picture_diagram.Location = new System.Drawing.Point(15, 236);
+            this.picture_diagram.Name = "pictureBox1";
+            this.picture_diagram.Size = new System.Drawing.Size(150, 150);
+            this.picture_diagram.TabIndex = 9;
+            this.picture_diagram.TabStop = false;
+            // 
             // TestResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.picture_diagram);
             this.Controls.Add(this.lbl_topmost);
             this.Controls.Add(this.lbl_timeSpend);
             this.Controls.Add(this.lbl_solvedPercent);
@@ -142,6 +153,7 @@
             this.Name = "TestResultForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Результат";
+            ((System.ComponentModel.ISupportInitialize)(this.picture_diagram)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,5 +170,6 @@
         private System.Windows.Forms.Label lbl_solvedPercent;
         private System.Windows.Forms.Label lbl_timeSpend;
         private System.Windows.Forms.Label lbl_topmost;
+        private System.Windows.Forms.PictureBox picture_diagram;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using MyNotebook.Models;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace MyNotebook.Forms
@@ -36,11 +38,14 @@ namespace MyNotebook.Forms
                 txtbx_log.Text += currMission.IsSolvedRight() ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
                 txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
             }
+
             double percentSolved = ((double)numOfSolved / (double)test.AllMissions.Count) * 100;
             lbl_solvedPercent.Text = $"Решено: {percentSolved.ToString("#.##")}%";
             int mark = GetMark(percentSolved);
             lbl_mark.Text = $"Оценка: {mark}";
             test.Mark = mark;
+
+            DrawDiagramOnForm((decimal)numOfSolved, (decimal)(test.AllMissions.Count - numOfSolved));
         }
 
         private static int GetMark(double percentSolved)
@@ -63,6 +68,41 @@ namespace MyNotebook.Forms
                 mark = 5;
             }
             return mark;
+        }
+
+        public void DrawDiagramOnForm(decimal numOfrightAnswers, decimal numOfwrongAnswers)
+        {
+            Color myColor = this.BackColor;
+            picture_diagram.Image = DiagramOnBitmap(myColor, 150, 150, numOfrightAnswers, numOfwrongAnswers);//Создаем картинку
+        }
+
+        public Bitmap DiagramOnBitmap(Color bgCol, int width, int height, decimal rightAnswers, decimal wrongAnswers)
+        {
+            // Создаем новый образ и стираем фон
+            Bitmap mybit = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            Graphics graphics = Graphics.FromImage(mybit);
+            SolidBrush brush = new SolidBrush(bgCol);
+            graphics.FillRectangle(brush, 0, 0, width, height);
+            brush.Dispose();
+
+            decimal sumOfInput = rightAnswers + wrongAnswers;
+
+            // Рисуем круговую диаграмму
+            float startZ = 0.0f;
+            float endZ = 0.0f;
+            decimal current = 0.0m;
+
+            current += rightAnswers;
+            startZ = endZ;
+            endZ = (float)(current / sumOfInput) * 360.0f;
+            graphics.FillPie(new SolidBrush(Color.Green), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
+
+            current += wrongAnswers;
+            startZ = endZ;
+            endZ = (float)(current / sumOfInput) * 360.0f;
+            graphics.FillPie(new SolidBrush(Color.Red), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
+
+            return mybit;
         }
     }
 }

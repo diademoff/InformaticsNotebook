@@ -1,6 +1,7 @@
 ﻿using MyNotebook.Forms;
 using MyNotebook.Models;
 using MyNotebook.ViewModels;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -34,6 +35,8 @@ namespace MyNotebook
                 txtbx_name.Text = selectedUser.Name;
                 txtbx_class.Text = selectedUser.Class;
             };
+
+            txtbx_searchUsers.SearchListBoxUsingTextBox(listbx_users);
         }
 
         private void UpdateUsersList()

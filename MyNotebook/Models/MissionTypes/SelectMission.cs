@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyNotebook.Models
 {
@@ -52,6 +55,90 @@ namespace MyNotebook.Models
         public override bool IsAnswerGiven()
         {
             return AnswerGiven?.Length > 0;
+        }
+
+        public override TabPage GetTabPage(bool showAnswerAtOnce)
+        {
+            TabPage tp = new TabPage(ToString());
+            tp.AutoScroll = true;
+
+            Label lbl_title = new Label()
+            {
+                Text = Tasktext,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.TopCenter,
+                AutoSize = false,
+                Font = new Font("Arial", 13)
+            };
+
+            List<CheckBox> checkboxes = new List<CheckBox>();
+            for (int i = 0; i < Variants.Length; i++)
+            {
+                CheckBox checkBox = new CheckBox()
+                {
+                    Location = new Point(20, (i * 40) + 40),
+                    Text = $"{i + 1}. {Variants[i]}",
+                    Checked = false,
+                    Font = new Font("Arial", 10),
+                    AutoSize = true
+                };
+
+                checkboxes.Add(checkBox);
+            }
+
+            #region create answer btn
+            Button btn_answer = new Button()
+            {
+                Dock = DockStyle.Bottom,
+                UseVisualStyleBackColor = true,
+                FlatStyle = FlatStyle.Flat,
+                Text = "Готово"
+            };
+            btn_answer.Click += (s, e) =>
+            {
+                List<int> answerGiven = new List<int>();
+                for (int i = 0; i < checkboxes.Count; i++)
+                {
+                    if (checkboxes[i].Checked)
+                    {
+                        answerGiven.Add(i);
+                    }
+                }
+
+                answerGiven.Sort();
+
+                if (answerGiven.Count == 0)
+                {
+                    MessageBox.Show("Вы ничего не выбрали", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                FinishMission(answerGiven.ToArray());
+
+                btn_answer.Enabled = false;
+                checkboxes.ForEach(x => x.Enabled = false);
+
+                if (!showAnswerAtOnce)
+                {
+                    btn_answer.Text = "Ответ принят";
+                    btn_answer.BackColor = Color.Gray;
+                    tp.Text = "*";
+                }
+                else
+                {
+                    btn_answer.Text = IsSolvedRight() ? "Верно" : "Ошибка";
+                    btn_answer.BackColor = IsSolvedRight() ? Color.Green : Color.Red;
+                    tp.Text = IsSolvedRight() ? "✓" : "✖";
+                }
+            };
+            #endregion
+
+            tp.Controls.AddRange(checkboxes.ToArray());
+            checkboxes.ForEach(x => x.BringToFront());
+            tp.Controls.Add(lbl_title);
+            tp.Controls.Add(btn_answer);
+
+            return tp;
         }
 
         /// <summary>

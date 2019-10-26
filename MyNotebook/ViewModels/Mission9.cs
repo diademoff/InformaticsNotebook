@@ -89,18 +89,7 @@ namespace MyNotebook.ViewModels
                 }
             }
 
-            string tasktext;
-
-            if (tasktype == tasktype.input)
-            {
-                tasktext = "Выберите устройства ввода";
-            }
-            else
-            {
-                tasktext = "Выберите устройства вывода";
-            }
-
-            MissionBase mb = new SelectMission(9, tasktext, task.ToArray(), answer.ToArray());
+            MissionBase mb = new SelectMission(9, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray());
             mb.Note = "Выбрать устройства ввода или вывода";
             return mb;
         }

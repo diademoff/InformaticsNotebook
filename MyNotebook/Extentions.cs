@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -43,7 +42,7 @@ namespace MyNotebook
         {
             textBox.Invoke(new MethodInvoker(() =>
             {
-                var oldForecolor = textBox.BackColor;
+                Color oldForecolor = textBox.BackColor;
                 textBox.BackColor = Color.Red;
                 textBox.Click += TextBox_Click;
 
@@ -69,6 +68,60 @@ namespace MyNotebook
             }
 
             return array[rnd.Next(0, array.Length - 1)];
+        }
+
+        public static void SearchListBoxUsingTextBox(this TextBox search, ListBox listBoxToSearchIn)
+        {
+            List<string> beginElements = new List<string>();
+            foreach (object item in listBoxToSearchIn.Items)
+            {
+                beginElements.Add(item.ToString());
+            }
+
+            search.Text = "Поиск";
+            search.ForeColor = Color.Gray;
+
+            bool canSearch = true;
+
+            search.LostFocus += (s, e) =>
+            {
+                search.Text = "Поиск";
+                search.ForeColor = Color.Gray;
+                canSearch = false;
+
+                foreach (string item in beginElements)
+                {
+                    listBoxToSearchIn.Items.Add(item.ToString());
+                }
+            };
+
+            search.Click += (s, e) =>
+            {
+                search.Text = "";
+                search.ForeColor = Color.Black;
+                canSearch = true;
+            };
+
+            search.TextChanged += (s, e) =>
+            {
+                if (!canSearch)
+                {
+                    return;
+                }
+
+                List<string> elementsMatch = new List<string>();
+
+                foreach (string item in beginElements)
+                {
+                    if (item.ToString().ToUpper().Contains(search.Text.ToUpper()))
+                    {
+                        elementsMatch.Add(item.ToString());
+                    }
+                }
+
+                listBoxToSearchIn.Items.Clear();
+                elementsMatch.ForEach(x => listBoxToSearchIn.Items.Add(x));
+            };
         }
     }
 }

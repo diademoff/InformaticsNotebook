@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace MyNotebook.Models
 {
@@ -14,6 +15,8 @@ namespace MyNotebook.Models
 
         public abstract bool IsSolvedRight();
         public abstract bool IsAnswerGiven();
+
+        public abstract TabPage GetTabPage(bool showAnswerAtOnce);
 
         public override string ToString()
         {

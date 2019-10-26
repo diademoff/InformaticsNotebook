@@ -42,6 +42,35 @@ namespace MyNotebook.Forms
                     Text = $"{i + 1}. {mission.Title}",
                     AutoSize = true                   
                 });
+                Button btn = new Button()
+                {
+                    Text = "Предпросмотр",
+                    Location = new Point(checkBoxes.Last().Location.X + 500, checkBoxes.Last().Location.Y),
+                    Width = 100
+                };
+                btn.Click += (s, e) =>
+                {
+                    var tab = mission.GetTabPage(showAnswerAtOnce:true);
+
+                    Form previewForm = new Form()
+                    {
+                        Width = 800,
+                        Height = 500,
+                        Icon = Properties.Resources.icon,
+                        Text = $"Предпросмотр задания {i + 1} \"{mission.Title}\""
+                    };
+
+                    var tc = new TabControl()
+                    {
+                        Dock = DockStyle.Fill
+                    };
+                    tc.Controls.Add(tab);
+
+                    previewForm.Controls.Add(tc);
+
+                    previewForm.ShowDialog();
+                };
+                Controls.Add(btn);
 
                 // Create the ToolTip and associate with the Form container.
                 ToolTip toolTip1 = new ToolTip();
@@ -67,8 +96,9 @@ namespace MyNotebook.Forms
                 return;
             }
 
-            var test = new Test(selectedNumsOfMissions.ToArray(), isCalcBlockEnabled: cb_disableCalc.Checked);
-            test.IsTopMost = cb_topMost.Checked;
+            var test = new Test(selectedNumsOfMissions.ToArray(), isCalcBlockEnabled: checkbx_disableCalc.Checked);
+            test.IsTopMost = checkbx_topMost.Checked;
+            test.ShowAnswerAtOnce = checkbx_showAnswerAtOnce.Checked;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 sfd.Filter = "Тесты | .test";
