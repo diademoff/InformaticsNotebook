@@ -59,13 +59,16 @@ namespace MyNotebook.Models
             TimeFinish = DateTime.Now;
         }
 
-        public Test(int[] numOfMissions, bool isCalcBlockEnabled)
+        public Test(int[] numOfMissions, int[] numOfMissionsForEach, bool isCalcBlockEnabled)
         {
             this.IsCalcBlockEnabled = isCalcBlockEnabled;
 
             for (int i = 0; i < numOfMissions.Length; i++)
             {
-                AllMissonsGenerator.Add(MissionGeneratorCollection.Missions[numOfMissions[i]]);
+                for (int j = 0; j < numOfMissionsForEach[i]; j++)
+                {
+                    AllMissonsGenerator.Add(MissionGeneratorCollection.Missions[numOfMissions[i]]);
+                }
             }
         }
         public int GetMissionsSolvedRight()

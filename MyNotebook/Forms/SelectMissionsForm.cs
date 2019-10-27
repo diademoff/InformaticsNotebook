@@ -26,7 +26,23 @@ namespace MyNotebook.Forms
                 return result;
             }
         }
+        List<int> numOfEachMission
+        {
+            get
+            {
+                List<int> res = new List<int>();
+                for (int i = 0; i < numerics.Count; i++)
+                {
+                    if (checkBoxes[i].Checked)
+                    {
+                        res.Add((int)numerics[i].Value);
+                    }
+                }
+                return res;
+            }
+        }
         List<CheckBox> checkBoxes = new List<CheckBox>();
+        List<NumericUpDown> numerics = new List<NumericUpDown>();
         public SelectMissionsForm()
         {
             InitializeComponent();
@@ -36,21 +52,28 @@ namespace MyNotebook.Forms
                 var mission = MissionGeneratorCollection.Missions[i].Generate();
                 checkBoxes.Add(new CheckBox()
                 {
-                    Location = new Point(17, 60 + (25 * i)),
+                    Location = new Point(0, (25 * i)),
                     Checked = false,
                     Font = new Font(new FontFamily("Arial"), 16, FontStyle.Regular, GraphicsUnit.Pixel),
                     Text = $"{i + 1}. {mission.Title}",
                     AutoSize = true                   
                 });
+                numerics.Add(new NumericUpDown()
+                {
+                    Location = new Point(checkBoxes.Last().Location.X + 500, checkBoxes.Last().Location.Y),
+                    Maximum = 10,
+                    Value = 1,
+                    Width = 50
+                });
                 Button btn = new Button()
                 {
                     Text = "Предпросмотр",
-                    Location = new Point(checkBoxes.Last().Location.X + 500, checkBoxes.Last().Location.Y),
+                    Location = new Point(checkBoxes.Last().Location.X + 600, checkBoxes.Last().Location.Y),
                     Width = 100
                 };
                 btn.Click += (s, e) =>
                 {
-                    var tab = mission.GetTabPage(showAnswerAtOnce:true);
+                    var tab = mission.GetTabPage(showAnswerAtOnce:checkbx_showAnswerAtOnce.Checked);
 
                     Form previewForm = new Form()
                     {
@@ -70,7 +93,8 @@ namespace MyNotebook.Forms
 
                     previewForm.ShowDialog();
                 };
-                Controls.Add(btn);
+
+                panel_missions.Controls.Add(btn);
 
                 // Create the ToolTip and associate with the Form container.
                 ToolTip toolTip1 = new ToolTip();
@@ -85,7 +109,8 @@ namespace MyNotebook.Forms
                 // Set up the ToolTip text for the Button and Checkbox.
                 toolTip1.SetToolTip(checkBoxes.Last(), mission.Note);
             }
-            Controls.AddRange(checkBoxes.ToArray());
+            panel_missions.Controls.AddRange(checkBoxes.ToArray());
+            panel_missions.Controls.AddRange(numerics.ToArray());
         }
 
         private void Btn_save_Click(object sender, EventArgs e)
@@ -96,7 +121,7 @@ namespace MyNotebook.Forms
                 return;
             }
 
-            var test = new Test(selectedNumsOfMissions.ToArray(), isCalcBlockEnabled: checkbx_disableCalc.Checked);
+            var test = new Test(selectedNumsOfMissions.ToArray(), numOfEachMission.ToArray(), isCalcBlockEnabled: checkbx_disableCalc.Checked);
             test.IsTopMost = checkbx_topMost.Checked;
             test.ShowAnswerAtOnce = checkbx_showAnswerAtOnce.Checked;
             using (SaveFileDialog sfd = new SaveFileDialog())

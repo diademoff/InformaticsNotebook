@@ -30,6 +30,8 @@ namespace MyNotebook.Models
             string beginText = "Введите ответ";
             TabPage tp = new TabPage(ToString());
 
+            StartMonitorTabPageActiveCountTime(tp);
+
             #region create question label
             Label lbl_question = new Label()
             {

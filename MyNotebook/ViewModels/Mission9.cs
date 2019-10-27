@@ -15,7 +15,7 @@ namespace MyNotebook.ViewModels
 
         public override MissionBase Generate()
         {
-            int numOfAnswers = 8;
+            int numOfAnswers = 7;
             string[] input =
             {
                 "Сканер",
@@ -89,7 +89,20 @@ namespace MyNotebook.ViewModels
                 }
             }
 
-            MissionBase mb = new SelectMission(9, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray());
+            string title = "";
+            switch (tasktype)
+            {
+                case tasktype.input:
+                    title = "Выберите устройства ввода";
+                    break;
+                case tasktype.output:
+                    title = "Выберите устройства вывода";
+                    break;
+                default:
+                    break;
+            }
+
+            MissionBase mb = new SelectMission(9, title, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray());
             mb.Note = "Выбрать устройства ввода или вывода";
             return mb;
         }

@@ -114,6 +114,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Mission1.cs" />
     <Compile Include="ViewModels\Mission10.cs" />
+    <Compile Include="ViewModels\Mission11.cs" />
+    <Compile Include="ViewModels\Mission12.cs" />
     <Compile Include="ViewModels\Mission2.cs" />
     <Compile Include="ViewModels\Mission3.cs" />
     <Compile Include="ViewModels\Mission4.cs" />

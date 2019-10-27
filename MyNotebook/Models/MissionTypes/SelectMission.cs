@@ -62,6 +62,8 @@ namespace MyNotebook.Models
             TabPage tp = new TabPage(ToString());
             tp.AutoScroll = true;
 
+            StartMonitorTabPageActiveCountTime(tp);
+
             Label lbl_title = new Label()
             {
                 Text = Tasktext,
@@ -142,17 +144,18 @@ namespace MyNotebook.Models
         }
 
         /// <summary>
-        /// Select mission
+        /// 
         /// </summary>
         /// <param name="numOfMission"></param>
-        /// <param name="tasktext"></param>
+        /// <param name="tasktext">in label on solve mission form</param>
+        /// <param name="title">on select mission form</param>
         /// <param name="answers"></param>
         /// <param name="answerExpected"></param>
-        public SelectMission(int numOfMission, string tasktext, string[] answers, int[] answerExpected)
+        public SelectMission(int numOfMission, string tasktext, string title, string[] answers, int[] answerExpected)
         {
             NumOfMission = numOfMission;
             Tasktext = tasktext;
-            Title = Tasktext;
+            Title = title;
             Variants = answers;
             AnswerExpected = answerExpected;
         }

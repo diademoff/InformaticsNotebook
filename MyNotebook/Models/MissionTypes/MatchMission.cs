@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyNotebook.Models
@@ -65,7 +68,8 @@ namespace MyNotebook.Models
         {
             TabPage tp = new TabPage(this.ToString());
             tp.AutoScroll = true;
-            
+
+            StartMonitorTabPageActiveCountTime(tp);
 
             Label lbl_title = new Label()
             {
@@ -86,7 +90,7 @@ namespace MyNotebook.Models
                 {
                     Location = new Point(20, (i * 40) + shiftY),
                     DropDownStyle = ComboBoxStyle.DropDownList,
-                    Width = 170
+                    Width = 200
                 };
                 for (int j = 0; j < Terms.Length; j++)
                 {
@@ -98,7 +102,7 @@ namespace MyNotebook.Models
                 #region create lbl definishion
                 Label lbl = new Label()
                 {
-                    Location = new Point(200, (i * 40) + shiftY),
+                    Location = new Point(250, (i * 40) + shiftY),
                     AutoSize = true,
                     Font = new Font("Arial", 10)
                 };
@@ -191,6 +195,53 @@ namespace MyNotebook.Models
             NumOfMission = numOfMission;
             Terms = terms;
             Definitions = defenitions;
+            Answer = answer;
+        }
+
+        public MatchMission(int numOfMission, string title, MatchElement[] matchElements)
+        {
+            List<MatchElement> matchElementsInResult = new List<MatchElement>();
+            for (int i = 0; i < matchElements.Length;)
+            {
+                var elToAdd = matchElements[rnd.Next(0, matchElements.Length)];
+                if (!matchElementsInResult.Contains(elToAdd))
+                {
+                    matchElementsInResult.Add(elToAdd);
+                    i++;
+                }
+            }
+            matchElementsInResult = matchElementsInResult.OrderBy(x => rnd.Next()).ToList(); //shuffle array
+            string[] terms = new string[8];
+            string[] defs = new string[8];
+            int[] answer = new int[8];
+            for (int i = 0; i < terms.Length; i++)
+            {
+                var currentElement = matchElementsInResult[i];
+
+                terms[i] = currentElement.Term;
+                defs[i] = currentElement.Definitions.ToList().OrderBy(x => rnd.Next()).ToArray()[0]; //random element
+                int currAnswer = i;
+                currAnswer++;
+                answer[i] = currAnswer;
+            }
+            //shuffle defs and answer
+            for (int i = 0; i < defs.Length; i++)
+            {
+                int index1 = rnd.Next(0, defs.Length), index2 = rnd.Next(0, defs.Length);
+
+                (defs[index1], defs[index2]) = (defs[index2], defs[index1]);
+                (answer[index1], answer[index2]) = (answer[index2], answer[index1]);
+            }
+
+            if (defs.Length != terms.Length)
+            {
+                throw new ArgumentException($"{nameof(terms)} length != {nameof(defs)} length");
+            }
+
+            this.Title = title;
+            NumOfMission = numOfMission;
+            Terms = terms;
+            Definitions = defs;
             Answer = answer;
         }
     }

@@ -18,7 +18,7 @@ namespace MyNotebook.Forms
             lbl_timeStart.Text = "Время начала: " + test.TimeStart.ToString();
             lbl_timeEnd.Text = "Время завершения: " + test.TimeFinish.ToString();
             lbl_wasCalcDiabled.Text = test.IsCalcBlockEnabled ? "Калькулятор: заблокирован" : "Калькулятор: не заблокирован";
-            lbl_timeSpend.Text = "Время затрачено: " + ($"{(DateTime.Now - Test.TimeStart).TotalMinutes.ToString("00")}:{(DateTime.Now - Test.TimeStart).Seconds.ToString("00")}");
+            lbl_timeSpend.Text = "Время затрачено: " + ($"{(Test.TimeFinish - Test.TimeStart).TotalMinutes.ToString("00")}:{(Test.TimeFinish - Test.TimeStart).Seconds.ToString("00")}");
             lbl_topmost.Text = test.IsTopMost ? "Монополный режим: включен" : "Монополный режим: выключен";
 
             int numOfSolved = 0;
@@ -35,6 +35,7 @@ namespace MyNotebook.Forms
                 string answerGiven = currMission.String_AnswerGiven;
                 string answerTrue = "";
 
+                txtbx_log.Text += $"\tЗатрачено времени: {currMission.TimeSpanOnMission.Seconds} сек\n";
                 txtbx_log.Text += currMission.IsSolvedRight() ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
                 txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
             }

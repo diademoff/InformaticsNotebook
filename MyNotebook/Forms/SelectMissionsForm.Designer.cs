@@ -37,6 +37,7 @@
             this.lbl_numOfMissionsSelected = new System.Windows.Forms.Label();
             this.updateUI = new System.Windows.Forms.Timer(this.components);
             this.checkbx_showAnswerAtOnce = new System.Windows.Forms.CheckBox();
+            this.panel_missions = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
@@ -85,7 +86,7 @@
             // lbl_numOfMissionsSelected
             // 
             this.lbl_numOfMissionsSelected.AutoSize = true;
-            this.lbl_numOfMissionsSelected.Location = new System.Drawing.Point(520, 40);
+            this.lbl_numOfMissionsSelected.Location = new System.Drawing.Point(520, 20);
             this.lbl_numOfMissionsSelected.Name = "lbl_numOfMissionsSelected";
             this.lbl_numOfMissionsSelected.Size = new System.Drawing.Size(103, 13);
             this.lbl_numOfMissionsSelected.TabIndex = 9;
@@ -107,11 +108,20 @@
             this.checkbx_showAnswerAtOnce.Text = "Сразу показывать ответ";
             this.checkbx_showAnswerAtOnce.UseVisualStyleBackColor = true;
             // 
+            // panel_missions
+            // 
+            this.panel_missions.AutoScroll = true;
+            this.panel_missions.Location = new System.Drawing.Point(17, 40);
+            this.panel_missions.Name = "panel_missions";
+            this.panel_missions.Size = new System.Drawing.Size(771, 327);
+            this.panel_missions.TabIndex = 11;
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel_missions);
             this.Controls.Add(this.checkbx_showAnswerAtOnce);
             this.Controls.Add(this.lbl_numOfMissionsSelected);
             this.Controls.Add(this.checkbx_disableCalc);
@@ -136,5 +146,6 @@
         private System.Windows.Forms.Label lbl_numOfMissionsSelected;
         private System.Windows.Forms.Timer updateUI;
         private System.Windows.Forms.CheckBox checkbx_showAnswerAtOnce;
+        private System.Windows.Forms.Panel panel_missions;
     }
 }
