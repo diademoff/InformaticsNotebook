@@ -1,7 +1,6 @@
 ﻿using MyNotebook.Forms;
 using MyNotebook.Models;
 using MyNotebook.ViewModels;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -142,7 +141,7 @@ namespace MyNotebook
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 string path = fbd.SelectedPath;
-                UserCollection.Instance = UserCollection.DeserializeFolder(path);
+                UserCollection.Instance.Users = UserCollection.Instance.DeserializeFolder(path);
                 UpdateUsersList();
             }
         }

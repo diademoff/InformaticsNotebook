@@ -112,7 +112,7 @@ namespace MyNotebook.ViewModels
 
                 generated = new TextMission(3, title, Question, Answer);
             }
-            generated.Note = "Линейный алгоритм";
+            generated.Tooltip = "Линейный алгоритм";
             return generated;
         }
     }

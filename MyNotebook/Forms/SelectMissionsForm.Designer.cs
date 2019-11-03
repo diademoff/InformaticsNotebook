@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectMissionsForm));
             this.label1 = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
             this.checkbx_topMost = new System.Windows.Forms.CheckBox();
             this.checkbx_disableCalc = new System.Windows.Forms.CheckBox();
             this.lbl_numOfMissionsSelected = new System.Windows.Forms.Label();
-            this.updateUI = new System.Windows.Forms.Timer(this.components);
             this.checkbx_showAnswerAtOnce = new System.Windows.Forms.CheckBox();
             this.panel_missions = new System.Windows.Forms.Panel();
             this.SuspendLayout();
@@ -86,17 +84,11 @@
             // lbl_numOfMissionsSelected
             // 
             this.lbl_numOfMissionsSelected.AutoSize = true;
-            this.lbl_numOfMissionsSelected.Location = new System.Drawing.Point(520, 20);
+            this.lbl_numOfMissionsSelected.Location = new System.Drawing.Point(510, 20);
             this.lbl_numOfMissionsSelected.Name = "lbl_numOfMissionsSelected";
-            this.lbl_numOfMissionsSelected.Size = new System.Drawing.Size(103, 13);
+            this.lbl_numOfMissionsSelected.Size = new System.Drawing.Size(109, 13);
             this.lbl_numOfMissionsSelected.TabIndex = 9;
-            this.lbl_numOfMissionsSelected.Text = "Заданий выбрано: ";
-            // 
-            // updateUI
-            // 
-            this.updateUI.Enabled = true;
-            this.updateUI.Interval = 250;
-            this.updateUI.Tick += new System.EventHandler(this.updateUI_Tick);
+            this.lbl_numOfMissionsSelected.Text = "Заданий выбрано: 0";
             // 
             // checkbx_showAnswerAtOnce
             // 
@@ -144,7 +136,6 @@
         private System.Windows.Forms.CheckBox checkbx_topMost;
         private System.Windows.Forms.CheckBox checkbx_disableCalc;
         private System.Windows.Forms.Label lbl_numOfMissionsSelected;
-        private System.Windows.Forms.Timer updateUI;
         private System.Windows.Forms.CheckBox checkbx_showAnswerAtOnce;
         private System.Windows.Forms.Panel panel_missions;
     }

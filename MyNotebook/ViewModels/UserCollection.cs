@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace MyNotebook.ViewModels
 {
@@ -11,7 +12,7 @@ namespace MyNotebook.ViewModels
         static string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Notebook";
         static string dataPath = folder + "\\data.bin";
 
-        public static UserCollection Instance = UserCollection.DeserializeSingle(dataPath);
+        public static UserCollection Instance = new UserCollection() { Users = new UserCollection().DeserializeSingle(dataPath) };
         private UserCollection()
         {
         }
@@ -20,7 +21,7 @@ namespace MyNotebook.ViewModels
             Serialize();
         }
 
-        public List<User> Users { get; private set; } = new List<User>();
+        public List<User> Users { get; set; } = new List<User>();
 
         public User this[string UserString]
         {
@@ -97,37 +98,38 @@ namespace MyNotebook.ViewModels
                 Directory.CreateDirectory(folder);
             }
 
-            BinaryFormatter bf = new BinaryFormatter();
+            XmlSerializer bf = new XmlSerializer(new List<User>().GetType());
             using (FileStream fs = new FileStream(dataPath, FileMode.Create))
             {
-                bf.Serialize(fs, this);
+                bf.Serialize(fs, Users);
             }
         }
 
-        public static UserCollection DeserializeFolder(string folder)
+        public List<User> DeserializeFolder(string folder)
         {
-            UserCollection collection = new UserCollection();
+            List<User> collection = new List<User>();
             string[] files = Directory.GetFiles(folder);
             for (int i = 0; i < files.Length; i++)
             {
-                collection.Users.AddRange(DeserializeSingle(files[i]).Users);
+                collection.AddRange(DeserializeSingle(files[i]));
             }
             return collection;
         }
-        private static UserCollection DeserializeSingle(string dataPath)
+        private List<User> DeserializeSingle(string dataPath)
         {
             try
             {
-                BinaryFormatter bf = new BinaryFormatter();
+                XmlSerializer bf = new XmlSerializer(new List<User>().GetType());
                 using (FileStream fs = new FileStream(dataPath, FileMode.Open))
                 {
-                    return bf.Deserialize(fs) as UserCollection;
+                    Users = bf.Deserialize(fs) as List<User>;
                 }
             }
             catch
             {
-                return new UserCollection();
+                Users = new List<User>();
             }
+            return Users;
         }
     }
 }

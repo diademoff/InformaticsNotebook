@@ -15,7 +15,7 @@ namespace MyNotebook.ViewModels
             answer = Math.Pow(2, pow).ToString();
 
             MissionBase mb = new TextMission(7, "Степени двойки", question, answer);
-            mb.Note = "Степень от 3 до 12";
+            mb.Tooltip = "Степень от 3 до 12";
             return mb;
         }
     }

@@ -8,9 +8,9 @@ namespace MyNotebook.Models
     [Serializable]
     public class SelectMission : MissionBase
     {
-        public string Tasktext { get; private set; }
-        public string[] Variants { get; private set; }
-        public int[] AnswerExpected { get; private set; }
+        public string Tasktext { get; set; }
+        public string[] Variants { get; set; }
+        public int[] AnswerExpected { get; set; }
 
         public override string String_AnswerGiven
         {
@@ -158,6 +158,11 @@ namespace MyNotebook.Models
             Title = title;
             Variants = answers;
             AnswerExpected = answerExpected;
+        }
+
+        public SelectMission()
+        {
+
         }
     }
 }

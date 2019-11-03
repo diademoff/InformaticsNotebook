@@ -58,7 +58,7 @@ namespace MyNotebook.ViewModels
             }
             MissionBase generated = new MatchMission(8, "Типы (расширения) файлов", terms, defs, answer)
             {
-                Note = $"Расширения: {string.Join(", ", matchElements)}"
+                Tooltip = $"Расширения: {string.Join(", ", matchElements)}"
             };
             return generated;
         }

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyNotebook.Models
@@ -11,10 +9,10 @@ namespace MyNotebook.Models
     [Serializable]
     public class MatchMission : MissionBase
     {
-        public string[] Terms { get; private set; }
-        public string[] Definitions { get; private set; }
+        public string[] Terms { get; set; }
+        public string[] Definitions { get; set; }
 
-        public int[] Answer { get; private set; }
+        public int[] Answer { get; set; }
         public override string String_AnswerGiven
         {
             get
@@ -66,8 +64,10 @@ namespace MyNotebook.Models
 
         public override TabPage GetTabPage(bool showAnswerAtOnce)
         {
-            TabPage tp = new TabPage(this.ToString());
-            tp.AutoScroll = true;
+            TabPage tp = new TabPage(ToString())
+            {
+                AutoScroll = true
+            };
 
             StartMonitorTabPageActiveCountTime(tp);
 
@@ -86,7 +86,7 @@ namespace MyNotebook.Models
             for (int i = 0; i < Definitions.Length; i++)
             {
                 #region create combobox
-                var cb = new ComboBox()
+                ComboBox cb = new ComboBox()
                 {
                     Location = new Point(20, (i * 40) + shiftY),
                     DropDownStyle = ComboBoxStyle.DropDownList,
@@ -191,11 +191,15 @@ namespace MyNotebook.Models
                 throw new ArgumentException($"{nameof(terms)} length != {nameof(defenitions)} length");
             }
 
-            this.Title = title;
+            Title = title;
             NumOfMission = numOfMission;
             Terms = terms;
             Definitions = defenitions;
             Answer = answer;
+        }
+        public MatchMission()
+        {
+
         }
 
         public MatchMission(int numOfMission, string title, MatchElement[] matchElements)
@@ -203,7 +207,7 @@ namespace MyNotebook.Models
             List<MatchElement> matchElementsInResult = new List<MatchElement>();
             for (int i = 0; i < matchElements.Length;)
             {
-                var elToAdd = matchElements[rnd.Next(0, matchElements.Length)];
+                MatchElement elToAdd = matchElements[rnd.Next(0, matchElements.Length)];
                 if (!matchElementsInResult.Contains(elToAdd))
                 {
                     matchElementsInResult.Add(elToAdd);
@@ -216,7 +220,7 @@ namespace MyNotebook.Models
             int[] answer = new int[8];
             for (int i = 0; i < terms.Length; i++)
             {
-                var currentElement = matchElementsInResult[i];
+                MatchElement currentElement = matchElementsInResult[i];
 
                 terms[i] = currentElement.Term;
                 defs[i] = currentElement.Definitions.ToList().OrderBy(x => rnd.Next()).ToArray()[0]; //random element
@@ -238,7 +242,7 @@ namespace MyNotebook.Models
                 throw new ArgumentException($"{nameof(terms)} length != {nameof(defs)} length");
             }
 
-            this.Title = title;
+            Title = title;
             NumOfMission = numOfMission;
             Terms = terms;
             Definitions = defs;

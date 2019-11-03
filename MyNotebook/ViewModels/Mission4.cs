@@ -45,7 +45,7 @@ namespace MyNotebook.ViewModels
                                                                                  "это все аппаратные средства, из которых состоит компьютер, т.е. вся аппаратура, необходимая для работы компьютера"}));
 
             var generated = new MatchMission(4, title, matchElements.ToArray());
-            generated.Note = $"Термины: {string.Join(", ", matchElements)}";
+            generated.Tooltip = $"Термины: {string.Join(", ", matchElements)}";
             return generated;
         }
     }

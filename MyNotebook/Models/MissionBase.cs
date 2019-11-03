@@ -1,16 +1,22 @@
-﻿using System;
+﻿using MyNotebook.Models.MissionTypes;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace MyNotebook.Models
 {
+    [XmlInclude(typeof(ChoosePictureMission))]
+    [XmlInclude(typeof(MatchMission))]
+    [XmlInclude(typeof(SelectMission))]
+    [XmlInclude(typeof(TextMission))]
     [Serializable]
     public abstract class MissionBase //task
     {
         protected Random rnd = new Random();
         public string Title { get; set; }
-        public string Note { get; set; }
+        public string Tooltip { get; set; }
         public int NumOfMission { get; set; }
         public DateTime TimeMissionSolved { get; set; }
         public TimeSpan TimeSpanOnMission { get; set; }

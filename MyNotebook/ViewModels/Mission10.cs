@@ -34,7 +34,7 @@ namespace MyNotebook.ViewModels
             string a = $"{(p * l * s * b) / 8}";
             TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, a)
             {
-                Note = "Подсчет веса текста"
+                Tooltip = "Подсчет веса текста"
             };
             return result;
         }
@@ -50,7 +50,7 @@ namespace MyNotebook.ViewModels
             string a = $"{p * l * s}";
             TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, a)
             {
-                Note = "Подсчет веса текста"
+                Tooltip = "Подсчет веса текста"
             };
             return result;
         }

@@ -24,7 +24,7 @@ namespace MyNotebook.ViewModels
             matchElements.Add(new MatchElement("Электронное учебное издание", new[] { "Wikipedia" }));
 
             var res = new MatchMission(12, "Программное обеспечение", matchElements.ToArray());
-            res.Note = $"Пример: {string.Join(", ", res.Terms)}";
+            res.Tooltip = $"Пример: {string.Join(", ", res.Terms)}";
 
             return res;
         }

@@ -118,7 +118,70 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cpu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cpu1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cpu2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cpu2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cpu3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cpu3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hdd1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hdd1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hdd2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hdd2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hdd3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hdd3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="motherboard1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\motherboard1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="motherboard2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\motherboard2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="motherboard3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\motherboard3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="motherboard4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\motherboard4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="networkcard1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\networkcard1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="networkcard2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\networkcard2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="networkcard3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\networkcard3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ram1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ram1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ram2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ram2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ram3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ram3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="soundcard1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\soundcard1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="soundcard2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\soundcard2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="soundcard3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\soundcard3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="videocard1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\videocard1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="videocard2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\videocard2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

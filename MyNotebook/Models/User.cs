@@ -7,8 +7,8 @@ namespace MyNotebook
     [Serializable]
     public class User
     {
-        public string Name { get; private set; }
-        public string Class { get; private set; }
+        public string Name { get; set; }
+        public string Class { get; set; }
         public List<Test> UserTests { get; set; } = new List<Test>();
 
         public User()

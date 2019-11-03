@@ -58,7 +58,7 @@ namespace MyNotebook.ViewModels
                                 $"которая преобразует число {beginNum} в число {result} и содержит 5 команд.\n" +
                                 $"Указывайте лишь номера команд.";
                     var mission = new TextMission(11, "Исполнитель Квадратор", question, answer);
-                    mission.Note = "Указать последовательность комманд для исполнителя Квадратор";
+                    mission.Tooltip = "Указать последовательность комманд для исполнителя Квадратор";
                     return mission;
                 }
             }

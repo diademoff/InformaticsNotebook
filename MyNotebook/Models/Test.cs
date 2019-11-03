@@ -19,6 +19,11 @@ namespace MyNotebook.Models
         private List<MissionGenerator> AllMissonsGenerator = new List<MissionGenerator>();
         public List<MissionBase> AllMissions = new List<MissionBase>();
 
+        public Test()
+        {
+
+        }
+
         public void RegenerateMissions()
         {
             for (int i = 0; i < AllMissonsGenerator.Count; i++)

@@ -7,8 +7,8 @@ namespace MyNotebook.Models
     [Serializable]
     public class TextMission : MissionBase
     {
-        public string Question { get; private set; }
-        public string Answer { get; private set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
         public override string String_AnswerGiven => AnswerGiven;
 
         public string AnswerGiven;
@@ -117,6 +117,11 @@ namespace MyNotebook.Models
             NumOfMission = numOfMission;
             Question = question;
             Answer = answer;
+        }
+
+        public TextMission()
+        {
+
         }
     }
 }

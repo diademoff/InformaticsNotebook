@@ -17,7 +17,8 @@ namespace MyNotebook.ViewModels
             new Mission9(),
             new Mission10(),
             new Mission11(),
-            new Mission12()
+            new Mission12(),
+            new Mission13()
         };
     }
 }

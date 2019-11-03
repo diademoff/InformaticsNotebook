@@ -51,6 +51,7 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -70,6 +71,12 @@
     </Compile>
     <Compile Include="Forms\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BitmapViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BitmapViewer.Designer.cs">
+      <DependentUpon>BitmapViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MissionSolveForm.cs">
       <SubType>Form</SubType>
@@ -97,6 +104,7 @@
     </Compile>
     <Compile Include="Models\GitUpdater.cs" />
     <Compile Include="Models\MatchElement.cs" />
+    <Compile Include="Models\MissionTypes\ChoosePictureMission.cs" />
     <Compile Include="Models\MissionTypes\MatchMission.cs" />
     <Compile Include="Models\MissionGenerator.cs" />
     <Compile Include="Models\MissionBase.cs" />
@@ -116,6 +124,7 @@
     <Compile Include="ViewModels\Mission10.cs" />
     <Compile Include="ViewModels\Mission11.cs" />
     <Compile Include="ViewModels\Mission12.cs" />
+    <Compile Include="ViewModels\Mission13.cs" />
     <Compile Include="ViewModels\Mission2.cs" />
     <Compile Include="ViewModels\Mission3.cs" />
     <Compile Include="ViewModels\Mission4.cs" />
@@ -128,6 +137,9 @@
     <Compile Include="ViewModels\UserCollection.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BitmapViewer.resx">
+      <DependentUpon>BitmapViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MissionSolveForm.resx">
       <DependentUpon>MissionSolveForm.cs</DependentUpon>
@@ -181,6 +193,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\videocard1.jpg" />
+    <None Include="Resources\videocard2.jpg" />
+    <None Include="Resources\soundcard3.jpg" />
+    <None Include="Resources\soundcard2.jpg" />
+    <None Include="Resources\soundcard1.jpg" />
+    <None Include="Resources\ram2.jpg" />
+    <None Include="Resources\ram1.jpg" />
+    <None Include="Resources\ram3.jpg" />
+    <None Include="Resources\networkcard3.jpg" />
+    <None Include="Resources\networkcard2.jpg" />
+    <None Include="Resources\networkcard1.jpg" />
+    <None Include="Resources\motherboard3.jpg" />
+    <None Include="Resources\motherboard2.jpg" />
+    <None Include="Resources\motherboard1.jpg" />
+    <None Include="Resources\motherboard4.jpg" />
+    <None Include="Resources\hdd2.jpg" />
+    <None Include="Resources\hdd1.jpg" />
+    <None Include="Resources\hdd3.jpg" />
+    <None Include="Resources\cpu3.jpg" />
+    <None Include="Resources\cpu2.jpg" />
+    <None Include="Resources\cpu1.jpg" />
     <None Include="Resources\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

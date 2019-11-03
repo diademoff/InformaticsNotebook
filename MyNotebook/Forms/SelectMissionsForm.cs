@@ -50,6 +50,7 @@ namespace MyNotebook.Forms
             for (int i = 0; i < MissionGeneratorCollection.Missions.Length; i++)
             {
                 var mission = MissionGeneratorCollection.Missions[i].Generate();
+
                 checkBoxes.Add(new CheckBox()
                 {
                     Location = new Point(0, (25 * i)),
@@ -58,6 +59,8 @@ namespace MyNotebook.Forms
                     Text = $"{i + 1}. {mission.Title}",
                     AutoSize = true                   
                 });
+                checkBoxes.Last().CheckedChanged += (s, e) => RefreshUI();
+
                 numerics.Add(new NumericUpDown()
                 {
                     Location = new Point(checkBoxes.Last().Location.X + 500, checkBoxes.Last().Location.Y),
@@ -65,6 +68,8 @@ namespace MyNotebook.Forms
                     Value = 1,
                     Width = 50
                 });
+                numerics.Last().ValueChanged += (s, e) => RefreshUI();
+
                 Button btn = new Button()
                 {
                     Text = "Предпросмотр",
@@ -73,8 +78,7 @@ namespace MyNotebook.Forms
                 };
                 btn.Click += (s, e) =>
                 {
-                    var tab = mission.GetTabPage(showAnswerAtOnce:checkbx_showAnswerAtOnce.Checked);
-
+                    var tab = mission.GetTabPage(showAnswerAtOnce: checkbx_showAnswerAtOnce.Checked);
                     Form previewForm = new Form()
                     {
                         Width = 800,
@@ -96,18 +100,14 @@ namespace MyNotebook.Forms
 
                 panel_missions.Controls.Add(btn);
 
-                // Create the ToolTip and associate with the Form container.
-                ToolTip toolTip1 = new ToolTip();
-
-                // Set up the delays for the ToolTip.
-                toolTip1.AutoPopDelay = 0;
-                toolTip1.InitialDelay = 0;
-                toolTip1.ReshowDelay = 0;
-                // Force the ToolTip text to be displayed whether or not the form is active.
-                toolTip1.ShowAlways = true;
-
-                // Set up the ToolTip text for the Button and Checkbox.
-                toolTip1.SetToolTip(checkBoxes.Last(), mission.Note);
+                ToolTip toolTip = new ToolTip()
+                {
+                    AutoPopDelay = 0,
+                    InitialDelay = 0,
+                    ReshowDelay = 0,
+                    ShowAlways = true
+                };
+                toolTip.SetToolTip(checkBoxes.Last(), mission.Tooltip);
             }
             panel_missions.Controls.AddRange(checkBoxes.ToArray());
             panel_missions.Controls.AddRange(numerics.ToArray());
@@ -137,12 +137,7 @@ namespace MyNotebook.Forms
 
         public void RefreshUI()
         {
-            lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfSelected}";
-        }
-
-        private void updateUI_Tick(object sender, EventArgs e)
-        {
-            RefreshUI();
+            lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfEachMission.Sum()}";
         }
     }
 }

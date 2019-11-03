@@ -46,7 +46,7 @@ namespace MyNotebook.ViewModels
                     if (rnd.RandomBool())
                     {
                         isOneRightAnswer = true;
-                        while (true)// not to repeat
+                        for (int j = 0; j < 20; j++)// not to repeat
                         {
                             var toAdd = rightAnswers[rnd.Next(0, rightAnswers.Count)];
                             if (!answers.Contains(toAdd))
@@ -59,7 +59,7 @@ namespace MyNotebook.ViewModels
                     }
                     else
                     {
-                        while (true)// not to repeat
+                        for (int j = 0; j < 20; j++)
                         {
                             var toAdd = wrongAnswers[rnd.Next(0, wrongAnswers.Count)];
                             if (!answers.Contains(toAdd))
@@ -77,7 +77,7 @@ namespace MyNotebook.ViewModels
             }
             MissionBase mb = new SelectMission(6, "Выберите устройства, находящьеся в системном блоке", "Выберать устройства, находящьеся в системном блоке", answers.ToArray(), answerExpected.ToArray());
             mb.Title = "Выбрать устройства находящиеся в системном блоке";
-            mb.Note = $"{numOfAnswers} вариантов ответов";
+            mb.Tooltip = $"{numOfAnswers} вариантов ответов";
             return mb;
         }
     }

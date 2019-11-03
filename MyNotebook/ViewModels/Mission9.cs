@@ -15,7 +15,7 @@ namespace MyNotebook.ViewModels
 
         public override MissionBase Generate()
         {
-            int numOfAnswers = 7;
+            int numOfAnswers = 6;
             string[] input =
             {
                 "Сканер",
@@ -50,7 +50,7 @@ namespace MyNotebook.ViewModels
                 {
                     if (rnd.RandomBool())
                     {
-                        while (true)
+                        for (int j = 0; j < 20; j++)
                         {
                             var toAdd = input.RandomElement();
                             if (!task.Contains(toAdd))
@@ -67,7 +67,7 @@ namespace MyNotebook.ViewModels
                     }
                     else
                     {
-                        while (true)
+                        for (int j = 0; j < 20; j++)
                         {
                             var toAdd = output.RandomElement();
                             if (!task.Contains(toAdd))
@@ -103,7 +103,7 @@ namespace MyNotebook.ViewModels
             }
 
             MissionBase mb = new SelectMission(9, title, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray());
-            mb.Note = "Выбрать устройства ввода или вывода";
+            mb.Tooltip = "Выбрать устройства ввода или вывода";
             return mb;
         }
     }
