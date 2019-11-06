@@ -35,11 +35,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.listbx_users = new System.Windows.Forms.ListBox();
             this.btn_chooseTest = new System.Windows.Forms.Button();
-            this.btn_folderImport = new System.Windows.Forms.Button();
             this.lbl_about = new System.Windows.Forms.Label();
             this.btn_update = new System.Windows.Forms.Button();
-            this.btn_createTest = new System.Windows.Forms.Button();
-            this.btn_info = new System.Windows.Forms.Button();
             this.txtbx_searchUsers = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -97,16 +94,6 @@
             this.btn_chooseTest.UseVisualStyleBackColor = true;
             this.btn_chooseTest.Click += new System.EventHandler(this.Btn_choose_Click);
             // 
-            // btn_folderImport
-            // 
-            this.btn_folderImport.Location = new System.Drawing.Point(685, 100);
-            this.btn_folderImport.Name = "btn_folderImport";
-            this.btn_folderImport.Size = new System.Drawing.Size(106, 23);
-            this.btn_folderImport.TabIndex = 6;
-            this.btn_folderImport.Text = "Импорт из папки";
-            this.btn_folderImport.UseVisualStyleBackColor = true;
-            this.btn_folderImport.Click += new System.EventHandler(this.Btn_folderImport_Click);
-            // 
             // lbl_about
             // 
             this.lbl_about.AutoSize = true;
@@ -120,33 +107,13 @@
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(543, 100);
+            this.btn_update.Location = new System.Drawing.Point(652, 102);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(136, 23);
             this.btn_update.TabIndex = 9;
             this.btn_update.Text = "Проверить обновления";
             this.btn_update.UseVisualStyleBackColor = true;
             this.btn_update.Click += new System.EventHandler(this.Btn_update_Click);
-            // 
-            // btn_createTest
-            // 
-            this.btn_createTest.Location = new System.Drawing.Point(460, 399);
-            this.btn_createTest.Name = "btn_createTest";
-            this.btn_createTest.Size = new System.Drawing.Size(158, 47);
-            this.btn_createTest.TabIndex = 10;
-            this.btn_createTest.Text = "Создать тест";
-            this.btn_createTest.UseVisualStyleBackColor = true;
-            this.btn_createTest.Click += new System.EventHandler(this.Btn_createTest_Click);
-            // 
-            // btn_info
-            // 
-            this.btn_info.Location = new System.Drawing.Point(441, 100);
-            this.btn_info.Name = "btn_info";
-            this.btn_info.Size = new System.Drawing.Size(96, 23);
-            this.btn_info.TabIndex = 11;
-            this.btn_info.Text = "Информация";
-            this.btn_info.UseVisualStyleBackColor = true;
-            this.btn_info.Click += new System.EventHandler(this.btn_info_Click);
             // 
             // txtbx_searchUsers
             // 
@@ -161,11 +128,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txtbx_searchUsers);
-            this.Controls.Add(this.btn_info);
-            this.Controls.Add(this.btn_createTest);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.lbl_about);
-            this.Controls.Add(this.btn_folderImport);
             this.Controls.Add(this.btn_chooseTest);
             this.Controls.Add(this.listbx_users);
             this.Controls.Add(this.txtbx_class);
@@ -192,11 +156,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listbx_users;
         private System.Windows.Forms.Button btn_chooseTest;
-        private System.Windows.Forms.Button btn_folderImport;
         private System.Windows.Forms.Label lbl_about;
         private System.Windows.Forms.Button btn_update;
-        private System.Windows.Forms.Button btn_createTest;
-        private System.Windows.Forms.Button btn_info;
         private System.Windows.Forms.TextBox txtbx_searchUsers;
     }
 }

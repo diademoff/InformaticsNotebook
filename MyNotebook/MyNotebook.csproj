@@ -90,6 +90,18 @@
     <Compile Include="Forms\SelectMissionsForm.Designer.cs">
       <DependentUpon>SelectMissionsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectStartType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectStartType.Designer.cs">
+      <DependentUpon>SelectStartType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TeacherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TeacherForm.Designer.cs">
+      <DependentUpon>TeacherForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TestResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +158,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectMissionsForm.resx">
       <DependentUpon>SelectMissionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectStartType.resx">
+      <DependentUpon>SelectStartType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TeacherForm.resx">
+      <DependentUpon>TeacherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TestResultForm.resx">
       <DependentUpon>TestResultForm.cs</DependentUpon>

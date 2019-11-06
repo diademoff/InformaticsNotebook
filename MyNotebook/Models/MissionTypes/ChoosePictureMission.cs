@@ -116,7 +116,12 @@ namespace MyNotebook.Models.MissionTypes
                             {
                                 Bitmap clone = currPicture.Clone() as Bitmap;
                                 isAnyPictureOpend = true;
-                                new BitmapViewer(clone).ShowDialog();
+                                var win = new BitmapViewer(clone)
+                                {
+                                    TopMost = true
+                                };
+                                win.LostFocus += (se, ev) => win.Close();
+                                win.ShowDialog();
                                 isAnyPictureOpend = false;
                             }
                         }

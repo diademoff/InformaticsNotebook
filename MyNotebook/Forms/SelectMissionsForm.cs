@@ -130,7 +130,7 @@ namespace MyNotebook.Forms
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     test.Serialize(sfd.FileName);
-                    this.Close();
+                    MessageBox.Show("Тест сохранён", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

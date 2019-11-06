@@ -70,7 +70,12 @@ namespace MyNotebook
             {
                 if (MessageBox.Show("Добавить нового ученика?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    UserCollection.Instance.AddNewUser(new User(txtbx_name.Text, txtbx_class.Text));
+                    if (string.IsNullOrWhiteSpace(txtbx_name.Text.Trim()) || string.IsNullOrWhiteSpace(txtbx_class.Text.Trim()))
+                    {
+                        MessageBox.Show("Имя ученика или класс не заполнены", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    UserCollection.Instance.AddNewUser(new User(txtbx_name.Text.Trim(), txtbx_class.Text.Trim()));
                     selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
                 }
                 else
@@ -107,14 +112,6 @@ namespace MyNotebook
             txtbx_class.Text = txtbx_name.Text = "";
         }
 
-        private void Btn_createTest_Click(object sender, System.EventArgs e)
-        {
-            this.FullHideForm();
-            SelectMissionsForm smf = new SelectMissionsForm();
-            smf.ShowDialog();
-            this.FullShowForm();
-        }
-
         void KillCalcProcess()
         {
             var p = Process.GetProcessesByName("Calculator").ToList();
@@ -133,17 +130,6 @@ namespace MyNotebook
             }
             Thread.Sleep(500);
             DisableCalc();//recursion
-        }
-
-        private void Btn_folderImport_Click(object sender, System.EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                string path = fbd.SelectedPath;
-                UserCollection.Instance.Users = UserCollection.Instance.DeserializeFolder(path);
-                UpdateUsersList();
-            }
         }
 
         private void Lbl_about_Click(object sender, System.EventArgs e)
@@ -166,22 +152,6 @@ namespace MyNotebook
             {
                 MessageBox.Show("Обновления не найдены", "Проверка обновлений", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void btn_info_Click(object sender, System.EventArgs e)
-        {
-            if (!UserCollection.Instance.UserExists($"{txtbx_name.Text} - {txtbx_class.Text}"))
-            {
-                MessageBox.Show("Ученик не найден");
-                return;
-            }
-
-            var selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
-
-            UserInfoForm userInfo = new UserInfoForm(selectedUser);
-            this.FullHideForm();
-            userInfo.ShowDialog();
-            this.FullShowForm();
         }
     }
 }

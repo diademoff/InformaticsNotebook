@@ -93,6 +93,8 @@
             // checkbx_showAnswerAtOnce
             // 
             this.checkbx_showAnswerAtOnce.AutoSize = true;
+            this.checkbx_showAnswerAtOnce.Checked = true;
+            this.checkbx_showAnswerAtOnce.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkbx_showAnswerAtOnce.Location = new System.Drawing.Point(12, 421);
             this.checkbx_showAnswerAtOnce.Name = "checkbx_showAnswerAtOnce";
             this.checkbx_showAnswerAtOnce.Size = new System.Drawing.Size(151, 17);
@@ -120,7 +122,9 @@
             this.Controls.Add(this.checkbx_topMost);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SelectMissionsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выберите задания";

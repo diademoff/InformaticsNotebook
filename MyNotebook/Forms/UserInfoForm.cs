@@ -16,6 +16,12 @@ namespace MyNotebook.Forms
         public UserInfoForm(User user)
         {
             InitializeComponent();
+
+            if (user == null)
+            {
+                throw new ArgumentNullException($"{nameof(user)} is null");
+            }
+
             this.User = user;
 
             Timer moreInfoEnable = new Timer()
