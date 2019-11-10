@@ -9,6 +9,7 @@ namespace MyNotebook.ViewModels
         public override MissionBase Generate()
         {
             TextMission result;
+        regenerate:
             if (rnd.RandomBool())
             {
                 result = Task1();
@@ -16,6 +17,10 @@ namespace MyNotebook.ViewModels
             else
             {
                 result = Task2();
+            }
+            if (double.Parse(result.Answer) != (int)double.Parse(result.Answer))
+            {
+                goto regenerate;
             }
             return result;
         }

@@ -30,10 +30,17 @@ namespace MyNotebook.Models
             {
                 AllMissonsGenerator[i].rnd = new Random();
             }
+
             AllMissions.Clear();
             for (int i = 0; i < AllMissonsGenerator.Count; i++)
             {
-                AllMissions.Add(AllMissonsGenerator[i].Generate());
+            regenerate:
+                var generated = AllMissonsGenerator[i].Generate();
+                if (AllMissions.Contains(generated))
+                {
+                    goto regenerate;
+                }
+                AllMissions.Add(generated);
             }
         }
 

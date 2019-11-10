@@ -1,5 +1,4 @@
 ﻿using MyNotebook.Models;
-using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -33,7 +32,6 @@ namespace MyNotebook.Forms
                 txtbx_log.Text += $"\t{currMission.ToString()}:\n";
 
                 string answerGiven = currMission.String_AnswerGiven;
-                string answerTrue = "";
 
                 txtbx_log.Text += $"\tЗатрачено времени: {currMission.TimeSpanOnMission.Seconds} сек\n";
                 txtbx_log.Text += currMission.IsSolvedRight() ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";

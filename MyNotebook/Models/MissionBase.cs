@@ -12,7 +12,7 @@ namespace MyNotebook.Models
     [XmlInclude(typeof(SelectMission))]
     [XmlInclude(typeof(TextMission))]
     [Serializable]
-    public abstract class MissionBase //task
+    public abstract class MissionBase : IEquatable<MissionBase> //task
     {
         protected Random rnd = new Random();
         public string Title { get; set; }
@@ -20,7 +20,9 @@ namespace MyNotebook.Models
         public int NumOfMission { get; set; }
         public DateTime TimeMissionSolved { get; set; }
         public TimeSpan TimeSpanOnMission { get; set; }
+        public abstract string String_AnswerExpecting { get; set; }
         public abstract string String_AnswerGiven { get; }
+        public virtual int MaxNumInTest { get; set; } = 10;
 
         public abstract bool IsSolvedRight();
         public abstract bool IsAnswerGiven();
@@ -49,6 +51,15 @@ namespace MyNotebook.Models
         public override string ToString()
         {
             return $"{NumOfMission}. {Title}";
+        }
+
+        public bool Equals(MissionBase other)
+        {
+            if (NumOfMission != other.NumOfMission)
+            {
+                return false;
+            }
+            return String_AnswerExpecting.Equals(other.String_AnswerExpecting);
         }
     }
 }

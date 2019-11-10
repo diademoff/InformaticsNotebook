@@ -13,6 +13,7 @@ namespace MyNotebook.Models
         public string[] Definitions { get; set; }
 
         public int[] Answer { get; set; }
+        public override string String_AnswerExpecting { get; set; }
         public override string String_AnswerGiven
         {
             get
@@ -195,6 +196,7 @@ namespace MyNotebook.Models
             NumOfMission = numOfMission;
             Terms = terms;
             Definitions = defenitions;
+            String_AnswerExpecting = string.Join("", answer);
             Answer = answer;
         }
         public MatchMission()
@@ -247,6 +249,7 @@ namespace MyNotebook.Models
             Terms = terms;
             Definitions = defs;
             Answer = answer;
+            String_AnswerExpecting = string.Join("", answer);
         }
     }
 }

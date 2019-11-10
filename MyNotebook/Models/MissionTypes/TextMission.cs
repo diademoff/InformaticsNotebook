@@ -9,6 +9,7 @@ namespace MyNotebook.Models
     {
         public string Question { get; set; }
         public string Answer { get; set; }
+        public override string String_AnswerExpecting { get; set; }
         public override string String_AnswerGiven => AnswerGiven;
 
         public string AnswerGiven;
@@ -35,7 +36,7 @@ namespace MyNotebook.Models
             #region create question label
             Label lbl_question = new Label()
             {
-                Text = Question,
+                Text = NumOfMission + ". " + Question,
                 AutoSize = true,
                 Font = new Font("Arial", 13),
                 Location = new Point(15, 15)
@@ -96,6 +97,14 @@ namespace MyNotebook.Models
                 }
             };
 
+            txtbx_answer.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btn_answer.PerformClick();
+                }
+            };
+
             #endregion
 
             tp.Controls.Add(lbl_question);
@@ -117,6 +126,7 @@ namespace MyNotebook.Models
             NumOfMission = numOfMission;
             Question = question;
             Answer = answer;
+            String_AnswerExpecting = answer;
         }
 
         public TextMission()

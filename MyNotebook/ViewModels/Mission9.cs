@@ -15,6 +15,7 @@ namespace MyNotebook.ViewModels
 
         public override MissionBase Generate()
         {
+        generate:
             int numOfAnswers = 6;
             string[] input =
             {
@@ -40,8 +41,8 @@ namespace MyNotebook.ViewModels
             };
 
             tasktype tasktype = (tasktype)rnd.Next(1, 3);
-            var task = new List<string>();
-            var answer = new List<int>();
+            List<string> task = new List<string>();
+            List<int> answer = new List<int>();
 
             while (true)
             {
@@ -52,7 +53,7 @@ namespace MyNotebook.ViewModels
                     {
                         for (int j = 0; j < 20; j++)
                         {
-                            var toAdd = input.RandomElement();
+                            string toAdd = input.RandomElement();
                             if (!task.Contains(toAdd))
                             {
                                 task.Add(toAdd);
@@ -69,7 +70,7 @@ namespace MyNotebook.ViewModels
                     {
                         for (int j = 0; j < 20; j++)
                         {
-                            var toAdd = output.RandomElement();
+                            string toAdd = output.RandomElement();
                             if (!task.Contains(toAdd))
                             {
                                 task.Add(toAdd);
@@ -102,8 +103,16 @@ namespace MyNotebook.ViewModels
                     break;
             }
 
-            MissionBase mb = new SelectMission(9, title, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray());
-            mb.Tooltip = "Выбрать устройства ввода или вывода";
+            if (task.Count != numOfAnswers)
+            {
+                goto generate;
+            }
+
+            MissionBase mb = new SelectMission(9, title, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray())
+            {
+                Tooltip = "Выбрать устройства ввода или вывода",
+                MaxNumInTest = 2
+            };
             return mb;
         }
     }

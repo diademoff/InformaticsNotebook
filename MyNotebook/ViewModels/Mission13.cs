@@ -25,7 +25,7 @@ namespace MyNotebook.ViewModels
         public override MissionBase Generate()
         {
             List<Component> list = new List<Component>();
-            list.Add(new Component("Просессор", new Bitmap[]
+            list.Add(new Component("Процессор", new Bitmap[]
             {
                 Properties.Resources.cpu1,
                 Properties.Resources.cpu2,
@@ -73,25 +73,36 @@ namespace MyNotebook.ViewModels
             var rightel = list[rnd.Next(0, list.Count)];
             string question = "";
 
+            List<int> alreadyAdded = new List<int>();
+
             for (int i = 0; i < 4; i++)
             {
                 if (i == rightIndex)
                 {
                     question = $"Выберите картинку \"{rightel.ClassName}\"";
-                    pictures[i] = rightel.Images[rnd.Next(0, rightel.Images.Length)];
+                    int index_ = rnd.Next(0, rightel.Images.Length);
+                    pictures[i] = rightel.Images[index_];
+                    alreadyAdded.Add(index_);
                     continue;
                 }
             genAgain:
-                var el = list[rnd.Next(0, list.Count)];
+                int index = rnd.Next(0, list.Count);
+                var el = list[index];
                 if (el.ClassName == rightel.ClassName)
                 {
                     goto genAgain;
                 }
+                if (alreadyAdded.Contains(index))
+                {
+                    goto genAgain;
+                }
                 pictures[i] = el.Images[rnd.Next(0, el.Images.Length)];
+                alreadyAdded.Add(index);
             }
 
             ChoosePictureMission mission = new ChoosePictureMission(13, "Выбрать изображение комплектующего", question, pictures, rightIndex);
             mission.Tooltip = "Определить изображение по названию";
+            mission.MaxNumInTest = 3;
             return mission;
         }
     }

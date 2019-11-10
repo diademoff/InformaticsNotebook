@@ -12,6 +12,7 @@ namespace MyNotebook.Models
         public string[] Variants { get; set; }
         public int[] AnswerExpected { get; set; }
 
+        public override string String_AnswerExpecting { get; set; }
         public override string String_AnswerGiven
         {
             get
@@ -66,7 +67,7 @@ namespace MyNotebook.Models
 
             Label lbl_title = new Label()
             {
-                Text = Tasktext,
+                Text = NumOfMission + ". " + Tasktext,
                 Dock = DockStyle.Fill,
                 TextAlign = ContentAlignment.TopCenter,
                 AutoSize = false,
@@ -158,6 +159,7 @@ namespace MyNotebook.Models
             Title = title;
             Variants = answers;
             AnswerExpected = answerExpected;
+            String_AnswerExpecting = string.Join("", answerExpected);
         }
 
         public SelectMission()

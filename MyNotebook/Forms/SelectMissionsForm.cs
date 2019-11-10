@@ -51,6 +51,8 @@ namespace MyNotebook.Forms
             {
                 var mission = MissionGeneratorCollection.Missions[i].Generate();
 
+                object i_clone = (object)i;
+
                 checkBoxes.Add(new CheckBox()
                 {
                     Location = new Point(0, (25 * i)),
@@ -59,14 +61,19 @@ namespace MyNotebook.Forms
                     Text = $"{i + 1}. {mission.Title}",
                     AutoSize = true                   
                 });
-                checkBoxes.Last().CheckedChanged += (s, e) => RefreshUI();
+                checkBoxes.Last().CheckedChanged += (s, e) =>
+                {
+                    numerics[(int)i_clone].Enabled = ((CheckBox)s).Checked;
+                    RefreshUI();
+                };
 
                 numerics.Add(new NumericUpDown()
                 {
                     Location = new Point(checkBoxes.Last().Location.X + 500, checkBoxes.Last().Location.Y),
-                    Maximum = 10,
+                    Maximum = mission.MaxNumInTest,
                     Value = 1,
-                    Width = 50
+                    Width = 50,
+                    Enabled = false
                 });
                 numerics.Last().ValueChanged += (s, e) => RefreshUI();
 

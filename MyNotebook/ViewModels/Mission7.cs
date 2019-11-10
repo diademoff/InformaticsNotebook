@@ -16,6 +16,7 @@ namespace MyNotebook.ViewModels
 
             MissionBase mb = new TextMission(7, "Степени двойки", question, answer);
             mb.Tooltip = "Степень от 3 до 12";
+            mb.MaxNumInTest = 9;
             return mb;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using MyNotebook.Models;
 using System;
+using System.Linq;
 
 namespace MyNotebook.ViewModels
 {
@@ -49,7 +50,7 @@ namespace MyNotebook.ViewModels
                             answer += "2";
                         }
                     }
-                    if (result != (int)result || result == beginNum) // целое число
+                    if (result != (int)result || result == beginNum || answer.Distinct().Count() == 1) // целое число. искл ответ вида: 22222
                     {
                         continue;
                     }

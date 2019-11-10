@@ -1,5 +1,6 @@
 ﻿using MyNotebook.Models;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -66,15 +67,43 @@ namespace MyNotebook.Forms
 
         private void AddTabsWithMissions(Test test)
         {
+            List<int> numOfMissionsAdded = new List<int>(); // уже  добавленные миссии
+            int indexOfTab = 0; // текущий индекс "maintab"
             for (int i = 0; i < test.AllMissions.Count; i++)
             {
-                AddTabWithMission(test.AllMissions[i]);
+                if (numOfMissionsAdded.Contains(test.AllMissions[i].NumOfMission))
+                {
+                    continue; // если миссия уже добавлена
+                }
+                int currNumOfMission = test.AllMissions[i].NumOfMission; // номер миссии
+                numOfMissionsAdded.Add(currNumOfMission); // добавить номер миссии в список
+                // создаем subTab чтобы потом довить в maintab
+                var subTab = new TabControl()
+                {
+                    Width = 880,
+                    Height = 430,
+                    Location = new Point(5, 5),
+                    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                    Dock = DockStyle.Fill
+                };
+                
+                // заполняем subtab
+                for (int j = i; j < test.AllMissions.Count; j++)
+                {
+                    if (test.AllMissions[j].NumOfMission == currNumOfMission) // выбираем только миссии с текущим номером
+                    {
+                        var tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
+                        tab.Text = currNumOfMission.ToString();
+                        subTab.TabPages.Add(tab); // добавляем tab
+                    }
+                }
+                tabControl.TabPages.Add(new TabPage()
+                {
+                    Text = test.AllMissions[i].ToString()
+                }); // добавляем tab в maintab чтобы в него добавить subtab
+                tabControl.TabPages[indexOfTab].Controls.Add(subTab); // добавляем subtab в tabpage под индексом indexOfTab
+                indexOfTab++; // увелициваем текущий индекс
             }
-        }
-
-        void AddTabWithMission(MissionBase mission)
-        {
-            tabControl.TabPages.Add(mission.GetTabPage(showAnswerAtOnce:Test.ShowAnswerAtOnce));
         }
 
 

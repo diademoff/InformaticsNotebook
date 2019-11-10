@@ -17,11 +17,14 @@ namespace MyNotebook.Models.MissionTypes
         int IndexOfRightAnswer;
         int IndexOfAnswerGiven;
 
+        public override string String_AnswerExpecting { get; set; }
         public override string String_AnswerGiven => (IndexOfAnswerGiven + 1).ToString();
+
         public ChoosePictureMission()
         {
 
         }
+
         public ChoosePictureMission(int numOfMission, string title, string question, Bitmap[] pictures, int indexOfRightAnswer)
         {
             if (pictures.Length != 4)
@@ -37,7 +40,9 @@ namespace MyNotebook.Models.MissionTypes
             Title = title;
             Question = question;
             Pictures = pictures;
+            String_AnswerExpecting = indexOfRightAnswer.ToString();
             IndexOfRightAnswer = indexOfRightAnswer;
+            MaxNumInTest = 4;
         }
 
         public override TabPage GetTabPage(bool showAnswerAtOnce)
@@ -52,7 +57,7 @@ namespace MyNotebook.Models.MissionTypes
 
             Label lbl_title = new Label()
             {
-                Text = Question,
+                Text = NumOfMission + ". " + Question,
                 Dock = DockStyle.Fill,
                 TextAlign = ContentAlignment.TopCenter,
                 AutoSize = false,
@@ -67,7 +72,6 @@ namespace MyNotebook.Models.MissionTypes
                 Bitmap currPicture = Pictures[i].Clone() as Bitmap;
                 PictureBox picture = new PictureBox()
                 {
-                    SizeMode = PictureBoxSizeMode.Zoom,
                     Location = new Point((i * 125) + 50 * i + 50, 200),
                     Width = 150,
                     Height = 150,
@@ -105,8 +109,8 @@ namespace MyNotebook.Models.MissionTypes
                         return;
                     }
                     isBigger = true;
-                    picture.Width += animationStrength;
-                    picture.Height += animationStrength;
+                    picture.Width -= animationStrength;
+                    picture.Height -= animationStrength;
                     new Task(() =>
                     {
                         Thread.Sleep(TimeSpan.FromSeconds(1));
@@ -134,8 +138,8 @@ namespace MyNotebook.Models.MissionTypes
                         return;
                     }
                     isBigger = false;
-                    picture.Width -= animationStrength;
-                    picture.Height -= animationStrength;
+                    picture.Width += animationStrength;
+                    picture.Height += animationStrength;
                 };
 
                 pictures.Add(picture);
