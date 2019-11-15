@@ -78,6 +78,7 @@ namespace MyNotebook.Models
                     return;
                 }
 
+
                 FinishMission(answer: txtbx_answer.Text);
 
                 btn_answer.Enabled = false;

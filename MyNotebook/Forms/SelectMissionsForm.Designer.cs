@@ -36,6 +36,7 @@
             this.lbl_numOfMissionsSelected = new System.Windows.Forms.Label();
             this.checkbx_showAnswerAtOnce = new System.Windows.Forms.CheckBox();
             this.panel_missions = new System.Windows.Forms.Panel();
+            this.checkbx_onebyone = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -110,11 +111,22 @@
             this.panel_missions.Size = new System.Drawing.Size(771, 327);
             this.panel_missions.TabIndex = 11;
             // 
+            // checkbx_onebyone
+            // 
+            this.checkbx_onebyone.AutoSize = true;
+            this.checkbx_onebyone.Location = new System.Drawing.Point(194, 373);
+            this.checkbx_onebyone.Name = "checkbx_onebyone";
+            this.checkbx_onebyone.Size = new System.Drawing.Size(186, 17);
+            this.checkbx_onebyone.TabIndex = 12;
+            this.checkbx_onebyone.Text = "Поочерёдно выдывать задания";
+            this.checkbx_onebyone.UseVisualStyleBackColor = true;
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkbx_onebyone);
             this.Controls.Add(this.panel_missions);
             this.Controls.Add(this.checkbx_showAnswerAtOnce);
             this.Controls.Add(this.lbl_numOfMissionsSelected);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.Label lbl_numOfMissionsSelected;
         private System.Windows.Forms.CheckBox checkbx_showAnswerAtOnce;
         private System.Windows.Forms.Panel panel_missions;
+        private System.Windows.Forms.CheckBox checkbx_onebyone;
     }
 }

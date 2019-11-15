@@ -136,6 +136,7 @@ namespace MyNotebook.Forms
                 sfd.Filter = "Тесты | .test";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
+                    test.OneByOne = checkbx_onebyone.Checked;
                     test.Serialize(sfd.FileName);
                     MessageBox.Show("Тест сохранён", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

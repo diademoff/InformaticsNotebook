@@ -103,9 +103,12 @@ namespace MyNotebook
                     test.RegenerateMissions();
                     disableCalc = test.IsCalcBlockEnabled;
                     selectedUser.UserTests.Add(test);
-                    MissionSolveForm msf = new MissionSolveForm(selectedUser, test);
                     this.FullHideForm();
-                    msf.ShowDialog();
+                    MissionSolveForm msf = new MissionSolveForm(selectedUser, test);
+                    if (!test.OneByOne)
+                    {
+                        msf.ShowDialog();
+                    }
                     this.FullShowForm();
                 }
             }

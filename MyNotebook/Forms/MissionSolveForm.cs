@@ -39,7 +39,6 @@ namespace MyNotebook.Forms
                 new Task(() => StartTimer()).Start();
                 UpdateUI();
             };
-            AddTabsWithMissions(test);
 
             System.Windows.Forms.Timer uiUpdater = new System.Windows.Forms.Timer()
             {
@@ -47,8 +46,15 @@ namespace MyNotebook.Forms
                 Enabled = true
             };
             uiUpdater.Tick += (s, e) => UpdateUI();
+            if (test.OneByOne)
+            {
+                ShowMissionsOneByOne(test);
+            }
+            else
+            {
+                AddTabsWithMissions(test);
+            }
         }
-
         private void StartTimer()
         {
             while (true)
@@ -64,6 +70,81 @@ namespace MyNotebook.Forms
                 Thread.Sleep(200);
             }
         }
+
+        private void ShowMissionsOneByOne(Test test)
+        {
+            this.FullHideForm();
+            List<int> numOfMissionsAdded = new List<int>(); // уже  добавленные миссии
+            for (int i = 0; i < test.AllMissions.Count; i++)
+            {
+                if (numOfMissionsAdded.Contains(test.AllMissions[i].NumOfMission))
+                {
+                    continue; // если миссия уже добавлена
+                }
+                int currNumOfMission = test.AllMissions[i].NumOfMission; // номер миссии
+                numOfMissionsAdded.Add(currNumOfMission); // добавить номер миссии в список
+                // создаем subTab чтобы потом довить в maintab
+                var subTab = new TabControl()
+                {
+                    Width = 880,
+                    Height = 430,
+                    Location = new Point(5, 5),
+                    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                    Dock = DockStyle.Fill
+                };
+
+                List<MissionBase> missions = new List<MissionBase>();
+
+                // создаём форму для показа блока миссий
+                Form previewForm = new Form()
+                {
+                    Width = 800,
+                    Height = 500,
+                    Icon = Properties.Resources.icon,
+                    StartPosition = FormStartPosition.CenterScreen,
+                    Text = $"Предпросмотр задания {i + 1} \"{test.AllMissions[i].ToString()}\""
+                };
+
+                // заполняем subtab
+                for (int j = i; j < test.AllMissions.Count; j++)
+                {
+                    if (test.AllMissions[j].NumOfMission == currNumOfMission) // выбираем только миссии с текущим номером
+                    {
+                        var tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
+                        tab.Text = currNumOfMission.ToString();
+                        missions.Add(test.AllMissions[j]);
+                        subTab.TabPages.Add(tab); // добавляем tab
+                    }
+                }
+
+
+                // добавляем созданный ранее таб
+                previewForm.Controls.Add(subTab);
+
+                // создаём кнопку для завершения блока
+                var btn = new Button()
+                {
+                    Text = "Завершить блок",
+                    Dock = DockStyle.Bottom
+                };
+                btn.Click += (s, e) =>
+                {
+                    btn.Enabled = false;
+                    previewForm.Close();
+                };
+                previewForm.Controls.Add(btn);
+
+                // показываем форму
+                previewForm.ShowDialog();
+            }
+
+            this.FullHideForm();
+            Test.FinishTest();
+            TestResultForm trf = new TestResultForm(Test);
+            trf.ShowDialog();
+            this.Close();
+        }
+
 
         private void AddTabsWithMissions(Test test)
         {

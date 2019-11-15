@@ -15,6 +15,7 @@ namespace MyNotebook.Models
         public bool IsCalcBlockEnabled;
         public bool IsTopMost = false;
         public bool ShowAnswerAtOnce = false;
+        public bool OneByOne = false;
         public int Mark;
         private List<MissionGenerator> AllMissonsGenerator = new List<MissionGenerator>();
         public List<MissionBase> AllMissions = new List<MissionBase>();
