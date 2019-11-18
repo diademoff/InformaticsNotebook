@@ -12,6 +12,12 @@ namespace MyNotebook.Forms
         public TeacherForm()
         {
             InitializeComponent();
+
+            listbx_users.DoubleClick += (s, e) =>
+            {
+                btn_info.PerformClick();
+            };
+
             Users = UserCollection.Instance.GetUsers.ToList();
             UpdateUsersList();
         }

@@ -36,6 +36,7 @@
             this.btn_finishTest = new System.Windows.Forms.Button();
             this.lbl_isTopMost = new System.Windows.Forms.Label();
             this.lbl_missionLeft = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // lbl_user
@@ -111,11 +112,19 @@
             this.lbl_missionLeft.TabIndex = 6;
             this.lbl_missionLeft.Text = "Осталось решить:";
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(197, 2);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(547, 26);
+            this.progressBar.TabIndex = 7;
+            // 
             // MissionSolveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(903, 521);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.lbl_missionLeft);
             this.Controls.Add(this.lbl_isTopMost);
             this.Controls.Add(this.btn_finishTest);
@@ -141,5 +150,6 @@
         private System.Windows.Forms.Button btn_finishTest;
         private System.Windows.Forms.Label lbl_isTopMost;
         private System.Windows.Forms.Label lbl_missionLeft;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

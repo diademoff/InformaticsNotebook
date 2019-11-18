@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MyNotebook.Models
@@ -16,7 +17,46 @@ namespace MyNotebook.Models
         public bool IsTopMost = false;
         public bool ShowAnswerAtOnce = false;
         public bool OneByOne = false;
-        public int Mark;
+        public double PercentSolved
+        {
+            get
+            {
+                double solvedright = 0;
+
+                foreach (var item in AllMissions)
+                {
+                    if (item.IsSolvedRight())
+                    {
+                        solvedright += 1;
+                    }
+                }
+
+                return solvedright / (double)AllMissions.Count * 100;
+            }
+        }
+        public int Mark
+        {
+            get
+            {
+                if (PercentSolved < 50)
+                {
+                    return 2;
+                }
+                else if ((50 <= PercentSolved) && (PercentSolved <= 74))
+                {
+                    return 3;
+                }
+                else if ((75 <= PercentSolved) && (PercentSolved <= 89))
+                {
+                    return 4;
+                }
+                else if ((90 <= PercentSolved) && (PercentSolved <= 100))
+                {
+                    return 5;
+                }
+                return 0;
+            }
+        }
         private List<MissionGenerator> AllMissonsGenerator = new List<MissionGenerator>();
         public List<MissionBase> AllMissions = new List<MissionBase>();
 

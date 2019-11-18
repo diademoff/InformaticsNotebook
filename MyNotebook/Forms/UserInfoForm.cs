@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyNotebook.Forms
@@ -16,6 +9,11 @@ namespace MyNotebook.Forms
         public UserInfoForm(User user)
         {
             InitializeComponent();
+
+            listBox.DoubleClick += (s, e) =>
+            {
+                btn_moreInfo.PerformClick();
+            };
 
             if (user == null)
             {

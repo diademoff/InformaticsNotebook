@@ -28,6 +28,7 @@ namespace MyNotebook.Forms
                 if (currMission.IsSolvedRight())
                 {
                     numOfSolved += 1;
+                    continue; //skip right solved missions
                 }
                 txtbx_log.Text += $"\t{currMission.ToString()}:\n";
 
@@ -38,35 +39,10 @@ namespace MyNotebook.Forms
                 txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
             }
 
-            double percentSolved = ((double)numOfSolved / (double)test.AllMissions.Count) * 100;
-            lbl_solvedPercent.Text = $"Решено: {percentSolved.ToString("#.##")}%";
-            int mark = GetMark(percentSolved);
-            lbl_mark.Text = $"Оценка: {mark}";
-            test.Mark = mark;
+            lbl_solvedPercent.Text = $"Решено: {test.PercentSolved.ToString("#.##")}%";
+            lbl_mark.Text = $"Оценка: {test.Mark}";
 
             DrawDiagramOnForm((decimal)numOfSolved, (decimal)(test.AllMissions.Count - numOfSolved));
-        }
-
-        private static int GetMark(double percentSolved)
-        {
-            int mark = 0;
-            if (percentSolved < 50)
-            {
-                mark = 2;
-            }
-            else if ((50 <= percentSolved) && (percentSolved <= 74))
-            {
-                mark = 3;
-            }
-            else if ((75 <= percentSolved) && (percentSolved <= 91))
-            {
-                mark = 4;
-            }
-            else if ((92 <= percentSolved) && (percentSolved <= 100))
-            {
-                mark = 5;
-            }
-            return mark;
         }
 
         public void DrawDiagramOnForm(decimal numOfrightAnswers, decimal numOfwrongAnswers)

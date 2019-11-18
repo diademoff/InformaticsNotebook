@@ -145,7 +145,6 @@ namespace MyNotebook.Forms
             this.Close();
         }
 
-
         private void AddTabsWithMissions(Test test)
         {
             List<int> numOfMissionsAdded = new List<int>(); // уже  добавленные миссии
@@ -183,6 +182,35 @@ namespace MyNotebook.Forms
                     Text = test.AllMissions[i].ToString()
                 }); // добавляем tab в maintab чтобы в него добавить subtab
                 tabControl.TabPages[indexOfTab].Controls.Add(subTab); // добавляем subtab в tabpage под индексом indexOfTab
+
+                object currIndex = indexOfTab;
+                new Task(() => // изменить Text mainTab, когда все subTab решены
+                {
+                    while (true)
+                    {
+                        bool allAnswersGiven = true;
+                        for (int j = 0; j < test.AllMissions.Count; j++)
+                        {
+                            if (test.AllMissions[j].NumOfMission == currNumOfMission) // выбираем только миссии с текущим номером
+                            {
+                                if (!test.AllMissions[j].IsAnswerGiven())
+                                {
+                                    allAnswersGiven = false;
+                                }
+                            }
+                        }
+                        if (allAnswersGiven)
+                        {
+                            tabControl.Invoke(new MethodInvoker(() =>
+                            {
+                                tabControl.TabPages[(int)currIndex].Text = "*";
+                            }));
+                            break;
+                        }
+                        Thread.Sleep(250);
+                    }
+                }).Start();
+
                 indexOfTab++; // увелициваем текущий индекс
             }
         }
@@ -194,6 +222,8 @@ namespace MyNotebook.Forms
             lbl_missionLeft.Text = $"Осталось решить: {MissionsLeft}";
             lbl_isCalcBlockEnabled.ForeColor = Test.IsCalcBlockEnabled ? Color.Green : Color.Red;
             lbl_isCalcBlockEnabled.Text = Test.IsCalcBlockEnabled ? "Блокировка калькулятора включена" : "Блокировка калькулятора выключена";
+            progressBar.Maximum = Test.AllMissions.Count;
+            progressBar.Value = Test.NumOfSolved;
         }
         private void Btn_finishTest_Click(object sender, EventArgs e)
         {

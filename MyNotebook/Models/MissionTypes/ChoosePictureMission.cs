@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyNotebook.Models.MissionTypes
@@ -63,7 +61,20 @@ namespace MyNotebook.Models.MissionTypes
                 AutoSize = false,
                 Font = new Font("Arial", 20)
             };
+            Button give_answer = new Button()
+            {
+                Dock = DockStyle.Bottom,
+                Text = "Выбрать"
+            };
 
+            PictureBox selector = new PictureBox()
+            {
+                Width = 150,
+                Height = 10,
+                BackColor = Color.Green,
+                Location = new Point(-100, -100)
+            };
+            int pictureSelected = -1;
             List<PictureBox> pictures = new List<PictureBox>();
             bool isAnyPictureOpend = false;
             for (int i = 0; i < Pictures.Length; i++)
@@ -83,16 +94,25 @@ namespace MyNotebook.Models.MissionTypes
                     {
                         return;
                     }
-                    AnswerGiven = true;
-                    IndexOfAnswerGiven = (int)currIndex;
 
-                    if (!showAnswerAtOnce)
+                    pictureSelected = (int)currIndex;
+                    var thisPictute = (PictureBox)s;
+                    selector.Location = new Point(thisPictute.Location.X, thisPictute.Location.Y + thisPictute.Width + 10);
+                };
+
+                picture.DoubleClick += (s, e) =>
+                {
+                    if (!isAnyPictureOpend && !AnswerGiven)
                     {
-                        tp.Text = "*";
-                    }
-                    else
-                    {
-                        tp.Text = IsSolvedRight() ? "✓" : "✖";
+                        Bitmap clone = currPicture.Clone() as Bitmap;
+                        isAnyPictureOpend = true;
+                        var win = new BitmapViewer(clone)
+                        {
+                            TopMost = true
+                        };
+                        win.LostFocus += (se, ev) => win.Close();
+                        win.ShowDialog();
+                        isAnyPictureOpend = false;
                     }
                 };
 
@@ -111,25 +131,6 @@ namespace MyNotebook.Models.MissionTypes
                     isBigger = true;
                     picture.Width -= animationStrength;
                     picture.Height -= animationStrength;
-                    new Task(() =>
-                    {
-                        Thread.Sleep(TimeSpan.FromSeconds(1));
-                        if (isBigger)
-                        {
-                            if (!isAnyPictureOpend && !AnswerGiven)
-                            {
-                                Bitmap clone = currPicture.Clone() as Bitmap;
-                                isAnyPictureOpend = true;
-                                var win = new BitmapViewer(clone)
-                                {
-                                    TopMost = true
-                                };
-                                win.LostFocus += (se, ev) => win.Close();
-                                win.ShowDialog();
-                                isAnyPictureOpend = false;
-                            }
-                        }
-                    }).Start();
                 };
                 picture.MouseLeave += (s, e) =>
                 {
@@ -145,6 +146,29 @@ namespace MyNotebook.Models.MissionTypes
                 pictures.Add(picture);
             }
 
+            give_answer.Click += (s, e) =>
+            {
+                if (pictureSelected == -1)
+                {
+                    MessageBox.Show("Кликните на картинку чтобы выбрать ответ и приблизить её", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                give_answer.Enabled = false;
+                AnswerGiven = true;
+                IndexOfAnswerGiven = pictureSelected;
+
+                if (!showAnswerAtOnce)
+                {
+                    tp.Text = "*";
+                }
+                else
+                {
+                    tp.Text = IsSolvedRight() ? "✓" : "✖";
+                }
+            };
+
+            tp.Controls.Add(selector);
+            tp.Controls.Add(give_answer);
             tp.Controls.AddRange(pictures.ToArray());
             tp.Controls.Add(lbl_title);
 

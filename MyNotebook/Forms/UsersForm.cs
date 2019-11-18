@@ -15,6 +15,11 @@ namespace MyNotebook
         {
             InitializeComponent();
 
+            listbx_users.DoubleClick += (s, e) =>
+            {
+                btn_chooseTest.PerformClick();
+            };
+
             //start monitoring if calc is active, method depends on bool disable calc
             new Task(() => DisableCalc()).Start();
 
@@ -153,7 +158,7 @@ namespace MyNotebook
             }
             else
             {
-                MessageBox.Show("Обновления не найдены", "Проверка обновлений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Обновления не найдены или отсутствует доступ к репозиторию", "Проверка обновлений", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

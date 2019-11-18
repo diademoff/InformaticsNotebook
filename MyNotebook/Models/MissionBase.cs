@@ -18,11 +18,22 @@ namespace MyNotebook.Models
         public string Title { get; set; }
         public string Tooltip { get; set; }
         public int NumOfMission { get; set; }
+        /// <summary>
+        /// Время когда на миссию дан ответ
+        /// </summary>
         public DateTime TimeMissionSolved { get; set; }
         public TimeSpan TimeSpanOnMission { get; set; }
         public abstract string String_AnswerExpecting { get; set; }
         public abstract string String_AnswerGiven { get; }
         public virtual int MaxNumInTest { get; set; } = 10;
+
+        ~MissionBase()
+        {
+            if (!IsAnswerGiven())
+            {
+                TimeMissionSolved = DateTime.Now;
+            }
+        }
 
         public abstract bool IsSolvedRight();
         public abstract bool IsAnswerGiven();
