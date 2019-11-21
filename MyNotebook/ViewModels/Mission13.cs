@@ -25,48 +25,11 @@ namespace MyNotebook.ViewModels
         public override MissionBase Generate()
         {
             List<Component> list = new List<Component>();
-            list.Add(new Component("Процессор", new Bitmap[]
+
+            foreach (var item in DataCollection.GetAllElementsWhere(true, false))
             {
-                Properties.Resources.cpu1,
-                Properties.Resources.cpu2,
-                Properties.Resources.cpu3
-            }));
-            list.Add(new Component("Жесткий диск", new Bitmap[]
-            {
-                Properties.Resources.hdd1,
-                Properties.Resources.hdd2,
-                Properties.Resources.hdd3
-            }));
-            list.Add(new Component("Материнская плата", new Bitmap[]
-            {
-                Properties.Resources.motherboard1,
-                Properties.Resources.motherboard2,
-                Properties.Resources.motherboard3,
-                Properties.Resources.motherboard4
-            }));
-            list.Add(new Component("Сетевая карта", new Bitmap[]
-            {
-                Properties.Resources.networkcard1,
-                Properties.Resources.networkcard2,
-                Properties.Resources.networkcard3
-            }));
-            list.Add(new Component("Оперативная память", new Bitmap[]
-            {
-                Properties.Resources.ram1,
-                Properties.Resources.ram2,
-                Properties.Resources.ram3
-            }));
-            list.Add(new Component("Звуковая карта", new Bitmap[]
-            {
-                Properties.Resources.soundcard1,
-                Properties.Resources.soundcard2,
-                Properties.Resources.soundcard3
-            }));
-            list.Add(new Component("Видеокарта", new Bitmap[]
-            {
-                Properties.Resources.videocard1,
-                Properties.Resources.videocard2
-            }));
+                list.Add(new Component(item.Term, item.Images));
+            }
 
             Bitmap[] pictures = new Bitmap[4];
             int rightIndex = rnd.Next(0, 4);
