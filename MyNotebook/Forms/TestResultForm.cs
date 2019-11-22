@@ -22,6 +22,7 @@ namespace MyNotebook.Forms
 
             int numOfSolved = 0;
             txtbx_log.Text += "Краткая информация:\n";
+            int numOfprinted = 0;
             for (int i = 0; i < test.AllMissions.Count; i++)
             {
                 var currMission = test.AllMissions[i];
@@ -30,6 +31,7 @@ namespace MyNotebook.Forms
                     numOfSolved += 1;
                     continue; //skip right solved missions
                 }
+                numOfprinted++;
                 txtbx_log.Text += $"\t{currMission.ToString()}:\n";
 
                 string answerGiven = currMission.String_AnswerGiven;
@@ -38,7 +40,10 @@ namespace MyNotebook.Forms
                 txtbx_log.Text += currMission.IsSolvedRight() ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
                 txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
             }
-
+            if (numOfprinted == 0)
+            {
+                txtbx_log.Text += "Всё решено верно";
+            }
             lbl_solvedPercent.Text = $"Решено: {test.PercentSolved.ToString("#.##")}%";
             lbl_mark.Text = $"Оценка: {test.Mark}";
 

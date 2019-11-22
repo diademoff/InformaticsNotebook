@@ -105,6 +105,13 @@ namespace MyNotebook.Forms
                     Text = $"Предпросмотр задания {i + 1} \"{test.AllMissions[i].ToString()}\""
                 };
 
+                if (test.IsTopMost)
+                {
+                    previewForm.WindowState = FormWindowState.Maximized;
+                    previewForm.FormBorderStyle = FormBorderStyle.None;
+                    previewForm.TopMost = true;
+                }
+
                 // заполняем subtab
                 for (int j = i; j < test.AllMissions.Count; j++)
                 {

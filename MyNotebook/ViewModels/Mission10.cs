@@ -27,7 +27,9 @@ namespace MyNotebook.ViewModels
 
         private TextMission Task2()
         {
-            int b = rnd.Next(6, 9);  // b on one symbol
+
+        genAgain:
+            int b = rnd.Next(6, 9);  // bytes on one symbol
 
             int p = rnd.Next(5, 9);
             int l = rnd.Next(25, 41);
@@ -36,8 +38,14 @@ namespace MyNotebook.ViewModels
                        $"Каждая страница содержит {l} строк по {s} символов в строке.\n" +
                        $"Какой объем информации содержат {p} страниц текста (в байтах)?";
 
-            string a = $"{(p * l * s * b) / 8}";
-            TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, a)
+            double a = (double)(p * l * s * b) / 8.0;
+
+            if (a != (int)a)
+            {
+                goto genAgain;
+            }
+
+            TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, ((int)a).ToString())
             {
                 Tooltip = "Подсчет веса текста"
             };
@@ -52,7 +60,7 @@ namespace MyNotebook.ViewModels
             string q = $"Созданный на компьютере текст занимает {p} полных страниц.\n" +
                        $"На каждой странице размещается {l} строк по {s} символов в строке.\n" +
                        $"Какой объем оперативной памяти (в байтах) займет этот текст?";
-            string a = $"{p * l * s}";
+            string a = $"{(p * l * s) / 8}";
             TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, a)
             {
                 Tooltip = "Подсчет веса текста"
