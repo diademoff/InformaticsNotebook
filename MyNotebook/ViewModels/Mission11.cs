@@ -34,7 +34,7 @@ namespace MyNotebook.ViewModels
 
                 for (int i = 0; i < 100; i++)
                 {
-                    int beginNum = rnd.Next(-120, 120);
+                    int beginNum = rnd.Next(2, 120);
                     double result = beginNum;
                     string answer = "";
                     for (int j = 0; j < 5; j++)
@@ -50,14 +50,15 @@ namespace MyNotebook.ViewModels
                             answer += "2";
                         }
                     }
-                    if (result != (int)result || result == beginNum || answer.Distinct().Count() == 1) // целое число. искл ответ вида: 22222
+                    if (result != (int)result || result == beginNum || answer.Distinct().Count() == 1  // целое число. искл ответ вида: 22222
+                        || result > 500)
                     {
                         continue;
                     }
 
                     question += $"Запишите порядок команд в программе,\n" +
                                 $"которая преобразует число {beginNum} в число {result} и содержит 5 команд.\n" +
-                                $"Указывайте лишь номера команд.";
+                                $"Указывайте лишь номера пяти команд.";
                     var mission = new TextMission(11, "Исполнитель Квадратор", question, answer);
                     mission.Tooltip = "Указать последовательность комманд для исполнителя Квадратор";
                     return mission;

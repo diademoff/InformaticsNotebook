@@ -36,7 +36,6 @@ namespace MyNotebook.Forms
             this.Test = test;
             this.Shown += (s, e) =>
             {
-                new Task(() => StartTimer()).Start();
                 UpdateUI();
             };
 
@@ -53,21 +52,6 @@ namespace MyNotebook.Forms
             else
             {
                 AddTabsWithMissions(test);
-            }
-        }
-        private void StartTimer()
-        {
-            while (true)
-            {
-                try
-                {
-                    lbl_timer.Invoke(new MethodInvoker(() =>
-                    {
-                        lbl_timer.Text = $"{(DateTime.Now - Test.TimeStart).TotalMinutes.ToString("00")}:{(DateTime.Now - Test.TimeStart).Seconds.ToString("00")}";
-                    }));
-                }
-                catch { /*if window is closed*/ }
-                Thread.Sleep(200);
             }
         }
 
@@ -231,6 +215,7 @@ namespace MyNotebook.Forms
             lbl_isCalcBlockEnabled.Text = Test.IsCalcBlockEnabled ? "Блокировка калькулятора включена" : "Блокировка калькулятора выключена";
             progressBar.Maximum = Test.AllMissions.Count;
             progressBar.Value = Test.NumOfSolved;
+            lbl_timer.Text = $"{(DateTime.Now - Test.TimeStart).TotalMinutes.ToString("00")}:{(DateTime.Now - Test.TimeStart).Seconds.ToString("00")}";
         }
         private void Btn_finishTest_Click(object sender, EventArgs e)
         {
