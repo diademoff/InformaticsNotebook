@@ -36,7 +36,6 @@
             this.listbx_users = new System.Windows.Forms.ListBox();
             this.btn_chooseTest = new System.Windows.Forms.Button();
             this.lbl_about = new System.Windows.Forms.Label();
-            this.btn_update = new System.Windows.Forms.Button();
             this.txtbx_searchUsers = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -105,16 +104,6 @@
             this.lbl_about.Text = "?";
             this.lbl_about.Click += new System.EventHandler(this.Lbl_about_Click);
             // 
-            // btn_update
-            // 
-            this.btn_update.Location = new System.Drawing.Point(652, 102);
-            this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(136, 23);
-            this.btn_update.TabIndex = 9;
-            this.btn_update.Text = "Проверить обновления";
-            this.btn_update.UseVisualStyleBackColor = true;
-            this.btn_update.Click += new System.EventHandler(this.Btn_update_Click);
-            // 
             // txtbx_searchUsers
             // 
             this.txtbx_searchUsers.Location = new System.Drawing.Point(12, 102);
@@ -128,7 +117,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txtbx_searchUsers);
-            this.Controls.Add(this.btn_update);
             this.Controls.Add(this.lbl_about);
             this.Controls.Add(this.btn_chooseTest);
             this.Controls.Add(this.listbx_users);
@@ -157,7 +145,6 @@
         private System.Windows.Forms.ListBox listbx_users;
         private System.Windows.Forms.Button btn_chooseTest;
         private System.Windows.Forms.Label lbl_about;
-        private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.TextBox txtbx_searchUsers;
     }
 }

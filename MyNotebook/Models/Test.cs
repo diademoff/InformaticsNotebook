@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 
 namespace MyNotebook.Models
 {
@@ -17,6 +17,7 @@ namespace MyNotebook.Models
         public bool IsTopMost = false;
         public bool ShowAnswerAtOnce = false;
         public bool OneByOne = false;
+        public bool RandomOrder = false;
         public double PercentSolved
         {
             get
@@ -31,26 +32,26 @@ namespace MyNotebook.Models
                     }
                 }
 
-                return solvedright / (double)AllMissions.Count * 100;
+                return (Convert.ToDouble(solvedright) / Convert.ToDouble(AllMissions.Count)) * 100.0;
             }
         }
         public int Mark
         {
             get
             {
-                if (PercentSolved < 50)
+                if (PercentSolved < 50.0)
                 {
                     return 2;
                 }
-                else if ((50 <= PercentSolved) && (PercentSolved <= 74))
+                else if ((50.0 <= PercentSolved) && (PercentSolved <= 74.0))
                 {
                     return 3;
                 }
-                else if ((75 <= PercentSolved) && (PercentSolved <= 89))
+                else if ((75.0 <= PercentSolved) && (PercentSolved <= 89.0))
                 {
                     return 4;
                 }
-                else if ((90 <= PercentSolved) && (PercentSolved <= 100))
+                else if ((90.0 <= PercentSolved) && (PercentSolved <= 100.0))
                 {
                     return 5;
                 }

@@ -47,6 +47,11 @@ namespace MyNotebook.Forms
         {
             InitializeComponent();
 
+            checkbx_onebyone.CheckedChanged += (s, e) =>
+            {
+                checkbx_randomOrder.Enabled = checkbx_onebyone.Checked;
+            };
+
             for (int i = 0; i < MissionGeneratorCollection.Missions.Length; i++)
             {
                 var mission = MissionGeneratorCollection.Missions[i].Generate();
@@ -131,6 +136,7 @@ namespace MyNotebook.Forms
             var test = new Test(selectedNumsOfMissions.ToArray(), numOfEachMission.ToArray(), isCalcBlockEnabled: checkbx_disableCalc.Checked);
             test.IsTopMost = checkbx_topMost.Checked;
             test.ShowAnswerAtOnce = checkbx_showAnswerAtOnce.Checked;
+            test.RandomOrder = checkbx_randomOrder.Checked;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 sfd.Filter = "Тесты | .test";

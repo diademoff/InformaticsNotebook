@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNotebook.Models;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,6 +36,11 @@ namespace MyNotebook.Forms
             TeacherForm tf = new TeacherForm();
             tf.ShowDialog();
             Close();
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            new GitUpdater().AskAndUpdate();
         }
     }
 }

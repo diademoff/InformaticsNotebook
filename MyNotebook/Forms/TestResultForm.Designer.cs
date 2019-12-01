@@ -40,6 +40,7 @@
             this.lbl_topmost = new System.Windows.Forms.Label();
             this.picture_diagram = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_preview = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picture_diagram)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +87,7 @@
             this.txtbx_log.Location = new System.Drawing.Point(295, 6);
             this.txtbx_log.Name = "txtbx_log";
             this.txtbx_log.ReadOnly = true;
-            this.txtbx_log.Size = new System.Drawing.Size(493, 432);
+            this.txtbx_log.Size = new System.Drawing.Size(493, 454);
             this.txtbx_log.TabIndex = 4;
             this.txtbx_log.Text = "";
             // 
@@ -144,11 +145,23 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "< 50% - \"2\"\r\n50 - 74 - \"3\"\r\n75 - 89 - \"4\"\r\n90 - 100 - \"5\"";
             // 
+            // btn_preview
+            // 
+            this.btn_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_preview.Location = new System.Drawing.Point(10, 446);
+            this.btn_preview.Name = "btn_preview";
+            this.btn_preview.Size = new System.Drawing.Size(120, 23);
+            this.btn_preview.TabIndex = 11;
+            this.btn_preview.Text = "Просмотр заданий";
+            this.btn_preview.UseVisualStyleBackColor = true;
+            this.btn_preview.Click += new System.EventHandler(this.btn_preview_Click);
+            // 
             // TestResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 472);
+            this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picture_diagram);
             this.Controls.Add(this.lbl_topmost);
@@ -183,5 +196,6 @@
         private System.Windows.Forms.Label lbl_topmost;
         private System.Windows.Forms.PictureBox picture_diagram;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_preview;
     }
 }

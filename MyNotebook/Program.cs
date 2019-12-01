@@ -24,7 +24,6 @@ namespace MyNotebook
         {
             if (!InstanceCheck())
             {
-                MessageBox.Show("Копия программы уже запущена", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

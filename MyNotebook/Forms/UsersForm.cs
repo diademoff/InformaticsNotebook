@@ -148,18 +148,7 @@ namespace MyNotebook
 
         private void Btn_update_Click(object sender, System.EventArgs e)
         {
-            GitUpdater updater = new GitUpdater();
-            if (updater.NeedUpdate)
-            {
-                if (MessageBox.Show("Найдена новая версия, хотите обновить программу?", "Проверка обновлений", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    updater.Update();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Обновления не найдены или отсутствует доступ к репозиторию", "Проверка обновлений", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -54,11 +55,16 @@ namespace MyNotebook.Forms
                 AddTabsWithMissions(test);
             }
         }
-
+        Random rnd = new Random();
         private void ShowMissionsOneByOne(Test test)
         {
             this.FullHideForm();
+            if (test.RandomOrder)
+            {
+                test.AllMissions = test.AllMissions.OrderBy(x => rnd.Next()).ToList(); //shuffle list
+            }
             List<int> numOfMissionsAdded = new List<int>(); // уже  добавленные миссии
+            TabControl resultTabControl = new TabControl();
             for (int i = 0; i < test.AllMissions.Count; i++)
             {
                 if (numOfMissionsAdded.Contains(test.AllMissions[i].NumOfMission))
@@ -86,8 +92,15 @@ namespace MyNotebook.Forms
                     Height = 500,
                     Icon = Properties.Resources.icon,
                     StartPosition = FormStartPosition.CenterScreen,
-                    Text = $"Предпросмотр задания {i + 1} \"{test.AllMissions[i].ToString()}\""
+                    Text = $"Задание {i + 1} из {test.AllMissions.Count}. \"{test.AllMissions[i].ToString()}\""
                 };
+                previewForm.Controls.Add(new ProgressBar()
+                {
+                    Value = i + 1,
+                    Maximum = test.AllMissions.Count,
+                    Dock = DockStyle.Top,
+                    Height = 3
+                });
 
                 if (test.IsTopMost)
                 {
@@ -127,6 +140,8 @@ namespace MyNotebook.Forms
 
                 // показываем форму
                 previewForm.ShowDialog();
+
+                resultTabControl.TabPages.Add(subTab.TabPages[0]);
             }
 
             this.FullHideForm();

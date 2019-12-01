@@ -174,6 +174,73 @@ namespace MyNotebook.Models.MissionTypes
 
             return tp;
         }
+        public override TabPage GetSolvedTabPage()
+        {
+            TabPage tp = new TabPage(ToString())
+            {
+                AutoScroll = true
+            };
+
+
+            Label lbl_title = new Label()
+            {
+                Text = NumOfMission + ". " + Question,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.TopCenter,
+                AutoSize = false,
+                Font = new Font("Arial", 20)
+            };
+            Button give_answer = new Button()
+            {
+                Dock = DockStyle.Bottom,
+                Text = "Выбрать"
+            };
+
+            PictureBox selector = new PictureBox()
+            {
+                Width = 150,
+                Height = 10,
+                BackColor = Color.Green,
+                Location = new Point(-100, -100)
+            };
+            int pictureSelected = IndexOfAnswerGiven;
+            List<PictureBox> pictures = new List<PictureBox>();
+            try
+            {
+
+            for (int i = 0; i < Pictures.Length; i++)
+            {
+                object currIndex = i;
+                Bitmap currPicture = Pictures[i].Clone() as Bitmap;
+                PictureBox picture = new PictureBox()
+                {
+                    Location = new Point((i * 125) + 50 * i + 50, 200),
+                    Width = 150,
+                    Height = 150,
+                    BackgroundImage = new Bitmap(currPicture, new Size(150, 150))
+                };
+
+
+                if (pictureSelected == i)
+                {
+                    pictureSelected = (int)currIndex;
+                    selector.Location = new Point(picture.Location.X, picture.Location.Y + picture.Width + 10);
+                }
+
+                pictures.Add(picture);
+            }
+
+            }
+            catch { }
+            tp.Text = IsSolvedRight() ? "✓" : "✖";
+
+            tp.Controls.Add(selector);
+            tp.Controls.Add(give_answer);
+            tp.Controls.AddRange(pictures.ToArray());
+            tp.Controls.Add(lbl_title);
+
+            return tp;
+        }
 
         public override bool IsAnswerGiven()
         {
@@ -188,5 +255,6 @@ namespace MyNotebook.Models.MissionTypes
             }
             return IndexOfAnswerGiven == IndexOfRightAnswer;
         }
+
     }
 }

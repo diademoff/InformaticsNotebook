@@ -178,6 +178,82 @@ namespace MyNotebook.Models
             return tp;
         }
 
+        public override TabPage GetSolvedTabPage()
+        {
+            TabPage tp = new TabPage(ToString())
+            {
+                AutoScroll = true
+            };
+
+
+            Label lbl_title = new Label()
+            {
+                Text = "",
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.TopCenter,
+                AutoSize = false,
+                Font = new Font("Arial", 20)
+            };
+
+            List<Label> lbl_definitions = new List<Label>();
+            List<ComboBox> cb_terms = new List<ComboBox>();
+            int shiftY = 40;
+            for (int i = 0; i < Definitions.Length; i++)
+            {
+                #region create combobox
+                ComboBox cb = new ComboBox()
+                {
+                    Location = new Point(20, (i * 40) + shiftY),
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    Width = 200,
+                    Enabled = false
+                };
+                for (int j = 0; j < Terms.Length; j++)
+                {
+                    cb.Items.Add($"{j + 1}. {Terms[j]}"); //{numOfAnswer}{separator} {term}
+                }
+                cb.SelectedIndex = Answer[i] - 1;
+                cb_terms.Add(cb);
+                #endregion
+
+                #region create lbl definishion
+                Label lbl = new Label()
+                {
+                    Location = new Point(250, (i * 40) + shiftY),
+                    AutoSize = true,
+                    Font = new Font("Arial", 10)
+                };
+                #region new line in Definition
+                for (int j = 85; j < Definitions[i].Length; j += 85)
+                {
+                    Definitions[i] = Definitions[i].Insert(j, "\n");
+                    shiftY += 20;
+                }
+                #endregion
+                lbl.Text = Definitions[i];
+                lbl_definitions.Add(lbl);
+                #endregion
+            }
+
+            #region create answer btn
+            Button btn_answer = new Button()
+            {
+                Dock = DockStyle.Bottom,
+                UseVisualStyleBackColor = true,
+                FlatStyle = FlatStyle.Flat,
+                Text = "Готово"
+            };
+            #endregion
+            tp.Text = IsSolvedRight() ? "✓" : "✖";
+
+            tp.Controls.Add(btn_answer);
+            tp.Controls.AddRange(lbl_definitions.ToArray());
+            tp.Controls.AddRange(cb_terms.ToArray());
+            tp.Controls.Add(lbl_title);
+
+            return tp;
+        }
+
         /// <summary>
         /// Constructor for match mission
         /// </summary>

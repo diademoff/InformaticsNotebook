@@ -37,6 +37,7 @@
             this.checkbx_showAnswerAtOnce = new System.Windows.Forms.CheckBox();
             this.panel_missions = new System.Windows.Forms.Panel();
             this.checkbx_onebyone = new System.Windows.Forms.CheckBox();
+            this.checkbx_randomOrder = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -121,11 +122,23 @@
             this.checkbx_onebyone.Text = "Поочерёдно выдывать задания";
             this.checkbx_onebyone.UseVisualStyleBackColor = true;
             // 
+            // checkbx_randomOrder
+            // 
+            this.checkbx_randomOrder.AutoSize = true;
+            this.checkbx_randomOrder.Enabled = false;
+            this.checkbx_randomOrder.Location = new System.Drawing.Point(194, 396);
+            this.checkbx_randomOrder.Name = "checkbx_randomOrder";
+            this.checkbx_randomOrder.Size = new System.Drawing.Size(126, 17);
+            this.checkbx_randomOrder.TabIndex = 13;
+            this.checkbx_randomOrder.Text = "Случайный порядок";
+            this.checkbx_randomOrder.UseVisualStyleBackColor = true;
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkbx_randomOrder);
             this.Controls.Add(this.checkbx_onebyone);
             this.Controls.Add(this.panel_missions);
             this.Controls.Add(this.checkbx_showAnswerAtOnce);
@@ -155,5 +168,6 @@
         private System.Windows.Forms.CheckBox checkbx_showAnswerAtOnce;
         private System.Windows.Forms.Panel panel_missions;
         private System.Windows.Forms.CheckBox checkbx_onebyone;
+        private System.Windows.Forms.CheckBox checkbx_randomOrder;
     }
 }

@@ -40,6 +40,8 @@ namespace MyNotebook.Models
 
         public abstract TabPage GetTabPage(bool showAnswerAtOnce);
 
+        public abstract TabPage GetSolvedTabPage();
+
         public virtual void StartMonitorTabPageActiveCountTime(TabPage tp)
         {
             bool active = false;

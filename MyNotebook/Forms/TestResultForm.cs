@@ -1,4 +1,5 @@
 ﻿using MyNotebook.Models;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -83,6 +84,61 @@ namespace MyNotebook.Forms
             graphics.FillPie(new SolidBrush(Color.Red), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
 
             return mybit;
+        }
+
+        private void btn_preview_Click(object sender, System.EventArgs e)
+        {
+            Form previewForm = new Form();
+            previewForm.Width = 800;
+            previewForm.Height = 600;
+
+            previewForm.Controls.Add(new TabControl()
+            {
+                Dock = DockStyle.Fill,
+                Name = "tabControl"
+            });
+            
+            List<int> numOfMissionsAdded = new List<int>();
+            int indexOfTab = 0;
+            for (int i = 0; i < Test.AllMissions.Count; i++)
+            {
+                if (numOfMissionsAdded.Contains(Test.AllMissions[i].NumOfMission))
+                {
+                    continue;
+                }
+                int currNumOfMission = Test.AllMissions[i].NumOfMission;
+                numOfMissionsAdded.Add(currNumOfMission);
+               
+                var subTab = new TabControl()
+                {
+                    Width = 880,
+                    Height = 430,
+                    Location = new Point(5, 5),
+                    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                    Dock = DockStyle.Fill
+                };
+
+                for (int j = i; j < Test.AllMissions.Count; j++)
+                {
+                    if (Test.AllMissions[j].NumOfMission == currNumOfMission) 
+                    {
+                        var tab = Test.AllMissions[j].GetSolvedTabPage(); 
+                        tab.Text = currNumOfMission.ToString();
+                        subTab.TabPages.Add(tab); 
+                    }
+                }
+                (previewForm.Controls["tabControl"] as TabControl).TabPages.Add(new TabPage()
+                {
+                    Text = Test.AllMissions[i].ToString()
+                });
+                (previewForm.Controls["tabControl"] as TabControl).TabPages[indexOfTab].Controls.Add(subTab); 
+
+                object currIndex = indexOfTab;
+
+                indexOfTab++;
+            }
+
+            previewForm.ShowDialog();
         }
     }
 }

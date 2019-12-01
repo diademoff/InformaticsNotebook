@@ -1,35 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
 
 namespace MyNotebook.Models
 {
     public class GitUpdater
     {
         public string ThisVersion { get; } = "0.7.6"; //TODO: Before commiting change version here and in file "version_info"
-        string linkForNewVersion = "https://github.com/diademoff/InformaticsNotebook/blob/master/version";
+        string linkForNewVersion = "https://raw.githubusercontent.com/diademoff/InformaticsNotebook/master/version";
         string linkForDownloadFile = "https://github.com/diademoff/InformaticsNotebook/raw/master/MyNotebook/Build/MyNotebook.exe";
         string programName = "MyNotebook";
+        string updateComment = "";
         public bool NeedUpdate => GetNewVersion() != ThisVersion;
+
+        public void AskAndUpdate()
+        {
+            if (NeedUpdate)
+            {
+                if (MessageBox.Show($"Найдена новая версия, хотите обновить программу?\n{updateComment}", "Проверка обновлений", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Update();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Обновления не найдены или отсутствует доступ к репозиторию", "Проверка обновлений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// Use this method if update is necessary
+        /// </summary>
         public void Update()
         {
-            string newVersion = GetNewVersion();
-            if (newVersion != ThisVersion)
-            {
-                string fileName = DownloadFile();
+            string fileName = DownloadFile();
 
-                ReplaceFiles(Assembly.GetExecutingAssembly().Location, $"{Environment.CurrentDirectory}\\{fileName}");
-            }
+            ReplaceFiles(Assembly.GetExecutingAssembly().Location, $"{Environment.CurrentDirectory}\\{fileName}");
+        }
+
+        void Cmd(string line)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "cmd",
+                Arguments = $"/c {line}",
+                WindowStyle = ProcessWindowStyle.Hidden
+            }).Start();
         }
 
         private void ReplaceFiles(string oldFilePath, string newFileFullPath)
         {
-            Process.Start(newFileFullPath);
-            Environment.Exit(0);
+            Cmd($"taskkill /f /pid \"{Process.GetCurrentProcess().Id}\" &" +
+                $"del /f /q \"{oldFilePath}\" &" +
+                $"ping 1 &" + // sleep a bit
+                $"del /f /q \"{oldFilePath}\" &" + 
+                $"start \"\" /high \"{newFileFullPath}\""); //kill current process and delete current file
         }
 
         /// <summary>
@@ -62,6 +91,7 @@ namespace MyNotebook.Models
                 }
             }
         }
+
         private string GetNewVersion()
         {
             try
@@ -71,34 +101,16 @@ namespace MyNotebook.Models
                 wc.Encoding = Encoding.UTF8;
 
                 string html = wc.DownloadString(linkForNewVersion);
+                string[] splitted = html.Split('\n');
 
-                //get string array of coincidence: <title>Hello</title> - returns Hello
-                //<td id="LC1" class="blob-code blob-code-inner js-file-line">0.1</td> - returns version
-                string[] str = ParseMethod("<td id=\"LC1\" class=\"blob-code blob-code-inner js-file-line\">", "</td>", html);
-                return str[0];
+                string[] comments = new string[splitted.Length - 1];
+                Array.Copy(html.Split('\n'), 1, comments, 0, splitted.Length - 1);
+
+                updateComment = string.Join("\n", comments);
+
+                return splitted[0];
             }
             catch { return ThisVersion; }
-        }
-        public string[] ParseMethod(string str_begin, string str_end, string str_html)
-        {
-            List<string> list = new List<string>();
-            for (int i = 0; i < str_html.Length - str_begin.Length; i++)
-            {
-                if (str_html.Substring(i, str_begin.Length) == str_begin)
-                {
-                    int start = i + str_begin.Length;
-                    for (int j = start; j < str_html.Length - str_end.Length; j++)
-                    {
-                        if (str_html.Substring(j, str_end.Length) == str_end)
-                        {
-                            int finish = j;
-                            list.Add(str_html.Substring(start, finish - start));
-                            break;
-                        }
-                    }
-                }
-            }
-            return list.ToArray();
         }
     }
 }

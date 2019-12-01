@@ -93,16 +93,20 @@ namespace MyNotebook.ViewModels
 
         public void Serialize()
         {
-            if (!Directory.Exists(folder))
+            try
             {
-                Directory.CreateDirectory(folder);
-            }
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
 
-            XmlSerializer bf = new XmlSerializer(new List<User>().GetType());
-            using (FileStream fs = new FileStream(dataPath, FileMode.Create))
-            {
-                bf.Serialize(fs, Users);
+                XmlSerializer bf = new XmlSerializer(new List<User>().GetType());
+                using (FileStream fs = new FileStream(dataPath, FileMode.Create))
+                {
+                    bf.Serialize(fs, Users);
+                }
             }
+            catch { System.Windows.Forms.MessageBox.Show("Ошибка сериализации"); }
         }
 
         public List<User> DeserializeFolder(string folder)

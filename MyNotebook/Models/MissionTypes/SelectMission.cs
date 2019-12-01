@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MyNotebook.Models
@@ -135,6 +136,64 @@ namespace MyNotebook.Models
                 }
             };
             #endregion
+
+            tp.Controls.AddRange(checkboxes.ToArray());
+            checkboxes.ForEach(x => x.BringToFront());
+            tp.Controls.Add(lbl_title);
+            tp.Controls.Add(btn_answer);
+
+            return tp;
+        }
+
+        public override TabPage GetSolvedTabPage()
+        {
+            TabPage tp = new TabPage(ToString());
+            tp.AutoScroll = true;
+
+            Label lbl_title = new Label()
+            {
+                Text = NumOfMission + ". " + Tasktext,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.TopCenter,
+                AutoSize = false,
+                Font = new Font("Arial", 13)
+            };
+
+            List<CheckBox> checkboxes = new List<CheckBox>();
+            for (int i = 0; i < Variants.Length; i++)
+            {
+                CheckBox checkBox = new CheckBox()
+                {
+                    Location = new Point(20, (i * 40) + 40),
+                    Text = $"{i + 1}. {Variants[i]}",
+                    Checked = false,
+                    Font = new Font("Arial", 10),
+                    AutoSize = true,
+                    Enabled = false
+                };
+
+                if (AnswerGiven != null)
+                {
+                    if (AnswerGiven.Contains(i))
+                    {
+                        checkBox.Checked = true;
+                    }
+                }
+
+                checkboxes.Add(checkBox);
+            }
+
+            #region create answer btn
+            Button btn_answer = new Button()
+            {
+                Dock = DockStyle.Bottom,
+                UseVisualStyleBackColor = true,
+                FlatStyle = FlatStyle.Flat,
+                Text = "Готово"
+            };
+            #endregion
+
+            tp.Text = IsSolvedRight() ? "✓" : "✖";
 
             tp.Controls.AddRange(checkboxes.ToArray());
             checkboxes.ForEach(x => x.BringToFront());
