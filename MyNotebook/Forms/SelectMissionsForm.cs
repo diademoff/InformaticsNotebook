@@ -153,5 +153,54 @@ namespace MyNotebook.Forms
         {
             lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfEachMission.Sum()}";
         }
+
+        private void btn_load_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog() 
+            { 
+                Filter = "Тесты (*.test)|*.test"
+            })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    LoadTestFromFile(ofd.FileName);
+                }
+            }
+        }
+
+        void LoadTestFromFile(string path)
+        {
+            try
+            {
+
+                Test test = Test.Deserialize(path);
+                test.RegenerateMissions();
+
+                foreach (var item in checkBoxes)
+                {
+                    item.Checked = false;
+                }
+                foreach (var item in numerics)
+                {
+                    item.Value = 1;
+                }
+
+                foreach (var item in test.AllMissions)
+                {
+                    if (checkBoxes[item.NumOfMission - 1].Checked)
+                    {
+                        numerics[item.NumOfMission - 1].Value += 1;
+                    }
+                    checkBoxes[item.NumOfMission - 1].Checked = true;
+                }
+
+                checkbx_disableCalc.Checked = test.IsCalcBlockEnabled;
+                checkbx_onebyone.Checked = test.OneByOne;
+                checkbx_randomOrder.Checked = test.RandomOrder;
+                checkbx_showAnswerAtOnce.Checked = test.ShowAnswerAtOnce;
+                checkbx_topMost.Checked = test.IsTopMost;
+            }
+            catch(Exception ex) { MessageBox.Show("Не удалось загузить тест " + ex.ToString());}
+        }
     }
 }

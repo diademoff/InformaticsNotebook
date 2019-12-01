@@ -38,6 +38,7 @@
             this.panel_missions = new System.Windows.Forms.Panel();
             this.checkbx_onebyone = new System.Windows.Forms.CheckBox();
             this.checkbx_randomOrder = new System.Windows.Forms.CheckBox();
+            this.btn_load = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -133,11 +134,22 @@
             this.checkbx_randomOrder.Text = "Случайный порядок";
             this.checkbx_randomOrder.UseVisualStyleBackColor = true;
             // 
+            // btn_load
+            // 
+            this.btn_load.Location = new System.Drawing.Point(495, 396);
+            this.btn_load.Name = "btn_load";
+            this.btn_load.Size = new System.Drawing.Size(139, 42);
+            this.btn_load.TabIndex = 14;
+            this.btn_load.Text = "Загрузить";
+            this.btn_load.UseVisualStyleBackColor = true;
+            this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_load);
             this.Controls.Add(this.checkbx_randomOrder);
             this.Controls.Add(this.checkbx_onebyone);
             this.Controls.Add(this.panel_missions);
@@ -169,5 +181,6 @@
         private System.Windows.Forms.Panel panel_missions;
         private System.Windows.Forms.CheckBox checkbx_onebyone;
         private System.Windows.Forms.CheckBox checkbx_randomOrder;
+        private System.Windows.Forms.Button btn_load;
     }
 }
