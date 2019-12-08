@@ -67,6 +67,7 @@
             // 
             // listBox
             // 
+            this.listBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listBox.FormattingEnabled = true;
             this.listBox.Location = new System.Drawing.Point(12, 104);
             this.listBox.Name = "listBox";

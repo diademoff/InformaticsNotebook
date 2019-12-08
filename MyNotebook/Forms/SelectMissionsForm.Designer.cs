@@ -39,6 +39,7 @@
             this.checkbx_onebyone = new System.Windows.Forms.CheckBox();
             this.checkbx_randomOrder = new System.Windows.Forms.CheckBox();
             this.btn_load = new System.Windows.Forms.Button();
+            this.btn_preview = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -54,9 +55,9 @@
             // btn_save
             // 
             this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_save.Location = new System.Drawing.Point(640, 396);
+            this.btn_save.Location = new System.Drawing.Point(658, 407);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(148, 42);
+            this.btn_save.Size = new System.Drawing.Size(130, 31);
             this.btn_save.TabIndex = 6;
             this.btn_save.Text = "Сохранить";
             this.btn_save.UseVisualStyleBackColor = true;
@@ -75,8 +76,6 @@
             // checkbx_disableCalc
             // 
             this.checkbx_disableCalc.AutoSize = true;
-            this.checkbx_disableCalc.Checked = true;
-            this.checkbx_disableCalc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkbx_disableCalc.Location = new System.Drawing.Point(12, 373);
             this.checkbx_disableCalc.Name = "checkbx_disableCalc";
             this.checkbx_disableCalc.Size = new System.Drawing.Size(146, 17);
@@ -96,8 +95,6 @@
             // checkbx_showAnswerAtOnce
             // 
             this.checkbx_showAnswerAtOnce.AutoSize = true;
-            this.checkbx_showAnswerAtOnce.Checked = true;
-            this.checkbx_showAnswerAtOnce.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkbx_showAnswerAtOnce.Location = new System.Drawing.Point(12, 421);
             this.checkbx_showAnswerAtOnce.Name = "checkbx_showAnswerAtOnce";
             this.checkbx_showAnswerAtOnce.Size = new System.Drawing.Size(151, 17);
@@ -136,19 +133,30 @@
             // 
             // btn_load
             // 
-            this.btn_load.Location = new System.Drawing.Point(495, 396);
+            this.btn_load.Location = new System.Drawing.Point(531, 407);
             this.btn_load.Name = "btn_load";
-            this.btn_load.Size = new System.Drawing.Size(139, 42);
+            this.btn_load.Size = new System.Drawing.Size(121, 31);
             this.btn_load.TabIndex = 14;
             this.btn_load.Text = "Загрузить";
             this.btn_load.UseVisualStyleBackColor = true;
             this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
+            // 
+            // btn_preview
+            // 
+            this.btn_preview.Location = new System.Drawing.Point(404, 407);
+            this.btn_preview.Name = "btn_preview";
+            this.btn_preview.Size = new System.Drawing.Size(121, 31);
+            this.btn_preview.TabIndex = 15;
+            this.btn_preview.Text = "Посмотреть тест";
+            this.btn_preview.UseVisualStyleBackColor = true;
+            this.btn_preview.Click += new System.EventHandler(this.btn_preview_Click);
             // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.btn_load);
             this.Controls.Add(this.checkbx_randomOrder);
             this.Controls.Add(this.checkbx_onebyone);
@@ -182,5 +190,6 @@
         private System.Windows.Forms.CheckBox checkbx_onebyone;
         private System.Windows.Forms.CheckBox checkbx_randomOrder;
         private System.Windows.Forms.Button btn_load;
+        private System.Windows.Forms.Button btn_preview;
     }
 }

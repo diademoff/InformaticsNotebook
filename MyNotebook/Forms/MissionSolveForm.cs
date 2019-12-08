@@ -46,9 +46,9 @@ namespace MyNotebook.Forms
                 Enabled = true
             };
             uiUpdater.Tick += (s, e) => UpdateUI();
-            if (test.OneByOne)
+            if (test.OneByOneBlocks)
             {
-                ShowMissionsOneByOne(test);
+                ShowMissionsBlocksOneByOne(test);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace MyNotebook.Forms
             }
         }
         Random rnd = new Random();
-        private void ShowMissionsOneByOne(Test test)
+        private void ShowMissionsBlocksOneByOne(Test test)
         {
             this.FullHideForm();
             if (test.RandomOrder)
@@ -83,7 +83,7 @@ namespace MyNotebook.Forms
                     Dock = DockStyle.Fill
                 };
 
-                List<MissionBase> missions = new List<MissionBase>();
+                List<MissionBase> missionsOnCurrentForm = new List<MissionBase>();
 
                 // создаём форму для показа блока миссий
                 Form previewForm = new Form()
@@ -102,6 +102,12 @@ namespace MyNotebook.Forms
                     Height = 3
                 });
 
+                previewForm.Controls.Add(new Label()
+                {
+                    Location = new Point(3, previewForm.Height - 10),
+                    Text = CurrentUser.Name
+                });
+
                 if (test.IsTopMost)
                 {
                     previewForm.WindowState = FormWindowState.Maximized;
@@ -116,7 +122,7 @@ namespace MyNotebook.Forms
                     {
                         var tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
                         tab.Text = currNumOfMission.ToString();
-                        missions.Add(test.AllMissions[j]);
+                        missionsOnCurrentForm.Add(test.AllMissions[j]);
                         subTab.TabPages.Add(tab); // добавляем tab
                     }
                 }
@@ -133,8 +139,29 @@ namespace MyNotebook.Forms
                 };
                 btn.Click += (s, e) =>
                 {
-                    btn.Enabled = false;
-                    previewForm.Close();
+                    bool areAllSolved = true;
+                    foreach (var m in missionsOnCurrentForm)
+                    {
+                        if (!m.IsSolved())
+                        {
+                            areAllSolved = false;
+                            break;
+                        }
+                    }
+                    if (!areAllSolved)
+                    {
+                        bool agree = MessageBox.Show("Вы решили не все задания в этом блоке. Хотите продолжить?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+                        if (agree)
+                        {
+                            btn.Enabled = false;
+                            previewForm.Close();
+                        }
+                    }
+                    else
+                    {
+                        btn.Enabled = false;
+                        previewForm.Close();
+                    }
                 };
                 previewForm.Controls.Add(btn);
 
@@ -146,7 +173,7 @@ namespace MyNotebook.Forms
 
             this.FullHideForm();
             Test.FinishTest();
-            TestResultForm trf = new TestResultForm(Test);
+            TestResultForm trf = new TestResultForm(Test, CurrentUser);
             trf.ShowDialog();
             this.Close();
         }
@@ -199,7 +226,7 @@ namespace MyNotebook.Forms
                         {
                             if (test.AllMissions[j].NumOfMission == currNumOfMission) // выбираем только миссии с текущим номером
                             {
-                                if (!test.AllMissions[j].IsAnswerGiven())
+                                if (!test.AllMissions[j].IsSolved())
                                 {
                                     allAnswersGiven = false;
                                 }
@@ -245,7 +272,7 @@ namespace MyNotebook.Forms
 
             Test.FinishTest();
             this.FullHideForm();
-            TestResultForm trf = new TestResultForm(Test);
+            TestResultForm trf = new TestResultForm(Test, CurrentUser);
             trf.ShowDialog();
             this.Close();
         }

@@ -21,7 +21,7 @@ namespace MyNotebook.Models
             TimeMissionSolved = DateTime.Now;
         }
 
-        public override bool IsAnswerGiven()
+        public override bool IsSolved()
         {
             return !string.IsNullOrEmpty(AnswerGiven);
         }

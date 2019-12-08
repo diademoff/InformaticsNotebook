@@ -54,7 +54,7 @@ namespace MyNotebook.Models
             return true;
         }
 
-        public override bool IsAnswerGiven()
+        public override bool IsSolved()
         {
             return AnswerGiven?.Length > 0;
         }

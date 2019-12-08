@@ -77,6 +77,7 @@
             // 
             // listbx_users
             // 
+            this.listbx_users.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listbx_users.FormattingEnabled = true;
             this.listbx_users.Location = new System.Drawing.Point(12, 129);
             this.listbx_users.Name = "listbx_users";

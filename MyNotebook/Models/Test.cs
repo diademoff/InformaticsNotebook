@@ -16,7 +16,7 @@ namespace MyNotebook.Models
         public bool IsCalcBlockEnabled;
         public bool IsTopMost = false;
         public bool ShowAnswerAtOnce = false;
-        public bool OneByOne = false;
+        public bool OneByOneBlocks = false;
         public bool RandomOrder = false;
         public double PercentSolved
         {
@@ -93,7 +93,7 @@ namespace MyNotebook.Models
                 int count = 0;
                 for (int i = 0; i < AllMissions.Count; i++)
                 {
-                    if (AllMissions[i].IsAnswerGiven())
+                    if (AllMissions[i].IsSolved())
                     {
                         count++;
                     }

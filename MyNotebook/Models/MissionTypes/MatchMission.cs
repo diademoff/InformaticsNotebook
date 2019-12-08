@@ -54,7 +54,7 @@ namespace MyNotebook.Models
             return true;
         }
 
-        public override bool IsAnswerGiven()
+        public override bool IsSolved()
         {
             if (AnswerGiven == null)
             {
@@ -293,9 +293,9 @@ namespace MyNotebook.Models
                 }
             }
             matchElementsInResult = matchElementsInResult.OrderBy(x => rnd.Next()).ToList(); //shuffle array
-            string[] terms = new string[8];
-            string[] defs = new string[8];
-            int[] answer = new int[8];
+            string[] terms = new string[6];
+            string[] defs = new string[6];
+            int[] answer = new int[6];
             for (int i = 0; i < terms.Length; i++)
             {
                 MatchElement currentElement = matchElementsInResult[i];

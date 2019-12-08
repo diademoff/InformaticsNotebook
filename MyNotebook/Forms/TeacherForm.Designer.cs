@@ -61,6 +61,7 @@
             this.listbx_users.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listbx_users.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listbx_users.FormattingEnabled = true;
             this.listbx_users.Location = new System.Drawing.Point(12, 42);
             this.listbx_users.Name = "listbx_users";

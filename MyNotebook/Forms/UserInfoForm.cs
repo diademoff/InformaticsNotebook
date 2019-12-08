@@ -47,7 +47,7 @@ namespace MyNotebook.Forms
         private void btn_moreInfo_Click(object sender, EventArgs e)
         {
             int index = Convert.ToInt32(listBox.SelectedItem.ToString().Split(' ')[0]);
-            TestResultForm testResultForm = new TestResultForm(User.UserTests[index]);
+            TestResultForm testResultForm = new TestResultForm(User.UserTests[index], User);
             testResultForm.ShowDialog();
         }
     }

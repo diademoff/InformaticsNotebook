@@ -133,20 +133,26 @@ namespace MyNotebook.Forms
                 return;
             }
 
-            var test = new Test(selectedNumsOfMissions.ToArray(), numOfEachMission.ToArray(), isCalcBlockEnabled: checkbx_disableCalc.Checked);
-            test.IsTopMost = checkbx_topMost.Checked;
-            test.ShowAnswerAtOnce = checkbx_showAnswerAtOnce.Checked;
-            test.RandomOrder = checkbx_randomOrder.Checked;
+            Test test = GetCreatedTest();
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 sfd.Filter = "Тесты | .test";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    test.OneByOne = checkbx_onebyone.Checked;
                     test.Serialize(sfd.FileName);
                     MessageBox.Show("Тест сохранён", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        Test GetCreatedTest()
+        {
+            var test = new Test(selectedNumsOfMissions.ToArray(), numOfEachMission.ToArray(), isCalcBlockEnabled: checkbx_disableCalc.Checked);
+            test.IsTopMost = checkbx_topMost.Checked;
+            test.ShowAnswerAtOnce = checkbx_showAnswerAtOnce.Checked;
+            test.RandomOrder = checkbx_randomOrder.Checked;
+            test.OneByOneBlocks = checkbx_onebyone.Checked;
+            return test;
         }
 
         public void RefreshUI()
@@ -195,12 +201,31 @@ namespace MyNotebook.Forms
                 }
 
                 checkbx_disableCalc.Checked = test.IsCalcBlockEnabled;
-                checkbx_onebyone.Checked = test.OneByOne;
+                checkbx_onebyone.Checked = test.OneByOneBlocks;
                 checkbx_randomOrder.Checked = test.RandomOrder;
                 checkbx_showAnswerAtOnce.Checked = test.ShowAnswerAtOnce;
                 checkbx_topMost.Checked = test.IsTopMost;
             }
             catch(Exception ex) { MessageBox.Show("Не удалось загузить тест " + ex.ToString());}
+        }
+
+        private void btn_preview_Click(object sender, EventArgs e)
+        {
+            var test = GetCreatedTest();
+            test.RegenerateMissions();
+            var form = new MissionSolveForm(new User("Предпросмотр", "*"), test);
+            if (test.OneByOneBlocks)
+            {
+                try
+                {
+                    form.Show();
+                }
+                catch { }
+            }
+            else
+            {
+                form.ShowDialog();
+            }
         }
     }
 }

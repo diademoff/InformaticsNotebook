@@ -29,14 +29,14 @@ namespace MyNotebook.Models
 
         ~MissionBase()
         {
-            if (!IsAnswerGiven())
+            if (!IsSolved())
             {
                 TimeMissionSolved = DateTime.Now;
             }
         }
 
         public abstract bool IsSolvedRight();
-        public abstract bool IsAnswerGiven();
+        public abstract bool IsSolved();
 
         public abstract TabPage GetTabPage(bool showAnswerAtOnce);
 

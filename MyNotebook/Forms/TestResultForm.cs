@@ -9,11 +9,12 @@ namespace MyNotebook.Forms
     public partial class TestResultForm : Form
     {
         Test Test;
-        public TestResultForm(Test test)
+        public TestResultForm(Test test, User user)
         {
             InitializeComponent();
             Test = test;
 
+            lbl_name.Text = user.Name;
             lbl_state.Text = test.Finished ? $"Статус: завершен" : "Статус: не завершен";
             lbl_timeStart.Text = "Время начала: " + test.TimeStart.ToString();
             lbl_timeEnd.Text = "Время завершения: " + test.TimeFinish.ToString();

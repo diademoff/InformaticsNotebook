@@ -124,7 +124,7 @@ namespace MyNotebook.Models.MissionTypes
                     {
                         return;
                     }
-                    if (IsAnswerGiven())
+                    if (IsSolved())
                     {
                         return;
                     }
@@ -242,14 +242,14 @@ namespace MyNotebook.Models.MissionTypes
             return tp;
         }
 
-        public override bool IsAnswerGiven()
+        public override bool IsSolved()
         {
             return AnswerGiven;
         }
 
         public override bool IsSolvedRight()
         {
-            if (!IsAnswerGiven())
+            if (!IsSolved())
             {
                 return false;
             }
