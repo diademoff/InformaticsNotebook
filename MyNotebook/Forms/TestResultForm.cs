@@ -9,10 +9,12 @@ namespace MyNotebook.Forms
     public partial class TestResultForm : Form
     {
         Test Test;
+        User User;
         public TestResultForm(Test test, User user)
         {
             InitializeComponent();
             Test = test;
+            User = user;
 
             lbl_name.Text = user.Name;
             lbl_state.Text = test.Finished ? $"Статус: завершен" : "Статус: не завершен";
@@ -140,6 +142,11 @@ namespace MyNotebook.Forms
             }
 
             previewForm.ShowDialog();
+        }
+
+        private void btn_showHTML_Click(object sender, System.EventArgs e)
+        {
+            Test.OpenHTMLPage(User);
         }
     }
 }

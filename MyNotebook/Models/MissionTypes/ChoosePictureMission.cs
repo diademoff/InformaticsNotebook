@@ -256,5 +256,14 @@ namespace MyNotebook.Models.MissionTypes
             return IndexOfAnswerGiven == IndexOfRightAnswer;
         }
 
+        public override string GetHTMLResult()
+        {
+            string html = "";
+            html += $"<h2>{Question}</h2>";
+            html += $"<p>Время затрачено на решение: {(TimeSpanOnMission).TotalSeconds} секунд</p>";
+            html += $"<p>Ответ ожидался: {String_AnswerExpecting}</p>";
+            html += $"<p>Ответ дан: {String_AnswerGiven}</p>";
+            return html;
+        }
     }
 }

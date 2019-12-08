@@ -1,6 +1,8 @@
 ﻿using MyNotebook.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 
 namespace MyNotebook
 {
@@ -13,6 +15,31 @@ namespace MyNotebook
 
         public User()
         {
+        }
+
+        public string GetHTMLPage()
+        {
+            string html = "";
+            html += $"<h1>Отчет ученика: {ToString()}</h1>";
+            foreach (var test in UserTests)
+            {
+                html += test.GetHTMLPage(this);
+            }
+            return html;
+        }
+
+        public void OpenHTMLPage()
+        {
+            for (int i = 0; ; i++)
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + $"\\{i}.html";
+                if (!File.Exists(path))
+                {
+                    File.WriteAllText(path, GetHTMLPage());
+                    Process.Start(path);
+                    return;
+                }
+            }
         }
 
         public User(string name, string @class)

@@ -1,6 +1,7 @@
 ﻿using MyNotebook.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
@@ -64,6 +65,36 @@ namespace MyNotebook.Models
         public Test()
         {
 
+        }
+
+        public string GetHTMLPage(User user)
+        {
+            string html = "";
+            //html += "<!DOCTYPE html> <html> <body>";
+            html += $"<h1>Отчет о тесте</h1>";
+            html += $"<h2>Тест решал(а): {user.Name} - {user.Class}</h2>";
+            html += $"<h2>Решено {PercentSolved}%. Оценка: {Mark}</h2>";
+            html += $"<h2>Время начала: {TimeStart}</h2>";
+            for (int i = 0; i < AllMissions.Count; i++)
+            {
+                html += AllMissions[i].GetHTMLResult();
+            }
+            //html += "</body> </html>";
+            return html;
+        }
+
+        public void OpenHTMLPage(User user)
+        {
+            for (int i = 0; ; i++)
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + $"\\{i}.html";
+                if (!File.Exists(path))
+                {
+                    File.WriteAllText(path, GetHTMLPage(user));
+                    Process.Start(path);
+                    return;
+                }
+            }
         }
 
         public void RegenerateMissions()

@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listBox = new System.Windows.Forms.ListBox();
             this.btn_moreInfo = new System.Windows.Forms.Button();
+            this.btn_OpenHTML = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_name
@@ -84,11 +85,22 @@
             this.btn_moreInfo.UseVisualStyleBackColor = true;
             this.btn_moreInfo.Click += new System.EventHandler(this.btn_moreInfo_Click);
             // 
+            // btn_OpenHTML
+            // 
+            this.btn_OpenHTML.Location = new System.Drawing.Point(93, 415);
+            this.btn_OpenHTML.Name = "btn_OpenHTML";
+            this.btn_OpenHTML.Size = new System.Drawing.Size(148, 23);
+            this.btn_OpenHTML.TabIndex = 5;
+            this.btn_OpenHTML.Text = "Посмотреть информацию";
+            this.btn_OpenHTML.UseVisualStyleBackColor = true;
+            this.btn_OpenHTML.Click += new System.EventHandler(this.btn_OpenHTML_Click);
+            // 
             // UserInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_OpenHTML);
             this.Controls.Add(this.btn_moreInfo);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.label1);
@@ -111,5 +123,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox;
         private System.Windows.Forms.Button btn_moreInfo;
+        private System.Windows.Forms.Button btn_OpenHTML;
     }
 }

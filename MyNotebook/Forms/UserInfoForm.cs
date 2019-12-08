@@ -50,5 +50,10 @@ namespace MyNotebook.Forms
             TestResultForm testResultForm = new TestResultForm(User.UserTests[index], User);
             testResultForm.ShowDialog();
         }
+
+        private void btn_OpenHTML_Click(object sender, EventArgs e)
+        {
+            User.OpenHTMLPage();
+        }
     }
 }

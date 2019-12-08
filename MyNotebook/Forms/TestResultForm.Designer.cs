@@ -42,6 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_preview = new System.Windows.Forms.Button();
             this.lbl_name = new System.Windows.Forms.Label();
+            this.btn_showHTML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picture_diagram)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,11 +168,22 @@
             this.lbl_name.TabIndex = 12;
             this.lbl_name.Text = "username";
             // 
+            // btn_showHTML
+            // 
+            this.btn_showHTML.Location = new System.Drawing.Point(138, 491);
+            this.btn_showHTML.Name = "btn_showHTML";
+            this.btn_showHTML.Size = new System.Drawing.Size(151, 23);
+            this.btn_showHTML.TabIndex = 13;
+            this.btn_showHTML.Text = "Посмотреть инфорамцию";
+            this.btn_showHTML.UseVisualStyleBackColor = true;
+            this.btn_showHTML.Click += new System.EventHandler(this.btn_showHTML_Click);
+            // 
             // TestResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 526);
+            this.Controls.Add(this.btn_showHTML);
             this.Controls.Add(this.lbl_name);
             this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.label1);
@@ -210,5 +222,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_preview;
         private System.Windows.Forms.Label lbl_name;
+        private System.Windows.Forms.Button btn_showHTML;
     }
 }

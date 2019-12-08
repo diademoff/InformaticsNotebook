@@ -42,6 +42,8 @@ namespace MyNotebook.Models
 
         public abstract TabPage GetSolvedTabPage();
 
+        public abstract string GetHTMLResult();
+
         public virtual void StartMonitorTabPageActiveCountTime(TabPage tp)
         {
             bool active = false;

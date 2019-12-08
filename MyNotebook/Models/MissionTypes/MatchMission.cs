@@ -254,6 +254,18 @@ namespace MyNotebook.Models
             return tp;
         }
 
+        public override string GetHTMLResult()
+        {
+            string html = "";
+            html += $"<h2>Выбор терминов</h2>";
+            html += $"<p>Время затрачено: {TimeSpanOnMission.TotalSeconds} секунд</p>";
+            for (int i = 0; i < Terms.Length; i++)
+            {
+                html += $"<p>{Terms[i]} - Ответ дан: {AnswerGiven[i]}, ответ ожидался: {Answer[i]}</p>";
+            }
+            return html;
+        }
+
         /// <summary>
         /// Constructor for match mission
         /// </summary>
