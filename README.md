@@ -1,22 +1,22 @@
 # InformaticsNotebook
 
-## For users
+## Для пользователей
 
 [Download here](https://github.com/diademoff/InformaticsNotebook/raw/master/MyNotebook/Build/MyNotebook.exe)
 
-## Create test
+## Создать тест
 
 ![Create test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/create%20test.gif)
 
-## Solve test
+## Решить задания теста
 
 ![Solve test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/solve%20test.gif)
 
 
-## Watch statistics
+## Смотреть статистику
 
 ![Solve test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/watch%20stat.gif)
 
-## For developers
+## Для разработчиков
 
 ![UML diagram](https://github.com/diademoff/InformaticsNotebook/blob/master/Resources/diagram.png)

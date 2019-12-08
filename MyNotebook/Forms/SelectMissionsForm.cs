@@ -51,7 +51,7 @@ namespace MyNotebook.Forms
             {
                 checkbx_randomOrder.Enabled = checkbx_onebyone.Checked;
             };
-
+            List<Label> of_max = new List<Label>();
             for (int i = 0; i < MissionGeneratorCollection.Missions.Length; i++)
             {
                 var mission = MissionGeneratorCollection.Missions[i].Generate();
@@ -74,11 +74,17 @@ namespace MyNotebook.Forms
 
                 numerics.Add(new NumericUpDown()
                 {
-                    Location = new Point(checkBoxes.Last().Location.X + 500, checkBoxes.Last().Location.Y),
+                    Location = new Point(checkBoxes.Last().Location.X + 450, checkBoxes.Last().Location.Y),
                     Maximum = mission.MaxNumInTest,
                     Value = 1,
                     Width = 50,
                     Enabled = false
+                });
+                of_max.Add(new Label()
+                {
+                    Location = new Point(checkBoxes.Last().Location.X + 500, checkBoxes.Last().Location.Y),
+                    Text = $"из {mission.MaxNumInTest}",
+                    Visible = true
                 });
                 numerics.Last().ValueChanged += (s, e) => RefreshUI();
 
@@ -121,8 +127,9 @@ namespace MyNotebook.Forms
                 };
                 toolTip.SetToolTip(checkBoxes.Last(), mission.Tooltip);
             }
+            panel_missions.Controls.AddRange(of_max.ToArray());
             panel_missions.Controls.AddRange(checkBoxes.ToArray());
-            panel_missions.Controls.AddRange(numerics.ToArray());
+            panel_missions.Controls.AddRange(numerics.ToArray()); 
         }
 
         private void Btn_save_Click(object sender, EventArgs e)
