@@ -140,6 +140,7 @@
     <Compile Include="ViewModels\Mission13.cs" />
     <Compile Include="ViewModels\Mission14.cs" />
     <Compile Include="ViewModels\Mission15.cs" />
+    <Compile Include="ViewModels\Mission16.cs" />
     <Compile Include="ViewModels\Mission2.cs" />
     <Compile Include="ViewModels\Mission3.cs" />
     <Compile Include="ViewModels\Mission4.cs" />
