@@ -1,22 +1,22 @@
 # InformaticsNotebook
 
-## Для пользователей
+## Р”Р»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 
 [Download here](https://github.com/diademoff/InformaticsNotebook/raw/master/MyNotebook/Build/MyNotebook.exe)
 
-## Создать тест
+## РЎРѕР·РґР°С‚СЊ С‚РµСЃС‚
 
 ![Create test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/create%20test.gif)
 
-## Решить задания теста
+## Р РµС€РёС‚СЊ Р·Р°РґР°РЅРёСЏ С‚РµСЃС‚Р°
 
 ![Solve test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/solve%20test.gif)
 
 
-## Смотреть статистику
+## РЎРјРѕС‚СЂРµС‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєСѓ
 
 ![Solve test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/watch%20stat.gif)
 
-## Для разработчиков
+## Р”Р»СЏ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРѕРІ
 
 ![UML diagram](https://github.com/diademoff/InformaticsNotebook/blob/master/Resources/diagram.png)
