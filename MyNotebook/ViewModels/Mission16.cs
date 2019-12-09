@@ -139,7 +139,7 @@ namespace MyNotebook.ViewModels
             List<int> right = new List<int>();
             List<int> wrong = new List<int>();
 
-            for (int i = logicMission.numInFirst - 10; i < logicMission.numInFirst + 10; i++)
+            for (int i = logicMission.numInFirst - 15; i < logicMission.numInFirst + 15; i++)
             {
                 if (logicMission.IsRight(i))
                 {
