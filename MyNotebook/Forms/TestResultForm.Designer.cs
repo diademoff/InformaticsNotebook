@@ -170,6 +170,7 @@
             // 
             // btn_showHTML
             // 
+            this.btn_showHTML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_showHTML.Location = new System.Drawing.Point(138, 491);
             this.btn_showHTML.Name = "btn_showHTML";
             this.btn_showHTML.Size = new System.Drawing.Size(151, 23);

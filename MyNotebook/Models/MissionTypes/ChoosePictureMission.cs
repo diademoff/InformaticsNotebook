@@ -9,14 +9,15 @@ namespace MyNotebook.Models.MissionTypes
     [Serializable]
     public class ChoosePictureMission : MissionBase
     {
-        string Question;
-        bool AnswerGiven = false;
+        public string Question;
+        public bool AnswerGiven = false;
         Bitmap[] Pictures;
-        int IndexOfRightAnswer;
-        int IndexOfAnswerGiven;
+        public int IndexOfRightAnswer;
+        public int IndexOfAnswerGiven;
 
-        public override string String_AnswerExpecting { get; set; }
-        public override string String_AnswerGiven => (IndexOfAnswerGiven + 1).ToString();
+        public override string String_AnswerExpecting { get => IndexOfRightAnswer.ToString(); set => IndexOfRightAnswer = int.Parse(value); }
+        public override string String_AnswerGiven => IndexOfAnswerGiven.ToString();
+
 
         public ChoosePictureMission()
         {
@@ -156,6 +157,7 @@ namespace MyNotebook.Models.MissionTypes
                 give_answer.Enabled = false;
                 AnswerGiven = true;
                 IndexOfAnswerGiven = pictureSelected;
+                TimeMissionSolved = DateTime.Now;
 
                 if (!showAnswerAtOnce)
                 {

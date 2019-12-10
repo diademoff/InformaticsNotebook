@@ -105,7 +105,7 @@ namespace MyNotebook.Forms
             int indexOfTab = 0;
             for (int i = 0; i < Test.AllMissions.Count; i++)
             {
-                if (numOfMissionsAdded.Contains(Test.AllMissions[i].NumOfMission))
+                if (numOfMissionsAdded.Contains(Test.AllMissions[i].NumOfMission) || Test.AllMissions[i].IsSolvedRight())
                 {
                     continue;
                 }
