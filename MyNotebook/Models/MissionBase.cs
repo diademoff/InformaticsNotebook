@@ -50,6 +50,7 @@ namespace MyNotebook.Models
             tp.Enter += (s, e) => active = true;
             tp.Leave += (s, e) => active = false;
 
+
             new Task(() =>
             {
                 while (true)

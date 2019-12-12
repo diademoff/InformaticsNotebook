@@ -12,7 +12,7 @@ namespace MyNotebook.Models
         public string[] Terms { get; set; }
         public string[] Definitions { get; set; }
 
-        public int[] Answer { get; set; }
+        public int[] AnswerExpecting { get; set; }
         public override string String_AnswerExpecting { get; set; }
         public override string String_AnswerGiven
         {
@@ -40,13 +40,13 @@ namespace MyNotebook.Models
             {
                 return false;
             }
-            if (AnswerGiven.Length != Answer.Length)
+            if (AnswerGiven.Length != AnswerExpecting.Length)
             {
                 return false;
             }
-            for (int i = 0; i < Answer.Length; i++)
+            for (int i = 0; i < AnswerExpecting.Length; i++)
             {
-                if (Answer[i] != AnswerGiven[i])
+                if (AnswerExpecting[i] != AnswerGiven[i])
                 {
                     return false;
                 }
@@ -212,7 +212,7 @@ namespace MyNotebook.Models
                 {
                     cb.Items.Add($"{j + 1}. {Terms[j]}"); //{numOfAnswer}{separator} {term}
                 }
-                cb.SelectedIndex = Answer[i] - 1;
+                cb.SelectedIndex = AnswerExpecting[i] - 1;
                 cb_terms.Add(cb);
                 #endregion
 
@@ -261,7 +261,7 @@ namespace MyNotebook.Models
             html += $"<p>Время затрачено: {TimeSpanOnMission.TotalSeconds} секунд</p>";
             for (int i = 0; i < Terms.Length; i++)
             {
-                html += $"<p>{Terms[i]} - Ответ дан: {AnswerGiven[i]}, ответ ожидался: {Answer[i]}</p>";
+                html += $"<p>{Terms[i]} - Ответ дан: {AnswerGiven[i]}, ответ ожидался: {AnswerExpecting[i]}</p>";
             }
             return html;
         }
@@ -285,7 +285,7 @@ namespace MyNotebook.Models
             Terms = terms;
             Definitions = defenitions;
             String_AnswerExpecting = string.Join("", answer);
-            Answer = answer;
+            AnswerExpecting = answer;
         }
         public MatchMission()
         {
@@ -336,7 +336,7 @@ namespace MyNotebook.Models
             NumOfMission = numOfMission;
             Terms = terms;
             Definitions = defs;
-            Answer = answer;
+            AnswerExpecting = answer;
             String_AnswerExpecting = string.Join("", answer);
         }
     }

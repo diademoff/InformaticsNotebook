@@ -47,14 +47,10 @@ namespace MyNotebook.Forms
         {
             InitializeComponent();
 
-            checkbx_onebyone.CheckedChanged += (s, e) =>
-            {
-                checkbx_randomOrder.Enabled = checkbx_onebyone.Checked;
-            };
             List<Label> of_max = new List<Label>();
             for (int i = 0; i < MissionGeneratorCollection.Missions.Length; i++)
             {
-                var mission = MissionGeneratorCollection.Missions[i].Generate();
+                MissionBase mission = MissionGeneratorCollection.Missions[i].Generate();
 
                 object i_clone = (object)i;
 
@@ -64,7 +60,7 @@ namespace MyNotebook.Forms
                     Checked = false,
                     Font = new Font(new FontFamily("Arial"), 16, FontStyle.Regular, GraphicsUnit.Pixel),
                     Text = $"{i + 1}. {mission.Title}",
-                    AutoSize = true                   
+                    AutoSize = true
                 });
                 checkBoxes.Last().CheckedChanged += (s, e) =>
                 {
@@ -96,7 +92,7 @@ namespace MyNotebook.Forms
                 };
                 btn.Click += (s, e) =>
                 {
-                    var tab = mission.GetTabPage(showAnswerAtOnce: checkbx_showAnswerAtOnce.Checked);
+                    TabPage tab = mission.GetTabPage(showAnswerAtOnce: checkbx_showAnswerAtOnce.Checked);
                     Form previewForm = new Form()
                     {
                         Width = 800,
@@ -105,7 +101,7 @@ namespace MyNotebook.Forms
                         Text = $"Предпросмотр задания {i + 1} \"{mission.Title}\""
                     };
 
-                    var tc = new TabControl()
+                    TabControl tc = new TabControl()
                     {
                         Dock = DockStyle.Fill
                     };
@@ -129,10 +125,10 @@ namespace MyNotebook.Forms
             }
             panel_missions.Controls.AddRange(of_max.ToArray());
             panel_missions.Controls.AddRange(checkBoxes.ToArray());
-            panel_missions.Controls.AddRange(numerics.ToArray()); 
+            panel_missions.Controls.AddRange(numerics.ToArray());
         }
 
-        private void Btn_save_Click(object sender, EventArgs e)
+        void Btn_save_Click(object sender, EventArgs e)
         {
             if (selectedNumsOfMissions.Count == 0)
             {
@@ -154,23 +150,36 @@ namespace MyNotebook.Forms
 
         Test GetCreatedTest()
         {
-            var test = new Test(selectedNumsOfMissions.ToArray(), numOfEachMission.ToArray(), isCalcBlockEnabled: checkbx_disableCalc.Checked);
-            test.IsTopMost = checkbx_topMost.Checked;
-            test.ShowAnswerAtOnce = checkbx_showAnswerAtOnce.Checked;
-            test.RandomOrder = checkbx_randomOrder.Checked;
-            test.OneByOneBlocks = checkbx_onebyone.Checked;
+            Test test = new Test(selectedNumsOfMissions.ToArray(), numOfEachMission.ToArray(), isCalcBlockEnabled: checkbx_disableCalc.Checked)
+            {
+                IsTopMost = checkbx_topMost.Checked,
+                ShowAnswerAtOnce = checkbx_showAnswerAtOnce.Checked,
+                RandomOrder = checkbx_randomOrder.Checked
+            };
+            if (checkbx_onebyoneBlocks.Checked)
+            {
+                test.ShowType = TestShowType.OneByOneBlocks;
+            }
+            else if (checkbx_onebyoneMissions.Checked)
+            {
+                test.ShowType = TestShowType.OneByOneMissions;
+            }
+            else
+            {
+                test.ShowType = TestShowType.OnOneForm;
+            }
             return test;
         }
 
-        public void RefreshUI()
+        void RefreshUI()
         {
             lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfEachMission.Sum()}";
         }
 
-        private void btn_load_Click(object sender, EventArgs e)
+        void btn_load_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog() 
-            { 
+            using (OpenFileDialog ofd = new OpenFileDialog()
+            {
                 Filter = "Тесты (*.test)|*.test"
             })
             {
@@ -189,16 +198,16 @@ namespace MyNotebook.Forms
                 Test test = Test.Deserialize(path);
                 test.RegenerateMissions();
 
-                foreach (var item in checkBoxes)
+                foreach (CheckBox item in checkBoxes)
                 {
                     item.Checked = false;
                 }
-                foreach (var item in numerics)
+                foreach (NumericUpDown item in numerics)
                 {
                     item.Value = 1;
                 }
 
-                foreach (var item in test.AllMissions)
+                foreach (MissionBase item in test.AllMissions)
                 {
                     if (checkBoxes[item.NumOfMission - 1].Checked)
                     {
@@ -208,20 +217,34 @@ namespace MyNotebook.Forms
                 }
 
                 checkbx_disableCalc.Checked = test.IsCalcBlockEnabled;
-                checkbx_onebyone.Checked = test.OneByOneBlocks;
+                switch (test.ShowType)
+                {
+                    case TestShowType.OneByOneBlocks:
+                        checkbx_onebyoneBlocks.Checked = true;
+                        break;
+                    case TestShowType.OneByOneMissions:
+                        checkbx_onebyoneMissions.Checked = true;
+                        break;
+                    case TestShowType.OnOneForm:
+                        checkbx_onebyoneBlocks.Checked = false;
+                        checkbx_onebyoneMissions.Checked = false;
+                        break;
+                    default:
+                        throw new Exception("Unknown show type");
+                }
                 checkbx_randomOrder.Checked = test.RandomOrder;
                 checkbx_showAnswerAtOnce.Checked = test.ShowAnswerAtOnce;
                 checkbx_topMost.Checked = test.IsTopMost;
             }
-            catch(Exception ex) { MessageBox.Show("Не удалось загузить тест " + ex.ToString());}
+            catch (Exception ex) { MessageBox.Show("Не удалось загузить тест " + ex.ToString()); }
         }
 
-        private void btn_preview_Click(object sender, EventArgs e)
+        void btn_preview_Click(object sender, EventArgs e)
         {
-            var test = GetCreatedTest();
+            Test test = GetCreatedTest();
             test.RegenerateMissions();
-            var form = new MissionSolveForm(new User("Предпросмотр", "*"), test);
-            if (test.OneByOneBlocks)
+            MissionSolveForm form = new MissionSolveForm(new User("Предпросмотр", "*"), test);
+            if (test.ShowType != TestShowType.OnOneForm)
             {
                 try
                 {
@@ -233,6 +256,25 @@ namespace MyNotebook.Forms
             {
                 form.ShowDialog();
             }
+        }
+
+        void checkbx_onebyoneBlocks_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                checkbx_onebyoneMissions.Checked = false;
+                checkbx_randomOrder.Enabled = checkbx_onebyoneBlocks.Checked || checkbx_onebyoneMissions.Checked;
+            }
+            checkbx_randomOrder.Enabled = checkbx_onebyoneBlocks.Checked || checkbx_onebyoneMissions.Checked;
+        }
+
+        void checkbx_onebyoneMissions_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                checkbx_onebyoneBlocks.Checked = false;
+            }
+            checkbx_randomOrder.Enabled = checkbx_onebyoneBlocks.Checked || checkbx_onebyoneMissions.Checked;
         }
     }
 }

@@ -56,14 +56,51 @@ namespace MyNotebook.ViewModels
                         continue;
                     }
 
+                    BeginNum = beginNum;
+                    Result = (int)result;
+                    c1 = command1;
+                    c2 = command2;
+
                     question += $"Запишите порядок команд в программе,\n" +
-                                $"которая преобразует число {beginNum} в число {result} и содержит 5 команд.\n" +
-                                $"Указывайте лишь номера пяти команд.";
-                    var mission = new TextMission(11, "Исполнитель Квадратор", question, answer);
+                                $"которая преобразует число {beginNum} в число {result}.\n" +
+                                $"Указывайте лишь номера команд.";
+                    var mission = new TextMission(11, "Исполнитель Квадратор", question, answer, IsSolvedRight);
                     mission.Tooltip = "Указать последовательность комманд для исполнителя Квадратор";
                     return mission;
                 }
             }
+        }
+        double c1, c2;
+        int BeginNum;
+        int Result;
+        bool IsSolvedRight(string answerGiven)
+        {
+            if (answerGiven == null)
+            {
+                return false;
+            }
+
+            double n = BeginNum;
+            foreach (var num in answerGiven)
+            {
+                try
+                {
+                    int temp = Convert.ToInt32(num.ToString());
+                }
+                catch { return false; }
+                switch (Convert.ToInt32(num.ToString()))
+                {
+                    case 1:
+                        n += c1;
+                        break;
+                    case 2:
+                        n *= c2;
+                        break;
+                    default:
+                        throw new Exception("Unknown command. Mission 11");
+                }
+            }
+            return (int)n == Result;
         }
     }
 }

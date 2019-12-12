@@ -36,10 +36,11 @@
             this.lbl_numOfMissionsSelected = new System.Windows.Forms.Label();
             this.checkbx_showAnswerAtOnce = new System.Windows.Forms.CheckBox();
             this.panel_missions = new System.Windows.Forms.Panel();
-            this.checkbx_onebyone = new System.Windows.Forms.CheckBox();
+            this.checkbx_onebyoneBlocks = new System.Windows.Forms.CheckBox();
             this.checkbx_randomOrder = new System.Windows.Forms.CheckBox();
             this.btn_load = new System.Windows.Forms.Button();
             this.btn_preview = new System.Windows.Forms.Button();
+            this.checkbx_onebyoneMissions = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -55,7 +56,7 @@
             // btn_save
             // 
             this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_save.Location = new System.Drawing.Point(658, 407);
+            this.btn_save.Location = new System.Drawing.Point(784, 407);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(130, 31);
             this.btn_save.TabIndex = 6;
@@ -107,18 +108,19 @@
             this.panel_missions.AutoScroll = true;
             this.panel_missions.Location = new System.Drawing.Point(17, 40);
             this.panel_missions.Name = "panel_missions";
-            this.panel_missions.Size = new System.Drawing.Size(771, 327);
+            this.panel_missions.Size = new System.Drawing.Size(897, 327);
             this.panel_missions.TabIndex = 11;
             // 
-            // checkbx_onebyone
+            // checkbx_onebyoneBlocks
             // 
-            this.checkbx_onebyone.AutoSize = true;
-            this.checkbx_onebyone.Location = new System.Drawing.Point(194, 373);
-            this.checkbx_onebyone.Name = "checkbx_onebyone";
-            this.checkbx_onebyone.Size = new System.Drawing.Size(186, 17);
-            this.checkbx_onebyone.TabIndex = 12;
-            this.checkbx_onebyone.Text = "Поочерёдно выдывать задания";
-            this.checkbx_onebyone.UseVisualStyleBackColor = true;
+            this.checkbx_onebyoneBlocks.AutoSize = true;
+            this.checkbx_onebyoneBlocks.Location = new System.Drawing.Point(194, 373);
+            this.checkbx_onebyoneBlocks.Name = "checkbx_onebyoneBlocks";
+            this.checkbx_onebyoneBlocks.Size = new System.Drawing.Size(174, 17);
+            this.checkbx_onebyoneBlocks.TabIndex = 12;
+            this.checkbx_onebyoneBlocks.Text = "Поочерёдно выдывать блоки";
+            this.checkbx_onebyoneBlocks.UseVisualStyleBackColor = true;
+            this.checkbx_onebyoneBlocks.CheckedChanged += new System.EventHandler(this.checkbx_onebyoneBlocks_CheckedChanged);
             // 
             // checkbx_randomOrder
             // 
@@ -133,7 +135,7 @@
             // 
             // btn_load
             // 
-            this.btn_load.Location = new System.Drawing.Point(531, 407);
+            this.btn_load.Location = new System.Drawing.Point(657, 407);
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(121, 31);
             this.btn_load.TabIndex = 14;
@@ -143,7 +145,7 @@
             // 
             // btn_preview
             // 
-            this.btn_preview.Location = new System.Drawing.Point(404, 407);
+            this.btn_preview.Location = new System.Drawing.Point(530, 407);
             this.btn_preview.Name = "btn_preview";
             this.btn_preview.Size = new System.Drawing.Size(121, 31);
             this.btn_preview.TabIndex = 15;
@@ -151,15 +153,27 @@
             this.btn_preview.UseVisualStyleBackColor = true;
             this.btn_preview.Click += new System.EventHandler(this.btn_preview_Click);
             // 
+            // checkbx_onebyoneMissions
+            // 
+            this.checkbx_onebyoneMissions.AutoSize = true;
+            this.checkbx_onebyoneMissions.Location = new System.Drawing.Point(386, 373);
+            this.checkbx_onebyoneMissions.Name = "checkbx_onebyoneMissions";
+            this.checkbx_onebyoneMissions.Size = new System.Drawing.Size(186, 17);
+            this.checkbx_onebyoneMissions.TabIndex = 16;
+            this.checkbx_onebyoneMissions.Text = "Поочерёдно выдывать задания";
+            this.checkbx_onebyoneMissions.UseVisualStyleBackColor = true;
+            this.checkbx_onebyoneMissions.CheckedChanged += new System.EventHandler(this.checkbx_onebyoneMissions_CheckedChanged);
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(926, 450);
+            this.Controls.Add(this.checkbx_onebyoneMissions);
             this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.btn_load);
             this.Controls.Add(this.checkbx_randomOrder);
-            this.Controls.Add(this.checkbx_onebyone);
+            this.Controls.Add(this.checkbx_onebyoneBlocks);
             this.Controls.Add(this.panel_missions);
             this.Controls.Add(this.checkbx_showAnswerAtOnce);
             this.Controls.Add(this.lbl_numOfMissionsSelected);
@@ -187,9 +201,10 @@
         private System.Windows.Forms.Label lbl_numOfMissionsSelected;
         private System.Windows.Forms.CheckBox checkbx_showAnswerAtOnce;
         private System.Windows.Forms.Panel panel_missions;
-        private System.Windows.Forms.CheckBox checkbx_onebyone;
+        private System.Windows.Forms.CheckBox checkbx_onebyoneBlocks;
         private System.Windows.Forms.CheckBox checkbx_randomOrder;
         private System.Windows.Forms.Button btn_load;
         private System.Windows.Forms.Button btn_preview;
+        private System.Windows.Forms.CheckBox checkbx_onebyoneMissions;
     }
 }

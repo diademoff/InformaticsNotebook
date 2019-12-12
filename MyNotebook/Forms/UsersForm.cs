@@ -110,7 +110,7 @@ namespace MyNotebook
                     selectedUser.UserTests.Add(test);
                     this.FullHideForm();
                     MissionSolveForm msf = new MissionSolveForm(selectedUser, test);
-                    if (!test.OneByOneBlocks)
+                    if (test.ShowType == TestShowType.OnOneForm)
                     {
                         msf.ShowDialog();
                     }

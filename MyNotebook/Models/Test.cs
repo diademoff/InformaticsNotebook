@@ -8,6 +8,12 @@ using System.Windows.Forms;
 
 namespace MyNotebook.Models
 {
+    public enum TestShowType
+    {
+        OneByOneBlocks,
+        OneByOneMissions,
+        OnOneForm
+    }
     [Serializable]
     public class Test
     {
@@ -16,8 +22,8 @@ namespace MyNotebook.Models
         public bool Finished = false;
         public bool IsCalcBlockEnabled;
         public bool IsTopMost = false;
+        public TestShowType ShowType;
         public bool ShowAnswerAtOnce = false;
-        public bool OneByOneBlocks = false;
         public bool RandomOrder = false;
         public double PercentSolved
         {
@@ -73,7 +79,7 @@ namespace MyNotebook.Models
             //html += "<!DOCTYPE html> <html> <body>";
             html += $"<h1>Отчет о тесте</h1>";
             html += $"<h2>Тест решал(а): {user.Name} - {user.Class}</h2>";
-            html += $"<h2>Решено {PercentSolved}%. Оценка: {Mark}</h2>";
+            html += $"<h2>Решено {Math.Round(PercentSolved, 2)}%. Оценка: {Mark}</h2>";
             html += $"<h2>Время начала: {TimeStart}</h2>";
             for (int i = 0; i < AllMissions.Count; i++)
             {

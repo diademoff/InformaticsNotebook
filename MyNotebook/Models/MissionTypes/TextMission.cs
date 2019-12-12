@@ -13,7 +13,17 @@ namespace MyNotebook.Models
         public override string String_AnswerGiven => AnswerGiven;
 
         public string AnswerGiven;
-        public override bool IsSolvedRight() => AnswerGiven == Answer;
+        public override bool IsSolvedRight()
+        {
+            if (isSolvedRight != null)
+            {
+                return isSolvedRight.Invoke(AnswerGiven);
+            }
+            else
+            {
+                return AnswerGiven == Answer;
+            }
+        }
 
         public void FinishMission(string answer)
         {
@@ -188,6 +198,17 @@ namespace MyNotebook.Models
             Question = question;
             Answer = answer;
             String_AnswerExpecting = answer;
+        }
+        public delegate bool IsSolvedRightOver(string answerGiven);
+        IsSolvedRightOver isSolvedRight;
+        public TextMission(int numOfMission, string title, string question, string answer, IsSolvedRightOver solvedRight)
+        {
+            this.Title = title;
+            NumOfMission = numOfMission;
+            Question = question;
+            Answer = answer;
+            String_AnswerExpecting = answer;
+            isSolvedRight = solvedRight;
         }
 
         public TextMission()

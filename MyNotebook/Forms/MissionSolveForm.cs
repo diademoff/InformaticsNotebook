@@ -46,17 +46,117 @@ namespace MyNotebook.Forms
                 Enabled = true
             };
             uiUpdater.Tick += (s, e) => UpdateUI();
-            if (test.OneByOneBlocks)
+
+            switch (test.ShowType)
             {
-                ShowMissionsBlocksOneByOne(test);
-            }
-            else
-            {
-                AddTabsWithMissions(test);
+                case TestShowType.OneByOneBlocks:
+                    ShowMissionsBlocksOneByOne(test);
+                    break;
+                case TestShowType.OneByOneMissions:
+                    ShowMissionsOneByOne(test);
+                    break;
+                case TestShowType.OnOneForm:
+                    AddTabsWithMissions(test);
+                    break;
+                default:
+                    throw new Exception("Unknown show type for test");
             }
         }
+
+        private void ShowMissionsOneByOne(Test test)
+        {
+            this.FullHideForm();
+            if (test.RandomOrder)
+            {
+                test.AllMissions = test.AllMissions.OrderBy(x => rnd.Next()).ToList(); //shuffle list
+            }
+
+            for (int i = 0; i < test.AllMissions.Count; i++)
+            {
+                object indexOfCurrMission = i; // номер миссии
+
+                // создаём форму для показа блока миссий
+                Form previewForm = new Form()
+                {
+                    Width = 800,
+                    Height = 500,
+                    Icon = Properties.Resources.icon,
+                    StartPosition = FormStartPosition.CenterScreen,
+                    Text = $"Задание {i + 1} из {test.AllMissions.Count}. \"{test.AllMissions[i].ToString()}\""
+                };
+                previewForm.Controls.Add(new Panel()
+                {
+                    Name = "pnl_status",
+                    Dock = DockStyle.Top,
+                    Height = 20
+                });
+                previewForm.Controls["pnl_status"].Controls.Add(new ProgressBar()
+                {
+                    Value = i + 1,
+                    Maximum = test.AllMissions.Count,
+                    Dock = DockStyle.Top,
+                    Height = 3
+                });
+
+                previewForm.Controls["pnl_status"].Controls.Add(new Label()
+                {
+                    Location = new Point(3, 0),
+                    Text = CurrentUser.Name
+                });
+
+                if (test.IsTopMost)
+                {
+                    previewForm.WindowState = FormWindowState.Maximized;
+                    previewForm.FormBorderStyle = FormBorderStyle.None;
+                    previewForm.TopMost = true;
+                }
+
+
+                TabControl MainTab = new TabControl()
+                {
+                    Dock = DockStyle.Fill
+                };
+                TabPage tab = test.AllMissions[i].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
+                tab.Text = test.AllMissions[(int)indexOfCurrMission].NumOfMission.ToString();
+                tab.AutoScroll = true;
+
+                MainTab.TabPages.Add(tab); // добавляем tab
+               
+
+                // добавляем созданный ранее таб
+                previewForm.Controls.Add(MainTab);
+                MainTab.BringToFront();
+                MainTab.BringToFront();
+                MainTab.BringToFront();
+
+                // показываем форму
+                new Task(() =>
+                {
+                    while (true)
+                    {
+                        if (test.AllMissions[(int)indexOfCurrMission].IsSolved())
+                        {
+                            previewForm.Invoke(new MethodInvoker(() =>
+                            {
+                                previewForm.Close();
+                            }));
+                            break;
+                        }
+                        Thread.Sleep(350);
+                    }
+                }).Start();
+                previewForm.ShowDialog();
+            }
+
+            this.FullHideForm();
+            Test.FinishTest();
+            TestResultForm trf = new TestResultForm(Test, CurrentUser);
+            trf.ShowDialog();
+            this.Close();
+        }
+
         Random rnd = new Random();
-        private void ShowMissionsBlocksOneByOne(Test test)
+        void ShowMissionsBlocksOneByOne(Test test)
         {
             this.FullHideForm();
             if (test.RandomOrder)
@@ -74,7 +174,7 @@ namespace MyNotebook.Forms
                 int currNumOfMission = test.AllMissions[i].NumOfMission; // номер миссии
                 numOfMissionsAdded.Add(currNumOfMission); // добавить номер миссии в список
                 // создаем subTab чтобы потом довить в maintab
-                var subTab = new TabControl()
+                TabControl subTab = new TabControl()
                 {
                     Width = 880,
                     Height = 430,
@@ -94,7 +194,12 @@ namespace MyNotebook.Forms
                     StartPosition = FormStartPosition.CenterScreen,
                     Text = $"Задание {i + 1} из {test.AllMissions.Count}. \"{test.AllMissions[i].ToString()}\""
                 };
-                previewForm.Controls.Add(new ProgressBar()
+                previewForm.Controls.Add(new Panel()
+                {
+                    Name = "pnl_status",
+                    Dock = DockStyle.Top
+                });
+                previewForm.Controls["pnl_status"].Controls.Add(new ProgressBar()
                 {
                     Value = i + 1,
                     Maximum = test.AllMissions.Count,
@@ -102,9 +207,9 @@ namespace MyNotebook.Forms
                     Height = 3
                 });
 
-                previewForm.Controls.Add(new Label()
+                previewForm.Controls["pnl_status"].Controls.Add(new Label()
                 {
-                    Location = new Point(3, previewForm.Height - 10),
+                    Location = new Point(3, 0),
                     Text = CurrentUser.Name
                 });
 
@@ -120,7 +225,7 @@ namespace MyNotebook.Forms
                 {
                     if (test.AllMissions[j].NumOfMission == currNumOfMission) // выбираем только миссии с текущим номером
                     {
-                        var tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
+                        TabPage tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
                         tab.Text = currNumOfMission.ToString();
                         missionsOnCurrentForm.Add(test.AllMissions[j]);
                         subTab.TabPages.Add(tab); // добавляем tab
@@ -132,7 +237,7 @@ namespace MyNotebook.Forms
                 previewForm.Controls.Add(subTab);
 
                 // создаём кнопку для завершения блока
-                var btn = new Button()
+                Button btn = new Button()
                 {
                     Text = "Завершить блок",
                     Dock = DockStyle.Bottom
@@ -140,7 +245,7 @@ namespace MyNotebook.Forms
                 btn.Click += (s, e) =>
                 {
                     bool areAllSolved = true;
-                    foreach (var m in missionsOnCurrentForm)
+                    foreach (MissionBase m in missionsOnCurrentForm)
                     {
                         if (!m.IsSolved())
                         {
@@ -178,7 +283,7 @@ namespace MyNotebook.Forms
             this.Close();
         }
 
-        private void AddTabsWithMissions(Test test)
+        void AddTabsWithMissions(Test test)
         {
             List<int> numOfMissionsAdded = new List<int>(); // уже  добавленные миссии
             int indexOfTab = 0; // текущий индекс "maintab"
@@ -191,7 +296,7 @@ namespace MyNotebook.Forms
                 int currNumOfMission = test.AllMissions[i].NumOfMission; // номер миссии
                 numOfMissionsAdded.Add(currNumOfMission); // добавить номер миссии в список
                 // создаем subTab чтобы потом довить в maintab
-                var subTab = new TabControl()
+                TabControl subTab = new TabControl()
                 {
                     Width = 880,
                     Height = 430,
@@ -199,13 +304,13 @@ namespace MyNotebook.Forms
                     Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
                     Dock = DockStyle.Fill
                 };
-                
+
                 // заполняем subtab
                 for (int j = i; j < test.AllMissions.Count; j++)
                 {
                     if (test.AllMissions[j].NumOfMission == currNumOfMission) // выбираем только миссии с текущим номером
                     {
-                        var tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
+                        TabPage tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
                         tab.Text = currNumOfMission.ToString();
                         subTab.TabPages.Add(tab); // добавляем tab
                     }
@@ -259,11 +364,11 @@ namespace MyNotebook.Forms
             progressBar.Value = Test.NumOfSolved;
             lbl_timer.Text = $"{(DateTime.Now - Test.TimeStart).TotalMinutes.ToString("00")}:{(DateTime.Now - Test.TimeStart).Seconds.ToString("00")}";
         }
-        private void Btn_finishTest_Click(object sender, EventArgs e)
+        void Btn_finishTest_Click(object sender, EventArgs e)
         {
             if (MissionsLeft > 0)
             {
-                var ans = MessageBox.Show("Вы решили не все задания. Хотите продолжить?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult ans = MessageBox.Show("Вы решили не все задания. Хотите продолжить?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (ans == DialogResult.No)
                 {
                     return;
