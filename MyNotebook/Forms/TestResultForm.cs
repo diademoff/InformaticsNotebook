@@ -51,6 +51,11 @@ namespace MyNotebook.Forms
             lbl_solvedPercent.Text = $"Решено: {test.PercentSolved.ToString("#.##")}%";
             lbl_mark.Text = $"Оценка: {test.Mark}";
 
+            if (Test.PercentSolved == 100)
+            {
+                btn_correctionOfMistakes.Enabled = false;
+            }
+
             DrawDiagramOnForm((decimal)numOfSolved, (decimal)(test.AllMissions.Count - numOfSolved));
         }
 
@@ -147,6 +152,11 @@ namespace MyNotebook.Forms
         private void btn_showHTML_Click(object sender, System.EventArgs e)
         {
             Test.OpenHTMLPage(User);
+        }
+
+        private void btn_correctionOfMistakes_Click(object sender, System.EventArgs e)
+        {
+            Test.CorrectMistakes(User);
         }
     }
 }

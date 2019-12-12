@@ -121,7 +121,7 @@ namespace MyNotebook.Forms
                 tab.AutoScroll = true;
 
                 MainTab.TabPages.Add(tab); // добавляем tab
-               
+
 
                 // добавляем созданный ранее таб
                 previewForm.Controls.Add(MainTab);

@@ -1,10 +1,10 @@
-﻿using MyNotebook.ViewModels;
+﻿using MyNotebook.Forms;
+using MyNotebook.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Forms;
 
 namespace MyNotebook.Models
 {
@@ -31,7 +31,7 @@ namespace MyNotebook.Models
             {
                 double solvedright = 0;
 
-                foreach (var item in AllMissions)
+                foreach (MissionBase item in AllMissions)
                 {
                     if (item.IsSolvedRight())
                     {
@@ -114,7 +114,7 @@ namespace MyNotebook.Models
             for (int i = 0; i < AllMissonsGenerator.Count; i++)
             {
             regenerate:
-                var generated = AllMissonsGenerator[i].Generate();
+                MissionBase generated = AllMissonsGenerator[i].Generate();
                 if (AllMissions.Contains(generated))
                 {
                     goto regenerate;
@@ -192,6 +192,34 @@ namespace MyNotebook.Models
                 Test result = bf.Deserialize(fs) as Test;
                 return result;
             }
+        }
+
+        /// <summary>
+        /// Запустить работу над ошибками
+        /// </summary>
+        internal void CorrectMistakes(User user)
+        {
+            Test newTest = this.MemberwiseClone() as Test;
+            newTest.AllMissions = new List<MissionBase>();
+            for (int i = 0; i < newTest.AllMissonsGenerator.Count; i++)
+            {
+                newTest.AllMissonsGenerator[i].rnd = new Random();
+            }
+
+            for (int i = 0; i < AllMissions.Count; i++)
+            {
+                if (!AllMissions[i].IsSolvedRight())
+                {
+                    newTest.AllMissions.Add(MissionGeneratorCollection.Missions[AllMissions[i].NumOfMission - 1].Generate());
+                }
+            }
+
+            MissionSolveForm missionSolveForm = new MissionSolveForm(user, newTest);
+            try
+            {
+                missionSolveForm.ShowDialog();
+            }
+            catch { }
         }
     }
 }

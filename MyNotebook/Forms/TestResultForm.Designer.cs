@@ -43,6 +43,7 @@
             this.btn_preview = new System.Windows.Forms.Button();
             this.lbl_name = new System.Windows.Forms.Label();
             this.btn_showHTML = new System.Windows.Forms.Button();
+            this.btn_correctionOfMistakes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picture_diagram)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,11 +180,23 @@
             this.btn_showHTML.UseVisualStyleBackColor = true;
             this.btn_showHTML.Click += new System.EventHandler(this.btn_showHTML_Click);
             // 
+            // btn_correctionOfMistakes
+            // 
+            this.btn_correctionOfMistakes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_correctionOfMistakes.Location = new System.Drawing.Point(138, 462);
+            this.btn_correctionOfMistakes.Name = "btn_correctionOfMistakes";
+            this.btn_correctionOfMistakes.Size = new System.Drawing.Size(151, 23);
+            this.btn_correctionOfMistakes.TabIndex = 14;
+            this.btn_correctionOfMistakes.Text = "Работа над ошибками";
+            this.btn_correctionOfMistakes.UseVisualStyleBackColor = true;
+            this.btn_correctionOfMistakes.Click += new System.EventHandler(this.btn_correctionOfMistakes_Click);
+            // 
             // TestResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 526);
+            this.Controls.Add(this.btn_correctionOfMistakes);
             this.Controls.Add(this.btn_showHTML);
             this.Controls.Add(this.lbl_name);
             this.Controls.Add(this.btn_preview);
@@ -224,5 +237,6 @@
         private System.Windows.Forms.Button btn_preview;
         private System.Windows.Forms.Label lbl_name;
         private System.Windows.Forms.Button btn_showHTML;
+        private System.Windows.Forms.Button btn_correctionOfMistakes;
     }
 }
