@@ -142,6 +142,7 @@
     <Compile Include="ViewModels\Mission15.cs" />
     <Compile Include="ViewModels\Mission16.cs" />
     <Compile Include="ViewModels\Mission17.cs" />
+    <Compile Include="ViewModels\Mission18.cs" />
     <Compile Include="ViewModels\Mission2.cs" />
     <Compile Include="ViewModels\Mission3.cs" />
     <Compile Include="ViewModels\Mission4.cs" />
