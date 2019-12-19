@@ -10,6 +10,17 @@ namespace MyNotebook.Forms
     {
         public SelectStartType()
         {
+            new Task(() =>
+            {
+                bool needUpdate = new GitUpdater().NeedUpdate;
+                if (needUpdate)
+                {
+                    btn_update.Invoke(new MethodInvoker(() =>
+                    {
+                        btn_update.Visible = true;
+                    }));
+                }
+            }).Start();
             InitializeComponent();
             TopMost = true;
             new Task(() =>

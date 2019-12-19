@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 
 namespace MyNotebook.ViewModels
@@ -27,7 +26,7 @@ namespace MyNotebook.ViewModels
         {
             get
             {
-                foreach (var item in Users)
+                foreach (User item in Users)
                 {
                     if (item.ToString() == UserString)
                     {
@@ -39,7 +38,7 @@ namespace MyNotebook.ViewModels
             }
             set
             {
-                foreach (var item in Users)
+                foreach (User item in Users)
                 {
                     if (item.ToString() == UserString)
                     {
@@ -54,7 +53,7 @@ namespace MyNotebook.ViewModels
 
         public bool UserExists(string UserString)
         {
-            foreach (var item in Users)
+            foreach (User item in Users)
             {
                 if (item.ToString() == UserString)
                 {
