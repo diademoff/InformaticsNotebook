@@ -51,7 +51,7 @@ namespace MyNotebook.Forms
             lbl_solvedPercent.Text = $"Решено: {test.PercentSolved.ToString("#.##")}%";
             lbl_mark.Text = $"Оценка: {test.Mark}";
 
-            if (Test.PercentSolved == 100)
+            if (Test.Mark == 5)
             {
                 btn_correctionOfMistakes.Enabled = false;
             }
@@ -156,7 +156,10 @@ namespace MyNotebook.Forms
 
         private void btn_correctionOfMistakes_Click(object sender, System.EventArgs e)
         {
-            Test.CorrectMistakes(User);
+            var reSolvedTest = Test.CreateCorrectMistakesTest(Test);
+            reSolvedTest.InitTest();
+            MissionSolveForm missionSolveForm = new MissionSolveForm(User, reSolvedTest);
+            missionSolveForm.ShowDialog();
         }
     }
 }

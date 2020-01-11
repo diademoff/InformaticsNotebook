@@ -11,7 +11,7 @@ namespace MyNotebook.ViewModels
             string title = "Кодирование изображений";
             string q = "";
             int i = 0;
-            i = rnd.Next(4, 12);
+            i = rnd.Next(3, 10);
             switch (rnd.Next(1, 4))
             {
                 case 1:

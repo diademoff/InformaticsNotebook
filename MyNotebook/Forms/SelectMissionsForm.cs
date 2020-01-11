@@ -241,6 +241,12 @@ namespace MyNotebook.Forms
 
         void btn_preview_Click(object sender, EventArgs e)
         {
+            if (selectedNumsOfMissions.Count == 0)
+            {
+                MessageBox.Show("Вы ничего не выбрали!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Test test = GetCreatedTest();
             test.RegenerateMissions();
             MissionSolveForm form = new MissionSolveForm(new User("Предпросмотр", "*"), test);

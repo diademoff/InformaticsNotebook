@@ -163,17 +163,20 @@ namespace MyNotebook.Forms
             {
                 test.AllMissions = test.AllMissions.OrderBy(x => rnd.Next()).ToList(); //shuffle list
             }
+
             List<int> numOfMissionsAdded = new List<int>(); // уже  добавленные миссии
-            TabControl resultTabControl = new TabControl();
+
             for (int i = 0; i < test.AllMissions.Count; i++)
             {
                 if (numOfMissionsAdded.Contains(test.AllMissions[i].NumOfMission))
                 {
                     continue; // если миссия уже добавлена
                 }
+
                 int currNumOfMission = test.AllMissions[i].NumOfMission; // номер миссии
                 numOfMissionsAdded.Add(currNumOfMission); // добавить номер миссии в список
                 // создаем subTab чтобы потом довить в maintab
+
                 TabControl subTab = new TabControl()
                 {
                     Width = 880,
@@ -194,24 +197,7 @@ namespace MyNotebook.Forms
                     StartPosition = FormStartPosition.CenterScreen,
                     Text = $"Задание {i + 1} из {test.AllMissions.Count}. \"{test.AllMissions[i].ToString()}\""
                 };
-                previewForm.Controls.Add(new Panel()
-                {
-                    Name = "pnl_status",
-                    Dock = DockStyle.Top
-                });
-                previewForm.Controls["pnl_status"].Controls.Add(new ProgressBar()
-                {
-                    Value = i + 1,
-                    Maximum = test.AllMissions.Count,
-                    Dock = DockStyle.Top,
-                    Height = 3
-                });
 
-                previewForm.Controls["pnl_status"].Controls.Add(new Label()
-                {
-                    Location = new Point(3, 0),
-                    Text = CurrentUser.Name
-                });
 
                 if (test.IsTopMost)
                 {
@@ -273,7 +259,7 @@ namespace MyNotebook.Forms
                 // показываем форму
                 previewForm.ShowDialog();
 
-                resultTabControl.TabPages.Add(subTab.TabPages[0]);
+                //resultTabControl.TabPages.Add(subTab.TabPages[0]);
             }
 
             this.FullHideForm();

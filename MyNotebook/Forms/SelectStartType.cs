@@ -10,7 +10,7 @@ namespace MyNotebook.Forms
     {
         public SelectStartType()
         {
-            new Task(() =>
+            new Thread(() =>
             {
                 bool needUpdate = new GitUpdater().NeedUpdate;
                 if (needUpdate)
@@ -20,10 +20,19 @@ namespace MyNotebook.Forms
                         btn_update.Visible = true;
                     }));
                 }
+                else
+                {
+                    btn_update.Invoke(new MethodInvoker(() =>
+                    {
+                        btn_update.Visible = true;
+                        btn_update.Enabled = false;
+                        btn_update.Text = "Обновлений нет";
+                    }));
+                }
             }).Start();
             InitializeComponent();
             TopMost = true;
-            new Task(() =>
+            new Thread(() =>
             {
                 Thread.Sleep(TimeSpan.FromSeconds(2));
                 Invoke(new MethodInvoker(() =>

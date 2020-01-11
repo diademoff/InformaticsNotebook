@@ -195,31 +195,26 @@ namespace MyNotebook.Models
         }
 
         /// <summary>
-        /// Запустить работу над ошибками
+        /// Создать тест для пропработки ошибок
         /// </summary>
-        internal void CorrectMistakes(User user)
+        internal Test CreateCorrectMistakesTest(Test testToCorrect)
         {
-            Test newTest = this.MemberwiseClone() as Test;
-            newTest.AllMissions = new List<MissionBase>();
-            for (int i = 0; i < newTest.AllMissonsGenerator.Count; i++)
+            Test result = new Test();
+            result.AllMissions = new List<MissionBase>();
+            for (int i = 0; i < result.AllMissonsGenerator.Count; i++)
             {
-                newTest.AllMissonsGenerator[i].rnd = new Random();
+                result.AllMissonsGenerator[i].rnd = new Random();
             }
 
-            for (int i = 0; i < AllMissions.Count; i++)
+            for (int i = 0; i < testToCorrect.AllMissions.Count; i++)
             {
-                if (!AllMissions[i].IsSolvedRight())
+                if (!testToCorrect.AllMissions[i].IsSolvedRight())
                 {
-                    newTest.AllMissions.Add(MissionGeneratorCollection.Missions[AllMissions[i].NumOfMission - 1].Generate());
+                    result.AllMissions.Add(MissionGeneratorCollection.Missions[AllMissions[i].NumOfMission - 1].Generate());
                 }
             }
 
-            MissionSolveForm missionSolveForm = new MissionSolveForm(user, newTest);
-            try
-            {
-                missionSolveForm.ShowDialog();
-            }
-            catch { }
+            return result;
         }
     }
 }

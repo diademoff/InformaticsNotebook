@@ -132,7 +132,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\DataCollection.cs" />
+    <Compile Include="ViewModels\DataElement.cs" />
     <Compile Include="ViewModels\Mission1.cs" />
     <Compile Include="ViewModels\Mission10.cs" />
     <Compile Include="ViewModels\Mission11.cs" />
