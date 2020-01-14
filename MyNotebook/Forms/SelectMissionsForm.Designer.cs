@@ -41,6 +41,8 @@
             this.btn_load = new System.Windows.Forms.Button();
             this.btn_preview = new System.Windows.Forms.Button();
             this.checkbx_onebyoneMissions = new System.Windows.Forms.CheckBox();
+            this.gb_settings = new System.Windows.Forms.GroupBox();
+            this.gb_settings.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -56,7 +58,7 @@
             // btn_save
             // 
             this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_save.Location = new System.Drawing.Point(784, 407);
+            this.btn_save.Location = new System.Drawing.Point(843, 516);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(130, 31);
             this.btn_save.TabIndex = 6;
@@ -66,9 +68,8 @@
             // 
             // checkbx_topMost
             // 
-            this.checkbx_topMost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_topMost.AutoSize = true;
-            this.checkbx_topMost.Location = new System.Drawing.Point(12, 396);
+            this.checkbx_topMost.Location = new System.Drawing.Point(6, 46);
             this.checkbx_topMost.Name = "checkbx_topMost";
             this.checkbx_topMost.Size = new System.Drawing.Size(126, 17);
             this.checkbx_topMost.TabIndex = 7;
@@ -77,9 +78,8 @@
             // 
             // checkbx_disableCalc
             // 
-            this.checkbx_disableCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_disableCalc.AutoSize = true;
-            this.checkbx_disableCalc.Location = new System.Drawing.Point(12, 373);
+            this.checkbx_disableCalc.Location = new System.Drawing.Point(6, 23);
             this.checkbx_disableCalc.Name = "checkbx_disableCalc";
             this.checkbx_disableCalc.Size = new System.Drawing.Size(146, 17);
             this.checkbx_disableCalc.TabIndex = 8;
@@ -99,9 +99,8 @@
             // 
             // checkbx_showAnswerAtOnce
             // 
-            this.checkbx_showAnswerAtOnce.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_showAnswerAtOnce.AutoSize = true;
-            this.checkbx_showAnswerAtOnce.Location = new System.Drawing.Point(12, 421);
+            this.checkbx_showAnswerAtOnce.Location = new System.Drawing.Point(6, 71);
             this.checkbx_showAnswerAtOnce.Name = "checkbx_showAnswerAtOnce";
             this.checkbx_showAnswerAtOnce.Size = new System.Drawing.Size(151, 17);
             this.checkbx_showAnswerAtOnce.TabIndex = 10;
@@ -114,16 +113,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_missions.AutoScroll = true;
-            this.panel_missions.Location = new System.Drawing.Point(17, 40);
+            this.panel_missions.Location = new System.Drawing.Point(17, 37);
             this.panel_missions.Name = "panel_missions";
-            this.panel_missions.Size = new System.Drawing.Size(897, 327);
+            this.panel_missions.Size = new System.Drawing.Size(956, 407);
             this.panel_missions.TabIndex = 11;
             // 
             // checkbx_onebyoneBlocks
             // 
-            this.checkbx_onebyoneBlocks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_onebyoneBlocks.AutoSize = true;
-            this.checkbx_onebyoneBlocks.Location = new System.Drawing.Point(194, 373);
+            this.checkbx_onebyoneBlocks.Location = new System.Drawing.Point(188, 23);
             this.checkbx_onebyoneBlocks.Name = "checkbx_onebyoneBlocks";
             this.checkbx_onebyoneBlocks.Size = new System.Drawing.Size(174, 17);
             this.checkbx_onebyoneBlocks.TabIndex = 12;
@@ -133,10 +131,9 @@
             // 
             // checkbx_randomOrder
             // 
-            this.checkbx_randomOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_randomOrder.AutoSize = true;
             this.checkbx_randomOrder.Enabled = false;
-            this.checkbx_randomOrder.Location = new System.Drawing.Point(194, 396);
+            this.checkbx_randomOrder.Location = new System.Drawing.Point(188, 46);
             this.checkbx_randomOrder.Name = "checkbx_randomOrder";
             this.checkbx_randomOrder.Size = new System.Drawing.Size(126, 17);
             this.checkbx_randomOrder.TabIndex = 13;
@@ -146,7 +143,7 @@
             // btn_load
             // 
             this.btn_load.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_load.Location = new System.Drawing.Point(657, 407);
+            this.btn_load.Location = new System.Drawing.Point(716, 516);
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(121, 31);
             this.btn_load.TabIndex = 14;
@@ -157,9 +154,9 @@
             // btn_preview
             // 
             this.btn_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_preview.Location = new System.Drawing.Point(530, 407);
+            this.btn_preview.Location = new System.Drawing.Point(374, 46);
             this.btn_preview.Name = "btn_preview";
-            this.btn_preview.Size = new System.Drawing.Size(121, 31);
+            this.btn_preview.Size = new System.Drawing.Size(180, 48);
             this.btn_preview.TabIndex = 15;
             this.btn_preview.Text = "Посмотреть тест";
             this.btn_preview.UseVisualStyleBackColor = true;
@@ -167,9 +164,8 @@
             // 
             // checkbx_onebyoneMissions
             // 
-            this.checkbx_onebyoneMissions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_onebyoneMissions.AutoSize = true;
-            this.checkbx_onebyoneMissions.Location = new System.Drawing.Point(386, 373);
+            this.checkbx_onebyoneMissions.Location = new System.Drawing.Point(374, 23);
             this.checkbx_onebyoneMissions.Name = "checkbx_onebyoneMissions";
             this.checkbx_onebyoneMissions.Size = new System.Drawing.Size(186, 17);
             this.checkbx_onebyoneMissions.TabIndex = 16;
@@ -177,27 +173,40 @@
             this.checkbx_onebyoneMissions.UseVisualStyleBackColor = true;
             this.checkbx_onebyoneMissions.CheckedChanged += new System.EventHandler(this.checkbx_onebyoneMissions_CheckedChanged);
             // 
+            // gb_settings
+            // 
+            this.gb_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gb_settings.Controls.Add(this.checkbx_onebyoneMissions);
+            this.gb_settings.Controls.Add(this.btn_preview);
+            this.gb_settings.Controls.Add(this.checkbx_onebyoneBlocks);
+            this.gb_settings.Controls.Add(this.checkbx_topMost);
+            this.gb_settings.Controls.Add(this.checkbx_disableCalc);
+            this.gb_settings.Controls.Add(this.checkbx_randomOrder);
+            this.gb_settings.Controls.Add(this.checkbx_showAnswerAtOnce);
+            this.gb_settings.Location = new System.Drawing.Point(17, 444);
+            this.gb_settings.Name = "gb_settings";
+            this.gb_settings.Size = new System.Drawing.Size(566, 105);
+            this.gb_settings.TabIndex = 17;
+            this.gb_settings.TabStop = false;
+            this.gb_settings.Text = "Настройки";
+            // 
             // SelectMissionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 450);
-            this.Controls.Add(this.checkbx_onebyoneMissions);
-            this.Controls.Add(this.btn_preview);
+            this.ClientSize = new System.Drawing.Size(985, 555);
+            this.Controls.Add(this.gb_settings);
             this.Controls.Add(this.btn_load);
-            this.Controls.Add(this.checkbx_randomOrder);
-            this.Controls.Add(this.checkbx_onebyoneBlocks);
             this.Controls.Add(this.panel_missions);
-            this.Controls.Add(this.checkbx_showAnswerAtOnce);
             this.Controls.Add(this.lbl_numOfMissionsSelected);
-            this.Controls.Add(this.checkbx_disableCalc);
-            this.Controls.Add(this.checkbx_topMost);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SelectMissionsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выберите задания";
+            this.gb_settings.ResumeLayout(false);
+            this.gb_settings.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,5 +226,6 @@
         private System.Windows.Forms.Button btn_load;
         private System.Windows.Forms.Button btn_preview;
         private System.Windows.Forms.CheckBox checkbx_onebyoneMissions;
+        private System.Windows.Forms.GroupBox gb_settings;
     }
 }

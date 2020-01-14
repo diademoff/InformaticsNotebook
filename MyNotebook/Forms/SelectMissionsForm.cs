@@ -62,16 +62,6 @@ namespace MyNotebook.Forms
                         Text = $"{generatedMission.Title}",
                         AutoSize = true
                     });
-                    checkBoxes.Last().CheckedChanged += (s, e) =>
-                    {
-                        numerics[(int)i_clone].Enabled = ((CheckBox)s).Checked;
-                        if (((CheckBox)s).Enabled)
-                        {
-                            selectedNumsOfMissions.Add(generatedMission.NumOfMission);
-                            selectedNumsOfMissions = selectedNumsOfMissions.Distinct().ToList();
-                        }
-                        RefreshUI();
-                    };
                     numerics.Add(new NumericUpDown()
                     {
                         Location = new Point(checkBoxes.Last().Location.X + 450, checkBoxes.Last().Location.Y),
@@ -86,7 +76,6 @@ namespace MyNotebook.Forms
                         Text = $"из {generatedMission.MaxNumInTest}",
                         Visible = true
                     });
-                    numerics.Last().ValueChanged += (s, e) => RefreshUI();
 
 
                     Button btn = new Button()
@@ -129,6 +118,26 @@ namespace MyNotebook.Forms
             panel_missions.Controls.AddRange(of_max.ToArray());
             panel_missions.Controls.AddRange(checkBoxes.ToArray());
             panel_missions.Controls.AddRange(numerics.ToArray());
+
+            RegisterEventsToControls();
+        }
+
+        void RegisterEventsToControls()
+        {
+            for (int i = 0; i < checkBoxes.Count; i++)
+            {
+                object i_clone = i;
+                checkBoxes[(int)i_clone].CheckedChanged += (s, e) =>
+                {
+                    CheckBox curr = (CheckBox)s;
+                    numerics[(int)i_clone].Enabled = curr.Checked;
+                    RefreshUI();
+                };
+            }
+            foreach (var num in numerics)
+            {
+                num.ValueChanged += (s, e) => RefreshUI();
+            }
         }
 
         void Btn_save_Click(object sender, EventArgs e)
