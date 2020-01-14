@@ -10,134 +10,76 @@ namespace MyNotebook.Forms
 {
     public partial class SelectMissionsForm : Form
     {
-        int numOfSelected => checkBoxes.Where(x => x.Checked).Count();
-        List<int> selectedNumsOfMissions { get; set; } = new List<int>(); // elements add here on checkbox active
-        List<int> numOfEachMission
+        List<int> selectedNumsOfMissions
         {
             get
             {
-                List<int> res = new List<int>();
-                for (int i = 0; i < numerics.Count; i++)
+                List<int> result = new List<int>();
+                foreach (var raw in RawControls)
                 {
-                    if (checkBoxes[i].Checked)
+                    if (raw.CheckBox.Checked)
                     {
-                        res.Add((int)numerics[i].Value);
+                        result.Add(raw.NumOfMission);
                     }
                 }
-                return res;
+                return result;
             }
         }
-        List<CheckBox> checkBoxes = new List<CheckBox>();
-        List<NumericUpDown> numerics = new List<NumericUpDown>();
+        int[] numOfEachMission
+        {
+            get
+            {
+                List<int> result = new List<int>();
+                foreach (var raw in RawControls)
+                {
+                    if (raw.CheckBox.Checked)
+                    {
+                        result.Add((int)raw.Numeric.Value);
+                    }
+                }
+                return result.ToArray();
+            }
+        }
+
+        List<RawControls> RawControls = new List<RawControls>();
+
         public SelectMissionsForm()
         {
             InitializeComponent();
 
-            int xPosition = 0;
-            List<Label> of_max = new List<Label>();
+            int yPosition = 0;
             foreach (var catagory in MissionGeneratorCollection.Categories)
             {
                 string catagoryName = catagory.CategoryName;
-                var missions = catagory.Missions;
+                var missionsInCategory = catagory.Missions;
 
-                Label lbl_catagoryName = new Label()
+                CategoryNameLabel(yPosition, catagoryName);
+
+                yPosition += 35;
+
+                for (int i = 0; i < missionsInCategory.Length; i++)
                 {
-                    Text = catagoryName,
-                    Location = new Point(5, xPosition),
-                    Font = new Font("Arial", 16),
-                    AutoSize = true
-                };
-                xPosition += 35;
-
-                for (int i = 0; i < missions.Length; i++)
-                {
-                    object i_clone = i;
-                    var generatedMission = missions[i].Generate();
-
-                    checkBoxes.Add(new CheckBox()
-                    {
-                        Location = new Point(25, xPosition),
-                        Checked = false,
-                        Font = new Font(new FontFamily("Arial"), 16, FontStyle.Regular, GraphicsUnit.Pixel),
-                        Text = $"{generatedMission.Title}",
-                        AutoSize = true
-                    });
-                    numerics.Add(new NumericUpDown()
-                    {
-                        Location = new Point(checkBoxes.Last().Location.X + 450, checkBoxes.Last().Location.Y),
-                        Maximum = generatedMission.MaxNumInTest,
-                        Value = 1,
-                        Width = 50,
-                        Enabled = false
-                    });
-                    of_max.Add(new Label()
-                    {
-                        Location = new Point(checkBoxes.Last().Location.X + 500, checkBoxes.Last().Location.Y),
-                        Text = $"из {generatedMission.MaxNumInTest}",
-                        Visible = true
-                    });
-
-
-                    Button btn = new Button()
-                    {
-                        Text = "Предпросмотр",
-                        Location = new Point(checkBoxes.Last().Location.X + 600, checkBoxes.Last().Location.Y),
-                        Width = 100
-                    };
-                    btn.Click += (s, e) =>
-                    {
-                        TabPage tab = generatedMission.GetTabPage(showAnswerAtOnce: checkbx_showAnswerAtOnce.Checked);
-                        Form previewForm = new Form()
-                        {
-                            Width = 800,
-                            Height = 500,
-                            Icon = Properties.Resources.icon,
-                            Text = $"Предпросмотр задания {i + 1} \"{generatedMission.Title}\""
-                        };
-
-                        TabControl tc = new TabControl()
-                        {
-                            Dock = DockStyle.Fill
-                        };
-                        tc.Controls.Add(tab);
-
-                        previewForm.Controls.Add(tc);
-
-                        previewForm.ShowDialog();
-                    };
-
-                    xPosition += 23;
-
-                    panel_missions.Controls.Add(btn);
-                    panel_missions.Controls.Add(lbl_catagoryName);
+                    RawControls.Add(new RawControls(missionsInCategory[i], yPosition));
+                    RawControls.Last().AddToPanel(panel_missions);
+                    RawControls.Last().Numeric.ValueChanged += (s, e) => RefreshUI();
+                    RawControls.Last().CheckBox.CheckedChanged += (s, e) => RefreshUI();
+                    yPosition += 23;
                 }
 
-                xPosition += 50;
+                yPosition += 50;
             }
-
-            panel_missions.Controls.AddRange(of_max.ToArray());
-            panel_missions.Controls.AddRange(checkBoxes.ToArray());
-            panel_missions.Controls.AddRange(numerics.ToArray());
-
-            RegisterEventsToControls();
         }
 
-        void RegisterEventsToControls()
+        private void CategoryNameLabel(int yPosition, string catagoryName)
         {
-            for (int i = 0; i < checkBoxes.Count; i++)
+            Label lbl_catagoryName = new Label()
             {
-                object i_clone = i;
-                checkBoxes[(int)i_clone].CheckedChanged += (s, e) =>
-                {
-                    CheckBox curr = (CheckBox)s;
-                    numerics[(int)i_clone].Enabled = curr.Checked;
-                    RefreshUI();
-                };
-            }
-            foreach (var num in numerics)
-            {
-                num.ValueChanged += (s, e) => RefreshUI();
-            }
+                Text = catagoryName,
+                Location = new Point(5, yPosition),
+                Font = new Font("Arial", 16),
+                AutoSize = true
+            };
+            panel_missions.Controls.Add(lbl_catagoryName);
         }
 
         void Btn_save_Click(object sender, EventArgs e)
@@ -204,29 +146,11 @@ namespace MyNotebook.Forms
 
         void LoadTestFromFile(string path)
         {
+            //throw new Exception("Не реализовано");
             try
             {
-
                 Test test = Test.Deserialize(path);
                 test.RegenerateMissions();
-
-                foreach (CheckBox item in checkBoxes)
-                {
-                    item.Checked = false;
-                }
-                foreach (NumericUpDown item in numerics)
-                {
-                    item.Value = 1;
-                }
-
-                foreach (MissionBase item in test.AllMissions)
-                {
-                    if (checkBoxes[item.NumOfMission - 1].Checked)
-                    {
-                        numerics[item.NumOfMission - 1].Value += 1;
-                    }
-                    checkBoxes[item.NumOfMission - 1].Checked = true;
-                }
 
                 checkbx_disableCalc.Checked = test.IsCalcBlockEnabled;
                 switch (test.ShowType)
@@ -247,6 +171,11 @@ namespace MyNotebook.Forms
                 checkbx_randomOrder.Checked = test.RandomOrder;
                 checkbx_showAnswerAtOnce.Checked = test.ShowAnswerAtOnce;
                 checkbx_topMost.Checked = test.IsTopMost;
+
+                foreach (var item in RawControls)
+                {
+                    item.SetMissionConfig(test.AllMissions.ToArray());
+                }
             }
             catch (Exception ex) { MessageBox.Show("Не удалось загузить тест " + ex.ToString()); }
         }
@@ -293,6 +222,110 @@ namespace MyNotebook.Forms
                 checkbx_onebyoneBlocks.Checked = false;
             }
             checkbx_randomOrder.Enabled = checkbx_onebyoneBlocks.Checked || checkbx_onebyoneMissions.Checked;
+        }
+    }
+
+
+    public class RawControls
+    {
+        public CheckBox CheckBox { get; set; }
+        public NumericUpDown Numeric { get; set; }
+        public Label OfMax { get; set; } // 1 из 10
+        public Button Preview { get; set; }
+
+        public int NumOfMission { get; set; }
+        public int yPosition { get; set; }
+        public MissionGenerator MissionGenerator { get; set; }
+
+        public RawControls(MissionGenerator mg, int yPosition)
+        {
+            this.yPosition = yPosition;
+            MissionGenerator = mg;
+
+            var generatedMission = mg.Generate();
+            NumOfMission = generatedMission.NumOfMission;
+
+            CheckBox = new CheckBox()
+            {
+                Location = new Point(25, yPosition),
+                Checked = false,
+                Font = new Font(new FontFamily("Arial"), 16, FontStyle.Regular, GraphicsUnit.Pixel),
+                Text = $"{generatedMission.Title}",
+                AutoSize = true
+            };
+            Numeric = new NumericUpDown()
+            {
+                Location = new Point(CheckBox.Location.X + 450, CheckBox.Location.Y),
+                Maximum = generatedMission.MaxNumInTest,
+                Value = 1,
+                Width = 50,
+                Enabled = false
+            };
+            OfMax = new Label()
+            {
+                Location = new Point(CheckBox.Location.X + 500, CheckBox.Location.Y),
+                Text = $"из {generatedMission.MaxNumInTest}",
+                Visible = true
+            };
+            Preview = new Button()
+            {
+                Text = "Предпросмотр",
+                Location = new Point(CheckBox.Location.X + 600, CheckBox.Location.Y),
+                Width = 100
+            };
+            Preview.Click += (s, e) =>
+            {
+                TabPage tab = generatedMission.GetTabPage(true);
+                Form previewForm = new Form()
+                {
+                    Width = 800,
+                    Height = 500,
+                    Icon = Properties.Resources.icon,
+                    Text = $"Предпросмотр задания {NumOfMission} \"{generatedMission.Title}\""
+                };
+
+                TabControl tc = new TabControl()
+                {
+                    Dock = DockStyle.Fill
+                };
+                tc.Controls.Add(tab);
+
+                previewForm.Controls.Add(tc);
+
+                previewForm.ShowDialog();
+            };
+            RegisterEventsToControls();
+        }
+
+        void RegisterEventsToControls()
+        {
+            CheckBox.CheckedChanged += (s, e) =>
+            {
+                Numeric.Enabled = CheckBox.Checked;
+            };
+        }
+
+        public void AddToPanel(Panel pnl)
+        {
+            pnl.Controls.Add(CheckBox);
+            pnl.Controls.Add(Numeric);
+            pnl.Controls.Add(OfMax);
+            pnl.Controls.Add(Preview);
+        }
+
+        public void SetMissionConfig(MissionBase[] mb)
+        {
+            int num = 0;
+            foreach (var mission in mb)
+            {
+                if (mission.NumOfMission != NumOfMission)
+                {
+                    continue;
+                }
+                CheckBox.Checked = true;
+                num++;
+            }
+            Numeric.Value = num;
         }
     }
 }
