@@ -10,36 +10,39 @@ namespace MyNotebook.Forms
     {
         public SelectStartType()
         {
-            new Thread(() =>
-            {
-                bool needUpdate = new GitUpdater().NeedUpdate;
-                if (needUpdate)
-                {
-                    btn_update.Invoke(new MethodInvoker(() =>
-                    {
-                        btn_update.Visible = true;
-                    }));
-                }
-                else
-                {
-                    btn_update.Invoke(new MethodInvoker(() =>
-                    {
-                        btn_update.Visible = true;
-                        btn_update.Enabled = false;
-                        btn_update.Text = "Обновлений нет";
-                    }));
-                }
-            }).Start();
             InitializeComponent();
             TopMost = true;
-            new Thread(() =>
+            this.Shown += (s, e) =>
             {
-                Thread.Sleep(TimeSpan.FromSeconds(2));
-                Invoke(new MethodInvoker(() =>
+                new Thread(() =>
                 {
-                    TopMost = false;
-                }));
-            }).Start();
+                    bool needUpdate = new GitUpdater().NeedUpdate;
+                    if (needUpdate)
+                    {
+                        btn_update.Invoke(new MethodInvoker(() =>
+                        {
+                            btn_update.Visible = true;
+                        }));
+                    }
+                    else
+                    {
+                        btn_update.Invoke(new MethodInvoker(() =>
+                        {
+                            btn_update.Visible = true;
+                            btn_update.Enabled = false;
+                            btn_update.Text = "Обновлений нет";
+                        }));
+                    }
+                }).Start();
+                new Thread(() =>
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(2));
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        TopMost = false;
+                    }));
+                }).Start();
+            };
         }
 
         private void button1_Click(object sender, EventArgs e)

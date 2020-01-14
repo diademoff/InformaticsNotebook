@@ -66,6 +66,7 @@
             // 
             // checkbx_topMost
             // 
+            this.checkbx_topMost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_topMost.AutoSize = true;
             this.checkbx_topMost.Location = new System.Drawing.Point(12, 396);
             this.checkbx_topMost.Name = "checkbx_topMost";
@@ -76,6 +77,7 @@
             // 
             // checkbx_disableCalc
             // 
+            this.checkbx_disableCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_disableCalc.AutoSize = true;
             this.checkbx_disableCalc.Location = new System.Drawing.Point(12, 373);
             this.checkbx_disableCalc.Name = "checkbx_disableCalc";
@@ -86,6 +88,8 @@
             // 
             // lbl_numOfMissionsSelected
             // 
+            this.lbl_numOfMissionsSelected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_numOfMissionsSelected.AutoSize = true;
             this.lbl_numOfMissionsSelected.Location = new System.Drawing.Point(510, 20);
             this.lbl_numOfMissionsSelected.Name = "lbl_numOfMissionsSelected";
@@ -95,6 +99,7 @@
             // 
             // checkbx_showAnswerAtOnce
             // 
+            this.checkbx_showAnswerAtOnce.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_showAnswerAtOnce.AutoSize = true;
             this.checkbx_showAnswerAtOnce.Location = new System.Drawing.Point(12, 421);
             this.checkbx_showAnswerAtOnce.Name = "checkbx_showAnswerAtOnce";
@@ -105,6 +110,9 @@
             // 
             // panel_missions
             // 
+            this.panel_missions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_missions.AutoScroll = true;
             this.panel_missions.Location = new System.Drawing.Point(17, 40);
             this.panel_missions.Name = "panel_missions";
@@ -113,6 +121,7 @@
             // 
             // checkbx_onebyoneBlocks
             // 
+            this.checkbx_onebyoneBlocks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_onebyoneBlocks.AutoSize = true;
             this.checkbx_onebyoneBlocks.Location = new System.Drawing.Point(194, 373);
             this.checkbx_onebyoneBlocks.Name = "checkbx_onebyoneBlocks";
@@ -124,6 +133,7 @@
             // 
             // checkbx_randomOrder
             // 
+            this.checkbx_randomOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_randomOrder.AutoSize = true;
             this.checkbx_randomOrder.Enabled = false;
             this.checkbx_randomOrder.Location = new System.Drawing.Point(194, 396);
@@ -135,6 +145,7 @@
             // 
             // btn_load
             // 
+            this.btn_load.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_load.Location = new System.Drawing.Point(657, 407);
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(121, 31);
@@ -145,6 +156,7 @@
             // 
             // btn_preview
             // 
+            this.btn_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_preview.Location = new System.Drawing.Point(530, 407);
             this.btn_preview.Name = "btn_preview";
             this.btn_preview.Size = new System.Drawing.Size(121, 31);
@@ -155,6 +167,7 @@
             // 
             // checkbx_onebyoneMissions
             // 
+            this.checkbx_onebyoneMissions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkbx_onebyoneMissions.AutoSize = true;
             this.checkbx_onebyoneMissions.Location = new System.Drawing.Point(386, 373);
             this.checkbx_onebyoneMissions.Name = "checkbx_onebyoneMissions";
@@ -181,9 +194,7 @@
             this.Controls.Add(this.checkbx_topMost);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "SelectMissionsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выберите задания";

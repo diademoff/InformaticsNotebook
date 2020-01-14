@@ -158,7 +158,9 @@ namespace MyNotebook.Models
             {
                 for (int j = 0; j < numOfMissionsForEach[i]; j++)
                 {
-                    AllMissonsGenerator.Add(MissionGeneratorCollection.Missions[numOfMissions[i]]);
+                    int numOfMissionToAdd = numOfMissions[i];
+
+                    AllMissonsGenerator.Add(MissionGeneratorCollection.GetMissionByNum(numOfMissionToAdd));
                 }
             }
         }
@@ -210,7 +212,7 @@ namespace MyNotebook.Models
             {
                 if (!testToCorrect.AllMissions[i].IsSolvedRight())
                 {
-                    result.AllMissions.Add(MissionGeneratorCollection.Missions[AllMissions[i].NumOfMission - 1].Generate());
+                    result.AllMissions.Add(MissionGeneratorCollection.GetMissionByNum(AllMissions[i].NumOfMission).Generate());
                 }
             }
 
