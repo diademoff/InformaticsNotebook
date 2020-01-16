@@ -15,11 +15,14 @@ namespace MyNotebook.Forms
             get
             {
                 List<int> result = new List<int>();
-                foreach (var raw in RawControls)
+                foreach (var cat in CategoryControls)
                 {
-                    if (raw.CheckBox.Checked)
+                    foreach (var raw in cat.RawControls)
                     {
-                        result.Add(raw.NumOfMission);
+                        if (raw.CheckBox.Checked)
+                        {
+                            result.Add(raw.NumOfMission);
+                        }
                     }
                 }
                 return result;
@@ -30,56 +33,34 @@ namespace MyNotebook.Forms
             get
             {
                 List<int> result = new List<int>();
-                foreach (var raw in RawControls)
+                foreach (var cc in CategoryControls)
                 {
-                    if (raw.CheckBox.Checked)
+                    foreach (var raw in cc.RawControls)
                     {
-                        result.Add((int)raw.Numeric.Value);
+                        if (raw.CheckBox.Checked)
+                        {
+                            result.Add((int)raw.Numeric.Value);
+                        }
                     }
                 }
                 return result.ToArray();
             }
         }
 
-        List<RawControls> RawControls = new List<RawControls>();
-
+        List<CategoryControl> CategoryControls = new List<CategoryControl>();
         public SelectMissionsForm()
         {
             InitializeComponent();
 
-            int yPosition = 0;
+            int yPosition = 5;
             foreach (var catagory in MissionGeneratorCollection.Categories)
             {
-                string catagoryName = catagory.CategoryName;
-                var missionsInCategory = catagory.Missions;
+                CategoryControl categoryControl = new CategoryControl(catagory, yPosition, RefreshUI);
+                yPosition = categoryControl.AddToPanel(panel_missions);
 
-                CategoryNameLabel(yPosition, catagoryName);
-
+                CategoryControls.Add(categoryControl);
                 yPosition += 35;
-
-                for (int i = 0; i < missionsInCategory.Length; i++)
-                {
-                    RawControls.Add(new RawControls(missionsInCategory[i], yPosition));
-                    RawControls.Last().AddToPanel(panel_missions);
-                    RawControls.Last().Numeric.ValueChanged += (s, e) => RefreshUI();
-                    RawControls.Last().CheckBox.CheckedChanged += (s, e) => RefreshUI();
-                    yPosition += 23;
-                }
-
-                yPosition += 50;
             }
-        }
-
-        private void CategoryNameLabel(int yPosition, string catagoryName)
-        {
-            Label lbl_catagoryName = new Label()
-            {
-                Text = catagoryName,
-                Location = new Point(5, yPosition),
-                Font = new Font("Arial", 16),
-                AutoSize = true
-            };
-            panel_missions.Controls.Add(lbl_catagoryName);
         }
 
         void Btn_save_Click(object sender, EventArgs e)
@@ -128,6 +109,19 @@ namespace MyNotebook.Forms
         void RefreshUI()
         {
             lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfEachMission.Sum()}";
+
+            int prepos = panel_missions.AutoScrollPosition.Y;
+            panel_missions.AutoScroll = false;
+            int yPos = 5;
+            foreach (var cat_control in CategoryControls)
+            {
+                yPos = cat_control.RefreshControlsAddedToPanel(yPos);
+                yPos += 35;
+            }
+            panel_missions.AutoScroll = true;
+
+            panel_missions.AutoScrollPosition = new Point(0, Math.Abs(prepos));
+            panel_missions.Invalidate();
         }
 
         void btn_load_Click(object sender, EventArgs e)
@@ -172,9 +166,12 @@ namespace MyNotebook.Forms
                 checkbx_showAnswerAtOnce.Checked = test.ShowAnswerAtOnce;
                 checkbx_topMost.Checked = test.IsTopMost;
 
-                foreach (var item in RawControls)
+                foreach (var category in CategoryControls)
                 {
-                    item.SetMissionConfig(test.AllMissions.ToArray());
+                    foreach (var item in category.RawControls)
+                    {
+                        item.SetMissionConfig(test.AllMissions.ToArray());
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Не удалось загузить тест " + ex.ToString()); }
@@ -225,6 +222,94 @@ namespace MyNotebook.Forms
         }
     }
 
+    public class CategoryControl
+    {
+        public Label Title { get; set; }
+
+        public string Name => Title.Text;
+        public List<RawControls> RawControls = new List<RawControls>();
+        Action RefreshUI;
+        public bool Hidden { get; private set; } = false;
+        int intervalBetweenRaws = 25;
+        public CategoryControl(MissionGeneratorCategory category, int yPosition, Action RefreshUI)
+        {
+            this.RefreshUI = RefreshUI;
+            Title = new Label()
+            {
+                Text = category.CategoryName,
+                Location = new Point(5, yPosition),
+                Font = new Font("Arial", 16),
+                AutoSize = true,
+                Cursor = Cursors.Hand
+            };
+            Title.Click += (s, e) =>
+            {
+                if (Hidden)
+                {
+                    Show();
+                }
+                else
+                {
+                    Hide();
+                }
+            };
+
+            yPosition += intervalBetweenRaws;
+
+            foreach (var item in category.Missions)
+            {
+                yPosition += intervalBetweenRaws;
+                RawControls.Add(new RawControls(item, yPosition));
+                RawControls.Last().Numeric.ValueChanged += (s, e) => RefreshUI();
+                RawControls.Last().CheckBox.CheckedChanged += (s, e) => RefreshUI();
+            }
+        }
+        public int AddToPanel(Panel pnl)
+        {
+            pnl.Controls.Add(Title);
+            int lastY = Title.Location.Y;
+            foreach (var item in RawControls)
+            {
+                item.AddToPanel(pnl);
+                lastY = item.CheckBox.Location.Y;
+            }
+
+            return lastY;
+        }
+        public int RefreshControlsAddedToPanel(int yPos)
+        {
+            Title.Location = new Point(Title.Location.X, yPos);
+            yPos += intervalBetweenRaws;
+            if (Hidden)
+            {
+                return yPos;
+            }
+            foreach (var item in RawControls)
+            {
+                item.RefreshControlsAddedToPanel(yPos);
+                yPos += intervalBetweenRaws;
+            }
+            return yPos;
+        }
+        public void Hide()
+        {
+            foreach (var item in RawControls)
+            {
+                item.VisibleControls(false);
+            }
+            Hidden = true;
+            RefreshUI();
+        }
+        public void Show()
+        {
+            foreach (var item in RawControls)
+            {
+                item.VisibleControls(true);
+            }
+            Hidden = false;
+            RefreshUI();
+        }
+    }
 
     public class RawControls
     {
@@ -313,6 +398,14 @@ namespace MyNotebook.Forms
             pnl.Controls.Add(Preview);
         }
 
+        public void VisibleControls(bool visible)
+        {
+            CheckBox.Visible = visible;
+            Numeric.Visible = visible;
+            OfMax.Visible = visible;
+            Preview.Visible = visible;
+        }
+
         public void SetMissionConfig(MissionBase[] mb)
         {
             int num = 0;
@@ -326,6 +419,18 @@ namespace MyNotebook.Forms
                 num++;
             }
             Numeric.Value = num;
+        }
+
+        public void RefreshControlsAddedToPanel(int yPos)
+        {
+            changeYposTo(CheckBox, yPos);
+            changeYposTo(Numeric, yPos);
+            changeYposTo(OfMax, yPos);
+            changeYposTo(Preview, yPos);
+        }
+        void changeYposTo(Control control, int yPos)
+        {
+            control.Location = new Point(control.Location.X, yPos);
         }
     }
 }

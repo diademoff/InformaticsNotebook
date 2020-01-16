@@ -36,11 +36,15 @@ namespace MyNotebook.Forms
                 }).Start();
                 new Thread(() =>
                 {
-                    Thread.Sleep(TimeSpan.FromSeconds(2));
-                    Invoke(new MethodInvoker(() =>
+                    try
                     {
-                        TopMost = false;
-                    }));
+                        Thread.Sleep(TimeSpan.FromSeconds(2));
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            TopMost = false;
+                        }));
+                    }
+                    catch { }
                 }).Start();
             };
         }
