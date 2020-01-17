@@ -40,6 +40,10 @@ namespace MyNotebook.Models
             {
                 return false;
             }
+            if (AnswerExpecting == null)
+            {
+                return false;
+            }
             if (AnswerGiven.Length != AnswerExpecting.Length)
             {
                 return false;

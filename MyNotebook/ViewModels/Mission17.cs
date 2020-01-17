@@ -107,10 +107,6 @@ namespace MyNotebook.ViewModels
                 codesAdded.Add(code);
             }
 
-            foreach (var item in crypts)
-            {
-                Console.WriteLine(item.Letter + " - " + item.Code);
-            }
             var temp = GetStringUsingLetters(crypts);
 
             string answer = temp[0];
