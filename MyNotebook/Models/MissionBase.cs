@@ -22,7 +22,7 @@ namespace MyNotebook.Models
         /// Время когда на миссию дан ответ
         /// </summary>
         public DateTime TimeMissionSolved { get; set; }
-        public TimeSpan TimeSpanOnMission { get; set; }
+        public int TimeSpanOnMissionSeconds { get; set; }
         public abstract string String_AnswerExpecting { get; set; }
         public abstract string String_AnswerGiven { get; }
         public virtual int MaxNumInTest { get; set; } = 10;
@@ -58,7 +58,7 @@ namespace MyNotebook.Models
                     Thread.Sleep(TimeSpan.FromSeconds(1));
                     if (active)
                     {
-                        TimeSpanOnMission = TimeSpanOnMission.Add(TimeSpan.FromSeconds(1));
+                        TimeSpanOnMissionSeconds += 1;
                     }
                 }
             }).Start();

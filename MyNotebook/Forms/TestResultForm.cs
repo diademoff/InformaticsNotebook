@@ -40,7 +40,7 @@ namespace MyNotebook.Forms
 
                 string answerGiven = currMission.String_AnswerGiven;
 
-                txtbx_log.Text += $"\tЗатрачено времени: {currMission.TimeSpanOnMission.Seconds} сек\n";
+                txtbx_log.Text += $"\tЗатрачено времени: {currMission.TimeSpanOnMissionSeconds} сек\n";
                 txtbx_log.Text += currMission.IsSolvedRight() ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
                 txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
             }

@@ -21,7 +21,7 @@ namespace Statistics
             public int NumOfWrongAnswers { get; set; }
             public int NumOfRightAnswers { get; set; }
             public double SuccessPercent { get; set; }
-            public TimeSpan TimeSpanMission { get; set; }
+            public int TimeSpanMissionSeconds { get; set; }
             public int TotalAnswers
             {
                 get
@@ -37,7 +37,7 @@ namespace Statistics
                 NumOfMission = numOfMission;
                 NumOfWrongAnswers = 0;
                 NumOfRightAnswers = 0;
-                TimeSpanMission = new TimeSpan(0);
+                TimeSpanMissionSeconds = 0;
                 SuccessPercent = 0;
 
                 foreach (var m in missions)
@@ -46,7 +46,7 @@ namespace Statistics
                     {
                         continue;
                     }
-                    TimeSpanMission = TimeSpanMission.Add(m.TimeSpanOnMission);
+                    TimeSpanMissionSeconds += m.TimeSpanOnMissionSeconds;
                     if (m.IsSolvedRight())
                     {
                         NumOfRightAnswers++;

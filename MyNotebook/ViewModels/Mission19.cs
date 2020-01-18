@@ -22,6 +22,10 @@ namespace MyNotebook.ViewModels
 
         bool solvedRight(string a)
         {
+            if (a == null)
+            {
+                return false;
+            }
             return answer.ToLower() == a.ToLower();
         }
 

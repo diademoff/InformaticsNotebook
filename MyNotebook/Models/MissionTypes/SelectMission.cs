@@ -207,7 +207,7 @@ namespace MyNotebook.Models
         {
             string html = "";
             html += $"<h1>{Tasktext}</h1>";
-            html += $"<p>Время затрачено: {TimeSpanOnMission.TotalSeconds} секунд</p>";
+            html += $"<p>Время затрачено: {TimeSpanOnMissionSeconds} секунд</p>";
             for (int i = 0; i < Variants.Length; i++)
             {
                 html += $"<p>{Variants[i]} - Ответ дан: {AnswerGiven[i]}, ответ ожидался: {AnswerExpected[i]}</p>";
