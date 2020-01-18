@@ -132,43 +132,50 @@ namespace MyNotebook.ViewModels
         }
         public override MissionBase Generate()
         {
-            LogicMission logicMission = new LogicMission();
-
-            logicMission.SetAllRandomValues();
-            
-            List<int> right = new List<int>();
-            List<int> wrong = new List<int>();
-
-            for (int i = logicMission.numInFirst - 15; i < logicMission.numInFirst + 15; i++)
+            while (true)
             {
-                if (logicMission.IsRight(i))
+                try
                 {
-                    right.Add(i);
+                    LogicMission logicMission = new LogicMission();
+
+                    logicMission.SetAllRandomValues();
+
+                    List<int> right = new List<int>();
+                    List<int> wrong = new List<int>();
+
+                    for (int i = logicMission.numInFirst - 15; i < logicMission.numInFirst + 15; i++)
+                    {
+                        if (logicMission.IsRight(i))
+                        {
+                            right.Add(i);
+                        }
+                        else
+                        {
+                            wrong.Add(i);
+                        }
+                    }
+
+                    int rightAnswer = rnd.Next(0, 4);
+                    string nums = "";
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (i == rightAnswer)
+                        {
+                            nums += $"{i + 1}. {right.OrderBy(x => rnd.Next()).ToArray()[0]}\n";
+                            continue;
+                        }
+                        int w = wrong.OrderBy(x => rnd.Next()).ToArray()[0];
+                        wrong.Remove(w);
+                        nums += $"{i + 1}. {w}\n";
+                    }
+
+                    string q = $"Среди чисел выберите те, которые удовлетворяют условию\n" +
+                               $"{logicMission.GetString()}\n{nums}";
+
+                    return new TextMission(16, "Логические выражения", q, (rightAnswer + 1).ToString());
                 }
-                else
-                {
-                    wrong.Add(i);
-                }
+                catch { }
             }
-
-            int rightAnswer = rnd.Next(0, 4);
-            string nums = "";
-            for (int i = 0; i < 4; i++)
-            {
-                if (i == rightAnswer)
-                {
-                    nums += $"{i + 1}. {right.OrderBy(x => rnd.Next()).ToArray()[0]}\n";
-                    continue;
-                }
-                int w = wrong.OrderBy(x => rnd.Next()).ToArray()[0];
-                wrong.Remove(w);
-                nums += $"{i + 1}. {w}\n";
-            }
-
-            string q = $"Среди чисел выберите те, которые удовлетворяют условию\n" +
-                       $"{logicMission.GetString()}\n{nums}";
-
-            return new TextMission(16, "Логические выражения", q, (rightAnswer + 1).ToString());
         }
     }
 }

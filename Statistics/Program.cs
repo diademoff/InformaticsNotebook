@@ -13,21 +13,49 @@ namespace Statistics
         struct MissionStat
         {
             public int NumOfMission { get; set; }
-            public int NumOfMistaken { get; set; }
+            public int NumOfWrongAnswers { get; set; }
+            public int NumOfRightAnswers { get; set; }
+            public double SuccessPercent { get; set; }
+            public TimeSpan TimeSpanMission { get; set; }
+            public int TotalAnswers
+            {
+                get
+                {
+                    return NumOfWrongAnswers + NumOfRightAnswers;
+                }
+            }
             public MissionBase mission { get; set; }
 
-            public MissionStat(int numOfMission, MissionBase mission, int[] NumOfMissionsMostMistakes)
+            public MissionStat(int numOfMission, MissionBase mission, MissionBase[] missions)
             {
                 this.mission = mission;
                 NumOfMission = numOfMission;
-                NumOfMistaken = 0;
-                foreach (var num in NumOfMissionsMostMistakes)
+                NumOfWrongAnswers = 0;
+                NumOfRightAnswers = 0;
+                TimeSpanMission = new TimeSpan(0);
+                SuccessPercent = 0;
+
+                foreach (var m in missions)
                 {
-                    if (num == numOfMission)
+                    if (m.NumOfMission != numOfMission)
                     {
-                        NumOfMistaken++;
+                        continue;
+                    }
+                    TimeSpanMission = TimeSpanMission.Add(m.TimeSpanOnMission);
+                    if (m.IsSolvedRight())
+                    {
+                        NumOfRightAnswers++;
+                    }
+                    else
+                    {
+                        NumOfWrongAnswers++;
                     }
                 }
+                try
+                {
+                    SuccessPercent = Convert.ToDouble(NumOfRightAnswers) / NumOfWrongAnswers;
+                }
+                catch { }
             }
         }
         static string fileName = "result.txt";
@@ -62,7 +90,7 @@ namespace Statistics
             sw.WriteLine("Больше всего ошибок допущено в этих заданиях");
             foreach (var stat in missionStats)
             {
-                sw.WriteLine($"{stat.NumOfMission}. {stat.mission.Title} - ошибок {stat.NumOfMistaken}");
+                sw.WriteLine($"\"{stat.NumOfMission}. {stat.mission.Title}\" - ошибок {stat.NumOfWrongAnswers}, верных ответов {stat.NumOfRightAnswers}, процент успеха {stat.SuccessPercent.ToString("0.00 %")}.");
             }
             sw.Flush();
             sw.Close();
@@ -77,14 +105,14 @@ namespace Statistics
             int[] mistaked = mostMistaked.Distinct().ToArray();
             for (int i = 0; i < mistaked.Length; i++)
             {
-                missionStats.Add(new MissionStat(mistaked[i], MissionGeneratorCollection.GetMissionByNum(mistaked[i]).Generate(), mostMistaked));
+                missionStats.Add(new MissionStat(mistaked[i], MissionGeneratorCollection.GetMissionByNum(mistaked[i]).Generate(), GetAllMissions(allUsers)));
             }
 
             for (int i = 0; i < missionStats.Count; i++)
             {
                 for (int j = i; j < missionStats.Count; j++)
                 {
-                    if (missionStats[i].NumOfMistaken < missionStats[j].NumOfMistaken)
+                    if (missionStats[i].SuccessPercent < missionStats[j].SuccessPercent)
                     {
                         var temp = missionStats[i];
                         missionStats[i] = missionStats[j];
@@ -94,6 +122,19 @@ namespace Statistics
             }
 
             return missionStats;
+        }
+
+        private static MissionBase[] GetAllMissions(List<User> allUsers)
+        {
+            List<MissionBase> res = new List<MissionBase>();
+            foreach (var user in allUsers)
+            {
+                foreach (var test in user.UserTests)
+                {
+                    res.AddRange(test.AllMissions);
+                }
+            }
+            return res.ToArray();
         }
 
         static int TotalMissionsCount(List<Test> allTests)
@@ -144,7 +185,7 @@ namespace Statistics
         removing:
             for (int i = 0; i < tests.Count; i++)
             {
-                if (tests[i].PercentSolved < 30)
+                if (tests[i].PercentSolved < 25)
                 {
                     tests.Remove(tests[i]);
                     goto removing;
