@@ -5,6 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.Drawing;
 
 namespace Statistics
 {
@@ -58,9 +63,12 @@ namespace Statistics
                 catch { }
             }
         }
-        static string fileName = "result.txt";
+        static string fileName = "result.xlsx";
+        static string fileNameStudents = "students.txt";
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Console.InputEncoding = Encoding.UTF8;
+
             Console.WriteLine($"Сохранение статистики в файл {fileName}");
             Console.Write("Введите путь к папке с *.bin файлами: ");
             string pathToFolder = Console.ReadLine();
@@ -69,33 +77,63 @@ namespace Statistics
             var allUsers = UserCollection.Instance.DeserializeFolder(pathToFolder);
             List<Test> allTests = GetAllTests(allUsers);
 
-            try
-            {
-                File.Delete("result.txt");
-            }
-            catch { }
 
             Console.WriteLine("Начало сбора статистики");
-            StreamWriter sw = new StreamWriter("result.txt", false);
 
-            sw.WriteLine($"Ученики ({allUsers.Count}), по которым собиралась статистика:");
-            GetUserNames(allUsers).ToList().ForEach(x => sw.WriteLine("• " + x));
-            Console.WriteLine("Ученики, по которым собиралась статистика записаны");
+            Console.WriteLine($"Учеников - {allUsers.Count}");
+            string[] StudentsNames = GetUserNames(allUsers);
+            File.WriteAllLines(fileNameStudents, StudentsNames, Encoding.UTF8);
+            Console.WriteLine($"Ученики, по которым собиралась статистика записаны в файл {fileNameStudents}");
 
-            sw.WriteLine($"Средняя оценка по всем ученикам: {AverageMark(allTests).ToString("0.00")}");
-            sw.WriteLine($"Всего заданий решено: {TotalMissionsCount(allTests)}");
+            Console.WriteLine($"Средняя оценка по всем ученикам: {AverageMark(allTests).ToString("0.00")}");
+            Console.WriteLine($"Всего заданий решено: {TotalMissionsCount(allTests)}");
 
-            Console.WriteLine("Запись заданий с наибольшим количеством ошибок");
+            Console.WriteLine("Формирование информации о заданиях");
             List<MissionStat> missionStats = GetMissionStats(allUsers);
-            sw.WriteLine("Больше всего ошибок допущено в этих заданиях");
-            foreach (var stat in missionStats)
-            {
-                sw.WriteLine($"\"{stat.NumOfMission}. {stat.mission.Title}\" - ошибок {stat.NumOfWrongAnswers}, верных ответов {stat.NumOfRightAnswers}, процент успеха {stat.SuccessPercent.ToString("0.00 %")}.");
-            }
-            sw.Flush();
-            sw.Close();
-            Console.WriteLine($"Вся информация записана в файл {fileName}");
+            //$"\"{stat.NumOfMission}. {stat.mission.Title}\" - ошибок {stat.NumOfWrongAnswers}, верных ответов {stat.NumOfRightAnswers}, процент успеха {stat.SuccessPercent.ToString("0.00 %")}."
+            WriteToExel(missionStats);
+            Console.WriteLine($"Информация записана в файл {fileName}");
             Console.ReadLine();
+        }
+
+        private static void WriteToExel(List<MissionStat> missionStats)
+        {
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+            using (var p = new ExcelPackage())
+            {
+                var ws = p.Workbook.Worksheets.Add("Статистика");
+
+                ws.Cells[1, 1].Value = "Название задания";
+                ws.Cells[1, 2].Value = "Допущено ошибок";
+                ws.Cells[1, 3].Value = "Правильных ответов";
+                ws.Cells[1, 4].Value = "Процент успеха";
+
+                for (int i = 0; i < missionStats.Count; i++)
+                {
+                    string name = $"{missionStats[i].NumOfMission}. {missionStats[i].mission.Title}";
+                    int mistakes = missionStats[i].NumOfWrongAnswers;
+                    int right = missionStats[i].NumOfRightAnswers;
+                    double success = missionStats[i].SuccessPercent;
+
+                    int row = i + 2;
+
+                    ws.Cells[row, 1].Value = name;
+                    ws.Cells[row, 2].Value = mistakes;
+                    ws.Cells[row, 3].Value = right;
+                    ws.Cells[row, 4].Style.Numberformat.Format = "0.00%";
+                    ws.Cells[row, 4].Value = success;
+                }
+                for (int i = 1; i <= 4; i++)
+                {
+                    ws.Column(i).AutoFit();
+                }
+
+
+                p.SaveAs(new FileInfo(fileName));
+            }
         }
 
         private static List<MissionStat> GetMissionStats(List<User> allUsers)
