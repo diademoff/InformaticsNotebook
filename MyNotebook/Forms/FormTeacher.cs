@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace MyNotebook.Forms
 {
-    public partial class TeacherForm : Form
+    public partial class FormTeacher : Form
     {
         List<User> Users = new List<User>();
-        public TeacherForm()
+        public FormTeacher()
         {
             InitializeComponent();
 
@@ -46,7 +46,7 @@ namespace MyNotebook.Forms
         }
         private void Btn_createTest_Click(object sender, System.EventArgs e)
         {
-            SelectMissionsForm smf = new SelectMissionsForm();
+            FormSelectMissions smf = new FormSelectMissions();
             smf.ShowDialog();
         }
 
@@ -57,7 +57,7 @@ namespace MyNotebook.Forms
                 return;
             }
             var t = listbx_users.SelectedItem.ToString().Split('-');
-            UserInfoForm uif = new UserInfoForm(GetUser(t[0].Trim(), t[1].Trim()));
+            FormUserInfo uif = new FormUserInfo(GetUser(t[0].Trim(), t[1].Trim()));
             uif.ShowDialog();
         }
         void LockForm()

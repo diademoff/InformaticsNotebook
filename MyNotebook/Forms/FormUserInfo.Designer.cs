@@ -1,6 +1,6 @@
 ﻿namespace MyNotebook.Forms
 {
-    partial class UserInfoForm
+    partial class FormUserInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserInfoForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserInfo));
             this.lbl_name = new System.Windows.Forms.Label();
             this.lbl_class = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();

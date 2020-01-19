@@ -66,53 +66,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions.cs" />
-    <Compile Include="Forms\AboutBox.cs">
+    <Compile Include="Forms\FormAboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AboutBox.Designer.cs">
-      <DependentUpon>AboutBox.cs</DependentUpon>
+    <Compile Include="Forms\FormAboutBox.Designer.cs">
+      <DependentUpon>FormAboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\BitmapViewer.cs">
+    <Compile Include="Forms\FormBitmapViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BitmapViewer.Designer.cs">
-      <DependentUpon>BitmapViewer.cs</DependentUpon>
+    <Compile Include="Forms\FormBitmapViewer.Designer.cs">
+      <DependentUpon>FormBitmapViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MissionSolveForm.cs">
+    <Compile Include="Forms\FormMissionSolve.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MissionSolveForm.Designer.cs">
-      <DependentUpon>MissionSolveForm.cs</DependentUpon>
+    <Compile Include="Forms\FormMissionSolve.Designer.cs">
+      <DependentUpon>FormMissionSolve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SelectMissionsForm.cs">
+    <Compile Include="Forms\FormSelectMissions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SelectMissionsForm.Designer.cs">
-      <DependentUpon>SelectMissionsForm.cs</DependentUpon>
+    <Compile Include="Forms\FormSelectMissions.Designer.cs">
+      <DependentUpon>FormSelectMissions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SelectStartType.cs">
+    <Compile Include="Forms\FormSelectStartType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SelectStartType.Designer.cs">
-      <DependentUpon>SelectStartType.cs</DependentUpon>
+    <Compile Include="Forms\FormSelectStartType.Designer.cs">
+      <DependentUpon>FormSelectStartType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TeacherForm.cs">
+    <Compile Include="Forms\FormTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TeacherForm.Designer.cs">
-      <DependentUpon>TeacherForm.cs</DependentUpon>
+    <Compile Include="Forms\FormTeacher.Designer.cs">
+      <DependentUpon>FormTeacher.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TestResultForm.cs">
+    <Compile Include="Forms\FormTestResult.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TestResultForm.Designer.cs">
-      <DependentUpon>TestResultForm.cs</DependentUpon>
+    <Compile Include="Forms\FormTestResult.Designer.cs">
+      <DependentUpon>FormTestResult.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UserInfoForm.cs">
+    <Compile Include="Forms\FormUserInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\UserInfoForm.Designer.cs">
-      <DependentUpon>UserInfoForm.cs</DependentUpon>
+    <Compile Include="Forms\FormUserInfo.Designer.cs">
+      <DependentUpon>FormUserInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\GitUpdater.cs" />
     <Compile Include="Models\MatchElement.cs" />
@@ -124,11 +124,11 @@
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\MissionTypes\TextMission.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Forms\UsersForm.cs">
+    <Compile Include="Forms\FormUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\UsersForm.Designer.cs">
-      <DependentUpon>UsersForm.cs</DependentUpon>
+    <Compile Include="Forms\FormUsers.Designer.cs">
+      <DependentUpon>FormUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,29 +156,29 @@
     <Compile Include="ViewModels\Mission9.cs" />
     <Compile Include="ViewModels\MissionGeneratorCollection.cs" />
     <Compile Include="ViewModels\UserCollection.cs" />
-    <EmbeddedResource Include="Forms\AboutBox.resx">
-      <DependentUpon>AboutBox.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormAboutBox.resx">
+      <DependentUpon>FormAboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BitmapViewer.resx">
-      <DependentUpon>BitmapViewer.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormBitmapViewer.resx">
+      <DependentUpon>FormBitmapViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MissionSolveForm.resx">
-      <DependentUpon>MissionSolveForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormMissionSolve.resx">
+      <DependentUpon>FormMissionSolve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SelectMissionsForm.resx">
-      <DependentUpon>SelectMissionsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormSelectMissions.resx">
+      <DependentUpon>FormSelectMissions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SelectStartType.resx">
-      <DependentUpon>SelectStartType.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormSelectStartType.resx">
+      <DependentUpon>FormSelectStartType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TeacherForm.resx">
-      <DependentUpon>TeacherForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormTeacher.resx">
+      <DependentUpon>FormTeacher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TestResultForm.resx">
-      <DependentUpon>TestResultForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormTestResult.resx">
+      <DependentUpon>FormTestResult.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UserInfoForm.resx">
-      <DependentUpon>UserInfoForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormUserInfo.resx">
+      <DependentUpon>FormUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -190,8 +190,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\UsersForm.resx">
-      <DependentUpon>UsersForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormUsers.resx">
+      <DependentUpon>FormUsers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -220,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="ViewModels\howToAddMission.md" />
     <None Include="Resources\videocard1.jpg" />
     <None Include="Resources\videocard2.jpg" />
     <None Include="Resources\soundcard3.jpg" />

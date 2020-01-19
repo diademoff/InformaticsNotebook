@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace MyNotebook.Forms
 {
-    public partial class SelectStartType : Form
+    public partial class FormSelectStartType : Form
     {
-        public SelectStartType()
+        public FormSelectStartType()
         {
             InitializeComponent();
             TopMost = true;
@@ -52,7 +52,7 @@ namespace MyNotebook.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             this.FullHideForm();
-            UsersForm uf = new UsersForm();
+            FormUsers uf = new FormUsers();
             uf.ShowDialog();
             Close();
         }
@@ -60,7 +60,7 @@ namespace MyNotebook.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             this.FullHideForm();
-            TeacherForm tf = new TeacherForm();
+            FormTeacher tf = new FormTeacher();
             tf.ShowDialog();
             Close();
         }

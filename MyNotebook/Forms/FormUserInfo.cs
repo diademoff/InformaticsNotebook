@@ -3,10 +3,10 @@ using System.Windows.Forms;
 
 namespace MyNotebook.Forms
 {
-    public partial class UserInfoForm : Form
+    public partial class FormUserInfo : Form
     {
         User User;
-        public UserInfoForm(User user)
+        public FormUserInfo(User user)
         {
             InitializeComponent();
 
@@ -47,7 +47,7 @@ namespace MyNotebook.Forms
         private void btn_moreInfo_Click(object sender, EventArgs e)
         {
             int index = Convert.ToInt32(listBox.SelectedItem.ToString().Split(' ')[0]);
-            TestResultForm testResultForm = new TestResultForm(User.UserTests[index], User);
+            FormTestResult testResultForm = new FormTestResult(User.UserTests[index], User);
             testResultForm.ShowDialog();
         }
 

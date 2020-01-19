@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace MyNotebook.Forms
 {
-    public partial class TestResultForm : Form
+    public partial class FormTestResult : Form
     {
         Test Test;
         User User;
-        public TestResultForm(Test test, User user)
+        public FormTestResult(Test test, User user)
         {
             InitializeComponent();
             Test = test;
@@ -158,7 +158,7 @@ namespace MyNotebook.Forms
         {
             var reSolvedTest = Test.CreateCorrectMistakesTest(Test);
             reSolvedTest.InitTest();
-            MissionSolveForm missionSolveForm = new MissionSolveForm(User, reSolvedTest);
+            FormMissionSolve missionSolveForm = new FormMissionSolve(User, reSolvedTest);
             missionSolveForm.ShowDialog();
         }
     }

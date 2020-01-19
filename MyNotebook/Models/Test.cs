@@ -103,6 +103,9 @@ namespace MyNotebook.Models
             }
         }
 
+        /// <summary>
+        /// Перезаполняет List<MissionBase> AllMissions с помощью AllMissonsGenerator
+        /// </summary>
         public void RegenerateMissions()
         {
             for (int i = 0; i < AllMissonsGenerator.Count; i++)
@@ -197,7 +200,7 @@ namespace MyNotebook.Models
         }
 
         /// <summary>
-        /// Создать тест для пропработки ошибок
+        /// Создать тест для проработки ошибок
         /// </summary>
         internal Test CreateCorrectMistakesTest(Test testToCorrect)
         {

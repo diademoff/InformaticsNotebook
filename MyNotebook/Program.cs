@@ -29,7 +29,7 @@ namespace MyNotebook
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SelectStartType());
+            Application.Run(new FormSelectStartType());
         }
     }
 }

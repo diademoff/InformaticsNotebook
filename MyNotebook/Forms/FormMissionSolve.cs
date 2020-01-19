@@ -9,13 +9,13 @@ using System.Windows.Forms;
 
 namespace MyNotebook.Forms
 {
-    public partial class MissionSolveForm : Form
+    public partial class FormMissionSolve : Form
     {
         int MissionsLeft => Test.AllMissions.Count - Test.NumOfSolved;
         public User CurrentUser { get; set; }
         public Test Test;
 
-        public MissionSolveForm(User user, Test test)
+        public FormMissionSolve(User user, Test test)
         {
             InitializeComponent();
 
@@ -150,7 +150,7 @@ namespace MyNotebook.Forms
 
             this.FullHideForm();
             Test.FinishTest();
-            TestResultForm trf = new TestResultForm(Test, CurrentUser);
+            FormTestResult trf = new FormTestResult(Test, CurrentUser);
             trf.ShowDialog();
             this.Close();
         }
@@ -264,7 +264,7 @@ namespace MyNotebook.Forms
 
             this.FullHideForm();
             Test.FinishTest();
-            TestResultForm trf = new TestResultForm(Test, CurrentUser);
+            FormTestResult trf = new FormTestResult(Test, CurrentUser);
             trf.ShowDialog();
             this.Close();
         }
@@ -363,7 +363,7 @@ namespace MyNotebook.Forms
 
             Test.FinishTest();
             this.FullHideForm();
-            TestResultForm trf = new TestResultForm(Test, CurrentUser);
+            FormTestResult trf = new FormTestResult(Test, CurrentUser);
             trf.ShowDialog();
             this.Close();
         }
