@@ -1,6 +1,6 @@
 ﻿namespace MyNotebook.Forms
 {
-    partial class MissionSolveForm
+    partial class FormMissionSolve
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MissionSolveForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMissionSolve));
             this.lbl_user = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.lbl_isCalcBlockEnabled = new System.Windows.Forms.Label();

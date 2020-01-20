@@ -107,7 +107,7 @@ namespace MyNotebook.Models.MissionTypes
                     {
                         Bitmap clone = currPicture.Clone() as Bitmap;
                         isAnyPictureOpend = true;
-                        var win = new BitmapViewer(clone)
+                        var win = new FormBitmapViewer(clone)
                         {
                             TopMost = true
                         };

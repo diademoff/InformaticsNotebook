@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace MyNotebook
 {
-    public partial class UsersForm : Form
+    public partial class FormUsers : Form
     {
-        public UsersForm()
+        public FormUsers()
         {
             InitializeComponent();
 
@@ -109,7 +109,7 @@ namespace MyNotebook
                     disableCalc = test.IsCalcBlockEnabled;
                     selectedUser.UserTests.Add(test);
                     this.FullHideForm();
-                    MissionSolveForm msf = new MissionSolveForm(selectedUser, test);
+                    FormMissionSolve msf = new FormMissionSolve(selectedUser, test);
                     if (test.ShowType == TestShowType.OnOneForm)
                     {
                         msf.ShowDialog();
@@ -142,7 +142,7 @@ namespace MyNotebook
 
         private void Lbl_about_Click(object sender, System.EventArgs e)
         {
-            AboutBox aboutBox = new AboutBox();
+            FormAboutBox aboutBox = new FormAboutBox();
             aboutBox.ShowDialog();
         }
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace MyNotebook.Forms
 {
-    public partial class SelectMissionsForm : Form
+    public partial class FormSelectMissions : Form
     {
         List<int> selectedNumsOfMissions
         {
@@ -48,7 +48,7 @@ namespace MyNotebook.Forms
         }
 
         List<CategoryControl> CategoryControls = new List<CategoryControl>();
-        public SelectMissionsForm()
+        public FormSelectMissions()
         {
             InitializeComponent();
 
@@ -187,7 +187,7 @@ namespace MyNotebook.Forms
 
             Test test = GetCreatedTest();
             test.RegenerateMissions();
-            MissionSolveForm form = new MissionSolveForm(new User("Предпросмотр", "*"), test);
+            FormMissionSolve form = new FormMissionSolve(new User("Предпросмотр", "*"), test);
             if (test.ShowType != TestShowType.OnOneForm)
             {
                 try

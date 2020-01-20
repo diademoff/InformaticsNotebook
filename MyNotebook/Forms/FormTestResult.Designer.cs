@@ -1,6 +1,6 @@
 ﻿namespace MyNotebook.Forms
 {
-    partial class TestResultForm
+    partial class FormTestResult
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestResultForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTestResult));
             this.lbl_state = new System.Windows.Forms.Label();
             this.lbl_timeStart = new System.Windows.Forms.Label();
             this.lbl_timeEnd = new System.Windows.Forms.Label();

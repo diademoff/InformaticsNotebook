@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace MyNotebook.Forms
 {
-    public partial class BitmapViewer : Form
+    public partial class FormBitmapViewer : Form
     {
         Graphics graphics;
         private bool isPressed = false;
-        public BitmapViewer(Bitmap bitmap)
+        public FormBitmapViewer(Bitmap bitmap)
         {
             InitializeComponent();
 

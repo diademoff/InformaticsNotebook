@@ -1,6 +1,6 @@
 ﻿namespace MyNotebook
 {
-    partial class UsersForm
+    partial class FormUsers
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUsers));
             this.label1 = new System.Windows.Forms.Label();
             this.txtbx_name = new System.Windows.Forms.TextBox();
             this.txtbx_class = new System.Windows.Forms.TextBox();

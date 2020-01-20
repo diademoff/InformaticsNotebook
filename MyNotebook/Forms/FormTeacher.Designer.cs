@@ -1,6 +1,6 @@
 ﻿namespace MyNotebook.Forms
 {
-    partial class TeacherForm
+    partial class FormTeacher
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeacherForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTeacher));
             this.btn_info = new System.Windows.Forms.Button();
             this.btn_createTest = new System.Windows.Forms.Button();
             this.listbx_users = new System.Windows.Forms.ListBox();

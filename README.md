@@ -1,22 +1,6 @@
 # InformaticsNotebook
 
-## Для пользователей
+## [Скачать](https://github.com/diademoff/InformaticsNotebook/raw/master/MyNotebook/Build/MyNotebook.exe)
 
-[Download here](https://github.com/diademoff/InformaticsNotebook/raw/master/MyNotebook/Build/MyNotebook.exe)
+## Подробнее [Wiki](https://github.com/diademoff/InformaticsNotebook/wiki/%D0%9E%D0%B1%D1%89%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F)
 
-## Создать тест
-
-![Create test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/create%20test.gif)
-
-## Решить задания теста
-
-![Solve test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/solve%20test.gif)
-
-
-## Смотреть статистику
-
-![Solve test](https://github.com/diademoff/InformaticsNotebook/raw/master/Resources/gif/watch%20stat.gif)
-
-## Для разработчиков
-
-![UML diagram](https://github.com/diademoff/InformaticsNotebook/blob/master/Resources/diagram.png)
