@@ -10,6 +10,7 @@ using System.Text;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Statistics
 {
@@ -65,16 +66,36 @@ namespace Statistics
         }
         static string fileName = "result.xlsx";
         static string fileNameStudents = "students.txt";
+        [STAThread]
         static void Main(string[] args)
         {
             Console.OutputEncoding = Console.InputEncoding = Encoding.UTF8;
 
             Console.WriteLine($"Сохранение статистики в файл {fileName}");
-            Console.Write("Введите путь к папке с *.bin файлами: ");
-            string pathToFolder = Console.ReadLine();
+
+            Console.Write("Выберете путь к папке с *.bin файлами: ");
+            string pathToFolder = "";
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                if (fbd.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+                else
+                {
+                    pathToFolder = fbd.SelectedPath;
+                }
+            }
+            Console.WriteLine(pathToFolder);
 
             Console.WriteLine("Десериализация папки");
-            var allUsers = UserCollection.Instance.DeserializeFolder(pathToFolder);
+            List<User> allUsers = UserCollection.Instance.DeserializeFolder(pathToFolder);
+
+            Console.WriteLine("Выборка учеников");
+            FormSelectUsers selectUsers = new FormSelectUsers(allUsers);
+            selectUsers.ShowDialog();
+            allUsers = selectUsers.ResultUsers;
+
             List<Test> allTests = GetAllTests(allUsers);
 
 

@@ -150,5 +150,10 @@ namespace MyNotebook
         {
             
         }
+
+        private void txtbx_class_TextChanged(object sender, System.EventArgs e)
+        {
+            txtbx_class.Text = string.Join("", txtbx_class.Text.Split(' '));
+        }
     }
 }

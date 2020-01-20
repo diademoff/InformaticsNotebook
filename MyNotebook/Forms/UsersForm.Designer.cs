@@ -61,9 +61,11 @@
             // 
             this.txtbx_class.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.31F);
             this.txtbx_class.Location = new System.Drawing.Point(112, 61);
+            this.txtbx_class.MaxLength = 3;
             this.txtbx_class.Name = "txtbx_class";
             this.txtbx_class.Size = new System.Drawing.Size(190, 38);
             this.txtbx_class.TabIndex = 3;
+            this.txtbx_class.TextChanged += new System.EventHandler(this.txtbx_class_TextChanged);
             // 
             // label2
             // 
