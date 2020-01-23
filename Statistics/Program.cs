@@ -97,21 +97,25 @@ namespace Statistics
             allUsers = selectUsers.ResultUsers;
 
             List<Test> allTests = GetAllTests(allUsers);
-
+            FormSelectTests selectTests = new FormSelectTests(allTests);
+            if(selectTests.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            allTests = selectTests.ResultTests;
 
             Console.WriteLine("Начало сбора статистики");
+            Console.WriteLine($"Отобрано учеников - {allUsers.Count}");
+            Console.WriteLine($"Отобрано тестов: {allTests.Count}");
 
-            Console.WriteLine($"Учеников - {allUsers.Count}");
             string[] StudentsNames = GetUserNames(allUsers);
             File.WriteAllLines(fileNameStudents, StudentsNames, Encoding.UTF8);
             Console.WriteLine($"Ученики, по которым собиралась статистика записаны в файл {fileNameStudents}");
 
             Console.WriteLine($"Средняя оценка по всем ученикам: {AverageMark(allTests).ToString("0.00")}");
-            Console.WriteLine($"Всего заданий решено: {TotalMissionsCount(allTests)}");
 
             Console.WriteLine("Формирование информации о заданиях");
             List<MissionStat> missionStats = GetMissionStats(allUsers);
-            //$"\"{stat.NumOfMission}. {stat.mission.Title}\" - ошибок {stat.NumOfWrongAnswers}, верных ответов {stat.NumOfRightAnswers}, процент успеха {stat.SuccessPercent.ToString("0.00 %")}."
             WriteToExel(missionStats);
             Console.WriteLine($"Информация записана в файл {fileName}");
             Console.ReadLine();
@@ -240,15 +244,6 @@ namespace Statistics
             foreach (var user in users)
             {
                 tests.AddRange(user.UserTests);
-            }
-        removing:
-            for (int i = 0; i < tests.Count; i++)
-            {
-                if (tests[i].PercentSolved < 25)
-                {
-                    tests.Remove(tests[i]);
-                    goto removing;
-                }
             }
             tests = tests.Distinct().ToList();
             return tests;
