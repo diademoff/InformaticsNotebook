@@ -61,6 +61,8 @@ namespace MyNotebook.Forms
                 CategoryControls.Add(categoryControl);
                 yPosition += 35;
             }
+
+            RefreshUI();
         }
 
         void Btn_save_Click(object sender, EventArgs e)
@@ -338,6 +340,9 @@ namespace MyNotebook.Forms
                 Text = $"{generatedMission.Title}",
                 AutoSize = true
             };
+#if DEBUG
+            this.CheckBox.Text = $"{NumOfMission}. {this.CheckBox.Text}";
+#endif
             Numeric = new NumericUpDown()
             {
                 Location = new Point(CheckBox.Location.X + 450, CheckBox.Location.Y),
