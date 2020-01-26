@@ -208,10 +208,8 @@ namespace MyNotebook.Models
             string html = "";
             html += $"<h1>{Tasktext}</h1>";
             html += $"<p>Время затрачено: {TimeSpanOnMissionSeconds} секунд</p>";
-            for (int i = 0; i < Variants.Length; i++)
-            {
-                html += $"<p>{Variants[i]} - Ответ дан: {AnswerGiven[i]}, ответ ожидался: {AnswerExpected[i]}</p>";
-            }
+            html += $"<p>Варианты: {string.Join(", " ,Variants)}</p>";
+            html += $"<p>Ответ дан: {String_AnswerGiven}, ответ ожидался: {String_AnswerExpecting}</p>";
             return html;
         }
 

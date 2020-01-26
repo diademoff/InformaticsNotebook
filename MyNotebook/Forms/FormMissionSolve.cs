@@ -14,11 +14,11 @@ namespace MyNotebook.Forms
         int MissionsLeft => Test.AllMissions.Count - Test.NumOfSolved;
         public User CurrentUser { get; set; }
         public Test Test;
-
-        public FormMissionSolve(User user, Test test)
+        public bool IsMistakesCorrection;
+        public FormMissionSolve(User user, Test test, bool isMistakesCorrection)
         {
             InitializeComponent();
-
+            IsMistakesCorrection = isMistakesCorrection;
             lbl_isTopMost.ForeColor = Color.Red;
             lbl_isTopMost.Text = "Монопольный режим выключен";
             if (test.IsTopMost)
@@ -100,8 +100,11 @@ namespace MyNotebook.Forms
 
                 previewForm.Controls["pnl_status"].Controls.Add(new Label()
                 {
-                    Location = new Point(3, 0),
-                    Text = CurrentUser.Name
+                    Location = new Point(0, 0),
+                    Font = new Font("Arial", 14f),
+                    AutoSize = true,
+                    Text = CurrentUser.Name,
+                    Name = "lbl_name"
                 });
 
                 if (test.IsTopMost)
@@ -128,6 +131,8 @@ namespace MyNotebook.Forms
                 MainTab.BringToFront();
                 MainTab.BringToFront();
                 MainTab.BringToFront();
+                previewForm.Controls["pnl_status"].Controls["lbl_name"].BringToFront();
+                previewForm.Controls["pnl_status"].Controls["lbl_name"].BringToFront();
 
                 // показываем форму
                 new Task(() =>
@@ -147,12 +152,19 @@ namespace MyNotebook.Forms
                 }).Start();
                 previewForm.ShowDialog();
             }
+            if (!IsMistakesCorrection)
+            {
+                ShowResult();
+            }
+            this.Close();
+        }
 
+        private void ShowResult()
+        {
             this.FullHideForm();
             Test.FinishTest();
             FormTestResult trf = new FormTestResult(Test, CurrentUser);
             trf.ShowDialog();
-            this.Close();
         }
 
         Random rnd = new Random();
@@ -262,10 +274,11 @@ namespace MyNotebook.Forms
                 //resultTabControl.TabPages.Add(subTab.TabPages[0]);
             }
 
-            this.FullHideForm();
-            Test.FinishTest();
-            FormTestResult trf = new FormTestResult(Test, CurrentUser);
-            trf.ShowDialog();
+            if (!IsMistakesCorrection)
+            {
+                ShowResult();
+            }
+
             this.Close();
         }
 
@@ -361,10 +374,10 @@ namespace MyNotebook.Forms
                 }
             }
 
-            Test.FinishTest();
-            this.FullHideForm();
-            FormTestResult trf = new FormTestResult(Test, CurrentUser);
-            trf.ShowDialog();
+            if (!IsMistakesCorrection)
+            {
+                ShowResult();
+            }
             this.Close();
         }
     }

@@ -26,6 +26,7 @@ namespace MyNotebook.Models
         public abstract string String_AnswerExpecting { get; set; }
         public abstract string String_AnswerGiven { get; }
         public virtual int MaxNumInTest { get; set; } = 10;
+        public int TimeNeedToSolveMissionSeconds { get; set; }
 
         ~MissionBase()
         {

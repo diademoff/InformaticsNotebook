@@ -109,7 +109,7 @@ namespace MyNotebook
                     disableCalc = test.IsCalcBlockEnabled;
                     selectedUser.UserTests.Add(test);
                     this.FullHideForm();
-                    FormMissionSolve msf = new FormMissionSolve(selectedUser, test);
+                    FormMissionSolve msf = new FormMissionSolve(selectedUser, test, false);
                     if (test.ShowType == TestShowType.OnOneForm)
                     {
                         msf.ShowDialog();

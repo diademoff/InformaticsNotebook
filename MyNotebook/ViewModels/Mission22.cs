@@ -27,7 +27,10 @@ namespace MyNotebook.ViewModels
                                                                        "граниченный набор цветов, доступный графической системе компьютера" }));
             elements.Add(new MatchElement("Глубина цвета", new[] { "это термин компьютерной графики, означающий количество бит (объём памяти), используемое для хранения и представления цвета при кодировании одного пикселя растровой графики или видеоизображения" }));
 
-            return new MatchMission(22, title, elements.ToArray());
+            return new MatchMission(22, title, elements.ToArray())
+            {
+                TimeNeedToSolveMissionSeconds = 415
+            };
         }
     }
 }

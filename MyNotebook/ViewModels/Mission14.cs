@@ -31,7 +31,10 @@ namespace MyNotebook.ViewModels
                 answ = Convert.ToString(Math.Min(Math.Min(a, b), c));
             }
 
-            return new TextMission(14, "Среди трёх чисел найти наименьшее/наибольшее", q, answ);
+            return new TextMission(14, "Среди трёх чисел найти наименьшее/наибольшее", q, answ)
+            {
+                TimeNeedToSolveMissionSeconds = 60
+            };
         }
     }
 }

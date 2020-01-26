@@ -91,7 +91,8 @@ namespace MyNotebook.Forms
             {
                 IsTopMost = checkbx_topMost.Checked,
                 ShowAnswerAtOnce = checkbx_showAnswerAtOnce.Checked,
-                RandomOrder = checkbx_randomOrder.Checked
+                RandomOrder = checkbx_randomOrder.Checked,
+                EnableMistakesCorrection = checkbx_mistakesCorrect.Checked
             };
             if (checkbx_onebyoneBlocks.Checked)
             {
@@ -111,6 +112,16 @@ namespace MyNotebook.Forms
         void RefreshUI()
         {
             lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfEachMission.Sum()}";
+            int timeNeed = 0;
+            for (int i = 0; i < selectedNumsOfMissions.Count; i++)
+            {
+                var mission = MissionGeneratorCollection.GetMissionByNum(selectedNumsOfMissions[i]);
+                for (int j = 0; j < numOfEachMission[i]; j++)
+                {
+                    timeNeed += mission.Generate().TimeNeedToSolveMissionSeconds;
+                }
+            }
+            lbl_timeNeed.Text = $"Времяни потребуется: {timeNeed / 60} мин";
 
             int prepos = panel_missions.AutoScrollPosition.Y;
             panel_missions.AutoScroll = false;
@@ -189,7 +200,7 @@ namespace MyNotebook.Forms
 
             Test test = GetCreatedTest();
             test.RegenerateMissions();
-            FormMissionSolve form = new FormMissionSolve(new User("Предпросмотр", "*"), test);
+            FormMissionSolve form = new FormMissionSolve(new User("Предпросмотр", "*"), test, false);
             if (test.ShowType != TestShowType.OnOneForm)
             {
                 try

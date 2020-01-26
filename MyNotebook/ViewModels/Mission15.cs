@@ -14,8 +14,10 @@ namespace MyNotebook.ViewModels
             var q = $"Переведите число {FromDec(num, n1)} из {n1}-ой в {n2}-ую.";
 
             var answer = FromDec(num, n2);
-
-            return new TextMission(15, "Перевод между любыми системами счисления", q, answer);
+            //TimeNeedToSolveMissionSeconds
+            var mission = new TextMission(15, "Перевод между любыми системами счисления", q, answer);
+            mission.TimeNeedToSolveMissionSeconds = 426;
+            return mission;
         }
 
         string FromDec(long n, int p)

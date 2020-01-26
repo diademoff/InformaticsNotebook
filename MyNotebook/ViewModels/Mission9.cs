@@ -111,7 +111,8 @@ namespace MyNotebook.ViewModels
             MissionBase mb = new SelectMission(9, title, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray())
             {
                 Tooltip = "Выбрать устройства ввода или вывода",
-                MaxNumInTest = 2
+                MaxNumInTest = 2,
+                TimeNeedToSolveMissionSeconds = 60
             };
             return mb;
         }

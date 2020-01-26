@@ -55,8 +55,9 @@ namespace MyNotebook.ViewModels
                     {
                         continue;
                     }
-
-                    return new TextMission(20, "Скорость передачи данных", q, a.ToString());
+                    var mission = new TextMission(20, "Скорость передачи данных", q, a.ToString());
+                    mission.TimeNeedToSolveMissionSeconds = 592;
+                    return mission;
                 }
             }
         }

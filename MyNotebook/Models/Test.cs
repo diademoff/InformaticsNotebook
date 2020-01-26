@@ -25,6 +25,7 @@ namespace MyNotebook.Models
         public TestShowType ShowType;
         public bool ShowAnswerAtOnce = false;
         public bool RandomOrder = false;
+        public bool EnableMistakesCorrection = false;
         public double PercentSolved
         {
             get
@@ -204,7 +205,8 @@ namespace MyNotebook.Models
         /// </summary>
         internal Test CreateCorrectMistakesTest(Test testToCorrect)
         {
-            Test result = new Test();
+            Test result = testToCorrect.MemberwiseClone() as Test;
+
             result.AllMissions = new List<MissionBase>();
             for (int i = 0; i < result.AllMissonsGenerator.Count; i++)
             {

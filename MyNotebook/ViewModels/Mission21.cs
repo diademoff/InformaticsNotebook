@@ -67,7 +67,7 @@ namespace MyNotebook.ViewModels
                     while (true)
                     {
                         int x = rnd.Next(2, 6);
-                        i = rnd.Next(2, 9);
+                        i = rnd.Next(1, 6);
                         int j = (int)Math.Pow(2, rnd.Next(2, 9));
 
                         q = $"Какой объём видеопамяти в килобайтах необходим для\n" +

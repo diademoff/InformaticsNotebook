@@ -1,4 +1,5 @@
 ﻿using MyNotebook.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -15,48 +16,7 @@ namespace MyNotebook.Forms
             InitializeComponent();
             Test = test;
             User = user;
-
-            lbl_name.Text = user.Name;
-            lbl_state.Text = test.Finished ? $"Статус: завершен" : "Статус: не завершен";
-            lbl_timeStart.Text = "Время начала: " + test.TimeStart.ToString();
-            lbl_timeEnd.Text = "Время завершения: " + test.TimeFinish.ToString();
-            lbl_wasCalcDiabled.Text = test.IsCalcBlockEnabled ? "Калькулятор: заблокирован" : "Калькулятор: не заблокирован";
-            lbl_timeSpend.Text = "Время затрачено: " + ($"{(Test.TimeFinish - Test.TimeStart).TotalMinutes.ToString("00")}:{(Test.TimeFinish - Test.TimeStart).Seconds.ToString("00")}");
-            lbl_topmost.Text = test.IsTopMost ? "Монополный режим: включен" : "Монополный режим: выключен";
-
-            int numOfSolved = 0;
-            txtbx_log.Text += "Краткая информация:\n";
-            int numOfprinted = 0;
-            for (int i = 0; i < test.AllMissions.Count; i++)
-            {
-                var currMission = test.AllMissions[i];
-                if (currMission.IsSolvedRight())
-                {
-                    numOfSolved += 1;
-                    continue; //skip right solved missions
-                }
-                numOfprinted++;
-                txtbx_log.Text += $"\t{currMission.ToString()}:\n";
-
-                string answerGiven = currMission.String_AnswerGiven;
-
-                txtbx_log.Text += $"\tЗатрачено времени: {currMission.TimeSpanOnMissionSeconds} сек\n";
-                txtbx_log.Text += currMission.IsSolvedRight() ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
-                txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
-            }
-            if (numOfprinted == 0)
-            {
-                txtbx_log.Text += "Всё решено верно";
-            }
-            lbl_solvedPercent.Text = $"Решено: {test.PercentSolved.ToString("#.##")}%";
-            lbl_mark.Text = $"Оценка: {test.Mark}";
-
-            if (Test.Mark == 5)
-            {
-                btn_correctionOfMistakes.Enabled = false;
-            }
-
-            DrawDiagramOnForm((decimal)numOfSolved, (decimal)(test.AllMissions.Count - numOfSolved));
+            UpdateUI();
         }
 
         public void DrawDiagramOnForm(decimal numOfrightAnswers, decimal numOfwrongAnswers)
@@ -156,10 +116,65 @@ namespace MyNotebook.Forms
 
         private void btn_correctionOfMistakes_Click(object sender, System.EventArgs e)
         {
+            txtbx_log.Text += $"Работа над ошибками:\n";
             var reSolvedTest = Test.CreateCorrectMistakesTest(Test);
             reSolvedTest.InitTest();
-            FormMissionSolve missionSolveForm = new FormMissionSolve(User, reSolvedTest);
-            missionSolveForm.ShowDialog();
+            reSolvedTest.TimeStart = new DateTime(Test.TimeStart.Ticks);
+            FormMissionSolve missionSolveForm = new FormMissionSolve(User, reSolvedTest, true);
+            try
+            {
+                missionSolveForm.ShowDialog();
+            }
+            catch { }
+
+            reSolvedTest.TimeFinish = DateTime.Now;
+            this.Test = reSolvedTest;
+            UpdateUI();
+        }
+
+        void UpdateUI()
+        {
+            lbl_name.Text = User.Name;
+            lbl_state.Text = Test.Finished ? $"Статус: завершен" : "Статус: не завершен";
+            lbl_timeStart.Text = "Время начала: " + Test.TimeStart.ToString();
+            lbl_timeEnd.Text = "Время завершения: " + Test.TimeFinish.ToString();
+            lbl_wasCalcDiabled.Text = Test.IsCalcBlockEnabled ? "Калькулятор: заблокирован" : "Калькулятор: не заблокирован";
+            lbl_timeSpend.Text = "Время затрачено: " + ($"{(Test.TimeFinish - Test.TimeStart).TotalMinutes.ToString("00")}:{(Test.TimeFinish - Test.TimeStart).Seconds.ToString("00")}");
+            lbl_topmost.Text = Test.IsTopMost ? "Монополный режим: включен" : "Монополный режим: выключен";
+
+            int numOfSolved = 0;
+            txtbx_log.Text += "Краткая информация:\n";
+            int numOfprinted = 0;
+            for (int i = 0; i < Test.AllMissions.Count; i++)
+            {
+                var currMission = Test.AllMissions[i];
+                if (currMission.IsSolvedRight())
+                {
+                    numOfSolved += 1;
+                    continue; //skip right solved missions
+                }
+                numOfprinted++;
+                txtbx_log.Text += $"\t{currMission.ToString()}:\n";
+
+                string answerGiven = currMission.String_AnswerGiven;
+
+                txtbx_log.Text += $"\tЗатрачено времени: {currMission.TimeSpanOnMissionSeconds} сек\n";
+                txtbx_log.Text += currMission.IsSolvedRight() ? $"\tЗадача решена верно\n" : "\tЗадача решена не верно\n";
+                txtbx_log.Text += $"\tОтвет дан: {answerGiven}\n\n";
+            }
+            if (numOfprinted == 0)
+            {
+                txtbx_log.Text += "Всё решено верно";
+            }
+            lbl_solvedPercent.Text = $"Решено: {Test.PercentSolved.ToString("#.##")}%";
+            lbl_mark.Text = $"Оценка: {Test.Mark}";
+
+            if (Test.Mark == 5 || !Test.EnableMistakesCorrection)
+            {
+                btn_correctionOfMistakes.Enabled = false;
+            }
+
+            DrawDiagramOnForm((decimal)numOfSolved, (decimal)(Test.AllMissions.Count - numOfSolved));
         }
     }
 }

@@ -20,21 +20,7 @@ namespace Statistics
         {
             InitializeComponent();
             this.InputTests = tests;
-
-            monthCalendar.MinDate = DateTime.Now;
-            monthCalendar.MaxDate = DateTime.Now;
-            for (int i = 0; i < tests.Count; i++)
-            {
-                if (tests[i].TimeStart < monthCalendar.MinDate)
-                {
-                    monthCalendar.MinDate = tests[i].TimeStart;
-                }
-                if (tests[i].TimeFinish > monthCalendar.MaxDate)
-                {
-                    monthCalendar.MaxDate = tests[i].TimeFinish;
-                }
-            }
-
+            
             lbl_totalTests.Text = $"Всего тестов: {tests.Count}";
         }
 
@@ -64,12 +50,6 @@ namespace Statistics
             catch { }
             if (test.PercentSolved < min ||
                 test.PercentSolved > max)
-            {
-                return false;
-            }
-            var start = monthCalendar.SelectionRange.Start;
-            var end = monthCalendar.SelectionRange.End;
-            if (test.TimeStart < start || test.TimeStart > end)
             {
                 return false;
             }

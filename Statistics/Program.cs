@@ -135,6 +135,7 @@ namespace Statistics
                 ws.Cells[1, 2].Value = "Допущено ошибок";
                 ws.Cells[1, 3].Value = "Правильных ответов";
                 ws.Cells[1, 4].Value = "Процент успеха";
+                ws.Cells[1, 5].Value = "Времяни затрачено (сек)";
 
                 for (int i = 0; i < missionStats.Count; i++)
                 {
@@ -142,7 +143,7 @@ namespace Statistics
                     int mistakes = missionStats[i].NumOfWrongAnswers;
                     int right = missionStats[i].NumOfRightAnswers;
                     double success = missionStats[i].SuccessPercent;
-
+                    double time = Convert.ToDouble(missionStats[i].TimeSpanMissionSeconds) / (missionStats[i].NumOfRightAnswers + missionStats[i].NumOfWrongAnswers); 
                     int row = i + 2;
 
                     ws.Cells[row, 1].Value = name;
@@ -150,8 +151,9 @@ namespace Statistics
                     ws.Cells[row, 3].Value = right;
                     ws.Cells[row, 4].Style.Numberformat.Format = "0.00%";
                     ws.Cells[row, 4].Value = success;
+                    ws.Cells[row, 5].Value = Convert.ToInt32(time);
                 }
-                for (int i = 1; i <= 4; i++)
+                for (int i = 1; i <= 5; i++)
                 {
                     ws.Column(i).AutoFit();
                 }
@@ -253,8 +255,12 @@ namespace Statistics
             List<string> names = users.Select(x => x.Name).ToList();
             for (int i = 0; i < names.Count; i++)
             {
-                string[] splitted = names[i].Split(' ');
-                names[i] = $"{FirstUpper(splitted[0].ToLower())} {FirstUpper(splitted[1].ToLower())} - {users[i].Class[0]} класс";
+                try
+                { 
+                    string[] splitted = names[i].Split(' ');
+                    names[i] = $"{FirstUpper(splitted[0].ToLower())} {FirstUpper(splitted[1].ToLower())} - {users[i].Class[0]} класс";
+                }
+                catch { }
             }
             names = names.Distinct().ToList();
             names.Sort();

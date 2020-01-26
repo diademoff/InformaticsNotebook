@@ -42,6 +42,8 @@
             this.btn_preview = new System.Windows.Forms.Button();
             this.checkbx_onebyoneMissions = new System.Windows.Forms.CheckBox();
             this.gb_settings = new System.Windows.Forms.GroupBox();
+            this.checkbx_mistakesCorrect = new System.Windows.Forms.CheckBox();
+            this.lbl_timeNeed = new System.Windows.Forms.Label();
             this.gb_settings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -176,6 +178,7 @@
             // gb_settings
             // 
             this.gb_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gb_settings.Controls.Add(this.checkbx_mistakesCorrect);
             this.gb_settings.Controls.Add(this.checkbx_onebyoneMissions);
             this.gb_settings.Controls.Add(this.btn_preview);
             this.gb_settings.Controls.Add(this.checkbx_onebyoneBlocks);
@@ -190,11 +193,33 @@
             this.gb_settings.TabStop = false;
             this.gb_settings.Text = "Настройки";
             // 
-            // SelectMissionsForm
+            // checkbx_mistakesCorrect
+            // 
+            this.checkbx_mistakesCorrect.AutoSize = true;
+            this.checkbx_mistakesCorrect.Location = new System.Drawing.Point(188, 69);
+            this.checkbx_mistakesCorrect.Name = "checkbx_mistakesCorrect";
+            this.checkbx_mistakesCorrect.Size = new System.Drawing.Size(161, 17);
+            this.checkbx_mistakesCorrect.TabIndex = 17;
+            this.checkbx_mistakesCorrect.Text = "Вкл. работу над ошибками";
+            this.checkbx_mistakesCorrect.UseVisualStyleBackColor = true;
+            // 
+            // lbl_timeNeed
+            // 
+            this.lbl_timeNeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_timeNeed.AutoSize = true;
+            this.lbl_timeNeed.Location = new System.Drawing.Point(236, 18);
+            this.lbl_timeNeed.Name = "lbl_timeNeed";
+            this.lbl_timeNeed.Size = new System.Drawing.Size(130, 13);
+            this.lbl_timeNeed.TabIndex = 18;
+            this.lbl_timeNeed.Text = "Времяни потребуется: 0";
+            // 
+            // FormSelectMissions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 555);
+            this.Controls.Add(this.lbl_timeNeed);
             this.Controls.Add(this.gb_settings);
             this.Controls.Add(this.btn_load);
             this.Controls.Add(this.panel_missions);
@@ -202,7 +227,7 @@
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "SelectMissionsForm";
+            this.Name = "FormSelectMissions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выберите задания";
             this.gb_settings.ResumeLayout(false);
@@ -227,5 +252,7 @@
         private System.Windows.Forms.Button btn_preview;
         private System.Windows.Forms.CheckBox checkbx_onebyoneMissions;
         private System.Windows.Forms.GroupBox gb_settings;
+        private System.Windows.Forms.CheckBox checkbx_mistakesCorrect;
+        private System.Windows.Forms.Label lbl_timeNeed;
     }
 }

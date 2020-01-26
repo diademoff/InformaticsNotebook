@@ -45,6 +45,7 @@ namespace MyNotebook.ViewModels
                 generated = new TextMission(2, "Единицы измерения информации", Question, Answer);
             }
             generated.Tooltip = $"Единицы: {string.Join(", ", units)}";
+            generated.TimeNeedToSolveMissionSeconds = 120;
             return generated;
         }
 
