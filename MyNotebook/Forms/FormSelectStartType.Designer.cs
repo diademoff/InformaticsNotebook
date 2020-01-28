@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
+            this.btn_statistics = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -67,11 +68,22 @@
             this.btn_update.Visible = false;
             this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
+            // btn_statistics
+            // 
+            this.btn_statistics.Location = new System.Drawing.Point(12, 338);
+            this.btn_statistics.Name = "btn_statistics";
+            this.btn_statistics.Size = new System.Drawing.Size(136, 23);
+            this.btn_statistics.TabIndex = 11;
+            this.btn_statistics.Text = "Статистика";
+            this.btn_statistics.UseVisualStyleBackColor = true;
+            this.btn_statistics.Click += new System.EventHandler(this.btn_statistics_Click);
+            // 
             // FormSelectStartType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 373);
+            this.Controls.Add(this.btn_statistics);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -89,5 +101,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_update;
+        private System.Windows.Forms.Button btn_statistics;
     }
 }

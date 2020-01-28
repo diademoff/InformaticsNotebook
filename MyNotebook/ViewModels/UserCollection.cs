@@ -9,7 +9,7 @@ namespace MyNotebook.ViewModels
     public class UserCollection
     {
         static string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Notebook";
-        static string dataPath = folder + "\\data.bin";
+        public static string dataPath = folder + "\\data.bin";
 
         public static UserCollection Instance = new UserCollection() { Users = new UserCollection().DeserializeSingle(dataPath) };
         private UserCollection()

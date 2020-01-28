@@ -69,5 +69,12 @@ namespace MyNotebook.Forms
         {
             new GitUpdater().AskAndUpdate();
         }
+
+        private void btn_statistics_Click(object sender, EventArgs e)
+        {
+            this.FullHideForm();
+            new FormStatistics().ShowDialog();
+            this.FullShowForm();
+        }
     }
 }
