@@ -21,6 +21,54 @@ namespace MyNotebook.Forms
             RefreshUI();
         }
 
+        struct MissionStat
+        {
+            public int NumOfMission { get; set; }
+            public int NumOfWrongAnswers { get; set; }
+            public int NumOfRightAnswers { get; set; }
+            public double SuccessPercent { get; set; }
+            public int TimeSpanMissionSeconds { get; set; }
+            public int TotalAnswers
+            {
+                get
+                {
+                    return NumOfWrongAnswers + NumOfRightAnswers;
+                }
+            }
+            public MissionBase mission { get; set; }
+
+            public MissionStat(int numOfMission, MissionBase mission, MissionBase[] missions)
+            {
+                this.mission = mission;
+                NumOfMission = numOfMission;
+                NumOfWrongAnswers = 0;
+                NumOfRightAnswers = 0;
+                TimeSpanMissionSeconds = 0;
+                SuccessPercent = 0;
+
+                foreach (var m in missions)
+                {
+                    if (m.NumOfMission != numOfMission)
+                    {
+                        continue;
+                    }
+                    TimeSpanMissionSeconds += m.TimeSpanOnMissionSeconds;
+                    if (m.IsSolvedRight())
+                    {
+                        NumOfRightAnswers++;
+                    }
+                    else
+                    {
+                        NumOfWrongAnswers++;
+                    }
+                }
+                try
+                {
+                    SuccessPercent = Convert.ToDouble(NumOfRightAnswers) / NumOfWrongAnswers;
+                }
+                catch { }
+            }
+        }
 
         void RefreshUI()
         {
@@ -95,6 +143,85 @@ namespace MyNotebook.Forms
 
             lbl_bestUser.Text = $"Лучший ученик: {bestUser.Name} (средний балл - {maxAverageMark})";
             lbl_hardestMission.Text = $"Самое сложное задание: {hardestMission.Title} (№{hardestMission.NumOfMission})";
+
+            List<MissionStat> missionStats = GetMissionStats(UserCollection.Instance.Users);
+
+            dg_missions.Rows.Add(missionStats.Count);
+            for (int i = 0; i < missionStats.Count; i++)
+            {
+                string name = $"{missionStats[i].NumOfMission}. {missionStats[i].mission.Title}";
+                int mistakes = missionStats[i].NumOfWrongAnswers;
+                int right = missionStats[i].NumOfRightAnswers;
+                double success = missionStats[i].SuccessPercent;
+                double time = Convert.ToDouble(missionStats[i].TimeSpanMissionSeconds) / (missionStats[i].NumOfRightAnswers + missionStats[i].NumOfWrongAnswers);
+                int row = i + 1;
+
+                dg_missions.Rows[row].Cells[0].Value = name;
+                dg_missions.Rows[row].Cells[1].Value = mistakes;
+                dg_missions.Rows[row].Cells[2].Value = right;
+                dg_missions.Rows[row].Cells[3].Value = success.ToString("P");
+                dg_missions.Rows[row].Cells[4].Value = Convert.ToInt32(time);
+            }
+            dg_missions.Rows.RemoveAt(0);
+        }
+
+        List<MissionStat> GetMissionStats(List<User> allUsers)
+        {
+            List<MissionStat> missionStats = new List<MissionStat>();
+            int[] mostMistaked = NumOfMissionsMostMistakes(allUsers);
+            int[] mistaked = mostMistaked.Distinct().ToArray();
+            for (int i = 0; i < mistaked.Length; i++)
+            {
+                missionStats.Add(new MissionStat(mistaked[i], MissionGeneratorCollection.GetMissionByNum(mistaked[i]).Generate(), GetAllMissions(allUsers)));
+            }
+
+            for (int i = 0; i < missionStats.Count; i++)
+            {
+                for (int j = i; j < missionStats.Count; j++)
+                {
+                    if (missionStats[i].SuccessPercent < missionStats[j].SuccessPercent)
+                    {
+                        var temp = missionStats[i];
+                        missionStats[i] = missionStats[j];
+                        missionStats[j] = temp;
+                    }
+                }
+            }
+
+            return missionStats;
+        }
+
+        MissionBase[] GetAllMissions(List<User> allUsers)
+        {
+            List<MissionBase> res = new List<MissionBase>();
+            foreach (var user in allUsers)
+            {
+                foreach (var test in user.UserTests)
+                {
+                    res.AddRange(test.AllMissions);
+                }
+            }
+            return res.ToArray();
+        }
+
+        int[] NumOfMissionsMostMistakes(List<User> users)
+        {
+            List<int> result = new List<int>();
+            foreach (var user in users)
+            {
+                foreach (var test in user.UserTests)
+                {
+                    foreach (var mission in test.AllMissions)
+                    {
+                        if (!mission.IsSolvedRight())
+                        {
+                            result.Add(mission.NumOfMission);
+                        }
+                    }
+                }
+            }
+            result.Sort();
+            return result.ToArray();
         }
 
         int GetHardestMission(List<int> arr)

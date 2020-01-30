@@ -41,7 +41,14 @@
             this.lbl_numOfMissions = new System.Windows.Forms.Label();
             this.lbl_averageTimeSpanOnMission = new System.Windows.Forms.Label();
             this.btn_export = new System.Windows.Forms.Button();
+            this.dg_missions = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mistakes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.right = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.percent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_marks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_missions)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_numOfUsers
@@ -160,7 +167,7 @@
             // btn_export
             // 
             this.btn_export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_export.Location = new System.Drawing.Point(668, 412);
+            this.btn_export.Location = new System.Drawing.Point(744, 427);
             this.btn_export.Name = "btn_export";
             this.btn_export.Size = new System.Drawing.Size(120, 26);
             this.btn_export.TabIndex = 7;
@@ -168,11 +175,61 @@
             this.btn_export.UseVisualStyleBackColor = true;
             this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
             // 
+            // dg_missions
+            // 
+            this.dg_missions.AllowUserToDeleteRows = false;
+            this.dg_missions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dg_missions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_missions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name,
+            this.mistakes,
+            this.right,
+            this.percent,
+            this.time});
+            this.dg_missions.Location = new System.Drawing.Point(463, 12);
+            this.dg_missions.Name = "dg_missions";
+            this.dg_missions.ReadOnly = true;
+            this.dg_missions.Size = new System.Drawing.Size(401, 210);
+            this.dg_missions.TabIndex = 8;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Название задания";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // mistakes
+            // 
+            this.mistakes.HeaderText = "Допущено ошибок";
+            this.mistakes.Name = "mistakes";
+            this.mistakes.ReadOnly = true;
+            // 
+            // right
+            // 
+            this.right.HeaderText = "Правильных ответов";
+            this.right.Name = "right";
+            this.right.ReadOnly = true;
+            // 
+            // percent
+            // 
+            this.percent.HeaderText = "Процент успеха";
+            this.percent.Name = "percent";
+            this.percent.ReadOnly = true;
+            // 
+            // time
+            // 
+            this.time.HeaderText = "Времяни затрачено (сек)";
+            this.time.Name = "time";
+            this.time.ReadOnly = true;
+            // 
             // FormStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(876, 465);
+            this.Controls.Add(this.dg_missions);
             this.Controls.Add(this.btn_export);
             this.Controls.Add(this.lbl_averageTimeSpanOnMission);
             this.Controls.Add(this.lbl_numOfMissions);
@@ -187,6 +244,7 @@
             this.Text = "Статистика";
             this.gb_marks.ResumeLayout(false);
             this.gb_marks.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_missions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,5 +264,11 @@
         private System.Windows.Forms.Label lbl_numOfMissions;
         private System.Windows.Forms.Label lbl_averageTimeSpanOnMission;
         private System.Windows.Forms.Button btn_export;
+        private System.Windows.Forms.DataGridView dg_missions;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mistakes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn right;
+        private System.Windows.Forms.DataGridViewTextBoxColumn percent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn time;
     }
 }
