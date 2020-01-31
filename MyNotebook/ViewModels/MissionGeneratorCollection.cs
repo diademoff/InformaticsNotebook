@@ -54,7 +54,9 @@ namespace MyNotebook.ViewModels
             new MissionGeneratorCategory("Кодирование графической информации",
                 new MissionGenerator[]
                 {
-                    new Mission21(),
+                    new Mission21A(),
+                    new Mission21B(),
+                    new Mission21C(),
                     new Mission22()
                 }),
             new MissionGeneratorCategory("Кодирование текстовой информации",
