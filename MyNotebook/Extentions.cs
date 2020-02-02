@@ -9,16 +9,22 @@ namespace MyNotebook
     {
         public static void FullHideForm(this Form form)
         {
-            form.Hide();
-            form.ShowInTaskbar = false;
-            form.Visible = false;
+            form.Invoke(new MethodInvoker(() =>
+            {
+                form.Hide();
+                form.ShowInTaskbar = false;
+                form.Visible = false;
+            }));
         }
 
         public static void FullShowForm(this Form form)
         {
-            form.Show();
-            form.ShowInTaskbar = true;
-            form.Visible = true;
+            form.Invoke(new MethodInvoker(() =>
+            {
+                form.Show();
+                form.ShowInTaskbar = true;
+                form.Visible = true;
+            }));
         }
 
         /// <summary>

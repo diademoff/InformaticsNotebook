@@ -88,13 +88,11 @@ namespace MyNotebook.ViewModels
 
             return res;
         }
-
         public override MissionBase Generate()
         {
-
             char[] chars = "АБВГДЕЁЖЗИКЛМНОПРСТУХЮЯ".ToCharArray();
 
-            List<Crypt> crypts = new List<Crypt>();
+            crypts = new List<Crypt>();
             List<string> codesAdded = new List<string>();
             while (crypts.Count < 4)
             {
@@ -110,14 +108,25 @@ namespace MyNotebook.ViewModels
             var temp = GetStringUsingLetters(crypts);
 
             string answer = temp[0];
-            string cryptedString = temp[1];
+            cryptedString = temp[1];
 
             string q = $"Разведчик передал в штаб радиограмму. Каждая буква закодирована. \n" +
                        $"Разделителей между кодами букв нет. Запишите в ответе переданную \n" +
                        $"последовательность букв. Коды букв: \n" +
                        $"{string.Join("\n", crypts)}\n" +
                        $"Закодированная строка: {cryptedString}";
-            return new TextMission(17, "Декодирование сообщений", q, answer);
+            return new TextMission(17, "Декодирование сообщений", q, answer, IsSolvedRight);
+        }
+        string cryptedString;
+        List<Crypt> crypts;
+        bool IsSolvedRight(string answerGiven)
+        {
+            string answerCodeGiven = "";
+            for (int i = 0; i < answerGiven.Length; i++)
+            {
+                answerCodeGiven += crypts.Where(x => x.Letter == answerGiven[i].ToString()).ToArray()[0].Code;
+            }
+            return answerCodeGiven == cryptedString;
         }
     }
 }

@@ -330,6 +330,7 @@ namespace MyNotebook.Forms
         public NumericUpDown Numeric { get; set; }
         public Label OfMax { get; set; } // 1 из 10
         public Button Preview { get; set; }
+        public Label TimeToSolve { get; set; }
 
         public int NumOfMission { get; set; }
         public int yPosition { get; set; }
@@ -368,10 +369,17 @@ namespace MyNotebook.Forms
                 Text = $"из {generatedMission.MaxNumInTest}",
                 Visible = true
             };
+            TimeToSolve = new Label()
+            {
+                Location = new Point(CheckBox.Location.X + 600, yPosition),
+                Text = generatedMission.TimeNeedToSolveMissionSeconds + " сек",
+                Font = new Font(new FontFamily("Arial"), 12, FontStyle.Regular, GraphicsUnit.Pixel),
+                AutoSize = false
+            };
             Preview = new Button()
             {
                 Text = "Предпросмотр",
-                Location = new Point(CheckBox.Location.X + 600, CheckBox.Location.Y),
+                Location = new Point(CheckBox.Location.X + 700, CheckBox.Location.Y),
                 Width = 100
             };
             Preview.Click += (s, e) =>
@@ -411,6 +419,7 @@ namespace MyNotebook.Forms
             pnl.Controls.Add(CheckBox);
             pnl.Controls.Add(Numeric);
             pnl.Controls.Add(OfMax);
+            pnl.Controls.Add(TimeToSolve);
             pnl.Controls.Add(Preview);
         }
 
@@ -420,6 +429,7 @@ namespace MyNotebook.Forms
             Numeric.Visible = visible;
             OfMax.Visible = visible;
             Preview.Visible = visible;
+            TimeToSolve.Visible = visible;
         }
 
         public void SetMissionConfig(MissionBase[] mb)
@@ -442,6 +452,7 @@ namespace MyNotebook.Forms
             changeYposTo(CheckBox, yPos);
             changeYposTo(Numeric, yPos);
             changeYposTo(OfMax, yPos);
+            changeYposTo(TimeToSolve, yPos);
             changeYposTo(Preview, yPos);
         }
         void changeYposTo(Control control, int yPos)

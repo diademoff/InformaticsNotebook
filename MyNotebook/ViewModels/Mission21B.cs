@@ -40,7 +40,7 @@ namespace MyNotebook.ViewModels
                         q = $"Черно-белое (без градаций серого) растровое графическое\n" +
                             $"изображение имеет размер {Math.Pow(2, i)} на {Math.Pow(2, j)} пикселей.\n" +
                             $"Какой объём памяти в байтах займёт это изображение?";
-                        double res = Convert.ToDouble(Math.Pow(2, i)) * Convert.ToDouble(Math.Pow(2, j)) * 2.0 / 8.0;
+                        double res = Convert.ToDouble(Math.Pow(2, i)) * Convert.ToDouble(Math.Pow(2, j)) / 8.0;
                         if (res == Convert.ToDouble((int)res))
                         {
                             return new TextMission(21, title, q, res.ToString());

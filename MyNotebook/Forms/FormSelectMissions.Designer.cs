@@ -44,7 +44,9 @@
             this.gb_settings = new System.Windows.Forms.GroupBox();
             this.checkbx_mistakesCorrect = new System.Windows.Forms.CheckBox();
             this.lbl_timeNeed = new System.Windows.Forms.Label();
+            this.gb_showType = new System.Windows.Forms.GroupBox();
             this.gb_settings.SuspendLayout();
+            this.gb_showType.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -123,7 +125,7 @@
             // checkbx_onebyoneBlocks
             // 
             this.checkbx_onebyoneBlocks.AutoSize = true;
-            this.checkbx_onebyoneBlocks.Location = new System.Drawing.Point(188, 23);
+            this.checkbx_onebyoneBlocks.Location = new System.Drawing.Point(6, 17);
             this.checkbx_onebyoneBlocks.Name = "checkbx_onebyoneBlocks";
             this.checkbx_onebyoneBlocks.Size = new System.Drawing.Size(174, 17);
             this.checkbx_onebyoneBlocks.TabIndex = 12;
@@ -135,7 +137,7 @@
             // 
             this.checkbx_randomOrder.AutoSize = true;
             this.checkbx_randomOrder.Enabled = false;
-            this.checkbx_randomOrder.Location = new System.Drawing.Point(188, 46);
+            this.checkbx_randomOrder.Location = new System.Drawing.Point(6, 40);
             this.checkbx_randomOrder.Name = "checkbx_randomOrder";
             this.checkbx_randomOrder.Size = new System.Drawing.Size(126, 17);
             this.checkbx_randomOrder.TabIndex = 13;
@@ -156,7 +158,7 @@
             // btn_preview
             // 
             this.btn_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_preview.Location = new System.Drawing.Point(374, 46);
+            this.btn_preview.Location = new System.Drawing.Point(163, 46);
             this.btn_preview.Name = "btn_preview";
             this.btn_preview.Size = new System.Drawing.Size(180, 48);
             this.btn_preview.TabIndex = 15;
@@ -167,7 +169,7 @@
             // checkbx_onebyoneMissions
             // 
             this.checkbx_onebyoneMissions.AutoSize = true;
-            this.checkbx_onebyoneMissions.Location = new System.Drawing.Point(374, 23);
+            this.checkbx_onebyoneMissions.Location = new System.Drawing.Point(192, 17);
             this.checkbx_onebyoneMissions.Name = "checkbx_onebyoneMissions";
             this.checkbx_onebyoneMissions.Size = new System.Drawing.Size(186, 17);
             this.checkbx_onebyoneMissions.TabIndex = 16;
@@ -179,16 +181,13 @@
             // 
             this.gb_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gb_settings.Controls.Add(this.checkbx_mistakesCorrect);
-            this.gb_settings.Controls.Add(this.checkbx_onebyoneMissions);
             this.gb_settings.Controls.Add(this.btn_preview);
-            this.gb_settings.Controls.Add(this.checkbx_onebyoneBlocks);
             this.gb_settings.Controls.Add(this.checkbx_topMost);
             this.gb_settings.Controls.Add(this.checkbx_disableCalc);
-            this.gb_settings.Controls.Add(this.checkbx_randomOrder);
             this.gb_settings.Controls.Add(this.checkbx_showAnswerAtOnce);
             this.gb_settings.Location = new System.Drawing.Point(17, 444);
             this.gb_settings.Name = "gb_settings";
-            this.gb_settings.Size = new System.Drawing.Size(566, 105);
+            this.gb_settings.Size = new System.Drawing.Size(349, 105);
             this.gb_settings.TabIndex = 17;
             this.gb_settings.TabStop = false;
             this.gb_settings.Text = "Настройки";
@@ -196,7 +195,7 @@
             // checkbx_mistakesCorrect
             // 
             this.checkbx_mistakesCorrect.AutoSize = true;
-            this.checkbx_mistakesCorrect.Location = new System.Drawing.Point(188, 69);
+            this.checkbx_mistakesCorrect.Location = new System.Drawing.Point(169, 19);
             this.checkbx_mistakesCorrect.Name = "checkbx_mistakesCorrect";
             this.checkbx_mistakesCorrect.Size = new System.Drawing.Size(161, 17);
             this.checkbx_mistakesCorrect.TabIndex = 17;
@@ -214,11 +213,24 @@
             this.lbl_timeNeed.TabIndex = 18;
             this.lbl_timeNeed.Text = "Времяни потребуется: 0";
             // 
+            // gb_showType
+            // 
+            this.gb_showType.Controls.Add(this.checkbx_onebyoneBlocks);
+            this.gb_showType.Controls.Add(this.checkbx_onebyoneMissions);
+            this.gb_showType.Controls.Add(this.checkbx_randomOrder);
+            this.gb_showType.Location = new System.Drawing.Point(369, 444);
+            this.gb_showType.Name = "gb_showType";
+            this.gb_showType.Size = new System.Drawing.Size(384, 66);
+            this.gb_showType.TabIndex = 19;
+            this.gb_showType.TabStop = false;
+            this.gb_showType.Text = "Отображение";
+            // 
             // FormSelectMissions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 555);
+            this.Controls.Add(this.gb_showType);
             this.Controls.Add(this.lbl_timeNeed);
             this.Controls.Add(this.gb_settings);
             this.Controls.Add(this.btn_load);
@@ -232,6 +244,8 @@
             this.Text = "Выберите задания";
             this.gb_settings.ResumeLayout(false);
             this.gb_settings.PerformLayout();
+            this.gb_showType.ResumeLayout(false);
+            this.gb_showType.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,5 +268,6 @@
         private System.Windows.Forms.GroupBox gb_settings;
         private System.Windows.Forms.CheckBox checkbx_mistakesCorrect;
         private System.Windows.Forms.Label lbl_timeNeed;
+        private System.Windows.Forms.GroupBox gb_showType;
     }
 }
