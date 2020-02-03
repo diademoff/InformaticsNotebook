@@ -96,6 +96,12 @@
     <Compile Include="Forms\FormSelectStartType.Designer.cs">
       <DependentUpon>FormSelectStartType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormSendTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSendTest.Designer.cs">
+      <DependentUpon>FormSendTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,8 @@
     <Compile Include="Models\MissionGenerator.cs" />
     <Compile Include="Models\MissionBase.cs" />
     <Compile Include="Models\MissionTypes\SelectMission.cs" />
+    <Compile Include="Models\NetworkClient.cs" />
+    <Compile Include="Models\NetworkServer.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\MissionTypes\TextMission.cs" />
     <Compile Include="Models\User.cs" />
@@ -179,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSelectStartType.resx">
       <DependentUpon>FormSelectStartType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSendTest.resx">
+      <DependentUpon>FormSendTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormStatistics.resx">
       <DependentUpon>FormStatistics.cs</DependentUpon>

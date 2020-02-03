@@ -37,6 +37,7 @@
             this.txtbx_class = new System.Windows.Forms.TextBox();
             this.lbl_newUser = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
+            this.btn_send = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_info
@@ -119,11 +120,22 @@
             this.btn_cancel.Visible = false;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // TeacherForm
+            // btn_send
+            // 
+            this.btn_send.Location = new System.Drawing.Point(451, 403);
+            this.btn_send.Name = "btn_send";
+            this.btn_send.Size = new System.Drawing.Size(167, 49);
+            this.btn_send.TabIndex = 20;
+            this.btn_send.Text = "Отправить тест ученикам";
+            this.btn_send.UseVisualStyleBackColor = true;
+            this.btn_send.Click += new System.EventHandler(this.btn_send_Click);
+            // 
+            // FormTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 464);
+            this.Controls.Add(this.btn_send);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.lbl_newUser);
             this.Controls.Add(this.txtbx_class);
@@ -133,7 +145,7 @@
             this.Controls.Add(this.btn_createTest);
             this.Controls.Add(this.listbx_users);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "TeacherForm";
+            this.Name = "FormTeacher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Форма учителя";
             this.ResumeLayout(false);
@@ -151,5 +163,6 @@
         private System.Windows.Forms.TextBox txtbx_class;
         private System.Windows.Forms.Label lbl_newUser;
         private System.Windows.Forms.Button btn_cancel;
+        private System.Windows.Forms.Button btn_send;
     }
 }

@@ -37,6 +37,10 @@
             this.btn_chooseTest = new System.Windows.Forms.Button();
             this.lbl_about = new System.Windows.Forms.Label();
             this.txtbx_searchUsers = new System.Windows.Forms.TextBox();
+            this.txtbx_ip = new System.Windows.Forms.TextBox();
+            this.gb_getText = new System.Windows.Forms.GroupBox();
+            this.btn_getTest = new System.Windows.Forms.Button();
+            this.gb_getText.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -114,11 +118,40 @@
             this.txtbx_searchUsers.Size = new System.Drawing.Size(423, 20);
             this.txtbx_searchUsers.TabIndex = 12;
             // 
-            // UsersForm
+            // txtbx_ip
+            // 
+            this.txtbx_ip.Location = new System.Drawing.Point(6, 19);
+            this.txtbx_ip.Name = "txtbx_ip";
+            this.txtbx_ip.Size = new System.Drawing.Size(223, 20);
+            this.txtbx_ip.TabIndex = 13;
+            // 
+            // gb_getText
+            // 
+            this.gb_getText.Controls.Add(this.btn_getTest);
+            this.gb_getText.Controls.Add(this.txtbx_ip);
+            this.gb_getText.Location = new System.Drawing.Point(12, 399);
+            this.gb_getText.Name = "gb_getText";
+            this.gb_getText.Size = new System.Drawing.Size(345, 49);
+            this.gb_getText.TabIndex = 14;
+            this.gb_getText.TabStop = false;
+            this.gb_getText.Text = "Получить тест от учителя";
+            // 
+            // btn_getTest
+            // 
+            this.btn_getTest.Location = new System.Drawing.Point(235, 17);
+            this.btn_getTest.Name = "btn_getTest";
+            this.btn_getTest.Size = new System.Drawing.Size(95, 23);
+            this.btn_getTest.TabIndex = 14;
+            this.btn_getTest.Text = "Получить";
+            this.btn_getTest.UseVisualStyleBackColor = true;
+            this.btn_getTest.Click += new System.EventHandler(this.btn_getTest_Click);
+            // 
+            // FormUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.gb_getText);
             this.Controls.Add(this.txtbx_searchUsers);
             this.Controls.Add(this.lbl_about);
             this.Controls.Add(this.btn_chooseTest);
@@ -131,9 +164,11 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "UsersForm";
+            this.Name = "FormUsers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Пользователи";
+            this.gb_getText.ResumeLayout(false);
+            this.gb_getText.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,6 +184,9 @@
         private System.Windows.Forms.Button btn_chooseTest;
         private System.Windows.Forms.Label lbl_about;
         private System.Windows.Forms.TextBox txtbx_searchUsers;
+        private System.Windows.Forms.TextBox txtbx_ip;
+        private System.Windows.Forms.GroupBox gb_getText;
+        private System.Windows.Forms.Button btn_getTest;
     }
 }
 

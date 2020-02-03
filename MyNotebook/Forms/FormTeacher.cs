@@ -22,7 +22,7 @@ namespace MyNotebook.Forms
             UpdateUsersList();
         }
 
-        private void UpdateUsersList()
+        void UpdateUsersList()
         {
             listbx_users.Items.Clear();
             listbx_users.Items.AddRange(Users.ToArray());
@@ -44,13 +44,13 @@ namespace MyNotebook.Forms
             var t = str.Split('-');
             return GetUser(t[0].Trim(), t[1].Trim());
         }
-        private void Btn_createTest_Click(object sender, System.EventArgs e)
+        void Btn_createTest_Click(object sender, System.EventArgs e)
         {
             FormSelectMissions smf = new FormSelectMissions();
             smf.ShowDialog();
         }
 
-        private void btn_info_Click(object sender, EventArgs e)
+        void btn_info_Click(object sender, EventArgs e)
         {
             if (!(listbx_users.SelectedIndex >= 0))
             {
@@ -75,7 +75,7 @@ namespace MyNotebook.Forms
             btn_createTest.Enabled = true;
         }
         
-        private void btn_union_Click(object sender, EventArgs e)
+        void btn_union_Click(object sender, EventArgs e)
         {
             if (btn_union.Text == "Выберите учеников для объеденения")
             {
@@ -123,7 +123,7 @@ namespace MyNotebook.Forms
             }
         }
 
-        private bool CheckNullOrEmpty(string text)
+        bool CheckNullOrEmpty(string text)
         {
             if (text == null)
             {
@@ -132,10 +132,15 @@ namespace MyNotebook.Forms
             return string.IsNullOrWhiteSpace(text);
         }
 
-        private void btn_cancel_Click(object sender, EventArgs e)
+        void btn_cancel_Click(object sender, EventArgs e)
         {
             listbx_users.SelectionMode = SelectionMode.One;
             UnlockForm();
+        }
+
+        void btn_send_Click(object sender, EventArgs e)
+        {
+            new FormSendTest().ShowDialog();
         }
     }
 }

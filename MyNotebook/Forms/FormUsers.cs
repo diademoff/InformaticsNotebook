@@ -1,8 +1,10 @@
 ﻿using MyNotebook.Forms;
 using MyNotebook.Models;
 using MyNotebook.ViewModels;
+using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -62,14 +64,35 @@ namespace MyNotebook
                 return;
             }
 
+            Test test;
+
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Тесты | *.test";
+                MessageBox.Show("Выберите тест");
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        test = Test.Deserialize(ofd.FileName);
+                        StartTest(test);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось загрузить тест");
+                        return;
+                    }
+                }
+            }
+            txtbx_class.Text = txtbx_name.Text = "";
+        }
+
+        void StartTest(Test test)
+        {
             User selectedUser;
             if (UserCollection.Instance.UserExists($"{txtbx_name.Text} - {txtbx_class.Text}"))
             {
                 selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
-                if (MessageBox.Show($"Запустить профиль ученика: {selectedUser.ToString()}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
             }
             else
             {
@@ -88,36 +111,14 @@ namespace MyNotebook
             }
 
             UpdateUsersList();
-            Test test;
 
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "Тесты | *.test";
-                MessageBox.Show("Выберите тест");
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        test = Test.Deserialize(ofd.FileName);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Не удалось загрузить тест");
-                        return;
-                    }
-                    test.RegenerateMissions();
-                    disableCalc = test.IsCalcBlockEnabled;
-                    selectedUser.UserTests.Add(test);
-                    this.FullHideForm();
-                    FormMissionSolve msf = new FormMissionSolve(selectedUser, test, false);
-                    if (test.ShowType == TestShowType.OnOneForm)
-                    {
-                        msf.ShowDialog();
-                    }
-                    this.FullShowForm();
-                }
-            }
-            txtbx_class.Text = txtbx_name.Text = "";
+            test.RegenerateMissions();
+            disableCalc = test.IsCalcBlockEnabled;
+            selectedUser.UserTests.Add(test);
+            this.FullHideForm();
+            FormMissionSolve msf = new FormMissionSolve(selectedUser, test, false);
+            msf.ShowDialog();
+            this.FullShowForm();
         }
 
         void KillCalcProcess()
@@ -130,7 +131,7 @@ namespace MyNotebook
             }
         }
         bool disableCalc = false;
-        private void DisableCalc()
+        void DisableCalc()
         {
             if (disableCalc)
             {
@@ -140,20 +141,70 @@ namespace MyNotebook
             DisableCalc();//recursion
         }
 
-        private void Lbl_about_Click(object sender, System.EventArgs e)
+        void Lbl_about_Click(object sender, System.EventArgs e)
         {
             FormAboutBox aboutBox = new FormAboutBox();
             aboutBox.ShowDialog();
         }
 
-        private void Btn_update_Click(object sender, System.EventArgs e)
+        void Btn_update_Click(object sender, System.EventArgs e)
         {
             
         }
 
-        private void txtbx_class_TextChanged(object sender, System.EventArgs e)
+        void txtbx_class_TextChanged(object sender, System.EventArgs e)
         {
             txtbx_class.Text = string.Join("", txtbx_class.Text.Split(' '));
+        }
+
+        void btn_getTest_Click(object sender, System.EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtbx_name.Text))
+            {
+                txtbx_name.ErrorTextBox();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtbx_class.Text))
+            {
+                txtbx_class.ErrorTextBox();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtbx_ip.Text))
+            {
+                MessageBox.Show("Введите адрес");
+                return;
+            }
+
+            User selectedUser;
+            if (!UserCollection.Instance.UserExists($"{txtbx_name.Text} - {txtbx_class.Text}"))
+            {
+                if (MessageBox.Show("Добавить нового ученика?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (string.IsNullOrWhiteSpace(txtbx_name.Text.Trim()) || string.IsNullOrWhiteSpace(txtbx_class.Text.Trim()))
+                    {
+                        MessageBox.Show("Имя ученика или класс не заполнены", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    UserCollection.Instance.AddNewUser(new User(txtbx_name.Text.Trim(), txtbx_class.Text.Trim()));
+                    selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
+                }
+                else
+                    return;
+            }
+            selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
+
+            try
+            {
+                NetworkClient nc = new NetworkClient(txtbx_ip.Text, 88);
+                var test = Test.Deserialize(nc.Send(Encoding.UTF8.GetBytes($"{txtbx_name.Text} - {txtbx_class.Text}")));
+                StartTest(test);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Что-то пошло не так\n{ex.ToString()}");
+            }
         }
     }
 }

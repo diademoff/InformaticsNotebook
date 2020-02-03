@@ -200,6 +200,16 @@ namespace MyNotebook.Models
             }
         }
 
+        public static Test Deserialize(byte[] data)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (MemoryStream fs = new MemoryStream(data))
+            {
+                Test result = bf.Deserialize(fs) as Test;
+                return result;
+            }
+        }
+
         /// <summary>
         /// Создать тест для проработки ошибок
         /// </summary>
