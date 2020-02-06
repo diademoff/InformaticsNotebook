@@ -24,7 +24,8 @@ namespace MyNotebook.ViewModels
                     new Mission1(),
                     new Mission14(),
                     new Mission15(),
-                    new Mission16()
+                    new Mission16(),
+                    new Mission23()
                 }),
             new MissionGeneratorCategory("Информация и её свойства",
                 new MissionGenerator[]
