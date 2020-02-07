@@ -122,6 +122,7 @@
             // 
             // btn_send
             // 
+            this.btn_send.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_send.Location = new System.Drawing.Point(451, 403);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(167, 49);

@@ -215,6 +215,7 @@
             // 
             // gb_showType
             // 
+            this.gb_showType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gb_showType.Controls.Add(this.checkbx_onebyoneBlocks);
             this.gb_showType.Controls.Add(this.checkbx_onebyoneMissions);
             this.gb_showType.Controls.Add(this.checkbx_randomOrder);
