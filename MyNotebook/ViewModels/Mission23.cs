@@ -31,33 +31,41 @@ namespace MyNotebook.ViewModels
             var pair = wordPairs[rnd.Next(0, wordPairs.Length)];
             string q = $"Ниже приведены запросы и количество страниц, которые нашел поисковый\n" +
                        $"сервер по этим запросам в некотором сегменте Интернета:\n";
-            int n1 = rnd.Next(4000, 10000);
-            int n3 = rnd.Next(5000, 10000);
-            int n2 = rnd.Next(1000, 1000 + Math.Abs(n1 - n3));
+
+            int n1;
+            int n3;
+            int n2;
+
+            do
+            {
+                n1 = rnd.Next(4000, 10000);
+                n3 = rnd.Next(5000, 10000);
+                n2 = rnd.Next(1000, 1000 + Math.Abs(n1 - n3));
+            } while (n2 < n1 && n2 < n3);
 
             switch (rnd.Next(1, 4))
             {
                 case 1:
                     q += $"{pair.Word1} and {pair.Word2}    {n2}\n" +
-                         $"{pair.Word1}    {n1}\n" +
-                         $"{pair.Word2}    {n3}\n" +
+                         $"{pair.Word1}    {n1 + n2}\n" +
+                         $"{pair.Word2}    {n3 + n2}\n" +
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word1} or {pair.Word2}";
                     return new TextMission(23, "Запросы в поисковой системе", q, $"{n1 + n2 + n3}");
                 case 2:
-                    q += $"{pair.Word1} and {pair.Word2}    {n1 + n2 + n3}\n" +
-                         $"{pair.Word1}    {n1}\n" +
-                         $"{pair.Word2}    {n3}\n" +
+                    q += $"{pair.Word1} and {pair.Word2}    {n2}\n" +
+                         $"{pair.Word1}    {n1 + n2}\n" +
+                         $"{pair.Word2}    {n3 + n2}\n" +
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word1} and {pair.Word2}";
                     return new TextMission(23, "Запросы в поисковой системе", q, $"{n2}");
                 case 3:
                     q += $"{pair.Word1} and {pair.Word2}    {n2}\n" +
                          $"{pair.Word1} or {pair.Word2}    {n1 + n2 + n3}\n" +
-                         $"{pair.Word1}    {n1}\n" +
+                         $"{pair.Word1}    {n1 + n2}\n" +
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word2}";
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n3}");
+                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n3 + n2}");
                 default:
                     throw new Exception("mission 23 ex");
             }

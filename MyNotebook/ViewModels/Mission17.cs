@@ -76,17 +76,39 @@ namespace MyNotebook.ViewModels
 
             return res;
         }
-        string GetRandomCode()
-        {
-            int length = rnd.Next(2, 5);
-            string res = "";
 
-            for (int i = 0; i < length; i++)
+        string[] getCode(string code)
+        {
+            return new string[]
             {
-                res += rnd.Next(0, 2) == 0 ? "0" : "1";
+                $"{code}1",
+                $"{code}0"
+            };
+        }
+
+        string[] GetRandomCodes(int length, string code = "")
+        {
+            List<string> codes = new List<string>();
+
+            code = code == "" ? "1" : code;
+
+            do
+            {
+                length -= 2;
+                codes.AddRange(getCode(code));
+                code += rnd.RandomBool() ? "1" : "0";
+            } while (length > 0);
+
+            if (length < 0)
+            {
+                do
+                {
+                    length += 1;
+                    codes.RemoveAt(codes.Count - 1);
+                } while (length != 0);
             }
 
-            return res;
+            return codes.ToArray();
         }
         public override MissionBase Generate()
         {
@@ -94,15 +116,19 @@ namespace MyNotebook.ViewModels
 
             crypts = new List<Crypt>();
             List<string> codesAdded = new List<string>();
-            while (crypts.Count < 4)
+            string[] codes = GetRandomCodes(4);
+            List<string> symbols = new List<string>();
+            for (int i = 0; i < codes.Length; i++)
             {
-                string code = GetRandomCode();
-                if (codesAdded.Contains(code))
+                string c = chars[rnd.Next(0, chars.Length)].ToString();
+                if (symbols.Contains(c))
                 {
+                    --i;
                     continue;
                 }
-                crypts.Add(new Crypt(chars[rnd.Next(0, chars.Length)].ToString(), code));
-                codesAdded.Add(code);
+                symbols.Add(c);
+                crypts.Add(new Crypt(c, codes[i]));
+                codesAdded.Add(codes[i]);
             }
 
             var temp = GetStringUsingLetters(crypts);
