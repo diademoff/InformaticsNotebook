@@ -17,6 +17,7 @@ namespace MyNotebook.ViewModels
             //TimeNeedToSolveMissionSeconds
             var mission = new TextMission(15, "Перевод между любыми системами счисления", q, answer);
             mission.TimeNeedToSolveMissionSeconds = 426;
+            mission.TypeOfMission = MissionType.Theory;
             return mission;
         }
 

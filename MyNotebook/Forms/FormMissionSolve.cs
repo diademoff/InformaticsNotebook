@@ -72,14 +72,15 @@ namespace MyNotebook.Forms
 
             new Thread(() =>
             {
+                int num = 1;
                 for (int i = 0; i < test.AllMissions.Count; i++)
                 {
                     object indexOfCurrMission = i; // номер миссии
 
                     TabPage tab = test.AllMissions[i].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
-                    tab.Text = test.AllMissions[(int)indexOfCurrMission].NumOfMission.ToString();
+                    tab.Text = num.ToString();
                     tab.AutoScroll = true;
-
+                    num++;
                     this.Invoke(new MethodInvoker(() =>
                     {
                         tabControl.TabPages.Add(tab);
@@ -110,6 +111,7 @@ namespace MyNotebook.Forms
             }
             this.FullHideForm();
             Test.FinishTest();
+
             FormTestResult trf = new FormTestResult(Test, CurrentUser);
             trf.ShowDialog();
         }
@@ -124,6 +126,7 @@ namespace MyNotebook.Forms
 
             new Thread(() =>
             {
+                int num = 1;
                 List<int> numOfMissionsAdded = new List<int>(); // уже  добавленные миссии
 
                 for (int i = 0; i < test.AllMissions.Count; i++)
@@ -147,7 +150,8 @@ namespace MyNotebook.Forms
                         if (test.AllMissions[j].NumOfMission == currNumOfMission) // выбираем только миссии с текущим номером
                         {
                             TabPage tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
-                            tab.Text = currNumOfMission.ToString();
+                            tab.Text = num.ToString();
+                            num++;
                             missionsOnCurrentForm.Add(test.AllMissions[j]);
                             indexesOfMissions.Add(j);
                             tabs.Add(tab); // добавляем tab
@@ -194,6 +198,7 @@ namespace MyNotebook.Forms
         {
             List<int> numOfMissionsAdded = new List<int>(); // уже  добавленные миссии
             int indexOfTab = 0; // текущий индекс "maintab"
+            int num = 1;
             for (int i = 0; i < test.AllMissions.Count; i++)
             {
                 if (numOfMissionsAdded.Contains(test.AllMissions[i].NumOfMission))
@@ -218,7 +223,8 @@ namespace MyNotebook.Forms
                     if (test.AllMissions[j].NumOfMission == currNumOfMission) // выбираем только миссии с текущим номером
                     {
                         TabPage tab = test.AllMissions[j].GetTabPage(showAnswerAtOnce: Test.ShowAnswerAtOnce); // создем tab миссии
-                        tab.Text = currNumOfMission.ToString();
+                        tab.Text = num.ToString();
+                        num++;
                         subTab.TabPages.Add(tab); // добавляем tab
                     }
                 }
@@ -286,7 +292,6 @@ namespace MyNotebook.Forms
             {
                 ShowResult();
             }
-            this.Close();
         }
     }
 }

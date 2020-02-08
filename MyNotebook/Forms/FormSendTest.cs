@@ -1,5 +1,7 @@
 ﻿using MyNotebook.Models;
+using MyNotebook.Models.Network;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -19,7 +21,8 @@ namespace MyNotebook.Forms
         }
 
         bool isOpen = false;
-        byte[] bytesToSend;
+        Test testToSend;
+        List<Test> Tests = new List<Test>();
         private void btn_send_Click(object sender, EventArgs e)
         {
             if (!isOpen)
@@ -36,8 +39,17 @@ namespace MyNotebook.Forms
                 {
                     try
                     {
-                        var UserName = Encoding.UTF8.GetString(server.Listen(bytesToSend));
-                        listbx_userGotTest.Items.Add($"\"{UserName}\" получил(а) тест {DateTime.Now.ToShortTimeString()}");
+                        var feedback = server.Listen(new NetworkMessage(NetworkMessageType.TestRequest, "", testToSend));
+                        switch (feedback.NetworkMessageType)
+                        {
+                            case NetworkMessageType.TestRequest:
+                                listbx_userGotTest.Items.Add($"\"{feedback.UTF8String}\" получил(а) тест {DateTime.Now.ToShortTimeString()}");
+                                break;
+                            case NetworkMessageType.TestStatisticsFeedback:
+                                listbx_userGotTest.Items.Add($"\"{feedback.UTF8String}\" прошел(а) тест {DateTime.Now.ToShortTimeString()}. Оценка \"{feedback.Test.Mark}\"");
+                                Tests.Add(feedback.Test);
+                                break;
+                        }
                     }
                     catch { }
                 } while (isOpen);
@@ -56,11 +68,9 @@ namespace MyNotebook.Forms
                 {
                     try
                     {
-                        test = Test.Deserialize(ofd.FileName); // try deserialize
-
                         btn_send.Enabled = true;
                         isOpen = true;
-                        bytesToSend = File.ReadAllBytes(ofd.FileName);
+                        testToSend = Test.Deserialize(ofd.FileName);
                     }
                     catch
                     {

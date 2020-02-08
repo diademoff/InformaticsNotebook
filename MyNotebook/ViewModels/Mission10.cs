@@ -22,6 +22,7 @@ namespace MyNotebook.ViewModels
             {
                 goto regenerate;
             }
+            result.TypeOfMission = MissionType.Practice;
             return result;
         }
 

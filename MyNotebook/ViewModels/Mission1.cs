@@ -22,6 +22,7 @@ namespace MyNotebook.ViewModels
                 result = Generate10to2();
             }
             result.Tooltip = "Интервал чисел: от 50 до 200";
+            result.TypeOfMission = MissionType.Theory;
             return result;
         }
 

@@ -19,7 +19,8 @@ namespace MyNotebook.ViewModels
 
             return new TextMission(19, "Файловая система", q, answer, solvedRight)
             {
-                TimeNeedToSolveMissionSeconds = 179
+                TimeNeedToSolveMissionSeconds = 179,
+                TypeOfMission = MissionType.Practice
             };
         }
 

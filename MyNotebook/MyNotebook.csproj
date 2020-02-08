@@ -128,13 +128,16 @@
     </Compile>
     <Compile Include="Models\GitUpdater.cs" />
     <Compile Include="Models\MatchElement.cs" />
+    <Compile Include="Models\MissionType.cs" />
     <Compile Include="Models\MissionTypes\ChoosePictureMission.cs" />
     <Compile Include="Models\MissionTypes\MatchMission.cs" />
     <Compile Include="Models\MissionGenerator.cs" />
     <Compile Include="Models\MissionBase.cs" />
     <Compile Include="Models\MissionTypes\SelectMission.cs" />
-    <Compile Include="Models\NetworkClient.cs" />
-    <Compile Include="Models\NetworkServer.cs" />
+    <Compile Include="Models\Network\NetworkClient.cs" />
+    <Compile Include="Models\Network\NetworkMessage.cs" />
+    <Compile Include="Models\Network\NetworkMessageType.cs" />
+    <Compile Include="Models\Network\NetworkServer.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\MissionTypes\TextMission.cs" />
     <Compile Include="Models\User.cs" />

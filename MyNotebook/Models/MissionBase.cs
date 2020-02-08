@@ -26,6 +26,7 @@ namespace MyNotebook.Models
         public abstract string String_AnswerExpecting { get; set; }
         public abstract string String_AnswerGiven { get; }
         public virtual int MaxNumInTest { get; set; } = 10;
+        public MissionType TypeOfMission { get; set; } = MissionType.Theory;
         public int TimeNeedToSolveMissionSeconds { get; set; }
 
         ~MissionBase()
@@ -52,7 +53,7 @@ namespace MyNotebook.Models
             tp.Leave += (s, e) => active = false;
 
 
-            new Task(() =>
+            var task = new Thread(() =>
             {
                 while (true)
                 {
@@ -62,7 +63,9 @@ namespace MyNotebook.Models
                         TimeSpanOnMissionSeconds += 1;
                     }
                 }
-            }).Start();
+            });
+            task.IsBackground = true;
+            task.Start();
         }
 
         public override string ToString()

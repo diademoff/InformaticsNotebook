@@ -26,6 +26,7 @@ namespace MyNotebook.ViewModels
             var res = new MatchMission(12, "Программное обеспечение", matchElements.ToArray());
             res.Tooltip = $"Пример: {string.Join(", ", res.Terms)}";
             res.MaxNumInTest = 2;
+            res.TypeOfMission = MissionType.Theory;
             return res;
         }
     }

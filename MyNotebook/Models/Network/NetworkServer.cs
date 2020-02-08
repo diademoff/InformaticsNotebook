@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNotebook.Models.Network;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -27,7 +28,7 @@ namespace MyNotebook.Models
             socket.Bind(endPoint); // связываяем socket и endPoint
         }
 
-        public byte[] Listen(byte[] feedback)
+        public NetworkMessage Listen(NetworkMessage feedback)
         {
             socket.Listen(5);
 
@@ -46,11 +47,11 @@ namespace MyNotebook.Models
             // data - то, что мы получили от клиента
             // listener.Send(); - можно отправить ответ
 
-            listener.Send(feedback);
+            listener.Send(feedback.ToByteArray());
 
             listener.Shutdown(SocketShutdown.Both); // выключение
 
-            return data.ToArray();
+            return NetworkMessage.FromByteArray(data.ToArray());
         }
     }
 }

@@ -48,7 +48,6 @@ namespace MyNotebook.ViewModels
                 }),
             new MissionGeneratorCategory("Алгоритмизация и программирование",
                 new MissionGenerator[]
-
                 {
                     new Mission3(),
                     new Mission11(),

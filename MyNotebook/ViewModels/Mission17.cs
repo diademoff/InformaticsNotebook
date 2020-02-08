@@ -141,7 +141,10 @@ namespace MyNotebook.ViewModels
                        $"последовательность букв. Коды букв: \n" +
                        $"{string.Join("\n", crypts)}\n" +
                        $"Закодированная строка: {cryptedString}";
-            return new TextMission(17, "Декодирование сообщений", q, answer, IsSolvedRight);
+            return new TextMission(17, "Декодирование сообщений", q, answer, IsSolvedRight)
+            {
+                TypeOfMission = MissionType.Practice
+            };
         }
         string cryptedString;
         List<Crypt> crypts;

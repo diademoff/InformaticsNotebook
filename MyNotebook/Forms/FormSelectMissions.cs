@@ -55,14 +55,14 @@ namespace MyNotebook.Forms
             int yPosition = 5;
             foreach (var catagory in MissionGeneratorCollection.Categories)
             {
-                CategoryControl categoryControl = new CategoryControl(catagory, yPosition, RefreshUI);
+                CategoryControl categoryControl = new CategoryControl(catagory, yPosition, RefreshUITotal, RefreshLabels);
                 yPosition = categoryControl.AddToPanel(panel_missions);
 
                 CategoryControls.Add(categoryControl);
                 yPosition += 35;
             }
 
-            RefreshUI();
+            RefreshUITotal();
         }
 
         void Btn_save_Click(object sender, EventArgs e)
@@ -109,19 +109,9 @@ namespace MyNotebook.Forms
             return test;
         }
 
-        void RefreshUI()
+        void RefreshUITotal()
         {
-            lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfEachMission.Sum()}";
-            int timeNeed = 0;
-            for (int i = 0; i < selectedNumsOfMissions.Count; i++)
-            {
-                var mission = MissionGeneratorCollection.GetMissionByNum(selectedNumsOfMissions[i]);
-                for (int j = 0; j < numOfEachMission[i]; j++)
-                {
-                    timeNeed += mission.Generate().TimeNeedToSolveMissionSeconds;
-                }
-            }
-            lbl_timeNeed.Text = $"Времяни потребуется: {timeNeed / 60} мин";
+            RefreshLabels();
 
             int prepos = panel_missions.AutoScrollPosition.Y;
             panel_missions.AutoScroll = false;
@@ -135,6 +125,21 @@ namespace MyNotebook.Forms
 
             panel_missions.AutoScrollPosition = new Point(0, Math.Abs(prepos));
             panel_missions.Invalidate();
+        }
+
+        void RefreshLabels()
+        {
+            lbl_numOfMissionsSelected.Text = $"Заданий выбрано: {numOfEachMission.Sum()}";
+            int timeNeed = 0;
+            for (int i = 0; i < selectedNumsOfMissions.Count; i++)
+            {
+                var mission = MissionGeneratorCollection.GetMissionByNum(selectedNumsOfMissions[i]);
+                for (int j = 0; j < numOfEachMission[i]; j++)
+                {
+                    timeNeed += mission.Generate().TimeNeedToSolveMissionSeconds;
+                }
+            }
+            lbl_timeNeed.Text = $"Времяни потребуется: {timeNeed / 60} мин";
         }
 
         void btn_load_Click(object sender, EventArgs e)
@@ -153,7 +158,6 @@ namespace MyNotebook.Forms
 
         void LoadTestFromFile(string path)
         {
-            //throw new Exception("Не реализовано");
             try
             {
                 Test test = Test.Deserialize(path);
@@ -244,9 +248,9 @@ namespace MyNotebook.Forms
         Action RefreshUI;
         public bool Hidden { get; private set; } = false;
         int intervalBetweenRaws = 25;
-        public CategoryControl(MissionGeneratorCategory category, int yPosition, Action RefreshUI)
+        public CategoryControl(MissionGeneratorCategory category, int yPosition, Action RefreshUITotal, Action RefreshLabels)
         {
-            this.RefreshUI = RefreshUI;
+            this.RefreshUI = RefreshUITotal;
             Title = new Label()
             {
                 Text = category.CategoryName,
@@ -273,8 +277,8 @@ namespace MyNotebook.Forms
             {
                 yPosition += intervalBetweenRaws;
                 RawControls.Add(new RawControls(item, yPosition));
-                RawControls.Last().Numeric.ValueChanged += (s, e) => RefreshUI();
-                RawControls.Last().CheckBox.CheckedChanged += (s, e) => RefreshUI();
+                RawControls.Last().Numeric.ValueChanged += (s, e) => RefreshLabels();
+                RawControls.Last().CheckBox.CheckedChanged += (s, e) => RefreshLabels();
             }
         }
         public int AddToPanel(Panel pnl)
@@ -331,6 +335,7 @@ namespace MyNotebook.Forms
         public Label OfMax { get; set; } // 1 из 10
         public Button Preview { get; set; }
         public Label TimeToSolve { get; set; }
+        public Label MissionType { get; set; }
 
         public int NumOfMission { get; set; }
         public int yPosition { get; set; }
@@ -341,7 +346,7 @@ namespace MyNotebook.Forms
             this.yPosition = yPosition;
             MissionGenerator = mg;
 
-            var generatedMission = mg.Generate();
+            MissionBase generatedMission = mg.Generate();
             NumOfMission = generatedMission.NumOfMission;
 
             CheckBox = new CheckBox()
@@ -376,10 +381,17 @@ namespace MyNotebook.Forms
                 Font = new Font(new FontFamily("Arial"), 12, FontStyle.Regular, GraphicsUnit.Pixel),
                 AutoSize = false
             };
+            MissionType = new Label()
+            {
+                Location = new Point(CheckBox.Location.X + 700, yPosition),
+                Text = generatedMission.TypeOfMission.GetStringMissionType(),
+                Font = new Font(new FontFamily("Arial"), 12, FontStyle.Regular, GraphicsUnit.Pixel),
+                AutoSize = false
+            };
             Preview = new Button()
             {
                 Text = "Предпросмотр",
-                Location = new Point(CheckBox.Location.X + 700, CheckBox.Location.Y),
+                Location = new Point(CheckBox.Location.X + 800, CheckBox.Location.Y),
                 Width = 100
             };
             Preview.Click += (s, e) =>
@@ -420,6 +432,7 @@ namespace MyNotebook.Forms
             pnl.Controls.Add(Numeric);
             pnl.Controls.Add(OfMax);
             pnl.Controls.Add(TimeToSolve);
+            pnl.Controls.Add(MissionType);
             pnl.Controls.Add(Preview);
         }
 
@@ -429,6 +442,7 @@ namespace MyNotebook.Forms
             Numeric.Visible = visible;
             OfMax.Visible = visible;
             Preview.Visible = visible;
+            MissionType.Visible = visible;
             TimeToSolve.Visible = visible;
         }
 
@@ -453,6 +467,7 @@ namespace MyNotebook.Forms
             changeYposTo(Numeric, yPos);
             changeYposTo(OfMax, yPos);
             changeYposTo(TimeToSolve, yPos);
+            changeYposTo(MissionType, yPos);
             changeYposTo(Preview, yPos);
         }
         void changeYposTo(Control control, int yPos)

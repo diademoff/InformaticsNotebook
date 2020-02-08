@@ -46,6 +46,7 @@ namespace MyNotebook.ViewModels
             }
             generated.Tooltip = $"Единицы: {string.Join(", ", units)}";
             generated.TimeNeedToSolveMissionSeconds = 120;
+            generated.TypeOfMission = MissionType.Practice;
             return generated;
         }
 

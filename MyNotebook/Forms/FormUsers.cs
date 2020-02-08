@@ -1,5 +1,6 @@
 ﻿using MyNotebook.Forms;
 using MyNotebook.Models;
+using MyNotebook.Models.Network;
 using MyNotebook.ViewModels;
 using System;
 using System.Diagnostics;
@@ -198,7 +199,16 @@ namespace MyNotebook
             try
             {
                 NetworkClient nc = new NetworkClient(txtbx_ip.Text, 88);
-                var test = Test.Deserialize(nc.Send(Encoding.UTF8.GetBytes($"{txtbx_name.Text} - {txtbx_class.Text}")));
+                var test = nc.Send(new NetworkMessage(NetworkMessageType.TestRequest, $"{txtbx_name.Text} - {txtbx_class.Text}")).Test;
+                new Task(() =>
+                {
+                    while (!test.Finished)
+                    {
+                        Thread.Sleep(250);
+                    }
+                    nc = new NetworkClient(txtbx_ip.Text, 88); // recreate connection
+                    nc.Send(new NetworkMessage(NetworkMessageType.TestStatisticsFeedback, $"{txtbx_name.Text} - {txtbx_class.Text}", test));
+                }).Start();
                 StartTest(test);
             }
             catch (Exception ex)

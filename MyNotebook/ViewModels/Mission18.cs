@@ -95,7 +95,8 @@ namespace MyNotebook.ViewModels
                 $"кодирующую адрес файла \"{fileName}\" в сети Интернет.\n" + q;
             return new TextMission(18, "Составление адреса URL из частей", q, string.Join("", answer))
             {
-                TimeNeedToSolveMissionSeconds = 60
+                TimeNeedToSolveMissionSeconds = 60,
+                TypeOfMission = MissionType.Practice
             };
         }
     }

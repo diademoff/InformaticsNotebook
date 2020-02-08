@@ -19,14 +19,20 @@ namespace MyNotebook.ViewModels
                     q = $"Определите глубину цвета растрового\n" +
                         $"графического изображения с политрой \n" +
                         $"из {Math.Pow(2, i)} цветов.";
-                    return new TextMission(21, title, q, i.ToString());
+                    return new TextMission(21, title, q, i.ToString())
+                    {
+                        TypeOfMission = MissionType.Solve
+                    };
                 #endregion
                 case 2:
                     #region
                     q = $"Глубина цвета растрового графического\n" +
                         $"изображения составляет {i} Бит. Определите\n" +
                         $"максимально возможное количество цветов в палитре.";
-                    return new TextMission(21, title, q, Math.Pow(2, i).ToString());
+                    return new TextMission(21, title, q, Math.Pow(2, i).ToString())
+                    {
+                        TypeOfMission = MissionType.Solve
+                    };
                 #endregion
                 default:
                     throw new Exception("ex mission 21");

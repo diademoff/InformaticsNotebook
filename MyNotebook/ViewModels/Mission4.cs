@@ -24,6 +24,7 @@ namespace MyNotebook.ViewModels
             var generated = new MatchMission(4, title, matchElements.ToArray());
             generated.Tooltip = $"Термины: {string.Join(", ", matchElements)}";
             generated.TimeNeedToSolveMissionSeconds = 120;
+            generated.TypeOfMission = MissionType.Theory;
             return generated;
         }
     }

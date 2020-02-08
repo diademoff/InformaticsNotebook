@@ -1,7 +1,6 @@
 ﻿using MyNotebook.Models;
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyNotebook.Forms
@@ -51,6 +50,7 @@ namespace MyNotebook.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            TopMost = false;
             this.FullHideForm();
             FormUsers uf = new FormUsers();
             uf.ShowDialog();
@@ -59,6 +59,7 @@ namespace MyNotebook.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
+            TopMost = false;
             this.FullHideForm();
             FormTeacher tf = new FormTeacher();
             tf.ShowDialog();
@@ -72,6 +73,7 @@ namespace MyNotebook.Forms
 
         private void btn_statistics_Click(object sender, EventArgs e)
         {
+            TopMost = false;
             this.FullHideForm();
             new FormStatistics().ShowDialog();
             this.FullShowForm();

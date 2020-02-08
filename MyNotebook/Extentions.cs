@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNotebook.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -74,6 +75,21 @@ namespace MyNotebook
             }
 
             return array[rnd.Next(0, array.Length - 1)];
+        }
+
+        public static string GetStringMissionType(this MissionType missionType)
+        {
+            switch (missionType)
+            {
+                case MissionType.Theory:
+                    return "Теория";
+                case MissionType.Practice:
+                    return "Практика";
+                case MissionType.Solve:
+                    return "Решение задач";
+                default:
+                    throw new Exception("Mission type to string exeption");
+            }
         }
 
         public static void SearchListBoxUsingTextBox(this TextBox search, ListBox listBoxToSearchIn)

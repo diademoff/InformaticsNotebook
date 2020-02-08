@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNotebook.Models.Network;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -21,10 +22,14 @@ namespace MyNotebook.Models
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); //слушает
         }
 
-        public byte[] Send(byte[] sendData)
+        public NetworkMessage Send(NetworkMessage sendData)
         {
-            socket.Connect(endPoint);
-            socket.Send(sendData);
+            try
+            {
+                socket.Connect(endPoint);
+            }
+            catch { }
+            socket.Send(sendData.ToByteArray());
 
             byte[] buffer = new byte[256];
             int size = 0;
@@ -37,9 +42,16 @@ namespace MyNotebook.Models
                 data.AddRange(buffer);
             } while (socket.Available > 0);
 
-            // data - ответ от сервера
+            socket.Shutdown(SocketShutdown.Both);
 
-            return data.ToArray();
+            try
+            {
+                return NetworkMessage.FromByteArray(data.ToArray());
+            }
+            catch
+            {
+                return new NetworkMessage();
+            }
         }
     }
 }

@@ -28,7 +28,10 @@ namespace MyNotebook.ViewModels
                         double res = (Convert.ToDouble(x) * Convert.ToDouble(j * j) * Math.Pow(2, i)) / (8.0 * 1024.0);
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString());
+                            return new TextMission(21, title, q, res.ToString())
+                            {
+                                TypeOfMission = MissionType.Solve
+                            };
                         }
                     }
                 #endregion
@@ -49,7 +52,10 @@ namespace MyNotebook.ViewModels
                         double res = (Convert.ToDouble(i) * Convert.ToDouble(j) * m * 8.0) / x;
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString());
+                            return new TextMission(21, title, q, res.ToString())
+                            {
+                                TypeOfMission = MissionType.Solve
+                            };
                         }
                     }
                 #endregion
@@ -68,7 +74,10 @@ namespace MyNotebook.ViewModels
                         double res = Math.Pow(2, (Convert.ToDouble(x) * 8.0) / (Convert.ToDouble(i) * Convert.ToDouble(j)));
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString());
+                            return new TextMission(21, title, q, res.ToString())
+                            {
+                                TypeOfMission = MissionType.Solve
+                            };
                         }
                     }
                 #endregion

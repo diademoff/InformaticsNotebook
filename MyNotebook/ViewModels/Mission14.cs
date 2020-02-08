@@ -33,7 +33,8 @@ namespace MyNotebook.ViewModels
 
             return new TextMission(14, "Среди трёх чисел найти наименьшее/наибольшее", q, answ)
             {
-                TimeNeedToSolveMissionSeconds = 60
+                TimeNeedToSolveMissionSeconds = 60,
+                TypeOfMission = MissionType.Theory
             };
         }
     }

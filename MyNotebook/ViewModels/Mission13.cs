@@ -66,6 +66,7 @@ namespace MyNotebook.ViewModels
             ChoosePictureMission mission = new ChoosePictureMission(13, "Выбрать изображение комплектующего", question, pictures, rightIndex);
             mission.Tooltip = "Определить изображение по названию";
             mission.MaxNumInTest = 3;
+            mission.TypeOfMission = MissionType.Theory;
             return mission;
         }
     }
