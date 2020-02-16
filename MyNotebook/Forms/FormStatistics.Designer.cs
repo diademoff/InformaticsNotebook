@@ -167,7 +167,7 @@
             // btn_export
             // 
             this.btn_export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_export.Location = new System.Drawing.Point(744, 427);
+            this.btn_export.Location = new System.Drawing.Point(899, 459);
             this.btn_export.Name = "btn_export";
             this.btn_export.Size = new System.Drawing.Size(120, 26);
             this.btn_export.TabIndex = 7;
@@ -188,10 +188,10 @@
             this.right,
             this.percent,
             this.time});
-            this.dg_missions.Location = new System.Drawing.Point(463, 12);
+            this.dg_missions.Location = new System.Drawing.Point(541, 12);
             this.dg_missions.Name = "dg_missions";
             this.dg_missions.ReadOnly = true;
-            this.dg_missions.Size = new System.Drawing.Size(401, 210);
+            this.dg_missions.Size = new System.Drawing.Size(478, 242);
             this.dg_missions.TabIndex = 8;
             // 
             // name
@@ -220,7 +220,7 @@
             // 
             // time
             // 
-            this.time.HeaderText = "Времяни затрачено (сек)";
+            this.time.HeaderText = "Времяни затрачено (мин)";
             this.time.Name = "time";
             this.time.ReadOnly = true;
             // 
@@ -228,7 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(876, 465);
+            this.ClientSize = new System.Drawing.Size(1031, 497);
             this.Controls.Add(this.dg_missions);
             this.Controls.Add(this.btn_export);
             this.Controls.Add(this.lbl_averageTimeSpanOnMission);

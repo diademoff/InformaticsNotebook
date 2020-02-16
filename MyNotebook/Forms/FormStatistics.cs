@@ -2,13 +2,8 @@
 using MyNotebook.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyNotebook.Forms
@@ -77,10 +72,9 @@ namespace MyNotebook.Forms
             User bestUser = new User("", "");
             double maxAverageMark = 0;
             double averageTimeSpanOnSolveMission = 0; //seconds
-            double numOfMissions = 0; 
+            double numOfMissions = 0;
 
-            /*
-             * numOfMark[0] - Количество пятёрок
+            /* numOfMark[0] - Количество пятёрок
              * numOfMark[1] - Количество четвёрок
              * numOfMark[2] - Количество троек
              * numOfMark[3] - Количество двоек
@@ -134,7 +128,7 @@ namespace MyNotebook.Forms
             lbl_numOfUsers.Text = $"Количество пользователей: {UserCollection.Instance.GetUsers.Length}";
             lbl_numOfTests.Text = $"Количество пройденых тестов: {numOfTests}";
             lbl_numOfMissions.Text = $"Количество заданий: {numOfMissions}";
-            lbl_averageTimeSpanOnMission.Text = $"Затраченное время на задание в среднем: {averageTimeSpanOnSolveMission.ToString("0.00")} сек";
+            lbl_averageTimeSpanOnMission.Text = $"Затраченное время на задание в среднем: {(averageTimeSpanOnSolveMission / 60).ToString("0.00")} мин";
 
             num_ofMark5.Text = $"Количество пятёрок: {numOfMark[0]}";
             num_ofMark4.Text = $"Количество четвёрок: {numOfMark[1]}";
@@ -149,18 +143,22 @@ namespace MyNotebook.Forms
             dg_missions.Rows.Add(missionStats.Count);
             for (int i = 0; i < missionStats.Count; i++)
             {
-                string name = $"{missionStats[i].NumOfMission}. {missionStats[i].mission.Title}";
-                int mistakes = missionStats[i].NumOfWrongAnswers;
-                int right = missionStats[i].NumOfRightAnswers;
-                double success = missionStats[i].SuccessPercent;
-                double time = Convert.ToDouble(missionStats[i].TimeSpanMissionSeconds) / (missionStats[i].NumOfRightAnswers + missionStats[i].NumOfWrongAnswers);
-                int row = i + 1;
+                try
+                {
+                    string name = $"{missionStats[i].NumOfMission}. {missionStats[i].mission.Title}";
+                    int mistakes = missionStats[i].NumOfWrongAnswers;
+                    int right = missionStats[i].NumOfRightAnswers;
+                    double success = missionStats[i].SuccessPercent;
+                    double time = Convert.ToDouble(missionStats[i].TimeSpanMissionSeconds) / (missionStats[i].NumOfRightAnswers + missionStats[i].NumOfWrongAnswers);
+                    int row = i + 1;
 
-                dg_missions.Rows[row].Cells[0].Value = name;
-                dg_missions.Rows[row].Cells[1].Value = mistakes;
-                dg_missions.Rows[row].Cells[2].Value = right;
-                dg_missions.Rows[row].Cells[3].Value = success.ToString("P");
-                dg_missions.Rows[row].Cells[4].Value = Convert.ToInt32(time);
+                    dg_missions.Rows[row].Cells[0].Value = name;
+                    dg_missions.Rows[row].Cells[1].Value = mistakes;
+                    dg_missions.Rows[row].Cells[2].Value = right;
+                    dg_missions.Rows[row].Cells[3].Value = success.ToString("P");
+                    dg_missions.Rows[row].Cells[4].Value = Convert.ToDouble(time / 60).ToString("0.00");
+                }
+                catch { }
             }
             dg_missions.Rows.RemoveAt(0);
         }
