@@ -9,7 +9,6 @@ namespace MyNotebook.Models
     public enum MissionType
     {
         Theory,
-        Practice,
-        Solve
+        Practice
     }
 }

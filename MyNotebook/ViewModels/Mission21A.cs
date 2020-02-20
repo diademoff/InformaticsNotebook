@@ -21,7 +21,7 @@ namespace MyNotebook.ViewModels
                         $"из {Math.Pow(2, i)} цветов.";
                     return new TextMission(21, title, q, i.ToString())
                     {
-                        TypeOfMission = MissionType.Solve
+                        TypeOfMission = MissionType.Practice
                     };
                 #endregion
                 case 2:
@@ -31,7 +31,7 @@ namespace MyNotebook.ViewModels
                         $"максимально возможное количество цветов в палитре.";
                     return new TextMission(21, title, q, Math.Pow(2, i).ToString())
                     {
-                        TypeOfMission = MissionType.Solve
+                        TypeOfMission = MissionType.Practice
                     };
                 #endregion
                 default:

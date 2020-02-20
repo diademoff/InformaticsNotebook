@@ -399,8 +399,8 @@ namespace MyNotebook.Forms
                 TabPage tab = generatedMission.GetTabPage(true);
                 Form previewForm = new Form()
                 {
-                    Width = 800,
-                    Height = 500,
+                    Width = 900,
+                    Height = 550,
                     Icon = Properties.Resources.icon,
                     Text = $"Предпросмотр задания {NumOfMission} \"{generatedMission.Title}\""
                 };

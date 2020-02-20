@@ -85,8 +85,6 @@ namespace MyNotebook
                     return "Теория";
                 case MissionType.Practice:
                     return "Практика";
-                case MissionType.Solve:
-                    return "Решение задач";
                 default:
                     throw new Exception("Mission type to string exeption");
             }

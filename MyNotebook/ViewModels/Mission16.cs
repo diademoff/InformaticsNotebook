@@ -2,15 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyNotebook.ViewModels
 {
     [Serializable]
     public class Mission16 : MissionGenerator
     {
-        public static Random rnd = new Random();
+        public new static Random rnd = new Random();
         struct LogicMission
         {
             /// <summary>

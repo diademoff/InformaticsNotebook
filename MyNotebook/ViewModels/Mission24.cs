@@ -39,7 +39,7 @@ namespace MyNotebook.ViewModels
                 answers.Add($"({n_s}, {n_t}); ");
                 if (IsOK(n_s, n_t, s, t, or))
                 {
-                    expected.Add(index);
+                    expected.Add(index + 1);
                 }
 
                 index++;
@@ -48,8 +48,11 @@ namespace MyNotebook.ViewModels
             {
                 goto again;
             }
-
-            return new SelectMission(24, q, "Сложные условия (Pascal)", answers.ToArray(), expected.ToArray())
+            for (int i = 0; i < answers.Count; i++)
+            {
+                q += $"{i + 1}. {answers[i]}\n";
+            }
+            return new TextMission(24, "Сложные условия (Pascal)", q, string.Join("", expected))
             {
                 TypeOfMission = MissionType.Practice
             };

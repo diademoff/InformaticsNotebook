@@ -59,7 +59,7 @@ namespace MyNotebook.Forms
                 }
                 try
                 {
-                    SuccessPercent = Convert.ToDouble(NumOfRightAnswers) / NumOfWrongAnswers;
+                    SuccessPercent = Convert.ToDouble(NumOfRightAnswers) / (NumOfWrongAnswers + NumOfRightAnswers);
                 }
                 catch { }
             }

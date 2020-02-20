@@ -60,7 +60,6 @@ namespace MyNotebook.Forms
         }
         void btn_chooseTest_Click(object sender, EventArgs e)
         {
-            Test test;
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Тесты | *.test";
