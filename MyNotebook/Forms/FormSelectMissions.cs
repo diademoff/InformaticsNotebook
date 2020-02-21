@@ -63,6 +63,7 @@ namespace MyNotebook.Forms
             }
 
             RefreshUITotal();
+            StyleApply.ForForm(this);
         }
 
         void Btn_save_Click(object sender, EventArgs e)
@@ -257,7 +258,9 @@ namespace MyNotebook.Forms
                 Location = new Point(5, yPosition),
                 Font = new Font("Arial", 16),
                 AutoSize = true,
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                ForeColor = Color.FromArgb(51, 51, 51),
+                Tag = "no"
             };
             Title.Click += (s, e) =>
             {

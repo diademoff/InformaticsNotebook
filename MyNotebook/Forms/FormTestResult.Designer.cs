@@ -44,7 +44,9 @@
             this.lbl_name = new System.Windows.Forms.Label();
             this.btn_showHTML = new System.Windows.Forms.Button();
             this.btn_correctionOfMistakes = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture_diagram)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_state
@@ -54,6 +56,7 @@
             this.lbl_state.Name = "lbl_state";
             this.lbl_state.Size = new System.Drawing.Size(47, 13);
             this.lbl_state.TabIndex = 0;
+            this.lbl_state.Tag = "no";
             this.lbl_state.Text = "Статус: ";
             // 
             // lbl_timeStart
@@ -63,6 +66,7 @@
             this.lbl_timeStart.Name = "lbl_timeStart";
             this.lbl_timeStart.Size = new System.Drawing.Size(84, 13);
             this.lbl_timeStart.TabIndex = 1;
+            this.lbl_timeStart.Tag = "no";
             this.lbl_timeStart.Text = "Время начала: ";
             // 
             // lbl_timeEnd
@@ -72,6 +76,7 @@
             this.lbl_timeEnd.Name = "lbl_timeEnd";
             this.lbl_timeEnd.Size = new System.Drawing.Size(111, 13);
             this.lbl_timeEnd.TabIndex = 2;
+            this.lbl_timeEnd.Tag = "no";
             this.lbl_timeEnd.Text = "Время завершения: ";
             // 
             // lbl_wasCalcDiabled
@@ -81,16 +86,17 @@
             this.lbl_wasCalcDiabled.Name = "lbl_wasCalcDiabled";
             this.lbl_wasCalcDiabled.Size = new System.Drawing.Size(75, 13);
             this.lbl_wasCalcDiabled.TabIndex = 3;
+            this.lbl_wasCalcDiabled.Tag = "no";
             this.lbl_wasCalcDiabled.Text = "Калькулятор:";
             // 
             // txtbx_log
             // 
             this.txtbx_log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbx_log.Location = new System.Drawing.Point(295, 48);
+            this.txtbx_log.Location = new System.Drawing.Point(308, 48);
             this.txtbx_log.Name = "txtbx_log";
             this.txtbx_log.ReadOnly = true;
-            this.txtbx_log.Size = new System.Drawing.Size(493, 466);
+            this.txtbx_log.Size = new System.Drawing.Size(480, 466);
             this.txtbx_log.TabIndex = 4;
             this.txtbx_log.Text = "";
             // 
@@ -102,6 +108,7 @@
             this.lbl_mark.Name = "lbl_mark";
             this.lbl_mark.Size = new System.Drawing.Size(110, 31);
             this.lbl_mark.TabIndex = 5;
+            this.lbl_mark.Tag = "no";
             this.lbl_mark.Text = "Оценка";
             // 
             // lbl_solvedPercent
@@ -111,6 +118,7 @@
             this.lbl_solvedPercent.Name = "lbl_solvedPercent";
             this.lbl_solvedPercent.Size = new System.Drawing.Size(49, 13);
             this.lbl_solvedPercent.TabIndex = 6;
+            this.lbl_solvedPercent.Tag = "no";
             this.lbl_solvedPercent.Text = "Решено:";
             // 
             // lbl_timeSpend
@@ -120,6 +128,7 @@
             this.lbl_timeSpend.Name = "lbl_timeSpend";
             this.lbl_timeSpend.Size = new System.Drawing.Size(101, 13);
             this.lbl_timeSpend.TabIndex = 7;
+            this.lbl_timeSpend.Tag = "no";
             this.lbl_timeSpend.Text = "Время затрачено: ";
             // 
             // lbl_topmost
@@ -129,6 +138,7 @@
             this.lbl_topmost.Name = "lbl_topmost";
             this.lbl_topmost.Size = new System.Drawing.Size(118, 13);
             this.lbl_topmost.TabIndex = 8;
+            this.lbl_topmost.Tag = "no";
             this.lbl_topmost.Text = "Монопольный режим:";
             // 
             // picture_diagram
@@ -142,16 +152,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 427);
+            this.label1.Location = new System.Drawing.Point(202, 370);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 52);
             this.label1.TabIndex = 10;
+            this.label1.Tag = "no";
             this.label1.Text = "< 50% - \"2\"\r\n50 - 74 - \"3\"\r\n75 - 89 - \"4\"\r\n90 - 100 - \"5\"";
             // 
             // btn_preview
             // 
             this.btn_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_preview.Location = new System.Drawing.Point(12, 491);
+            this.btn_preview.Location = new System.Drawing.Point(7, 50);
             this.btn_preview.Name = "btn_preview";
             this.btn_preview.Size = new System.Drawing.Size(120, 23);
             this.btn_preview.TabIndex = 11;
@@ -167,12 +178,13 @@
             this.lbl_name.Name = "lbl_name";
             this.lbl_name.Size = new System.Drawing.Size(134, 31);
             this.lbl_name.TabIndex = 12;
+            this.lbl_name.Tag = "no";
             this.lbl_name.Text = "username";
             // 
             // btn_showHTML
             // 
             this.btn_showHTML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_showHTML.Location = new System.Drawing.Point(138, 491);
+            this.btn_showHTML.Location = new System.Drawing.Point(130, 50);
             this.btn_showHTML.Name = "btn_showHTML";
             this.btn_showHTML.Size = new System.Drawing.Size(151, 23);
             this.btn_showHTML.TabIndex = 13;
@@ -183,23 +195,33 @@
             // btn_correctionOfMistakes
             // 
             this.btn_correctionOfMistakes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_correctionOfMistakes.Location = new System.Drawing.Point(138, 462);
+            this.btn_correctionOfMistakes.Location = new System.Drawing.Point(7, 21);
             this.btn_correctionOfMistakes.Name = "btn_correctionOfMistakes";
-            this.btn_correctionOfMistakes.Size = new System.Drawing.Size(151, 23);
+            this.btn_correctionOfMistakes.Size = new System.Drawing.Size(274, 23);
             this.btn_correctionOfMistakes.TabIndex = 14;
             this.btn_correctionOfMistakes.Text = "Работа над ошибками";
             this.btn_correctionOfMistakes.UseVisualStyleBackColor = true;
             this.btn_correctionOfMistakes.Click += new System.EventHandler(this.btn_correctionOfMistakes_Click);
             // 
-            // TestResultForm
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btn_showHTML);
+            this.groupBox1.Controls.Add(this.btn_correctionOfMistakes);
+            this.groupBox1.Controls.Add(this.btn_preview);
+            this.groupBox1.Location = new System.Drawing.Point(15, 428);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(287, 89);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Управление";
+            // 
+            // FormTestResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 526);
-            this.Controls.Add(this.btn_correctionOfMistakes);
-            this.Controls.Add(this.btn_showHTML);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbl_name);
-            this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picture_diagram);
             this.Controls.Add(this.lbl_topmost);
@@ -212,10 +234,11 @@
             this.Controls.Add(this.lbl_timeStart);
             this.Controls.Add(this.lbl_state);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "TestResultForm";
+            this.Name = "FormTestResult";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Результат";
             ((System.ComponentModel.ISupportInitialize)(this.picture_diagram)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,5 +261,6 @@
         private System.Windows.Forms.Label lbl_name;
         private System.Windows.Forms.Button btn_showHTML;
         private System.Windows.Forms.Button btn_correctionOfMistakes;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

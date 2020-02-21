@@ -17,6 +17,7 @@ namespace MyNotebook
         public FormUsers()
         {
             InitializeComponent();
+            StyleApply.ForForm(this);
 
             listbx_users.DoubleClick += (s, e) =>
             {

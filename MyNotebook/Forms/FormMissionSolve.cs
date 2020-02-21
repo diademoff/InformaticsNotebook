@@ -18,6 +18,7 @@ namespace MyNotebook.Forms
         public FormMissionSolve(User user, Test test, bool isMistakesCorrection)
         {
             InitializeComponent();
+            StyleApply.ForForm(this);
             IsMistakesCorrection = isMistakesCorrection;
             lbl_isTopMost.ForeColor = Color.Red;
             lbl_isTopMost.Text = "Монопольный режим выключен";

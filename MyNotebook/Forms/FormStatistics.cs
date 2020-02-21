@@ -13,6 +13,7 @@ namespace MyNotebook.Forms
         public FormStatistics()
         {
             InitializeComponent();
+            StyleApply.ForForm(this);
             RefreshUI();
         }
 

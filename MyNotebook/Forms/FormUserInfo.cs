@@ -9,6 +9,7 @@ namespace MyNotebook.Forms
         public FormUserInfo(User user)
         {
             InitializeComponent();
+            StyleApply.ForForm(this);
 
             listBox.DoubleClick += (s, e) =>
             {

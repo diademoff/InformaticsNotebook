@@ -53,10 +53,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 25);
             this.label1.TabIndex = 0;
+            this.label1.Tag = "no";
             this.label1.Text = "Выберите задания";
             // 
             // btn_save
@@ -95,10 +97,12 @@
             this.lbl_numOfMissionsSelected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_numOfMissionsSelected.AutoSize = true;
+            this.lbl_numOfMissionsSelected.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.lbl_numOfMissionsSelected.Location = new System.Drawing.Point(510, 20);
             this.lbl_numOfMissionsSelected.Name = "lbl_numOfMissionsSelected";
             this.lbl_numOfMissionsSelected.Size = new System.Drawing.Size(109, 13);
             this.lbl_numOfMissionsSelected.TabIndex = 9;
+            this.lbl_numOfMissionsSelected.Tag = "no";
             this.lbl_numOfMissionsSelected.Text = "Заданий выбрано: 0";
             // 
             // checkbx_showAnswerAtOnce
@@ -207,10 +211,12 @@
             this.lbl_timeNeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_timeNeed.AutoSize = true;
+            this.lbl_timeNeed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.lbl_timeNeed.Location = new System.Drawing.Point(236, 18);
             this.lbl_timeNeed.Name = "lbl_timeNeed";
             this.lbl_timeNeed.Size = new System.Drawing.Size(130, 13);
             this.lbl_timeNeed.TabIndex = 18;
+            this.lbl_timeNeed.Tag = "no";
             this.lbl_timeNeed.Text = "Времяни потребуется: 0";
             // 
             // gb_showType
@@ -239,9 +245,11 @@
             this.Controls.Add(this.lbl_numOfMissionsSelected);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.label1);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSelectMissions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "no";
             this.Text = "Выберите задания";
             this.gb_settings.ResumeLayout(false);
             this.gb_settings.PerformLayout();

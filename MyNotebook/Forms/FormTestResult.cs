@@ -14,6 +14,7 @@ namespace MyNotebook.Forms
         public FormTestResult(Test test, User user)
         {
             InitializeComponent();
+            StyleApply.ForForm(this);
             Test = test;
             User = user;
             UpdateUI();
@@ -44,12 +45,12 @@ namespace MyNotebook.Forms
             current += rightAnswers;
             startZ = endZ;
             endZ = (float)(current / sumOfInput) * 360.0f;
-            graphics.FillPie(new SolidBrush(Color.Green), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
+            graphics.FillPie(new SolidBrush(Color.FromArgb(63, 151, 38)), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
 
             current += wrongAnswers;
             startZ = endZ;
             endZ = (float)(current / sumOfInput) * 360.0f;
-            graphics.FillPie(new SolidBrush(Color.Red), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
+            graphics.FillPie(new SolidBrush(Color.FromArgb(215, 12, 23)), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
 
             return mybit;
         }
@@ -168,6 +169,14 @@ namespace MyNotebook.Forms
             }
             lbl_solvedPercent.Text = $"Решено: {Test.PercentSolved.ToString("#.##")}%";
             lbl_mark.Text = $"Оценка: {Test.Mark}";
+            if (Test.Mark == 5 || Test.Mark == 4)
+            {
+                lbl_mark.ForeColor = Color.FromArgb(34, 128, 7);
+            }
+            else
+            {
+                lbl_mark.ForeColor = Color.FromArgb(206, 0, 20);
+            }
 
             if (Test.Mark == 5 || !Test.EnableMistakesCorrection)
             {

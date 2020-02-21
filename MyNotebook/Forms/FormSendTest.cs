@@ -15,6 +15,7 @@ namespace MyNotebook.Forms
         public FormSendTest()
         {
             InitializeComponent();
+            StyleApply.ForForm(this);
             this.FormClosing += (s, e) => isOpen = false;
             server = new NetworkServer(88); // port never changes
             lbl_ip.Text = $"IP: {server.Ip}";
