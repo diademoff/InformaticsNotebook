@@ -36,11 +36,16 @@ namespace MyNotebook.Forms
             test.TimeStart = DateTime.Now;
             CurrentUser = user;
             this.Test = test;
+            var showType = test.ShowType;
+            if (isMistakesCorrection)
+            {
+                showType = TestShowType.OnOneForm;
+            }
             this.Shown += (s, e) =>
             {
                 UpdateUI();
 
-                switch (test.ShowType)
+                switch (showType)
                 {
                     case TestShowType.OneByOneBlocks:
                         ShowMissionsBlocksOneByOne(test);
@@ -108,6 +113,7 @@ namespace MyNotebook.Forms
         {
             if (IsMistakesCorrection)
             {
+                this.Close();
                 return;
             }
             this.FullHideForm();
@@ -289,10 +295,7 @@ namespace MyNotebook.Forms
                 }
             }
 
-            if (!IsMistakesCorrection)
-            {
-                ShowResult();
-            }
+            ShowResult();
         }
     }
 }

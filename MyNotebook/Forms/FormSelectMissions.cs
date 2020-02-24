@@ -380,7 +380,7 @@ namespace MyNotebook.Forms
             TimeToSolve = new Label()
             {
                 Location = new Point(CheckBox.Location.X + 600, yPosition),
-                Text = generatedMission.TimeNeedToSolveMissionSeconds + " сек",
+                Text = (generatedMission.TimeNeedToSolveMissionSeconds / 60).ToString("0.#") + " мин",
                 Font = new Font(new FontFamily("Arial"), 12, FontStyle.Regular, GraphicsUnit.Pixel),
                 AutoSize = false
             };

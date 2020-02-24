@@ -3,6 +3,7 @@ using System;
 
 namespace MyNotebook.ViewModels
 {
+    [Serializable]
     class Mission21C : MissionGenerator
     {
         public override MissionBase Generate()

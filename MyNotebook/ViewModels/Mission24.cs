@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace MyNotebook.ViewModels
 {
+    [Serializable]
     public class Mission24 : MissionGenerator
     {
         enum Sym

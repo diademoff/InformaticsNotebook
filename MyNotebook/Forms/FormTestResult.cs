@@ -128,7 +128,6 @@ namespace MyNotebook.Forms
             }
             catch { }
 
-            reSolvedTest.TimeFinish = DateTime.Now;
             this.Test = reSolvedTest;
             UpdateUI();
         }
