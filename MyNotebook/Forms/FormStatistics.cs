@@ -2,6 +2,7 @@
 using MyNotebook.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,8 +14,8 @@ namespace MyNotebook.Forms
         public FormStatistics()
         {
             InitializeComponent();
-            StyleApply.ForForm(this);
             RefreshUI();
+            StyleApply.ForForm(this);
         }
 
         struct MissionStat
@@ -66,7 +67,85 @@ namespace MyNotebook.Forms
             }
         }
 
+        User GetBestUser(User[] collection)
+        {
+            List<int> NumOfUnsolvedMissions = new List<int>();
+            double numOfTests = 0, numOfMissions = 0, averageTimeSpanOnSolveMission = 0, maxAverageMark = 0;
+            int[] numOfMark = new int[4];
+            for (int i = 0; i < collection.Length; i++)
+            {
+                numOfTests += collection[i].UserTests.Count;
+                double averageMark = 0;
+                for (int j = 0; j < collection[i].UserTests.Count; j++)
+                {
+                    numOfMissions += collection[i].UserTests[j].AllMissions.Count;
+                    for (int k = 0; k < collection[i].UserTests[j].AllMissions.Count; k++)
+                    {
+                        averageTimeSpanOnSolveMission += collection[i].UserTests[j].AllMissions[k].TimeSpanOnMissionSeconds;
+                        if (collection[i].UserTests[j].AllMissions[k].IsSolvedRight())
+                        {
+                            continue;
+                        }
+                        NumOfUnsolvedMissions.Add(collection[i].UserTests[j].AllMissions[k].NumOfMission);
+                    }
+                    int mark = collection[i].UserTests[j].Mark;
+                    averageMark += mark;
+                    switch (mark)
+                    {
+                        case 5:
+                            numOfMark[0]++;
+                            break;
+                        case 4:
+                            numOfMark[1]++;
+                            break;
+                        case 3:
+                            numOfMark[2]++;
+                            break;
+                        case 2:
+                            numOfMark[3]++;
+                            break;
+                    }
+                }
+                averageMark /= collection[i].UserTests.Count;
+                if (averageMark > maxAverageMark)
+                {
+                    maxAverageMark = averageMark;
+                    return collection[i];
+                }
+            }
+            throw new Exception();
+        }
+
         void RefreshUI()
+        {
+            List<int> NumOfUnsolvedMissions = PrintMainInfo();
+            PrintHardestMission(NumOfUnsolvedMissions);
+            PrintPanelLeaderBoard();
+            PrintMissionStatistics();
+        }
+        void PrintPanelLeaderBoard()
+        {
+            List<User> users = UserCollection.Instance.GetUsers.ToList();
+
+            int i = 0;
+            while (users.Count > 0)
+            {
+                User bestUser = GetBestUser(users.ToArray());
+
+                Label lbl = new Label()
+                {
+                    Text = $"{i + 1}. " + bestUser.ToString(),
+                    Location = new Point(0, i * 20),
+                    AutoSize = false,
+                    Font = new Font("Arial", 12.0f)
+                };
+                pnl_leaderBoard.Controls.Add(lbl);
+
+                users.Remove(bestUser);
+                i++;
+            }
+        }
+        List<int> PrintMainInfo()
         {
             int numOfTests = 0;
             int[] numOfMark = new int[4];
@@ -120,11 +199,9 @@ namespace MyNotebook.Forms
                 if (averageMark > maxAverageMark)
                 {
                     maxAverageMark = averageMark;
-                    bestUser = UserCollection.Instance.GetUsers[i];
                 }
             }
             averageTimeSpanOnSolveMission /= numOfMissions;
-            MissionBase hardestMission = MissionGeneratorCollection.GetMissionByNum(GetHardestMission(NumOfUnsolvedMissions)).Generate();
 
             lbl_numOfUsers.Text = $"Количество пользователей: {UserCollection.Instance.GetUsers.Length}";
             lbl_numOfTests.Text = $"Количество пройденых тестов: {numOfTests}";
@@ -137,11 +214,16 @@ namespace MyNotebook.Forms
             num_ofMark2.Text = $"Количество двоек: {numOfMark[3]}";
 
             lbl_bestUser.Text = $"Лучший ученик: {bestUser.Name} (средний балл - {maxAverageMark})";
-            lbl_hardestMission.Text = $"Самое сложное задание: {hardestMission.Title} (№{hardestMission.NumOfMission})";
-
+            return NumOfUnsolvedMissions;
+        }
+        void PrintMissionStatistics()
+        {
             List<MissionStat> missionStats = GetMissionStats(UserCollection.Instance.Users);
 
-            dg_missions.Rows.Add(missionStats.Count);
+            if (missionStats.Count != 0)
+            {
+                dg_missions.Rows.Add(missionStats.Count);
+            }
             for (int i = 0; i < missionStats.Count; i++)
             {
                 try
@@ -161,7 +243,20 @@ namespace MyNotebook.Forms
                 }
                 catch { }
             }
-            dg_missions.Rows.RemoveAt(0);
+            if (missionStats.Count != 0)
+                dg_missions.Rows.RemoveAt(0);
+        }
+
+
+        private void PrintHardestMission(List<int> NumOfUnsolvedMissions)
+        {
+            try
+            {
+                MissionBase hardestMission;
+                hardestMission = MissionGeneratorCollection.GetMissionByNum(GetHardestMission(NumOfUnsolvedMissions)).Generate();
+                lbl_hardestMission.Text = $"Самое сложное задание: {hardestMission.Title} (№{hardestMission.NumOfMission})";
+            }
+            catch { lbl_hardestMission.Visible = false; }
         }
 
         List<MissionStat> GetMissionStats(List<User> allUsers)

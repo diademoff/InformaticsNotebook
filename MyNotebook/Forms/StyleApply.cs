@@ -38,21 +38,25 @@ namespace MyNotebook.Forms
                 if (control is Button)
                 {
                     var btn = control as Button;
-                    btn.MouseEnter += (s, e) => {(s as Button).FlatAppearance.BorderSize = 1; };
-                    btn.MouseLeave += (s, e) => { (s as Button).FlatAppearance.BorderSize = 0; };
+
+                    btn.MouseEnter += (s, e) => { btn.FlatAppearance.BorderSize = 1; };
+                    btn.MouseLeave += (s, e) => { btn.FlatAppearance.BorderSize = 0; };
+                    //btn.MouseMove += (s, e) => { btn.BackColor = Color.FromArgb(255, 240, 188); };
+                    //btn.MouseUp += (s, e) => { btn.BackColor = Color.Transparent; };
+
                     btn.Cursor = Cursors.Hand;
                     btn.FlatAppearance.BorderSize = 0;
                     btn.FlatAppearance.BorderColor = Color.FromArgb(229, 229, 229);
                     btn.ForeColor = Color.FromArgb(20, 20, 20);
                     btn.BackColor = Color.Transparent;
                     btn.FlatStyle = FlatStyle.Flat;
-                    btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+                    btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 240, 188);
                     btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
 
-                    if (!btn.Enabled)
-                    {
-                        btn.BackColor = Color.FromArgb(160, 160, 160);
-                    }
+                    //if (!btn.Enabled)
+                    //{
+                    //    btn.BackColor = Color.FromArgb(160, 160, 160);
+                    //}
                 }
                 //else if (control is GroupBox)
                 //{

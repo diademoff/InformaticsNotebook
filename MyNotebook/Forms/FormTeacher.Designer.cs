@@ -38,6 +38,7 @@
             this.lbl_newUser = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_send = new System.Windows.Forms.Button();
+            this.btn_statistics = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_info
@@ -131,11 +132,22 @@
             this.btn_send.UseVisualStyleBackColor = true;
             this.btn_send.Click += new System.EventHandler(this.btn_send_Click);
             // 
+            // btn_statistics
+            // 
+            this.btn_statistics.Location = new System.Drawing.Point(12, 403);
+            this.btn_statistics.Name = "btn_statistics";
+            this.btn_statistics.Size = new System.Drawing.Size(167, 49);
+            this.btn_statistics.TabIndex = 21;
+            this.btn_statistics.Text = "Статистика";
+            this.btn_statistics.UseVisualStyleBackColor = true;
+            this.btn_statistics.Click += new System.EventHandler(this.btn_statistics_Click);
+            // 
             // FormTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 464);
+            this.Controls.Add(this.btn_statistics);
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.lbl_newUser);
@@ -165,5 +177,6 @@
         private System.Windows.Forms.Label lbl_newUser;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_send;
+        private System.Windows.Forms.Button btn_statistics;
     }
 }

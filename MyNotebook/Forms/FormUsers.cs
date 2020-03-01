@@ -5,6 +5,7 @@ using MyNotebook.ViewModels;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -179,23 +180,11 @@ namespace MyNotebook
                 return;
             }
 
-            User selectedUser;
-            if (!UserCollection.Instance.UserExists($"{txtbx_name.Text} - {txtbx_class.Text}"))
+            if (!IPAddress.TryParse(txtbx_ip.Text, out IPAddress res))
             {
-                if (MessageBox.Show("Добавить нового ученика?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    if (string.IsNullOrWhiteSpace(txtbx_name.Text.Trim()) || string.IsNullOrWhiteSpace(txtbx_class.Text.Trim()))
-                    {
-                        MessageBox.Show("Имя ученика или класс не заполнены", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    UserCollection.Instance.AddNewUser(new User(txtbx_name.Text.Trim(), txtbx_class.Text.Trim()));
-                    selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
-                }
-                else
-                    return;
+                MessageBox.Show("Адрес введён не корректно");
+                return;
             }
-            selectedUser = UserCollection.Instance[$"{txtbx_name.Text} - {txtbx_class.Text}"];
 
             try
             {

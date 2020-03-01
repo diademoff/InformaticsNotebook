@@ -22,6 +22,15 @@ namespace MyNotebook.Models
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); //слушает
         }
 
+        ~NetworkClient()
+        {
+            try
+            {
+                socket.Shutdown(SocketShutdown.Both);
+            }
+            catch { }
+        }
+
         public NetworkMessage Send(NetworkMessage sendData)
         {
             try

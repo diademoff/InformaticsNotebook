@@ -47,6 +47,8 @@
             this.right = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.percent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnl_leaderBoard = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.gb_marks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_missions)).BeginInit();
             this.SuspendLayout();
@@ -167,7 +169,7 @@
             // btn_export
             // 
             this.btn_export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_export.Location = new System.Drawing.Point(899, 459);
+            this.btn_export.Location = new System.Drawing.Point(969, 490);
             this.btn_export.Name = "btn_export";
             this.btn_export.Size = new System.Drawing.Size(120, 26);
             this.btn_export.TabIndex = 7;
@@ -191,7 +193,7 @@
             this.dg_missions.Location = new System.Drawing.Point(541, 12);
             this.dg_missions.Name = "dg_missions";
             this.dg_missions.ReadOnly = true;
-            this.dg_missions.Size = new System.Drawing.Size(478, 242);
+            this.dg_missions.Size = new System.Drawing.Size(548, 273);
             this.dg_missions.TabIndex = 8;
             // 
             // name
@@ -224,11 +226,33 @@
             this.time.Name = "time";
             this.time.ReadOnly = true;
             // 
+            // pnl_leaderBoard
+            // 
+            this.pnl_leaderBoard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnl_leaderBoard.AutoScroll = true;
+            this.pnl_leaderBoard.Location = new System.Drawing.Point(15, 308);
+            this.pnl_leaderBoard.Name = "pnl_leaderBoard";
+            this.pnl_leaderBoard.Size = new System.Drawing.Size(497, 208);
+            this.pnl_leaderBoard.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label1.Location = new System.Drawing.Point(12, 278);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 17);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Лучшие ученики";
+            // 
             // FormStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 497);
+            this.ClientSize = new System.Drawing.Size(1101, 528);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pnl_leaderBoard);
             this.Controls.Add(this.dg_missions);
             this.Controls.Add(this.btn_export);
             this.Controls.Add(this.lbl_averageTimeSpanOnMission);
@@ -270,5 +294,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn right;
         private System.Windows.Forms.DataGridViewTextBoxColumn percent;
         private System.Windows.Forms.DataGridViewTextBoxColumn time;
+        private System.Windows.Forms.Panel pnl_leaderBoard;
+        private System.Windows.Forms.Label label1;
     }
 }

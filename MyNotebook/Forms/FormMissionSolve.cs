@@ -17,8 +17,7 @@ namespace MyNotebook.Forms
         public bool IsMistakesCorrection;
         public FormMissionSolve(User user, Test test, bool isMistakesCorrection)
         {
-            InitializeComponent();
-            StyleApply.ForForm(this);
+            InitializeComponent();            
             IsMistakesCorrection = isMistakesCorrection;
             lbl_isTopMost.ForeColor = Color.Red;
             lbl_isTopMost.Text = "Монопольный режим выключен";
@@ -66,7 +65,8 @@ namespace MyNotebook.Forms
                 Interval = 100,
                 Enabled = true
             };
-            uiUpdater.Tick += (s, e) => UpdateUI();            
+            uiUpdater.Tick += (s, e) => UpdateUI();
+            StyleApply.ForForm(this);
         }
 
         void ShowMissionsOneByOne(Test test)
@@ -91,6 +91,7 @@ namespace MyNotebook.Forms
                     {
                         tabControl.TabPages.Add(tab);
                     }));
+                    StyleApply.ForForm(tabControl);
                     while (!test.AllMissions[(int)indexOfCurrMission].IsSolved())
                     {
                         if (Test.Finished)
@@ -169,6 +170,7 @@ namespace MyNotebook.Forms
                     {
                         tabControl.TabPages.AddRange(tabs.ToArray());
                     }));
+                    StyleApply.ForForm(tabControl);
                     while (true)
                     {
                         bool allSolved = true;
@@ -242,6 +244,7 @@ namespace MyNotebook.Forms
                 tabControl.TabPages[indexOfTab].Controls.Add(subTab); // добавляем subtab в tabpage под индексом indexOfTab
 
                 object currIndex = indexOfTab;
+                StyleApply.ForForm(tabControl);
                 new Task(() => // изменить Text mainTab, когда все subTab решены
                 {
                     while (true)

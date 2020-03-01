@@ -1,8 +1,5 @@
 ﻿using MyNotebook.Models;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -29,12 +26,16 @@ namespace MyNotebook.Forms
                     }
                     else
                     {
-                        btn_update.Invoke(new MethodInvoker(() =>
+                        try
                         {
-                            btn_update.Visible = true;
-                            btn_update.Enabled = false;
-                            btn_update.Text = "Обновлений нет";
-                        }));
+                            btn_update.Invoke(new MethodInvoker(() =>
+                            {
+                                btn_update.Visible = true;
+                                btn_update.Enabled = false;
+                                btn_update.Text = "Обновлений нет";
+                            }));
+                        }
+                        catch { }
                     }
                 }).Start();
                 new Thread(() =>
@@ -67,20 +68,12 @@ namespace MyNotebook.Forms
             this.FullHideForm();
             FormTeacher tf = new FormTeacher();
             tf.ShowDialog();
-            Close();
+            this.FullShowForm();
         }
 
         private void btn_update_Click(object sender, EventArgs e)
         {
             new GitUpdater().AskAndUpdate();
-        }
-
-        private void btn_statistics_Click(object sender, EventArgs e)
-        {
-            TopMost = false;
-            this.FullHideForm();
-            new FormStatistics().ShowDialog();
-            this.FullShowForm();
         }
     }
 }

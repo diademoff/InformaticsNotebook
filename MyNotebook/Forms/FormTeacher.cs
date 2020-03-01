@@ -143,5 +143,12 @@ namespace MyNotebook.Forms
         {
             new FormSendTest().ShowDialog();
         }
+
+        private void btn_statistics_Click(object sender, EventArgs e)
+        {
+            this.FullHideForm();
+            new FormStatistics().ShowDialog();
+            this.FullShowForm();
+        }
     }
 }

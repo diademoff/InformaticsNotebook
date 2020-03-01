@@ -63,7 +63,7 @@ namespace MyNotebook.ViewModels
 
                     question += $"Запишите порядок команд в программе,\n" +
                                 $"которая преобразует число {beginNum} в число {result}.\n" +
-                                $"Указывайте лишь номера команд.";
+                                $"Указывайте лишь номера пяти команд.";
                     var mission = new TextMission(11, "Исполнитель Квадратор", question, answer, IsSolvedRight);
                     mission.Tooltip = "Указать последовательность комманд для исполнителя Квадратор";
                     mission.TypeOfMission = MissionType.Practice;
@@ -76,10 +76,13 @@ namespace MyNotebook.ViewModels
         int Result;
         bool IsSolvedRight(string answerGiven)
         {
+
             if (answerGiven == null)
             {
                 return false;
             }
+
+            answerGiven = answerGiven.Trim();
 
             double n = BeginNum;
             foreach (var num in answerGiven)
@@ -87,19 +90,19 @@ namespace MyNotebook.ViewModels
                 try
                 {
                     int temp = Convert.ToInt32(num.ToString());
+                    switch (Convert.ToInt32(num.ToString()))
+                    {
+                        case 1:
+                            n += c1;
+                            break;
+                        case 2:
+                            n *= c2;
+                            break;
+                        default:
+                            throw new Exception("Unknown command. Mission 11");
+                    }
                 }
                 catch { return false; }
-                switch (Convert.ToInt32(num.ToString()))
-                {
-                    case 1:
-                        n += c1;
-                        break;
-                    case 2:
-                        n *= c2;
-                        break;
-                    default:
-                        throw new Exception("Unknown command. Mission 11");
-                }
             }
             return (int)n == Result;
         }
