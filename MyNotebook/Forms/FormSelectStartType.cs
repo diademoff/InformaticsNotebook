@@ -16,18 +16,68 @@ namespace MyNotebook.Forms
             {
                 new Thread(() =>
                 {
-                    bool needUpdate = new GitUpdater().NeedUpdate;
-                    if (needUpdate)
+                    bool waiting = true;
+                    #region wait animation
+                    new Thread(() =>
                     {
                         btn_update.Invoke(new MethodInvoker(() =>
                         {
                             btn_update.Visible = true;
+                            btn_update.Enabled = false;
+                        }));
+                        int animatoinStep = 1;
+                        do
+                        {
+                            try
+                            {
+
+                                btn_update.Invoke(new MethodInvoker(() =>
+                                {
+                                    switch (animatoinStep)
+                                    {
+                                        case 1:
+                                            btn_update.Text = @" / / / ";
+                                            animatoinStep++;
+                                            break;
+                                        case 2:
+                                            btn_update.Text = @" | | | ";
+                                            animatoinStep++;
+                                            break;
+                                        case 3:
+                                            btn_update.Text = @" \ \ \ ";
+                                            animatoinStep = 1;
+                                            break;
+                                    }
+                                }));
+                                Thread.Sleep(250);
+                            }
+                            catch { }
+                        } while (waiting);
+                    })
+                    { IsBackground = true }.Start();
+                    #endregion
+                    var updater = new GitUpdater();
+                again:
+                    bool needUpdate = updater.NeedUpdate;
+                    if (needUpdate)
+                    {
+                        waiting = false;
+                        btn_update.Invoke(new MethodInvoker(() =>
+                        {
+                            btn_update.Visible = true;
+                            btn_update.Enabled = true;
+                            btn_update.Text = "Обновить";
                         }));
                     }
                     else
                     {
+                        if (!GitUpdater.IsInternetExists())
+                        {
+                            goto again;
+                        }
                         try
                         {
+                            waiting = false;
                             btn_update.Invoke(new MethodInvoker(() =>
                             {
                                 btn_update.Visible = true;
@@ -37,7 +87,8 @@ namespace MyNotebook.Forms
                         }
                         catch { }
                     }
-                }).Start();
+                })
+                { IsBackground = true }.Start();
                 new Thread(() =>
                 {
                     try

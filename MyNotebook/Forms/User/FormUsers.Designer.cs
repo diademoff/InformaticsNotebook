@@ -33,13 +33,13 @@
             this.txtbx_name = new System.Windows.Forms.TextBox();
             this.txtbx_class = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.listbx_users = new System.Windows.Forms.ListBox();
             this.btn_chooseTest = new System.Windows.Forms.Button();
             this.lbl_about = new System.Windows.Forms.Label();
             this.txtbx_searchUsers = new System.Windows.Forms.TextBox();
             this.txtbx_ip = new System.Windows.Forms.TextBox();
             this.gb_getText = new System.Windows.Forms.GroupBox();
             this.btn_getTest = new System.Windows.Forms.Button();
+            this.pnl_users = new System.Windows.Forms.Panel();
             this.gb_getText.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,15 +80,6 @@
             this.label2.Size = new System.Drawing.Size(94, 32);
             this.label2.TabIndex = 2;
             this.label2.Text = "Класс";
-            // 
-            // listbx_users
-            // 
-            this.listbx_users.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.listbx_users.FormattingEnabled = true;
-            this.listbx_users.Location = new System.Drawing.Point(12, 129);
-            this.listbx_users.Name = "listbx_users";
-            this.listbx_users.Size = new System.Drawing.Size(779, 264);
-            this.listbx_users.TabIndex = 4;
             // 
             // btn_chooseTest
             // 
@@ -146,16 +137,24 @@
             this.btn_getTest.UseVisualStyleBackColor = true;
             this.btn_getTest.Click += new System.EventHandler(this.btn_getTest_Click);
             // 
+            // list_users
+            // 
+            this.pnl_users.AutoScroll = true;
+            this.pnl_users.Location = new System.Drawing.Point(12, 128);
+            this.pnl_users.Name = "list_users";
+            this.pnl_users.Size = new System.Drawing.Size(779, 265);
+            this.pnl_users.TabIndex = 15;
+            // 
             // FormUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnl_users);
             this.Controls.Add(this.gb_getText);
             this.Controls.Add(this.txtbx_searchUsers);
             this.Controls.Add(this.lbl_about);
             this.Controls.Add(this.btn_chooseTest);
-            this.Controls.Add(this.listbx_users);
             this.Controls.Add(this.txtbx_class);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtbx_name);
@@ -180,13 +179,13 @@
         private System.Windows.Forms.TextBox txtbx_name;
         private System.Windows.Forms.TextBox txtbx_class;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listbx_users;
         private System.Windows.Forms.Button btn_chooseTest;
         private System.Windows.Forms.Label lbl_about;
         private System.Windows.Forms.TextBox txtbx_searchUsers;
         private System.Windows.Forms.TextBox txtbx_ip;
         private System.Windows.Forms.GroupBox gb_getText;
         private System.Windows.Forms.Button btn_getTest;
+        private System.Windows.Forms.Panel pnl_users;
     }
 }
 

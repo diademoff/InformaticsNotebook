@@ -68,28 +68,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions.cs" />
-    <Compile Include="Forms\FormAboutBox.cs">
+    <Compile Include="Forms\User\FormAboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAboutBox.Designer.cs">
+    <Compile Include="Forms\User\FormAboutBox.Designer.cs">
       <DependentUpon>FormAboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormBitmapViewer.cs">
+    <Compile Include="Forms\Utils\FormBitmapViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormBitmapViewer.Designer.cs">
+    <Compile Include="Forms\Utils\FormBitmapViewer.Designer.cs">
       <DependentUpon>FormBitmapViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormMissionSolve.cs">
+    <Compile Include="Forms\Utils\FormMissionSolve.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormMissionSolve.Designer.cs">
+    <Compile Include="Forms\Utils\FormMissionSolve.Designer.cs">
       <DependentUpon>FormMissionSolve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSelectMissions.cs">
+    <Compile Include="Forms\Teacher\FormSelectMissions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSelectMissions.Designer.cs">
+    <Compile Include="Forms\Teacher\FormSelectMissions.Designer.cs">
       <DependentUpon>FormSelectMissions.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSelectStartType.cs">
@@ -98,34 +98,34 @@
     <Compile Include="Forms\FormSelectStartType.Designer.cs">
       <DependentUpon>FormSelectStartType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSendTest.cs">
+    <Compile Include="Forms\Teacher\FormSendTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSendTest.Designer.cs">
+    <Compile Include="Forms\Teacher\FormSendTest.Designer.cs">
       <DependentUpon>FormSendTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormStatistics.cs">
+    <Compile Include="Forms\Teacher\FormStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormStatistics.Designer.cs">
+    <Compile Include="Forms\Teacher\FormStatistics.Designer.cs">
       <DependentUpon>FormStatistics.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormTeacher.cs">
+    <Compile Include="Forms\Teacher\FormTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormTeacher.Designer.cs">
+    <Compile Include="Forms\Teacher\FormTeacher.Designer.cs">
       <DependentUpon>FormTeacher.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormTestResult.cs">
+    <Compile Include="Forms\Utils\FormTestResult.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormTestResult.Designer.cs">
+    <Compile Include="Forms\Utils\FormTestResult.Designer.cs">
       <DependentUpon>FormTestResult.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormUserInfo.cs">
+    <Compile Include="Forms\Teacher\FormUserInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormUserInfo.Designer.cs">
+    <Compile Include="Forms\Teacher\FormUserInfo.Designer.cs">
       <DependentUpon>FormUserInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\StyleApply.cs" />
@@ -144,10 +144,10 @@
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\MissionTypes\TextMission.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Forms\FormUsers.cs">
+    <Compile Include="Forms\User\FormUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormUsers.Designer.cs">
+    <Compile Include="Forms\User\FormUsers.Designer.cs">
       <DependentUpon>FormUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -181,34 +181,34 @@
     <Compile Include="ViewModels\Mission9.cs" />
     <Compile Include="ViewModels\MissionGeneratorCollection.cs" />
     <Compile Include="ViewModels\UserCollection.cs" />
-    <EmbeddedResource Include="Forms\FormAboutBox.resx">
+    <EmbeddedResource Include="Forms\User\FormAboutBox.resx">
       <DependentUpon>FormAboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBitmapViewer.resx">
+    <EmbeddedResource Include="Forms\Utils\FormBitmapViewer.resx">
       <DependentUpon>FormBitmapViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormMissionSolve.resx">
+    <EmbeddedResource Include="Forms\Utils\FormMissionSolve.resx">
       <DependentUpon>FormMissionSolve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSelectMissions.resx">
+    <EmbeddedResource Include="Forms\Teacher\FormSelectMissions.resx">
       <DependentUpon>FormSelectMissions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSelectStartType.resx">
       <DependentUpon>FormSelectStartType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSendTest.resx">
+    <EmbeddedResource Include="Forms\Teacher\FormSendTest.resx">
       <DependentUpon>FormSendTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormStatistics.resx">
+    <EmbeddedResource Include="Forms\Teacher\FormStatistics.resx">
       <DependentUpon>FormStatistics.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormTeacher.resx">
+    <EmbeddedResource Include="Forms\Teacher\FormTeacher.resx">
       <DependentUpon>FormTeacher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormTestResult.resx">
+    <EmbeddedResource Include="Forms\Utils\FormTestResult.resx">
       <DependentUpon>FormTestResult.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormUserInfo.resx">
+    <EmbeddedResource Include="Forms\Teacher\FormUserInfo.resx">
       <DependentUpon>FormUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -221,7 +221,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\FormUsers.resx">
+    <EmbeddedResource Include="Forms\User\FormUsers.resx">
       <DependentUpon>FormUsers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

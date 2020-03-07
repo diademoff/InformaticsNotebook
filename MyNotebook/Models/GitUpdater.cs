@@ -10,7 +10,7 @@ namespace MyNotebook.Models
 {
     public class GitUpdater
     {
-        public string ThisVersion { get; } = "1.0.0"; //TODO: Before commiting change version here and in file "version"
+        public string ThisVersion { get; } = "1.0.1"; //TODO: Before commiting change version here and in file "version"
         string linkForNewVersion = "https://raw.githubusercontent.com/diademoff/InformaticsNotebook/master/version";
         string linkForDownloadFile = "https://github.com/diademoff/InformaticsNotebook/raw/master/MyNotebook/Build/MyNotebook.exe";
         string programName = "MyNotebook";
@@ -30,6 +30,19 @@ namespace MyNotebook.Models
             {
                 MessageBox.Show("Обновления не найдены или отсутствует доступ к репозиторию", "Проверка обновлений", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        public static bool IsInternetExists()
+        {
+            try
+            {
+                WebClient wc = new WebClient();
+                wc.Headers["User-Agent"] = "Mozilla/4.0";
+                wc.Encoding = Encoding.UTF8;
+                wc.DownloadString("https://www.google.com/");
+                return true;
+            }
+            catch { return false; }
         }
 
         /// <summary>
