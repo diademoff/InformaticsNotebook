@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
@@ -68,6 +70,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions.cs" />
+    <Compile Include="Forms\FormStyle.cs" />
+    <Compile Include="Forms\Teacher\CreateTest\FormCreateVariants.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Teacher\CreateTest\FormCreateVariants.Designer.cs">
+      <DependentUpon>FormCreateVariants.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\User\FormAboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,10 +95,10 @@
     <Compile Include="Forms\Utils\FormMissionSolve.Designer.cs">
       <DependentUpon>FormMissionSolve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Teacher\FormSelectMissions.cs">
+    <Compile Include="Forms\Teacher\CreateTest\FormSelectMissions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Teacher\FormSelectMissions.Designer.cs">
+    <Compile Include="Forms\Teacher\CreateTest\FormSelectMissions.Designer.cs">
       <DependentUpon>FormSelectMissions.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSelectStartType.cs">
@@ -181,6 +190,9 @@
     <Compile Include="ViewModels\Mission9.cs" />
     <Compile Include="ViewModels\MissionGeneratorCollection.cs" />
     <Compile Include="ViewModels\UserCollection.cs" />
+    <EmbeddedResource Include="Forms\Teacher\CreateTest\FormCreateVariants.resx">
+      <DependentUpon>FormCreateVariants.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\User\FormAboutBox.resx">
       <DependentUpon>FormAboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,7 +202,7 @@
     <EmbeddedResource Include="Forms\Utils\FormMissionSolve.resx">
       <DependentUpon>FormMissionSolve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Teacher\FormSelectMissions.resx">
+    <EmbeddedResource Include="Forms\Teacher\CreateTest\FormSelectMissions.resx">
       <DependentUpon>FormSelectMissions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSelectStartType.resx">

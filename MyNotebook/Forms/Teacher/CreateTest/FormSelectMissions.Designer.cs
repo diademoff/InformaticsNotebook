@@ -64,7 +64,7 @@
             // btn_save
             // 
             this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_save.Location = new System.Drawing.Point(843, 516);
+            this.btn_save.Location = new System.Drawing.Point(843, 537);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(130, 31);
             this.btn_save.TabIndex = 6;
@@ -123,7 +123,7 @@
             this.panel_missions.AutoScroll = true;
             this.panel_missions.Location = new System.Drawing.Point(17, 37);
             this.panel_missions.Name = "panel_missions";
-            this.panel_missions.Size = new System.Drawing.Size(956, 407);
+            this.panel_missions.Size = new System.Drawing.Size(956, 427);
             this.panel_missions.TabIndex = 11;
             // 
             // checkbx_onebyoneBlocks
@@ -151,7 +151,7 @@
             // btn_load
             // 
             this.btn_load.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_load.Location = new System.Drawing.Point(716, 516);
+            this.btn_load.Location = new System.Drawing.Point(716, 537);
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(121, 31);
             this.btn_load.TabIndex = 14;
@@ -189,7 +189,7 @@
             this.gb_settings.Controls.Add(this.checkbx_topMost);
             this.gb_settings.Controls.Add(this.checkbx_disableCalc);
             this.gb_settings.Controls.Add(this.checkbx_showAnswerAtOnce);
-            this.gb_settings.Location = new System.Drawing.Point(17, 444);
+            this.gb_settings.Location = new System.Drawing.Point(17, 465);
             this.gb_settings.Name = "gb_settings";
             this.gb_settings.Size = new System.Drawing.Size(349, 105);
             this.gb_settings.TabIndex = 17;
@@ -225,7 +225,7 @@
             this.gb_showType.Controls.Add(this.checkbx_onebyoneBlocks);
             this.gb_showType.Controls.Add(this.checkbx_onebyoneMissions);
             this.gb_showType.Controls.Add(this.checkbx_randomOrder);
-            this.gb_showType.Location = new System.Drawing.Point(369, 444);
+            this.gb_showType.Location = new System.Drawing.Point(369, 465);
             this.gb_showType.Name = "gb_showType";
             this.gb_showType.Size = new System.Drawing.Size(384, 66);
             this.gb_showType.TabIndex = 19;
@@ -236,7 +236,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 555);
+            this.ClientSize = new System.Drawing.Size(985, 599);
             this.Controls.Add(this.gb_showType);
             this.Controls.Add(this.lbl_timeNeed);
             this.Controls.Add(this.gb_settings);

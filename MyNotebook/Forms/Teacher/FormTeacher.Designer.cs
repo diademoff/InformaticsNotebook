@@ -54,7 +54,7 @@
             // btn_createTest
             // 
             this.btn_createTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_createTest.Location = new System.Drawing.Point(624, 403);
+            this.btn_createTest.Location = new System.Drawing.Point(624, 379);
             this.btn_createTest.Name = "btn_createTest";
             this.btn_createTest.Size = new System.Drawing.Size(167, 49);
             this.btn_createTest.TabIndex = 13;
@@ -71,7 +71,7 @@
             this.listbx_users.FormattingEnabled = true;
             this.listbx_users.Location = new System.Drawing.Point(12, 42);
             this.listbx_users.Name = "listbx_users";
-            this.listbx_users.Size = new System.Drawing.Size(779, 355);
+            this.listbx_users.Size = new System.Drawing.Size(779, 329);
             this.listbx_users.TabIndex = 12;
             // 
             // btn_union
@@ -124,7 +124,7 @@
             // btn_send
             // 
             this.btn_send.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_send.Location = new System.Drawing.Point(451, 403);
+            this.btn_send.Location = new System.Drawing.Point(451, 379);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(167, 49);
             this.btn_send.TabIndex = 20;
@@ -134,7 +134,8 @@
             // 
             // btn_statistics
             // 
-            this.btn_statistics.Location = new System.Drawing.Point(12, 403);
+            this.btn_statistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_statistics.Location = new System.Drawing.Point(12, 379);
             this.btn_statistics.Name = "btn_statistics";
             this.btn_statistics.Size = new System.Drawing.Size(167, 49);
             this.btn_statistics.TabIndex = 21;
