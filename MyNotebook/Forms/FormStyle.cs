@@ -315,11 +315,14 @@ namespace MyNotebook.Forms
 
             try
             {
-                // Если окно полнять вверх -> разворачиваем на весь экран
-                if (Cursor.Position.Y == Screen.FromHandle(Form.Handle).WorkingArea.Y
-                    && Form.WindowState == FormWindowState.Normal)
+                // Если окно поднять вверх -> разворачиваем на весь экран
+                if (Form.MaximizeBox)
                 {
-                    Form.WindowState = FormWindowState.Maximized;
+                    if (Cursor.Position.Y == Screen.FromHandle(Form.Handle).WorkingArea.Y
+                        && Form.WindowState == FormWindowState.Normal)
+                    {
+                        Form.WindowState = FormWindowState.Maximized;
+                    }
                 }
             }
             catch { return; }
