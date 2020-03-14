@@ -166,7 +166,7 @@ namespace MyNotebook.Forms
             {
                 txtbx_log.Text += "Всё решено верно";
             }
-            lbl_solvedPercent.Text = $"Решено: {Test.PercentSolved.ToString("#.##")}%";
+            lbl_solvedPercent.Text = $"Решено: {Test.PercentSolvedRight.ToString("#.##")}%";
             lbl_mark.Text = $"Оценка: {Test.Mark}";
             if (Test.Mark == 5 || Test.Mark == 4)
             {

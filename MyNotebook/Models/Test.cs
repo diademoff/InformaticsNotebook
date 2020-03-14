@@ -26,7 +26,7 @@ namespace MyNotebook.Models
         public bool ShowAnswerAtOnce = false;
         public bool RandomOrder = false;
         public bool EnableMistakesCorrection = false;
-        public double PercentSolved
+        public double PercentSolvedRight
         {
             get
             {
@@ -47,19 +47,19 @@ namespace MyNotebook.Models
         {
             get
             {
-                if (PercentSolved < 50.0)
+                if (PercentSolvedRight < 50.0)
                 {
                     return 2;
                 }
-                else if ((50.0 <= PercentSolved) && (PercentSolved <= 74.0))
+                else if ((50.0 <= PercentSolvedRight) && (PercentSolvedRight <= 74.0))
                 {
                     return 3;
                 }
-                else if ((75.0 <= PercentSolved) && (PercentSolved <= 89.0))
+                else if ((75.0 <= PercentSolvedRight) && (PercentSolvedRight <= 89.0))
                 {
                     return 4;
                 }
-                else if ((90.0 <= PercentSolved) && (PercentSolved <= 100.0))
+                else if ((90.0 <= PercentSolvedRight) && (PercentSolvedRight <= 100.0))
                 {
                     return 5;
                 }
@@ -73,6 +73,20 @@ namespace MyNotebook.Models
         {
 
         }
+        public Test(int[] numOfMissions, int[] numOfMissionsForEach, bool isCalcBlockEnabled)
+        {
+            this.IsCalcBlockEnabled = isCalcBlockEnabled;
+
+            for (int i = 0; i < numOfMissions.Length; i++)
+            {
+                for (int j = 0; j < numOfMissionsForEach[i]; j++)
+                {
+                    int numOfMissionToAdd = numOfMissions[i];
+
+                    AllMissonsGenerator.Add(MissionGeneratorCollection.GetMissionByNum(numOfMissionToAdd));
+                }
+            }
+        }
 
         public string GetHTMLPage(User user)
         {
@@ -80,7 +94,7 @@ namespace MyNotebook.Models
             //html += "<!DOCTYPE html> <html> <body>";
             html += $"<h1>Отчет о тесте</h1>";
             html += $"<h2>Тест решал(а): {user.Name} - {user.Class}</h2>";
-            html += $"<h2>Решено {Math.Round(PercentSolved, 2)}%. Оценка: {Mark}</h2>";
+            html += $"<h2>Решено {Math.Round(PercentSolvedRight, 2)}%. Оценка: {Mark}</h2>";
             html += $"<h2>Время начала: {TimeStart}</h2>";
             for (int i = 0; i < AllMissions.Count; i++)
             {
@@ -154,20 +168,6 @@ namespace MyNotebook.Models
             TimeFinish = DateTime.Now;
         }
 
-        public Test(int[] numOfMissions, int[] numOfMissionsForEach, bool isCalcBlockEnabled)
-        {
-            this.IsCalcBlockEnabled = isCalcBlockEnabled;
-
-            for (int i = 0; i < numOfMissions.Length; i++)
-            {
-                for (int j = 0; j < numOfMissionsForEach[i]; j++)
-                {
-                    int numOfMissionToAdd = numOfMissions[i];
-
-                    AllMissonsGenerator.Add(MissionGeneratorCollection.GetMissionByNum(numOfMissionToAdd));
-                }
-            }
-        }
         public int GetMissionsSolvedRight()
         {
             int result = 0;
@@ -213,7 +213,7 @@ namespace MyNotebook.Models
         /// <summary>
         /// Создать тест для проработки ошибок
         /// </summary>
-        internal Test CreateCorrectMistakesTest(Test testToCorrect)
+        public Test CreateCorrectMistakesTest(Test testToCorrect)
         {
             Test result = testToCorrect.MemberwiseClone() as Test;
 

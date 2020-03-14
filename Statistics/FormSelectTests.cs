@@ -48,8 +48,8 @@ namespace Statistics
                 max = Convert.ToInt32(txtbx_percentSolveMax.Text);
             }
             catch { }
-            if (test.PercentSolved < min ||
-                test.PercentSolved > max)
+            if (test.PercentSolvedRight < min ||
+                test.PercentSolvedRight > max)
             {
                 return false;
             }

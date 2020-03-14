@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNotebook", "MyNotebook\My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statistics", "Statistics\Statistics.csproj", "{D157D8E0-6818-4FAF-BBC0-C9C2933FA05A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNotebookTest", "MyNotebookTest\MyNotebookTest.csproj", "{AC128F44-8208-4679-9431-5F2C8F12BBD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D157D8E0-6818-4FAF-BBC0-C9C2933FA05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D157D8E0-6818-4FAF-BBC0-C9C2933FA05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D157D8E0-6818-4FAF-BBC0-C9C2933FA05A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC128F44-8208-4679-9431-5F2C8F12BBD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC128F44-8208-4679-9431-5F2C8F12BBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC128F44-8208-4679-9431-5F2C8F12BBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC128F44-8208-4679-9431-5F2C8F12BBD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

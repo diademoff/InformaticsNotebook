@@ -10,7 +10,17 @@ namespace MyNotebook.Models
         public string Question { get; set; }
         public string Answer { get; set; }
         public override string String_AnswerExpecting { get; set; }
-        public override string String_AnswerGiven => AnswerGiven;
+        public override string String_AnswerGiven 
+        {
+            get
+            {
+                return AnswerGiven;
+            }
+            set
+            {
+                AnswerGiven = value;
+            }
+        }
 
         public string AnswerGiven;
         public override bool IsSolvedRight()

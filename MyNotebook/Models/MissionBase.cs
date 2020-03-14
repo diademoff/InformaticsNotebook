@@ -24,7 +24,7 @@ namespace MyNotebook.Models
         public DateTime TimeMissionSolved { get; set; }
         public int TimeSpanOnMissionSeconds { get; set; }
         public abstract string String_AnswerExpecting { get; set; }
-        public abstract string String_AnswerGiven { get; }
+        public abstract string String_AnswerGiven { get; set; }
         public virtual int MaxNumInTest { get; set; } = 10;
         public MissionType TypeOfMission { get; set; } = MissionType.Theory;
         public int TimeNeedToSolveMissionSeconds { get; set; }
@@ -35,6 +35,11 @@ namespace MyNotebook.Models
             {
                 TimeMissionSolved = DateTime.Now;
             }
+        }
+
+        public void SolveRight()
+        {
+            String_AnswerGiven = String_AnswerExpecting;
         }
 
         public abstract bool IsSolvedRight();

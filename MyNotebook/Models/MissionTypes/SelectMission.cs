@@ -24,6 +24,14 @@ namespace MyNotebook.Models
                 }
                 return string.Join("", AnswerGiven);
             }
+            set
+            {
+                AnswerGiven = new int[value.Length];
+                for (int i = 0; i < value.Length; i++)
+                {
+                    AnswerGiven[i] = Convert.ToInt32(value[i]);
+                }
+            }
         }
 
         public int[] AnswerGiven;

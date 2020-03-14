@@ -16,7 +16,17 @@ namespace MyNotebook.Models.MissionTypes
         public int IndexOfAnswerGiven;
 
         public override string String_AnswerExpecting { get => IndexOfRightAnswer.ToString(); set => IndexOfRightAnswer = int.Parse(value); }
-        public override string String_AnswerGiven => IndexOfAnswerGiven.ToString();
+        public override string String_AnswerGiven 
+        {
+            get
+            {
+                return IndexOfAnswerGiven.ToString();
+            }
+            set
+            {
+                IndexOfAnswerGiven = Convert.ToInt32(value);
+            } 
+        }
 
 
         public ChoosePictureMission()
