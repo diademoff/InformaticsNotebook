@@ -67,6 +67,7 @@ namespace MyNotebook.ViewModels
             mission.Tooltip = "Определить изображение по названию";
             mission.MaxNumInTest = 3;
             mission.TypeOfMission = MissionType.Theory;
+            mission.TimeNeedToSolveMissionSeconds = 10;
             return mission;
         }
     }

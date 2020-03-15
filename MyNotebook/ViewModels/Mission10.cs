@@ -48,7 +48,8 @@ namespace MyNotebook.ViewModels
 
             TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, ((int)a).ToString())
             {
-                Tooltip = "Подсчет веса текста"
+                Tooltip = "Подсчет веса текста",
+                TimeNeedToSolveMissionSeconds = 150
             };
             return result;
         }

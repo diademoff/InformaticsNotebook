@@ -10,6 +10,7 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission17 : MissionGenerator
     {
+        [Serializable]
         struct Crypt : IEquatable<Crypt>
         {
             public string Letter { get; set; }
@@ -150,6 +151,10 @@ namespace MyNotebook.ViewModels
         List<Crypt> crypts;
         bool IsSolvedRight(string answerGiven)
         {
+            if (answerGiven == null)
+            {
+                return false;
+            }
             string answerCodeGiven = "";
             for (int i = 0; i < answerGiven.Length; i++)
             {

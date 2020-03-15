@@ -113,6 +113,7 @@ namespace MyNotebook.ViewModels
             }
             generated.Tooltip = "Линейный алгоритм";
             generated.TypeOfMission = MissionType.Practice;
+            generated.TimeNeedToSolveMissionSeconds = 120;
             return generated;
         }
     }

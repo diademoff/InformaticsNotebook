@@ -7,6 +7,7 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission24 : MissionGenerator
     {
+        [Serializable]
         enum Sym
         {
             More = 1,
@@ -55,7 +56,8 @@ namespace MyNotebook.ViewModels
             }
             return new TextMission(24, "Сложные условия (Pascal)", q, string.Join("", expected))
             {
-                TypeOfMission = MissionType.Practice
+                TypeOfMission = MissionType.Practice,
+                TimeNeedToSolveMissionSeconds = 220
             };
         }
         bool IsOK(int s, int t, Sym s_, Sym t_, bool or)

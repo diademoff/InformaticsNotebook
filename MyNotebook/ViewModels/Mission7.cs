@@ -18,6 +18,7 @@ namespace MyNotebook.ViewModels
             mb.Tooltip = "Степень от 3 до 12";
             mb.MaxNumInTest = 9;
             mb.TypeOfMission = MissionType.Practice;
+            mb.TimeNeedToSolveMissionSeconds = 20;
             return mb;
         }
     }

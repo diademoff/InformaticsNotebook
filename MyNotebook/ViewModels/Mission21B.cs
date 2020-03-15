@@ -8,7 +8,7 @@ namespace MyNotebook.ViewModels
     {
         public override MissionBase Generate()
         {
-            string title = "Не сложные задачи на кодирование изображений";
+            string title = "Задачи на кодирование изображений средней сложности";
             string q = "";
             int i = 0;
             i = rnd.Next(3, 10);
@@ -29,7 +29,8 @@ namespace MyNotebook.ViewModels
                         {
                             return new TextMission(21, title, q, res.ToString()) 
                             {
-                                TypeOfMission = MissionType.Practice
+                                TypeOfMission = MissionType.Practice,
+                                TimeNeedToSolveMissionSeconds = 2 * 60 + 30
                             };
                         }
                     }
@@ -49,7 +50,8 @@ namespace MyNotebook.ViewModels
                         {
                             return new TextMission(21, title, q, res.ToString())
                             {
-                                TypeOfMission = MissionType.Practice
+                                TypeOfMission = MissionType.Practice,
+                                TimeNeedToSolveMissionSeconds = 2 * 60 + 30
                             };
                         }
                     }

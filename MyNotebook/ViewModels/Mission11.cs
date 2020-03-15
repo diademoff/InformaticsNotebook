@@ -67,6 +67,7 @@ namespace MyNotebook.ViewModels
                     var mission = new TextMission(11, "Исполнитель Квадратор", question, answer, IsSolvedRight);
                     mission.Tooltip = "Указать последовательность комманд для исполнителя Квадратор";
                     mission.TypeOfMission = MissionType.Practice;
+                    mission.TimeNeedToSolveMissionSeconds = 330;
                     return mission;
                 }
             }

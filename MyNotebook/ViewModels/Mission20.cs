@@ -34,7 +34,10 @@ namespace MyNotebook.ViewModels
                         continue;
                     }
 
-                    return new TextMission(20, "Скорость передачи данных", q, a.ToString());
+                    return new TextMission(20, "Скорость передачи данных", q, a.ToString())
+                    {
+                        TimeNeedToSolveMissionSeconds = 450
+                    };
                 }
                 else
                 {
@@ -56,7 +59,7 @@ namespace MyNotebook.ViewModels
                         continue;
                     }
                     var mission = new TextMission(20, "Скорость передачи данных", q, a.ToString());
-                    mission.TimeNeedToSolveMissionSeconds = 592;
+                    mission.TimeNeedToSolveMissionSeconds = 600;
                     mission.TypeOfMission = MissionType.Practice;
                     return mission;
                 }

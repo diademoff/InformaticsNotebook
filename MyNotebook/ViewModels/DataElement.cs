@@ -4,6 +4,7 @@ using System.Drawing;
 
 namespace MyNotebook.ViewModels
 {
+    [Serializable]
     public class DataElement
     {
         public string Term { get; private set; }

@@ -27,6 +27,7 @@ namespace MyNotebook.ViewModels
             res.Tooltip = $"Пример: {string.Join(", ", res.Terms)}";
             res.MaxNumInTest = 2;
             res.TypeOfMission = MissionType.Theory;
+            res.TimeNeedToSolveMissionSeconds = 30;
             return res;
         }
     }

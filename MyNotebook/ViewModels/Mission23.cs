@@ -49,7 +49,10 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word1} or {pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n1 + n2 + n3}");
+                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n1 + n2 + n3}")
+                    {
+                        TimeNeedToSolveMissionSeconds = 365
+                    };
                 case 2:
                     q += $"{pair.Word1} and {pair.Word2}\t{n2}\n" +
                          $"{pair.Word1}\t{n1 + n2}\n" +
@@ -57,7 +60,10 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word1} and {pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n2}");
+                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n2}")
+                    {
+                        TimeNeedToSolveMissionSeconds = 365
+                    };
                 case 3:
                     q += $"{pair.Word1} and {pair.Word2}\t{n2}\n" +
                          $"{pair.Word1} or {pair.Word2}\t{n1 + n2 + n3}\n" +
@@ -65,7 +71,10 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n3 + n2}");
+                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n3 + n2}")
+                    {
+                        TimeNeedToSolveMissionSeconds = 365
+                    };
                 default:
                     throw new Exception("mission 23 ex");
             }
@@ -96,7 +105,7 @@ namespace MyNotebook.ViewModels
             }
             q = string.Join("\n", lines);
         }
-
+        [Serializable]
         struct WordPair
         {
             public string Word1 { get; set; }

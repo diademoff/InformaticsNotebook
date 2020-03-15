@@ -23,6 +23,7 @@ namespace MyNotebook.ViewModels
             }
             result.Tooltip = "Интервал чисел: от 50 до 200";
             result.TypeOfMission = MissionType.Theory;
+            result.TimeNeedToSolveMissionSeconds = 130;
             return result;
         }
 

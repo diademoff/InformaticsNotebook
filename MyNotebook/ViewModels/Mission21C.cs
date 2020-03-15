@@ -31,7 +31,8 @@ namespace MyNotebook.ViewModels
                         {
                             return new TextMission(21, title, q, res.ToString())
                             {
-                                TypeOfMission = MissionType.Practice
+                                TypeOfMission = MissionType.Practice,
+                                TimeNeedToSolveMissionSeconds = 330
                             };
                         }
                     }
@@ -55,7 +56,8 @@ namespace MyNotebook.ViewModels
                         {
                             return new TextMission(21, title, q, res.ToString())
                             {
-                                TypeOfMission = MissionType.Practice
+                                TypeOfMission = MissionType.Practice,
+                                TimeNeedToSolveMissionSeconds = 330
                             };
                         }
                     }
@@ -77,7 +79,8 @@ namespace MyNotebook.ViewModels
                         {
                             return new TextMission(21, title, q, res.ToString())
                             {
-                                TypeOfMission = MissionType.Practice
+                                TypeOfMission = MissionType.Practice,
+                                TimeNeedToSolveMissionSeconds = 330
                             };
                         }
                     }
