@@ -107,22 +107,16 @@ namespace MyNotebook
                 MessageBox.Show("Выберите тест");
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-#if DEBUG
-                    test = Test.Deserialize(ofd.FileName);
-                    StartTest(test);
-#endif
-#if REALEASE
                     try
                     {
                         test = Test.Deserialize(ofd.FileName);
                         StartTest(test);
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        MessageBox.Show("Не удалось загрузить тест");
+                        MessageBox.Show($"Не удалось загрузить тест\n{ex.ToString()}");
                         return;
                     }
-#endif
                 }
             }
             txtbx_class.Text = txtbx_name.Text = "";

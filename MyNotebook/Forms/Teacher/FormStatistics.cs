@@ -134,7 +134,7 @@ namespace MyNotebook.Forms
 
                 Label lbl = new Label()
                 {
-                    Text = $"{i + 1}. " + bestUser.ToString(),
+                    Text = $"{i + 1}. " + bestUser.Name + " - " + bestUser.Class,
                     Location = new Point(0, i * 20),
                     AutoSize = false,
                     Font = new Font("Arial", 12.0f)
