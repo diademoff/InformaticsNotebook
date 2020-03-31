@@ -43,7 +43,7 @@
             // 
             this.lbl_user.AutoSize = true;
             this.lbl_user.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.lbl_user.Location = new System.Drawing.Point(-1, 9);
+            this.lbl_user.Location = new System.Drawing.Point(8, 9);
             this.lbl_user.Name = "lbl_user";
             this.lbl_user.Size = new System.Drawing.Size(102, 17);
             this.lbl_user.TabIndex = 0;
@@ -121,7 +121,7 @@
             this.progressBar.Size = new System.Drawing.Size(252, 26);
             this.progressBar.TabIndex = 7;
             // 
-            // MissionSolveForm
+            // FormMissionSolve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -135,7 +135,7 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.lbl_user);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MissionSolveForm";
+            this.Name = "FormMissionSolve";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Решение заданий";
             this.ResumeLayout(false);

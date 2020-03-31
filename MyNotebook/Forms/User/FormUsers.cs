@@ -23,7 +23,7 @@ namespace MyNotebook
             StyleApply.ForForm(this);
 
             //start monitoring if calc is active, method depends on bool disable calc
-            new Task(() => DisableCalc()).Start();
+            new Thread(() => DisableCalc()) { IsBackground = true }.Start();
 
             txtbx_name.UpperTextBox();
             txtbx_class.UpperTextBox();
@@ -31,6 +31,55 @@ namespace MyNotebook
             UpdateUsersList();
 
             txtbx_searchUsers.TextChanged += (s, e) => UpdateUsersList(txtbx_searchUsers.Text);
+
+            // animate search btn
+            txtbx_searchUsers.ForeColor = Color.Gray;
+            new Thread(() => AnimateSearchBtn()) { IsBackground = true }.Start();
+            txtbx_searchUsers.GotFocus += (s, e) =>
+            {
+                isAnimatingSearch = false;
+                txtbx_searchUsers.Text = "";
+                txtbx_searchUsers.ForeColor = Color.Black;
+            };
+            txtbx_searchUsers.LostFocus += (s, e) =>
+            {
+                isAnimatingSearch = true;
+                txtbx_searchUsers.ForeColor = Color.Gray;
+            };
+        }
+
+        bool isAnimatingSearch = true;
+        private void AnimateSearchBtn()
+        {
+            while (true)
+            {
+                for (int i = 1; i <= 4; i++)
+                {
+                    Thread.Sleep(500);
+                    if (!isAnimatingSearch)
+                    {
+                        continue;
+                    }
+                    txtbx_searchUsers.Invoke(new MethodInvoker(() =>
+                    {
+                        switch (i)
+                        {
+                            case 1:
+                                txtbx_searchUsers.Text = "Поиск.";
+                                break;
+                            case 2:
+                                txtbx_searchUsers.Text = "Поиск..";
+                                break;
+                            case 3:
+                                txtbx_searchUsers.Text = "Поиск...";
+                                break;
+                            case 4:
+                                txtbx_searchUsers.Text = "Поиск..";
+                                break;
+                        }
+                    }));
+                }
+            }
         }
 
         List<Label> usersLabels = new List<Label>();
@@ -47,7 +96,7 @@ namespace MyNotebook
             int y = 0;
             foreach (var usr in UserCollection.Instance.GetUsers)
             {
-                if (search != "")
+                if (search != "" && !isAnimatingSearch)
                 {
                     if (!usr.ToString().Contains(search))
                     {

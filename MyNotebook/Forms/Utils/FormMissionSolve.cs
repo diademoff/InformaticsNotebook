@@ -272,7 +272,7 @@ namespace MyNotebook.Forms
                     }
                 }).Start();
 
-                indexOfTab++; // увелициваем текущий индекс
+                indexOfTab++; // увеличиваем текущий индекс
             }
         }
 
@@ -286,6 +286,11 @@ namespace MyNotebook.Forms
             progressBar.Maximum = Test.AllMissions.Count;
             progressBar.Value = Test.NumOfSolved;
             lbl_timer.Text = $"{(DateTime.Now - Test.TimeStart).TotalMinutes.ToString("00")}:{(DateTime.Now - Test.TimeStart).Seconds.ToString("00")}";
+
+            if (MissionsLeft == 0)
+            {
+                btn_finishTest.PerformClick();
+            }
         }
         void Btn_finishTest_Click(object sender, EventArgs e)
         {

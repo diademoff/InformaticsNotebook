@@ -131,12 +131,13 @@ namespace MyNotebook.Forms
             while (users.Count > 0)
             {
                 User bestUser = GetBestUser(users.ToArray());
+                string str = bestUser.Name + " - " + bestUser.Class;
 
                 Label lbl = new Label()
                 {
-                    Text = $"{i + 1}. " + bestUser.Name + " - " + bestUser.Class,
+                    Text = $"{i + 1}. " + str,
                     Location = new Point(0, i * 20),
-                    AutoSize = false,
+                    AutoSize = true,
                     Font = new Font("Arial", 12.0f)
                 };
                 pnl_leaderBoard.Controls.Add(lbl);

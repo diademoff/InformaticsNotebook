@@ -104,9 +104,10 @@
             // 
             // txtbx_searchUsers
             // 
-            this.txtbx_searchUsers.Location = new System.Drawing.Point(12, 102);
+            this.txtbx_searchUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.txtbx_searchUsers.Location = new System.Drawing.Point(12, 103);
             this.txtbx_searchUsers.Name = "txtbx_searchUsers";
-            this.txtbx_searchUsers.Size = new System.Drawing.Size(423, 20);
+            this.txtbx_searchUsers.Size = new System.Drawing.Size(423, 21);
             this.txtbx_searchUsers.TabIndex = 12;
             // 
             // txtbx_ip
@@ -137,11 +138,11 @@
             this.btn_getTest.UseVisualStyleBackColor = true;
             this.btn_getTest.Click += new System.EventHandler(this.btn_getTest_Click);
             // 
-            // list_users
+            // pnl_users
             // 
             this.pnl_users.AutoScroll = true;
             this.pnl_users.Location = new System.Drawing.Point(12, 128);
-            this.pnl_users.Name = "list_users";
+            this.pnl_users.Name = "pnl_users";
             this.pnl_users.Size = new System.Drawing.Size(779, 265);
             this.pnl_users.TabIndex = 15;
             // 

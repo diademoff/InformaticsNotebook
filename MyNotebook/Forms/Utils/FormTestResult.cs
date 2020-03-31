@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MyNotebook.Forms
@@ -17,6 +18,15 @@ namespace MyNotebook.Forms
             StyleApply.ForForm(this);
             Test = test;
             User = user;
+
+            lbl_name.Click += lbl_FeatureAnimate;
+            lbl_state.Click += lbl_FeatureAnimate;
+            lbl_timeStart.Click += lbl_FeatureAnimate;
+            lbl_timeEnd.Click += lbl_FeatureAnimate;
+            lbl_wasCalcDiabled.Click += lbl_FeatureAnimate;
+            lbl_timeSpend.Click += lbl_FeatureAnimate;
+            lbl_topmost.Click += lbl_FeatureAnimate;
+
             UpdateUI();
         }
 
@@ -130,6 +140,48 @@ namespace MyNotebook.Forms
 
             this.Test = reSolvedTest;
             UpdateUI();
+        }
+
+        void lbl_FeatureAnimate(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+
+            new Thread(() => AnimateLabel(lbl)) { IsBackground = true }.Start();
+            
+        }
+
+        void AnimateLabel(Label lbl)
+        {
+            lbl.Invoke(new MethodInvoker(() =>
+            {
+                lbl.Enabled = false;
+            }));
+
+            string text = lbl.Text;
+
+            for (int i = text.Length - 1; i >= 0; i--)
+            {
+                lbl.Invoke(new MethodInvoker(() =>
+                {
+                    lbl.Text = text.Substring(0, i);
+                }));
+                Thread.Sleep(30);
+            }
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                lbl.Invoke(new MethodInvoker(() =>
+                {
+                    lbl.Text = text.Substring(0, i);
+                }));
+                Thread.Sleep(30);
+            }
+
+            lbl.Invoke(new MethodInvoker(() =>
+            {
+                lbl.Text = text;
+                lbl.Enabled = true;
+            }));
         }
 
         void UpdateUI()

@@ -365,7 +365,7 @@ namespace MyNotebook.Forms
 #endif
             Numeric = new NumericUpDown()
             {
-                Location = new Point(CheckBox.Location.X + 450, CheckBox.Location.Y),
+                Location = new Point(CheckBox.Location.X + 500, CheckBox.Location.Y),
                 Maximum = generatedMission.MaxNumInTest,
                 Value = 1,
                 Width = 50,

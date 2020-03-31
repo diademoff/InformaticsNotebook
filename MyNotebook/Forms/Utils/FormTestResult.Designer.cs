@@ -93,10 +93,10 @@
             // 
             this.txtbx_log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbx_log.Location = new System.Drawing.Point(308, 48);
+            this.txtbx_log.Location = new System.Drawing.Point(308, 30);
             this.txtbx_log.Name = "txtbx_log";
             this.txtbx_log.ReadOnly = true;
-            this.txtbx_log.Size = new System.Drawing.Size(480, 466);
+            this.txtbx_log.Size = new System.Drawing.Size(480, 507);
             this.txtbx_log.TabIndex = 4;
             this.txtbx_log.Text = "";
             // 
@@ -205,10 +205,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btn_showHTML);
             this.groupBox1.Controls.Add(this.btn_correctionOfMistakes);
             this.groupBox1.Controls.Add(this.btn_preview);
-            this.groupBox1.Location = new System.Drawing.Point(15, 428);
+            this.groupBox1.Location = new System.Drawing.Point(15, 444);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(287, 89);
             this.groupBox1.TabIndex = 15;
@@ -219,7 +220,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 526);
+            this.ClientSize = new System.Drawing.Size(800, 567);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbl_name);
             this.Controls.Add(this.label1);
