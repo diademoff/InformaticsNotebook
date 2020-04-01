@@ -6,6 +6,11 @@ namespace MyNotebook.ViewModels
     [Serializable]
     class Mission21C : MissionGenerator
     {
+        public override int NumOfMission => 21;
+        public override string MissionName => "Cложные задачи на кодирование изображений";
+        public override int TimeToSolveMission => 330;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
         public override MissionBase Generate()
         {
             string title = "Cложные задачи на кодирование изображений";
@@ -29,11 +34,7 @@ namespace MyNotebook.ViewModels
                         double res = (Convert.ToDouble(x) * Convert.ToDouble(j * j) * Math.Pow(2, i)) / (8.0 * 1024.0);
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString())
-                            {
-                                TypeOfMission = MissionType.Practice,
-                                TimeNeedToSolveMissionSeconds = 330
-                            };
+                            return new TextMission(21, title, q, res.ToString());
                         }
                     }
                 #endregion
@@ -54,11 +55,7 @@ namespace MyNotebook.ViewModels
                         double res = (Convert.ToDouble(i) * Convert.ToDouble(j) * m * 8.0) / x;
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString())
-                            {
-                                TypeOfMission = MissionType.Practice,
-                                TimeNeedToSolveMissionSeconds = 330
-                            };
+                            return new TextMission(21, title, q, res.ToString());
                         }
                     }
                 #endregion
@@ -77,11 +74,7 @@ namespace MyNotebook.ViewModels
                         double res = Math.Pow(2, (Convert.ToDouble(x) * 8.0) / (Convert.ToDouble(i) * Convert.ToDouble(j)));
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString())
-                            {
-                                TypeOfMission = MissionType.Practice,
-                                TimeNeedToSolveMissionSeconds = 330
-                            };
+                            return new TextMission(21, title, q, res.ToString());
                         }
                     }
                 #endregion

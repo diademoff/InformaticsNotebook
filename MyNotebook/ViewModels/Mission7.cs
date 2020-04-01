@@ -7,6 +7,13 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission7 : MissionGenerator
     {
+        public override int NumOfMission => 7;
+        public override string MissionName => "Степени двойки";
+        public override int TimeToSolveMission => 35;
+        public override int MaxNumInTest => 9;
+        public override MissionType TypeOfMission => MissionType.Theory;
+        public override string Tooltip => "Степень от 3 до 12";
+
         public override MissionBase Generate()
         {
             string question, answer;
@@ -15,10 +22,6 @@ namespace MyNotebook.ViewModels
             answer = Math.Pow(2, pow).ToString();
 
             MissionBase mb = new TextMission(7, "Степени двойки", question, answer);
-            mb.Tooltip = "Степень от 3 до 12";
-            mb.MaxNumInTest = 9;
-            mb.TypeOfMission = MissionType.Practice;
-            mb.TimeNeedToSolveMissionSeconds = 20;
             return mb;
         }
     }

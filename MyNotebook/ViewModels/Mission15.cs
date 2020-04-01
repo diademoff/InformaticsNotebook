@@ -6,6 +6,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission15 : MissionGenerator
     {
+        public override int NumOfMission => 15;
+        public override string MissionName => "Перевод между любыми системами счисления";
+        public override int TimeToSolveMission => 425;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+
         public override MissionBase Generate()
         {
             int num = rnd.Next(50, 200);
@@ -15,9 +21,7 @@ namespace MyNotebook.ViewModels
 
             var answer = FromDec(num, n2);
             //TimeNeedToSolveMissionSeconds
-            var mission = new TextMission(15, "Перевод между любыми системами счисления", q, answer);
-            mission.TimeNeedToSolveMissionSeconds = 426;
-            mission.TypeOfMission = MissionType.Theory;
+            var mission = new TextMission(15, MissionName, q, answer);
             return mission;
         }
 

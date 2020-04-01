@@ -7,6 +7,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission23 : MissionGenerator
     {
+        public override int NumOfMission => 23;
+        public override string MissionName => "Запросы в поисковой системе";
+        public override int TimeToSolveMission => 365;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+
         public override MissionBase Generate()
         {
             WordPair[] wordPairs = new WordPair[]
@@ -49,10 +55,7 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word1} or {pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n1 + n2 + n3}")
-                    {
-                        TimeNeedToSolveMissionSeconds = 365
-                    };
+                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n1 + n2 + n3}");
                 case 2:
                     q += $"{pair.Word1} and {pair.Word2}\t{n2}\n" +
                          $"{pair.Word1}\t{n1 + n2}\n" +
@@ -60,10 +63,7 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word1} and {pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n2}")
-                    {
-                        TimeNeedToSolveMissionSeconds = 365
-                    };
+                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n2}");
                 case 3:
                     q += $"{pair.Word1} and {pair.Word2}\t{n2}\n" +
                          $"{pair.Word1} or {pair.Word2}\t{n1 + n2 + n3}\n" +
@@ -71,10 +71,7 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n3 + n2}")
-                    {
-                        TimeNeedToSolveMissionSeconds = 365
-                    };
+                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n3 + n2}");
                 default:
                     throw new Exception("mission 23 ex");
             }

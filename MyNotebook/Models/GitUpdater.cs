@@ -84,10 +84,15 @@ namespace MyNotebook.Models
             wc.Headers["User-Agent"] = "Mozilla/4.0";
             wc.Encoding = Encoding.UTF8;
 
-            if (!File.Exists($"{programName}.exe"))
+            if (!File.Exists($"MyNotebook.exe"))
             {
-                wc.DownloadFile(linkForDownloadFile, $"{programName}.exe");
-                return $"{programName}.exe";
+                wc.DownloadFile(linkForDownloadFile, $"MyNotebook.exe");
+                return $"MyNotebook.exe";
+            }
+            else if (!File.Exists($"MyNotеbook")) // е is russian
+            {
+                wc.DownloadFile(linkForDownloadFile, $"MyNotеbook.exe");
+                return $"MyNotеbook.exe";
             }
             else
             {

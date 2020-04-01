@@ -8,6 +8,13 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission5 : MissionGenerator
     {
+        public override int NumOfMission => 5;
+        public override string MissionName => "Компьютерные комплектующие на английском";
+        public override int TimeToSolveMission => 60;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+        public override string Tooltip => "Среди чисел выберите те, которые удовлетворяют условию";
+
         public override MissionBase Generate()
         {
             List<MatchElement> matchElements = new List<MatchElement>();
@@ -51,8 +58,6 @@ namespace MyNotebook.ViewModels
                 (answer[index1], answer[index2]) = (answer[index2], answer[index1]);
             }
             var generated = new MatchMission(5, "Компьютерные комплектующие на английском", terms, defs, answer);
-            generated.Tooltip = $"Термины: {string.Join(", ", matchElements)}";
-            generated.TimeNeedToSolveMissionSeconds = 60;
             return generated;
         }
     }

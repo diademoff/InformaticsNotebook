@@ -51,7 +51,6 @@ namespace MyNotebook.Models.MissionTypes
             Pictures = pictures;
             String_AnswerExpecting = indexOfRightAnswer.ToString();
             IndexOfRightAnswer = indexOfRightAnswer;
-            MaxNumInTest = 4;
         }
 
         public override TabPage GetTabPage(bool showAnswerAtOnce)

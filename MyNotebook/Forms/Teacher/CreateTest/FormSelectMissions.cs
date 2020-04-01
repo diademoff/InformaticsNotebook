@@ -137,7 +137,7 @@ namespace MyNotebook.Forms
                 var mission = MissionGeneratorCollection.GetMissionByNum(selectedNumsOfMissions[i]);
                 for (int j = 0; j < numOfEachMission[i]; j++)
                 {
-                    timeNeed += mission.Generate().TimeNeedToSolveMissionSeconds;
+                    timeNeed += mission.TimeToSolveMission;
                 }
             }
             lbl_timeNeed.Text = $"Времяни потребуется: {timeNeed / 60} мин";
@@ -349,15 +349,14 @@ namespace MyNotebook.Forms
             this.yPosition = yPosition;
             MissionGenerator = mg;
 
-            MissionBase generatedMission = mg.Generate();
-            NumOfMission = generatedMission.NumOfMission;
+            NumOfMission = mg.NumOfMission;
 
             CheckBox = new CheckBox()
             {
                 Location = new Point(25, yPosition),
                 Checked = false,
                 Font = new Font(new FontFamily("Arial"), 16, FontStyle.Regular, GraphicsUnit.Pixel),
-                Text = $"{generatedMission.Title}",
+                Text = $"{mg.MissionName}",
                 AutoSize = true
             };
 #if DEBUG
@@ -366,7 +365,7 @@ namespace MyNotebook.Forms
             Numeric = new NumericUpDown()
             {
                 Location = new Point(CheckBox.Location.X + 500, CheckBox.Location.Y),
-                Maximum = generatedMission.MaxNumInTest,
+                Maximum = mg.MaxNumInTest,
                 Value = 1,
                 Width = 50,
                 Enabled = false
@@ -374,20 +373,21 @@ namespace MyNotebook.Forms
             OfMax = new Label()
             {
                 Location = new Point(CheckBox.Location.X + 500, CheckBox.Location.Y),
-                Text = $"из {generatedMission.MaxNumInTest}",
+                Text = $"из {mg.MaxNumInTest}",
                 Visible = true
             };
+            string timeToSolve = ((double)mg.TimeToSolveMission / 60.0).ToString("0.#") + " мин";
             TimeToSolve = new Label()
             {
                 Location = new Point(CheckBox.Location.X + 600, yPosition),
-                Text = (generatedMission.TimeNeedToSolveMissionSeconds / 60).ToString("0.#") + " мин",
+                Text = timeToSolve,
                 Font = new Font(new FontFamily("Arial"), 12, FontStyle.Regular, GraphicsUnit.Pixel),
                 AutoSize = false
             };
             MissionType = new Label()
             {
                 Location = new Point(CheckBox.Location.X + 700, yPosition),
-                Text = generatedMission.TypeOfMission.GetStringMissionType(),
+                Text = Extentions.GetStringMissionType(mg.TypeOfMission),
                 Font = new Font(new FontFamily("Arial"), 12, FontStyle.Regular, GraphicsUnit.Pixel),
                 AutoSize = false
             };
@@ -399,13 +399,13 @@ namespace MyNotebook.Forms
             };
             Preview.Click += (s, e) =>
             {
-                TabPage tab = generatedMission.GetTabPage(true);
+                TabPage tab = mg.Generate().GetTabPage(true);
                 Form previewForm = new Form()
                 {
                     Width = 900,
                     Height = 550,
                     Icon = Properties.Resources.icon,
-                    Text = $"Предпросмотр задания {NumOfMission} \"{generatedMission.Title}\""
+                    Text = $"Предпросмотр задания {NumOfMission} \"{mg.MissionName}\""
                 };
 
                 TabControl tc = new TabControl()

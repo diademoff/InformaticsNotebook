@@ -1,20 +1,23 @@
 ﻿using MyNotebook.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyNotebook.ViewModels
 {
     [Serializable]
     class Mission6 : MissionGenerator
     {
+        public override int NumOfMission => 6;
+        public override string MissionName => "Выбрать устройства, находящиеся в системном блоке";
+        public override int TimeToSolveMission => 80;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+
         public override MissionBase Generate()
         {
             int numOfAnswers = 6;
             List<string> rightAnswers = new List<string>();
-            rightAnswers.AddRange(new string[] 
+            rightAnswers.AddRange(new string[]
             {
                 "Процессор",
                 "Сетевая карта",
@@ -76,9 +79,6 @@ namespace MyNotebook.ViewModels
                 }
             }
             MissionBase mb = new SelectMission(6, "Выберите устройства, находящиеся в системном блоке", "Выберать устройства, находящьеся в системном блоке", answers.ToArray(), answerExpected.ToArray());
-            mb.Title = "Выбрать устройства находящиеся в системном блоке";
-            mb.Tooltip = $"{numOfAnswers} вариантов ответов";
-            mb.TimeNeedToSolveMissionSeconds = 80;
             return mb;
         }
     }

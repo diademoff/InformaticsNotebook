@@ -9,7 +9,13 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission1 : MissionGenerator
     {
-        string title = "Перевод между 10-ой и 2-ой сс";
+        public override int NumOfMission => 1;
+        public override string MissionName => "Перевод между 10-ой и 2-ой сс";
+        public override int TimeToSolveMission => 130;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+        public override string Tooltip => "Интервал чисел: от 50 до 200";
+
         public override MissionBase Generate()
         {
             MissionBase result;
@@ -21,9 +27,6 @@ namespace MyNotebook.ViewModels
             {
                 result = Generate10to2();
             }
-            result.Tooltip = "Интервал чисел: от 50 до 200";
-            result.TypeOfMission = MissionType.Theory;
-            result.TimeNeedToSolveMissionSeconds = 130;
             return result;
         }
 
@@ -36,7 +39,7 @@ namespace MyNotebook.ViewModels
             var Question = $"Переведите число {num} из 10-ой с.с в 2-ую";
             var Answer = Convert.ToString(num, 2);
 
-            return new TextMission(1, title, Question, Answer);
+            return new TextMission(NumOfMission, MissionName, Question, Answer);
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace MyNotebook.ViewModels
             var Question = $"Переведите число {Convert.ToString(num, 2)} из 2-ой с.с в 10-ую";
             var Answer = num.ToString();
 
-            return new TextMission(1, title, Question, Answer);
+            return new TextMission(NumOfMission, MissionName, Question, Answer);
         }
     }
 }

@@ -22,6 +22,13 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission13 : MissionGenerator
     {
+        public override int NumOfMission => 13;
+        public override string MissionName => "Выбрать изображение комплектующего";
+        public override int TimeToSolveMission => 60;
+        public override int MaxNumInTest => 3;
+        public override MissionType TypeOfMission => MissionType.Theory;
+        public override string Tooltip => "Определить изображение по названию";
+
         public override MissionBase Generate()
         {
             List<Component> list = new List<Component>();
@@ -64,10 +71,6 @@ namespace MyNotebook.ViewModels
             }
 
             ChoosePictureMission mission = new ChoosePictureMission(13, "Выбрать изображение комплектующего", question, pictures, rightIndex);
-            mission.Tooltip = "Определить изображение по названию";
-            mission.MaxNumInTest = 3;
-            mission.TypeOfMission = MissionType.Theory;
-            mission.TimeNeedToSolveMissionSeconds = 10;
             return mission;
         }
     }

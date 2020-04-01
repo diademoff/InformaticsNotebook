@@ -10,6 +10,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission17 : MissionGenerator
     {
+        public override int NumOfMission => 17;
+        public override string MissionName => "Декодирование сообщений";
+        public override int TimeToSolveMission => 197;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+
         [Serializable]
         struct Crypt : IEquatable<Crypt>
         {
@@ -142,10 +148,7 @@ namespace MyNotebook.ViewModels
                        $"последовательность букв. Коды букв: \n" +
                        $"{string.Join("\n", crypts)}\n" +
                        $"Закодированная строка: {cryptedString}";
-            return new TextMission(17, "Декодирование сообщений", q, answer, IsSolvedRight)
-            {
-                TypeOfMission = MissionType.Practice
-            };
+            return new TextMission(17, "Декодирование сообщений", q, answer, IsSolvedRight);
         }
         string cryptedString;
         List<Crypt> crypts;

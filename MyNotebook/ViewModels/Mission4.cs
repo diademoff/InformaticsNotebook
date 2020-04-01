@@ -11,6 +11,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission4 : MissionGenerator
     {
+        public override int NumOfMission => 4;
+        public override string MissionName => "Определения компьютерных комплектующих";
+        public override int TimeToSolveMission => 120;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+
         string title = "Определения компьютерных комплектующих";
         public override MissionBase Generate()
         {
@@ -22,9 +28,6 @@ namespace MyNotebook.ViewModels
             }
 
             var generated = new MatchMission(4, title, matchElements.ToArray());
-            generated.Tooltip = $"Термины: {string.Join(", ", matchElements)}";
-            generated.TimeNeedToSolveMissionSeconds = 120;
-            generated.TypeOfMission = MissionType.Theory;
             return generated;
         }
     }

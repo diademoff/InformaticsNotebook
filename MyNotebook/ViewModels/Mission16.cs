@@ -8,6 +8,13 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission16 : MissionGenerator
     {
+        public override int NumOfMission => 16;
+        public override string MissionName => "Логические выражения";
+        public override int TimeToSolveMission => 197;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+        public override string Tooltip => "Среди чисел выберите те, которые удовлетворяют условию";
+
         public new static Random rnd = new Random();
         struct LogicMission
         {
@@ -171,8 +178,6 @@ namespace MyNotebook.ViewModels
                                $"{logicMission.GetString()}\n{nums}";
 
                     var mission = new TextMission(16, "Логические выражения", q, (rightAnswer + 1).ToString());
-                    mission.TimeNeedToSolveMissionSeconds = 197;
-                    mission.TypeOfMission = MissionType.Theory;
                     return mission;
                 }
                 catch { }

@@ -15,9 +15,8 @@ namespace MyNotebook.Models
     public abstract class MissionBase : IEquatable<MissionBase> //task
     {
         protected Random rnd = new Random();
+        public virtual int NumOfMission { get; set; }
         public string Title { get; set; }
-        public string Tooltip { get; set; }
-        public int NumOfMission { get; set; }
         /// <summary>
         /// Время когда на миссию дан ответ
         /// </summary>
@@ -25,9 +24,6 @@ namespace MyNotebook.Models
         public int TimeSpanOnMissionSeconds { get; set; }
         public abstract string String_AnswerExpecting { get; set; }
         public abstract string String_AnswerGiven { get; set; }
-        public virtual int MaxNumInTest { get; set; } = 10;
-        public MissionType TypeOfMission { get; set; } = MissionType.Theory;
-        public int TimeNeedToSolveMissionSeconds { get; set; }
 
         ~MissionBase()
         {

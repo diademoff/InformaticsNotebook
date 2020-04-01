@@ -7,6 +7,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission22 : MissionGenerator
     {
+        public override int NumOfMission => 22;
+        public override string MissionName => "Термины по теме кодирование графики";
+        public override int TimeToSolveMission => 415;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+
         string title = "Термины по теме кодирование графики";
         public override MissionBase Generate()
         {
@@ -27,10 +33,7 @@ namespace MyNotebook.ViewModels
                                                                        "граниченный набор цветов, доступный графической системе компьютера" }));
             elements.Add(new MatchElement("Глубина цвета", new[] { "это термин компьютерной графики, означающий количество бит (объём памяти), используемое для хранения и представления цвета при кодировании одного пикселя растровой графики или видеоизображения" }));
 
-            return new MatchMission(22, title, elements.ToArray())
-            {
-                TimeNeedToSolveMissionSeconds = 415
-            };
+            return new MatchMission(22, title, elements.ToArray());
         }
     }
 }

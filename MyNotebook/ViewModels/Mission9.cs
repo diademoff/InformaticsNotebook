@@ -7,6 +7,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission9 : MissionGenerator
     {
+        public override int NumOfMission => 9;
+        public override string MissionName => "Выберите устройства ввода/вывода";
+        public override int TimeToSolveMission => 60;
+        public override int MaxNumInTest => 3;
+        public override MissionType TypeOfMission => MissionType.Theory;
+        public override string Tooltip => "Выбрать устройства ввода или вывода";
         enum tasktype
         {
             input = 1,
@@ -108,12 +114,7 @@ namespace MyNotebook.ViewModels
                 goto generate;
             }
 
-            MissionBase mb = new SelectMission(9, title, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray())
-            {
-                Tooltip = "Выбрать устройства ввода или вывода",
-                MaxNumInTest = 2,
-                TimeNeedToSolveMissionSeconds = 60
-            };
+            MissionBase mb = new SelectMission(9, title, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray());
             return mb;
         }
     }

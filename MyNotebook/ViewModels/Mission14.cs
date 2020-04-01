@@ -6,6 +6,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission14 : MissionGenerator
     {
+        public override int NumOfMission => 14;
+        public override string MissionName => "Среди трёх чисел найти наименьшее/наибольшее";
+        public override int TimeToSolveMission => 60;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
+
         public override MissionBase Generate()
         {
             new TextMission(numOfMission: 14, title: "", question: "", answer: "");
@@ -31,11 +37,7 @@ namespace MyNotebook.ViewModels
                 answ = Convert.ToString(Math.Min(Math.Min(a, b), c));
             }
 
-            return new TextMission(14, "Среди трёх чисел найти наименьшее/наибольшее", q, answ)
-            {
-                TimeNeedToSolveMissionSeconds = 60,
-                TypeOfMission = MissionType.Theory
-            };
+            return new TextMission(14, "Среди трёх чисел найти наименьшее/наибольшее", q, answ);
         }
     }
 }

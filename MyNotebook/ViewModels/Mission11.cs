@@ -7,6 +7,13 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission11 : MissionGenerator
     {
+        public override int NumOfMission => 11;
+        public override string MissionName => "Исполнитель Квадратор";
+        public override int TimeToSolveMission => 330;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+        public override string Tooltip => "Указать последовательность комманд для исполнителя Квадратор";
+
         public override MissionBase Generate()
         {
             while (true)
@@ -65,9 +72,6 @@ namespace MyNotebook.ViewModels
                                 $"которая преобразует число {beginNum} в число {result}.\n" +
                                 $"Указывайте лишь номера пяти команд.";
                     var mission = new TextMission(11, "Исполнитель Квадратор", question, answer, IsSolvedRight);
-                    mission.Tooltip = "Указать последовательность комманд для исполнителя Квадратор";
-                    mission.TypeOfMission = MissionType.Practice;
-                    mission.TimeNeedToSolveMissionSeconds = 330;
                     return mission;
                 }
             }

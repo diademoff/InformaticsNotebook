@@ -7,6 +7,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission18 : MissionGenerator
     {
+        public override int NumOfMission => 18;
+        public override string MissionName => "Составление адреса URL из частей";
+        public override int TimeToSolveMission => 60;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+
         struct Gen
         {
             public int NumOfPart { get; set; }
@@ -93,11 +99,7 @@ namespace MyNotebook.ViewModels
             q = $"В таблице фрагменты адреса файла закодированы числами от 1 до 7. \n" +
                 $"Запишите последовательность чисел\n" +
                 $"кодирующую адрес файла \"{fileName}\" в сети Интернет.\n" + q;
-            return new TextMission(18, "Составление адреса URL из частей", q, string.Join("", answer))
-            {
-                TimeNeedToSolveMissionSeconds = 60,
-                TypeOfMission = MissionType.Practice
-            };
+            return new TextMission(NumOfMission, MissionName, q, string.Join("", answer));
         }
     }
 }

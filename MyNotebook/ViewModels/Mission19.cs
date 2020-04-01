@@ -7,6 +7,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission19 : MissionGenerator
     {
+        public override int NumOfMission => 19;
+        public override string MissionName => "Файловая система";
+        public override int TimeToSolveMission => 180;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+
         string answer;
 
         public override MissionBase Generate()
@@ -17,11 +23,7 @@ namespace MyNotebook.ViewModels
                        $"переместили файл туда. Полное имя файла стал: {path}.\n" +
                        $"Укажите имя файла до перемещения.";
 
-            return new TextMission(19, "Файловая система", q, answer, solvedRight)
-            {
-                TimeNeedToSolveMissionSeconds = 179,
-                TypeOfMission = MissionType.Practice
-            };
+            return new TextMission(19, "Файловая система", q, answer, solvedRight);
         }
 
         bool solvedRight(string a)

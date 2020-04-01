@@ -6,6 +6,13 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission10 : MissionGenerator
     {
+        public override int NumOfMission => 10;
+        public override string MissionName => "Посчитать информационный вес текста";
+        public override int TimeToSolveMission => 150;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+        public override string Tooltip => "Подсчет веса текста";
+
         public override MissionBase Generate()
         {
             TextMission result;
@@ -22,7 +29,6 @@ namespace MyNotebook.ViewModels
             {
                 goto regenerate;
             }
-            result.TypeOfMission = MissionType.Practice;
             return result;
         }
 
@@ -46,11 +52,7 @@ namespace MyNotebook.ViewModels
                 goto genAgain;
             }
 
-            TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, ((int)a).ToString())
-            {
-                Tooltip = "Подсчет веса текста",
-                TimeNeedToSolveMissionSeconds = 150
-            };
+            TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, ((int)a).ToString());
             return result;
         }
 
@@ -63,10 +65,7 @@ namespace MyNotebook.ViewModels
                        $"На каждой странице размещается {l} строк по {s} символов в строке.\n" +
                        $"Какой объем оперативной памяти (в байтах) займет этот текст?";
             string a = $"{p * l * s}";
-            TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, a)
-            {
-                Tooltip = "Подсчет веса текста"
-            };
+            TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, a);
             return result;
         }
     }

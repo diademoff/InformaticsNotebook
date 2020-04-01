@@ -7,6 +7,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission24 : MissionGenerator
     {
+        public override int NumOfMission => 24;
+        public override string MissionName => "Сложные условия (Pascal)";
+        public override int TimeToSolveMission => 220;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+
         [Serializable]
         enum Sym
         {
@@ -54,11 +60,7 @@ namespace MyNotebook.ViewModels
             {
                 q += $"{i + 1}. {answers[i]}\n";
             }
-            return new TextMission(24, "Сложные условия (Pascal)", q, string.Join("", expected))
-            {
-                TypeOfMission = MissionType.Practice,
-                TimeNeedToSolveMissionSeconds = 220
-            };
+            return new TextMission(24, "Сложные условия (Pascal)", q, string.Join("", expected));
         }
         bool IsOK(int s, int t, Sym s_, Sym t_, bool or)
         {

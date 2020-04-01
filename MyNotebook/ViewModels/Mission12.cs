@@ -10,6 +10,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission12 : MissionGenerator
     {
+        public override int NumOfMission => 12;
+        public override string MissionName => "Программное обеспечение";
+        public override int TimeToSolveMission => 35;
+        public override int MaxNumInTest => 2;
+        public override MissionType TypeOfMission => MissionType.Theory;
+        public override string Tooltip => "Указать последовательность комманд для исполнителя Квадратор";
         public override MissionBase Generate()
         {
             List<MatchElement> matchElements = new List<MatchElement>();
@@ -24,10 +30,6 @@ namespace MyNotebook.ViewModels
             matchElements.Add(new MatchElement("Электронное учебное издание", new[] { "Wikipedia" }));
 
             var res = new MatchMission(12, "Программное обеспечение", matchElements.ToArray());
-            res.Tooltip = $"Пример: {string.Join(", ", res.Terms)}";
-            res.MaxNumInTest = 2;
-            res.TypeOfMission = MissionType.Theory;
-            res.TimeNeedToSolveMissionSeconds = 30;
             return res;
         }
     }

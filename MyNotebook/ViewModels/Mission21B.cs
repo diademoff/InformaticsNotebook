@@ -6,6 +6,11 @@ namespace MyNotebook.ViewModels
     [Serializable]
     class Mission21B : MissionGenerator
     {
+        public override int NumOfMission => 21;
+        public override string MissionName => "Задачи на кодирование изображений средней сложности";
+        public override int TimeToSolveMission => 2 * 60 + 30;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
         public override MissionBase Generate()
         {
             string title = "Задачи на кодирование изображений средней сложности";
@@ -27,11 +32,7 @@ namespace MyNotebook.ViewModels
                         double res = (x * y * Convert.ToDouble(Math.Pow(2, i))) / (1024.0 * 1024.0 * 8.0);
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString()) 
-                            {
-                                TypeOfMission = MissionType.Practice,
-                                TimeNeedToSolveMissionSeconds = 2 * 60 + 30
-                            };
+                            return new TextMission(21, title, q, res.ToString());
                         }
                     }
                     #endregion
@@ -48,11 +49,7 @@ namespace MyNotebook.ViewModels
                         double res = Convert.ToDouble(Math.Pow(2, i)) * Convert.ToDouble(Math.Pow(2, j)) / 8.0;
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString())
-                            {
-                                TypeOfMission = MissionType.Practice,
-                                TimeNeedToSolveMissionSeconds = 2 * 60 + 30
-                            };
+                            return new TextMission(21, title, q, res.ToString());
                         }
                     }
                 #endregion

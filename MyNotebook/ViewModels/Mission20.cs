@@ -10,6 +10,13 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission20 : MissionGenerator
     {
+        public override int NumOfMission => 20;
+        public override string MissionName => "Скорость передачи данных";
+        public override int TimeToSolveMission => 450;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+
+
         public override MissionBase Generate()
         {
             while (true)
@@ -34,10 +41,7 @@ namespace MyNotebook.ViewModels
                         continue;
                     }
 
-                    return new TextMission(20, "Скорость передачи данных", q, a.ToString())
-                    {
-                        TimeNeedToSolveMissionSeconds = 450
-                    };
+                    return new TextMission(20, "Скорость передачи данных", q, a.ToString());
                 }
                 else
                 {
@@ -59,8 +63,6 @@ namespace MyNotebook.ViewModels
                         continue;
                     }
                     var mission = new TextMission(20, "Скорость передачи данных", q, a.ToString());
-                    mission.TimeNeedToSolveMissionSeconds = 600;
-                    mission.TypeOfMission = MissionType.Practice;
                     return mission;
                 }
             }

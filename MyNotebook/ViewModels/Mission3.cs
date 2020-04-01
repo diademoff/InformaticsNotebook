@@ -9,6 +9,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission3 : MissionGenerator
     {
+        public override int NumOfMission => 3;
+        public override string MissionName => "Линейный алгоритм";
+        public override int TimeToSolveMission => 120;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+
         string title = "Линейный алгоритм";
         public override MissionBase Generate()
         {
@@ -111,9 +117,6 @@ namespace MyNotebook.ViewModels
 
                 generated = new TextMission(3, title, Question, Answer);
             }
-            generated.Tooltip = "Линейный алгоритм";
-            generated.TypeOfMission = MissionType.Practice;
-            generated.TimeNeedToSolveMissionSeconds = 120;
             return generated;
         }
     }

@@ -8,6 +8,11 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission8 : MissionGenerator
     {
+        public override int NumOfMission => 8;
+        public override string MissionName => "Типы (расширения) файлов";
+        public override int TimeToSolveMission => 330;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Theory;
         public override MissionBase Generate()
         {
             List<MatchElement> matchElements = new List<MatchElement>
@@ -56,11 +61,7 @@ namespace MyNotebook.ViewModels
                 (defs[index1], defs[index2]) = (defs[index2], defs[index1]);
                 (answer[index1], answer[index2]) = (answer[index2], answer[index1]);
             }
-            MissionBase generated = new MatchMission(8, "Типы (расширения) файлов", terms, defs, answer)
-            {
-                Tooltip = $"Расширения: {string.Join(", ", matchElements)}",
-                TimeNeedToSolveMissionSeconds = 330
-            };
+            MissionBase generated = new MatchMission(8, "Типы (расширения) файлов", terms, defs, answer);
             return generated;
         }
     }

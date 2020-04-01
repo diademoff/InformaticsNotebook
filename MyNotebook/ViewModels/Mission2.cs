@@ -9,6 +9,12 @@ namespace MyNotebook.ViewModels
     [Serializable]
     public class Mission2 : MissionGenerator
     {
+        public override int NumOfMission => 2;
+        public override string MissionName => "Единицы измерения информации";
+        public override int TimeToSolveMission => 120;
+        public override int MaxNumInTest => 10;
+        public override MissionType TypeOfMission => MissionType.Practice;
+
         string[] units = new string[]
         {
             "Бит",
@@ -44,9 +50,6 @@ namespace MyNotebook.ViewModels
 
                 generated = new TextMission(2, "Единицы измерения информации", Question, Answer);
             }
-            generated.Tooltip = $"Единицы: {string.Join(", ", units)}";
-            generated.TimeNeedToSolveMissionSeconds = 120;
-            generated.TypeOfMission = MissionType.Practice;
             return generated;
         }
 
