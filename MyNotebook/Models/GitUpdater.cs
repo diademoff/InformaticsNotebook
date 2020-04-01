@@ -10,7 +10,7 @@ namespace MyNotebook.Models
 {
     public class GitUpdater
     {
-        public string ThisVersion { get; } = "1.0.5"; //TODO: Before commiting change version here and in file "version"
+        public string ThisVersion { get; } = "1.0.6"; //TODO: Before commiting change version here and in file "version"
         string linkForNewVersion = "https://raw.githubusercontent.com/diademoff/InformaticsNotebook/master/version";
         string linkForDownloadFile = "https://github.com/diademoff/InformaticsNotebook/raw/master/MyNotebook/Build/MyNotebook.exe";
         string programName = "MyNotebook";

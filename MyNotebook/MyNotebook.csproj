@@ -263,6 +263,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\pm_eat.png" />
+    <None Include="Resources\pm_closed.png" />
+    <None Include="Resources\pm_U.png" />
+    <None Include="Resources\pm_R.png" />
+    <None Include="Resources\pm_L.png" />
+    <None Include="Resources\pm_D.png" />
     <None Include="ViewModels\howToAddMission.md" />
     <None Include="Resources\videocard1.jpg" />
     <None Include="Resources\videocard2.jpg" />

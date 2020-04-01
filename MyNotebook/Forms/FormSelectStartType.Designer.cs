@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
+            this.lbl_score = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -58,7 +59,7 @@
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(369, 338);
+            this.btn_update.Location = new System.Drawing.Point(372, 356);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(136, 23);
             this.btn_update.TabIndex = 10;
@@ -67,11 +68,22 @@
             this.btn_update.Visible = false;
             this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
+            // lbl_score
+            // 
+            this.lbl_score.AutoSize = true;
+            this.lbl_score.Location = new System.Drawing.Point(12, 9);
+            this.lbl_score.Name = "lbl_score";
+            this.lbl_score.Size = new System.Drawing.Size(38, 13);
+            this.lbl_score.TabIndex = 11;
+            this.lbl_score.Text = "Очки: ";
+            this.lbl_score.Visible = false;
+            // 
             // FormSelectStartType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 373);
+            this.ClientSize = new System.Drawing.Size(521, 391);
+            this.Controls.Add(this.lbl_score);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -82,6 +94,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выберите тип запуска";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -90,5 +103,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_update;
+        private System.Windows.Forms.Label lbl_score;
     }
 }
