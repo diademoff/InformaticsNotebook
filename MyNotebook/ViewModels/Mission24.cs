@@ -60,7 +60,7 @@ namespace MyNotebook.ViewModels
             {
                 q += $"{i + 1}. {answers[i]}\n";
             }
-            return new TextMission(24, "Сложные условия (Pascal)", q, string.Join("", expected));
+            return new TextMission(NumOfMission, MissionName, q, string.Join("", expected));
         }
         bool IsOK(int s, int t, Sym s_, Sym t_, bool or)
         {

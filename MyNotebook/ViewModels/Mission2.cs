@@ -48,7 +48,7 @@ namespace MyNotebook.ViewModels
                 var Question = $"Перевидите {result} из {unit2} в {unit1}";
                 var Answer = num.ToString();
 
-                generated = new TextMission(2, "Единицы измерения информации", Question, Answer);
+                generated = new TextMission(NumOfMission, MissionName, Question, Answer);
             }
             return generated;
         }

@@ -29,7 +29,7 @@ namespace MyNotebook.ViewModels
             matchElements.Add(new MatchElement("Электронные таблицы", new[] { "MS Excel" }));
             matchElements.Add(new MatchElement("Электронное учебное издание", new[] { "Wikipedia" }));
 
-            var res = new MatchMission(12, "Программное обеспечение", matchElements.ToArray());
+            var res = new MatchMission(NumOfMission, MissionName, matchElements.ToArray());
             return res;
         }
     }

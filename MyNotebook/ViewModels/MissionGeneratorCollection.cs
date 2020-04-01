@@ -80,7 +80,7 @@ namespace MyNotebook.ViewModels
             {
                 foreach (var mission in catagory.Missions)
                 {
-                    var currentNum = mission.Generate().NumOfMission;
+                    var currentNum = mission.NumOfMission;
                     if (currentNum == numOfMissionToAdd)
                     {
                         return mission;

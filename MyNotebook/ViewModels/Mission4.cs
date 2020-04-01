@@ -16,8 +16,6 @@ namespace MyNotebook.ViewModels
         public override int TimeToSolveMission => 120;
         public override int MaxNumInTest => 10;
         public override MissionType TypeOfMission => MissionType.Theory;
-
-        string title = "Определения компьютерных комплектующих";
         public override MissionBase Generate()
         {
             List<MatchElement> matchElements = new List<MatchElement>();
@@ -27,7 +25,7 @@ namespace MyNotebook.ViewModels
                 matchElements.Add(new MatchElement(item.Term, item.Defenitions));
             }
 
-            var generated = new MatchMission(4, title, matchElements.ToArray());
+            var generated = new MatchMission(NumOfMission, MissionName, matchElements.ToArray());
             return generated;
         }
     }

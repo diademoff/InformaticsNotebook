@@ -21,7 +21,7 @@ namespace MyNotebook.ViewModels
 
             var answer = FromDec(num, n2);
             //TimeNeedToSolveMissionSeconds
-            var mission = new TextMission(15, MissionName, q, answer);
+            var mission = new TextMission(NumOfMission, MissionName, q, answer);
             return mission;
         }
 

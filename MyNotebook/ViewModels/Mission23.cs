@@ -55,7 +55,7 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word1} or {pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n1 + n2 + n3}");
+                    return new TextMission(NumOfMission, MissionName, q, $"{n1 + n2 + n3}");
                 case 2:
                     q += $"{pair.Word1} and {pair.Word2}\t{n2}\n" +
                          $"{pair.Word1}\t{n1 + n2}\n" +
@@ -63,7 +63,7 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word1} and {pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n2}");
+                    return new TextMission(NumOfMission, MissionName, q, $"{n2}");
                 case 3:
                     q += $"{pair.Word1} and {pair.Word2}\t{n2}\n" +
                          $"{pair.Word1} or {pair.Word2}\t{n1 + n2 + n3}\n" +
@@ -71,7 +71,7 @@ namespace MyNotebook.ViewModels
                          $"Сколько страниц будет найдено по запросу\n" +
                          $"{pair.Word2}";
                     FormatQ(ref q);
-                    return new TextMission(23, "Запросы в поисковой системе", q, $"{n3 + n2}");
+                    return new TextMission(NumOfMission, MissionName, q, $"{n3 + n2}");
                 default:
                     throw new Exception("mission 23 ex");
             }

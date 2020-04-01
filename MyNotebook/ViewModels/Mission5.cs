@@ -57,7 +57,7 @@ namespace MyNotebook.ViewModels
                 (defs[index1], defs[index2]) = (defs[index2], defs[index1]);
                 (answer[index1], answer[index2]) = (answer[index2], answer[index1]);
             }
-            var generated = new MatchMission(5, "Компьютерные комплектующие на английском", terms, defs, answer);
+            var generated = new MatchMission(NumOfMission, MissionName, terms, defs, answer);
             return generated;
         }
     }

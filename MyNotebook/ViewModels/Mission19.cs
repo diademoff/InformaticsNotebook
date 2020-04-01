@@ -23,7 +23,7 @@ namespace MyNotebook.ViewModels
                        $"переместили файл туда. Полное имя файла стал: {path}.\n" +
                        $"Укажите имя файла до перемещения.";
 
-            return new TextMission(19, "Файловая система", q, answer, solvedRight);
+            return new TextMission(NumOfMission, MissionName, q, answer, solvedRight);
         }
 
         bool solvedRight(string a)

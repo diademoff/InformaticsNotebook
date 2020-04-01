@@ -14,8 +14,6 @@ namespace MyNotebook.ViewModels
         public override int TimeToSolveMission => 120;
         public override int MaxNumInTest => 10;
         public override MissionType TypeOfMission => MissionType.Practice;
-
-        string title = "Линейный алгоритм";
         public override MissionBase Generate()
         {
             var Question = "В программе «:=» обозначает оператор присваивания, знаки «+», «-», «*» и «/» —\n\r" +
@@ -108,14 +106,14 @@ namespace MyNotebook.ViewModels
                 Question += "В ответе укажите одно целое число — значение переменной a.";
                 var Answer = x1.ToString();
 
-                generated = new TextMission(3, title, Question, Answer);
+                generated = new TextMission(NumOfMission, MissionName, Question, Answer);
             }
             else
             {
                 Question += "В ответе укажите одно целое число — значение переменной b.";
                 var Answer = y1.ToString();
 
-                generated = new TextMission(3, title, Question, Answer);
+                generated = new TextMission(NumOfMission, MissionName, Question, Answer);
             }
             return generated;
         }

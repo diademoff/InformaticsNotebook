@@ -70,7 +70,7 @@ namespace MyNotebook.ViewModels
                 alreadyAdded.Add(index);
             }
 
-            ChoosePictureMission mission = new ChoosePictureMission(13, "Выбрать изображение комплектующего", question, pictures, rightIndex);
+            ChoosePictureMission mission = new ChoosePictureMission(NumOfMission, MissionName, question, pictures, rightIndex);
             return mission;
         }
     }

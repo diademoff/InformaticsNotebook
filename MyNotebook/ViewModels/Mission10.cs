@@ -52,7 +52,7 @@ namespace MyNotebook.ViewModels
                 goto genAgain;
             }
 
-            TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, ((int)a).ToString());
+            TextMission result = new TextMission(NumOfMission, MissionName, q, ((int)a).ToString());
             return result;
         }
 
@@ -65,7 +65,7 @@ namespace MyNotebook.ViewModels
                        $"На каждой странице размещается {l} строк по {s} символов в строке.\n" +
                        $"Какой объем оперативной памяти (в байтах) займет этот текст?";
             string a = $"{p * l * s}";
-            TextMission result = new TextMission(10, "Посчитать информационный вес текста", q, a);
+            TextMission result = new TextMission(NumOfMission, MissionName, q, a);
             return result;
         }
     }

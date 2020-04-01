@@ -41,7 +41,7 @@ namespace MyNotebook.ViewModels
                         continue;
                     }
 
-                    return new TextMission(20, "Скорость передачи данных", q, a.ToString());
+                    return new TextMission(NumOfMission, MissionName, q, a.ToString());
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace MyNotebook.ViewModels
                     {
                         continue;
                     }
-                    var mission = new TextMission(20, "Скорость передачи данных", q, a.ToString());
+                    var mission = new TextMission(NumOfMission, MissionName, q, a.ToString());
                     return mission;
                 }
             }

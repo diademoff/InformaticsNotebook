@@ -177,7 +177,7 @@ namespace MyNotebook.ViewModels
                     string q = $"Среди чисел выберите те, которые удовлетворяют условию\n" +
                                $"{logicMission.GetString()}\n{nums}";
 
-                    var mission = new TextMission(16, "Логические выражения", q, (rightAnswer + 1).ToString());
+                    var mission = new TextMission(NumOfMission, MissionName, q, (rightAnswer + 1).ToString());
                     return mission;
                 }
                 catch { }

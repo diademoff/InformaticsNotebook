@@ -78,7 +78,7 @@ namespace MyNotebook.ViewModels
                     break;
                 }
             }
-            MissionBase mb = new SelectMission(6, "Выберите устройства, находящиеся в системном блоке", "Выберать устройства, находящьеся в системном блоке", answers.ToArray(), answerExpected.ToArray());
+            MissionBase mb = new SelectMission (NumOfMission, MissionName, "Выберать устройства, находящьеся в системном блоке", answers.ToArray(), answerExpected.ToArray());
             return mb;
         }
     }

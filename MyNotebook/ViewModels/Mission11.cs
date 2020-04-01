@@ -71,7 +71,7 @@ namespace MyNotebook.ViewModels
                     question += $"Запишите порядок команд в программе,\n" +
                                 $"которая преобразует число {beginNum} в число {result}.\n" +
                                 $"Указывайте лишь номера пяти команд.";
-                    var mission = new TextMission(11, "Исполнитель Квадратор", question, answer, IsSolvedRight);
+                    var mission = new TextMission(NumOfMission, MissionName, question, answer, IsSolvedRight);
                     return mission;
                 }
             }

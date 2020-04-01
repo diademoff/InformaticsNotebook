@@ -89,7 +89,7 @@ namespace MyNotebook.Models
                 wc.DownloadFile(linkForDownloadFile, $"MyNotebook.exe");
                 return $"MyNotebook.exe";
             }
-            else if (!File.Exists($"MyNotеbook")) // е is russian
+            else if (!File.Exists($"MyNotеbook.exe")) // е is russian
             {
                 wc.DownloadFile(linkForDownloadFile, $"MyNotеbook.exe");
                 return $"MyNotеbook.exe";

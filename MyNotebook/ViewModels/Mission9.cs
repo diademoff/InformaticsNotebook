@@ -96,25 +96,12 @@ namespace MyNotebook.ViewModels
                 }
             }
 
-            string title = "";
-            switch (tasktype)
-            {
-                case tasktype.input:
-                    title = "Выберите устройства ввода";
-                    break;
-                case tasktype.output:
-                    title = "Выберите устройства вывода";
-                    break;
-                default:
-                    break;
-            }
-
             if (task.Count != numOfAnswers)
             {
                 goto generate;
             }
 
-            MissionBase mb = new SelectMission(9, title, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray());
+            MissionBase mb = new SelectMission(NumOfMission, MissionName, "Выберите устройства ввода/вывода", task.ToArray(), answer.ToArray());
             return mb;
         }
     }

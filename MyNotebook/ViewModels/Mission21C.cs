@@ -13,7 +13,6 @@ namespace MyNotebook.ViewModels
         public override MissionType TypeOfMission => MissionType.Practice;
         public override MissionBase Generate()
         {
-            string title = "Cложные задачи на кодирование изображений";
             string q = "";
             int i = 0;
             i = rnd.Next(3, 10);
@@ -34,7 +33,7 @@ namespace MyNotebook.ViewModels
                         double res = (Convert.ToDouble(x) * Convert.ToDouble(j * j) * Math.Pow(2, i)) / (8.0 * 1024.0);
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString());
+                            return new TextMission(NumOfMission, MissionName, q, res.ToString());
                         }
                     }
                 #endregion
@@ -55,7 +54,7 @@ namespace MyNotebook.ViewModels
                         double res = (Convert.ToDouble(i) * Convert.ToDouble(j) * m * 8.0) / x;
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString());
+                            return new TextMission(NumOfMission, MissionName, q, res.ToString());
                         }
                     }
                 #endregion
@@ -74,7 +73,7 @@ namespace MyNotebook.ViewModels
                         double res = Math.Pow(2, (Convert.ToDouble(x) * 8.0) / (Convert.ToDouble(i) * Convert.ToDouble(j)));
                         if (res == Convert.ToDouble((int)res))
                         {
-                            return new TextMission(21, title, q, res.ToString());
+                            return new TextMission(NumOfMission, MissionName, q, res.ToString());
                         }
                     }
                 #endregion
