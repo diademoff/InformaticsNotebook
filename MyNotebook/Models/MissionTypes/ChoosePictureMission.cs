@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MyNotebook.Models.MissionTypes
@@ -275,6 +276,34 @@ namespace MyNotebook.Models.MissionTypes
             html += $"<p>Ответ ожидался: {String_AnswerExpecting}</p>";
             html += $"<p>Ответ дан: {String_AnswerGiven}</p>";
             return html;
+        }
+
+        public override string AppendHTMLMission(string pathToFolder)
+        {
+            string html = "";
+            html += $"<div class=\"brd\">" +
+                    $"<h3>{Question}</h3>";
+            for (int i = 0; i < Pictures.Length; i++)
+            {
+                html += $"<img src=\"{SavePictute(Pictures[i])}\", width=\"250\", height=\"250\">";
+            }
+
+            html += "</div>";
+
+            return html;
+
+            string SavePictute(Bitmap bitmap)
+            {
+                while (true)
+                {
+                    string fileName = rnd.Next() + ".jpg";
+                    if (!File.Exists(Path.Combine(pathToFolder, fileName)))
+                    {
+                        bitmap.Save(Path.Combine(pathToFolder, fileName));
+                        return Path.Combine(pathToFolder, fileName);
+                    }
+                }
+            }
         }
     }
 }

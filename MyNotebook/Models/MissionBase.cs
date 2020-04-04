@@ -46,6 +46,13 @@ namespace MyNotebook.Models
         public abstract TabPage GetSolvedTabPage();
 
         public abstract string GetHTMLResult();
+        /// <summary>
+        /// Дописывает в html файл задание.
+        /// </summary>
+        /// <param name="pathToFolder">"C:\project\folder\"</param>
+        /// <param name="htmlFileName">"index.html"</param>
+        /// <returns></returns>
+        public abstract string AppendHTMLMission(string pathToFolder);
 
         public virtual void StartMonitorTabPageActiveCountTime(TabPage tp)
         {

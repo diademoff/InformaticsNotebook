@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 
 namespace MyNotebook.Models
 {
@@ -103,7 +104,6 @@ namespace MyNotebook.Models
             //html += "</body> </html>";
             return html;
         }
-
         public void OpenHTMLPage(User user)
         {
             for (int i = 0; ; i++)
@@ -116,6 +116,58 @@ namespace MyNotebook.Models
                     return;
                 }
             }
+        }
+
+        public void OpenHTMLMissionSolve(string pathToFolder, int numOfVariants)
+        {
+            string fileName = "index.html";
+
+
+            string html = "";
+            html += "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<style>" +
+                    "   .brd {" +
+                    "       border: 1px solid black;" +
+                    "       padding: 5px;" +
+                    "       justify-content:center;" +
+                    "   }" +
+                    "</style>";
+            string htmlAnswer = html;
+            html += "<head>" +
+                    "   <title>Задания</title>" +//TODO: set title
+                    "</head>" +
+                    "<body>";
+            htmlAnswer += "<head>" +
+                          "   <title>Ответы</title>" +
+                          "</head>" +
+                          "<body>";
+
+            for (int i = 1; i <= numOfVariants; i++)
+            {
+                html += $"<h1>Вариант {i}</h1>";
+                htmlAnswer += $"<h1>Ответы к варианту {i}</h1>";
+                for (int j = 0; j < AllMissions.Count; j++)
+                {
+                    html += AllMissions[j].AppendHTMLMission(pathToFolder);
+                    html += "\n<br>\n";
+
+                    htmlAnswer += AllMissions[j].String_AnswerExpecting + "\n<br>\n";
+                }
+                RegenerateMissions();
+            }
+
+            html += "</body>" +
+                    "</html>";
+
+            htmlAnswer += "</body>" +
+                          "</html>";
+
+            File.WriteAllText(Path.Combine(pathToFolder, fileName), html, Encoding.UTF8);
+            Process.Start(Path.Combine(pathToFolder, fileName));
+
+            File.WriteAllText(Path.Combine(pathToFolder, "Answer.html"), htmlAnswer, Encoding.UTF8);
+            Process.Start(Path.Combine(pathToFolder, "Answer.html"));
         }
 
         /// <summary>

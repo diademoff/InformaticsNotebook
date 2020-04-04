@@ -195,6 +195,17 @@ namespace MyNotebook.Models
             return html;
         }
 
+        public override string AppendHTMLMission(string pathToFolder)
+        {
+            string html = "";
+            html += $"<div class=\"brd\">" +
+                    $"  {string.Join("<br>", Question.Split('\n'))}" +
+                    $"<br>" +
+                    $"  Ответ: ____________________" +
+                    $"</div>";
+            return html;
+        }
+
         /// <summary>
         /// Constructor for Text mission
         /// </summary>

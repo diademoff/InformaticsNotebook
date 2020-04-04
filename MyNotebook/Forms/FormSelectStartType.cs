@@ -113,6 +113,7 @@ namespace MyNotebook.Forms
             };
             updateFrame.Tick += (ss, ee) => UpdateFrame();
         }
+
         #region pacman game
         enum Direction
         {
@@ -235,6 +236,13 @@ namespace MyNotebook.Forms
         System.Windows.Forms.Timer updateFrame;
         void Form_DoubleClick_Feature(object sender, EventArgs e)
         {
+            if (pacman != null)
+            {
+                if (pacman.isAlive)
+                {
+                    return;
+                }
+            }
             lbl_score.Visible = true;
 
             eat = new Eat();

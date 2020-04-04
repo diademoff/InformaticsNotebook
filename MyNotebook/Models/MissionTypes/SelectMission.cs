@@ -221,6 +221,16 @@ namespace MyNotebook.Models
             return html;
         }
 
+        public override string AppendHTMLMission(string pathToFolder)
+        {
+            string html = "";
+            html += $"<div class=\"brd\">" +
+                    $"<h3>{Tasktext}</h3>";
+            html += $"{string.Join("<br>", Variants)}";
+            html += $"</div>";
+            return html;
+        }
+
         /// <summary>
         /// 
         /// </summary>

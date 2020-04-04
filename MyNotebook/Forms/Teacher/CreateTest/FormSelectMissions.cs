@@ -3,6 +3,7 @@ using MyNotebook.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -237,6 +238,26 @@ namespace MyNotebook.Forms
                 checkbx_onebyoneBlocks.Checked = false;
             }
             checkbx_randomOrder.Enabled = checkbx_onebyoneBlocks.Checked || checkbx_onebyoneMissions.Checked;
+        }
+
+        void btn_print_Click(object sender, EventArgs e)
+        {
+            var test = GetCreatedTest();
+            test.RegenerateMissions();
+            test.OpenHTMLMissionSolve(GetPathOnDesktop(), (int)ud_numOfVariants.Value);
+        }
+        Random rnd = new Random();
+        string GetPathOnDesktop()
+        {
+            while (true)
+            {
+                string folderName = rnd.Next().ToString();
+                if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\" + folderName))
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\" + folderName);
+                    return Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\" + folderName;
+                }                
+            }
         }
     }
 

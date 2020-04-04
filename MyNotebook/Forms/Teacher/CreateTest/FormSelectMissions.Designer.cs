@@ -45,8 +45,14 @@
             this.checkbx_mistakesCorrect = new System.Windows.Forms.CheckBox();
             this.lbl_timeNeed = new System.Windows.Forms.Label();
             this.gb_showType = new System.Windows.Forms.GroupBox();
+            this.gb_print = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ud_numOfVariants = new System.Windows.Forms.NumericUpDown();
+            this.btn_print = new System.Windows.Forms.Button();
             this.gb_settings.SuspendLayout();
             this.gb_showType.SuspendLayout();
+            this.gb_print.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_numOfVariants)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +70,7 @@
             // btn_save
             // 
             this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_save.Location = new System.Drawing.Point(843, 537);
+            this.btn_save.Location = new System.Drawing.Point(843, 553);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(130, 31);
             this.btn_save.TabIndex = 6;
@@ -123,7 +129,7 @@
             this.panel_missions.AutoScroll = true;
             this.panel_missions.Location = new System.Drawing.Point(17, 37);
             this.panel_missions.Name = "panel_missions";
-            this.panel_missions.Size = new System.Drawing.Size(956, 427);
+            this.panel_missions.Size = new System.Drawing.Size(956, 421);
             this.panel_missions.TabIndex = 11;
             // 
             // checkbx_onebyoneBlocks
@@ -151,7 +157,7 @@
             // btn_load
             // 
             this.btn_load.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_load.Location = new System.Drawing.Point(716, 537);
+            this.btn_load.Location = new System.Drawing.Point(716, 553);
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(121, 31);
             this.btn_load.TabIndex = 14;
@@ -189,7 +195,7 @@
             this.gb_settings.Controls.Add(this.checkbx_topMost);
             this.gb_settings.Controls.Add(this.checkbx_disableCalc);
             this.gb_settings.Controls.Add(this.checkbx_showAnswerAtOnce);
-            this.gb_settings.Location = new System.Drawing.Point(17, 465);
+            this.gb_settings.Location = new System.Drawing.Point(17, 462);
             this.gb_settings.Name = "gb_settings";
             this.gb_settings.Size = new System.Drawing.Size(349, 105);
             this.gb_settings.TabIndex = 17;
@@ -225,18 +231,68 @@
             this.gb_showType.Controls.Add(this.checkbx_onebyoneBlocks);
             this.gb_showType.Controls.Add(this.checkbx_onebyoneMissions);
             this.gb_showType.Controls.Add(this.checkbx_randomOrder);
-            this.gb_showType.Location = new System.Drawing.Point(369, 465);
+            this.gb_showType.Location = new System.Drawing.Point(369, 462);
             this.gb_showType.Name = "gb_showType";
             this.gb_showType.Size = new System.Drawing.Size(384, 66);
             this.gb_showType.TabIndex = 19;
             this.gb_showType.TabStop = false;
             this.gb_showType.Text = "Отображение";
             // 
+            // gb_print
+            // 
+            this.gb_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gb_print.Controls.Add(this.label2);
+            this.gb_print.Controls.Add(this.ud_numOfVariants);
+            this.gb_print.Controls.Add(this.btn_print);
+            this.gb_print.Location = new System.Drawing.Point(757, 462);
+            this.gb_print.Name = "gb_print";
+            this.gb_print.Size = new System.Drawing.Size(216, 81);
+            this.gb_print.TabIndex = 20;
+            this.gb_print.TabStop = false;
+            this.gb_print.Text = "Распечатать";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Вариантов: ";
+            // 
+            // ud_numOfVariants
+            // 
+            this.ud_numOfVariants.Location = new System.Drawing.Point(86, 17);
+            this.ud_numOfVariants.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ud_numOfVariants.Name = "ud_numOfVariants";
+            this.ud_numOfVariants.Size = new System.Drawing.Size(120, 20);
+            this.ud_numOfVariants.TabIndex = 1;
+            this.ud_numOfVariants.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btn_print
+            // 
+            this.btn_print.Location = new System.Drawing.Point(48, 46);
+            this.btn_print.Name = "btn_print";
+            this.btn_print.Size = new System.Drawing.Size(120, 29);
+            this.btn_print.TabIndex = 0;
+            this.btn_print.Text = "Открыть для печати";
+            this.btn_print.UseVisualStyleBackColor = true;
+            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
+            // 
             // FormSelectMissions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 599);
+            this.ClientSize = new System.Drawing.Size(985, 615);
+            this.Controls.Add(this.gb_print);
             this.Controls.Add(this.gb_showType);
             this.Controls.Add(this.lbl_timeNeed);
             this.Controls.Add(this.gb_settings);
@@ -255,6 +311,9 @@
             this.gb_settings.PerformLayout();
             this.gb_showType.ResumeLayout(false);
             this.gb_showType.PerformLayout();
+            this.gb_print.ResumeLayout(false);
+            this.gb_print.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_numOfVariants)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,5 +337,9 @@
         private System.Windows.Forms.CheckBox checkbx_mistakesCorrect;
         private System.Windows.Forms.Label lbl_timeNeed;
         private System.Windows.Forms.GroupBox gb_showType;
+        private System.Windows.Forms.GroupBox gb_print;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown ud_numOfVariants;
+        private System.Windows.Forms.Button btn_print;
     }
 }

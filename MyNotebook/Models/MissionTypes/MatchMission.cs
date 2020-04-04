@@ -276,6 +276,19 @@ namespace MyNotebook.Models
             return html;
         }
 
+        public override string AppendHTMLMission(string pathToFolder)
+        {
+            string html = "";
+            html += $"<div class=\"brd\">" +
+                    $"<h3>Впишите термины: {string.Join(", ", Terms)}</h3>";
+            for (int i = 0; i < Definitions.Length; i++)
+            {
+                html += $"__________ - {Definitions[i]} <br>";
+            }
+            html += $"</div>";
+            return html;
+        }
+
         /// <summary>
         /// Constructor for match mission
         /// </summary>
