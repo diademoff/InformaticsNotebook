@@ -224,7 +224,7 @@ namespace MyNotebook.Models
         public override string AppendHTMLMission(string pathToFolder)
         {
             string html = "";
-            html += $"<div" +
+            html += $"<div>" +
                     $"<h3>{Tasktext}</h3>";
             html += $"{string.Join("<br>", Variants)}";
             html += $"</div>";
