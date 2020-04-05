@@ -118,42 +118,64 @@ namespace MyNotebook.Models
             }
         }
 
-        public void OpenHTMLMissionSolve(string pathToFolder, int numOfVariants)
+        public void OpenHTMLMissionSolve(string pathToFolder, int numOfVariants, bool breakPageAfterVariants)
         {
             string fileName = "index.html";
 
 
-            string html = "";
-            html += "<!DOCTYPE html>" +
-                    "<html>" +
-                    "<style>" +
-                    "   .brd {" +
-                    "       border: 1px solid black;" +
-                    "       padding: 5px;" +
-                    "       justify-content:center;" +
-                    "   }" +
-                    "</style>";
-            string htmlAnswer = html;
-            html += "<head>" +
-                    "   <title>Задания</title>" +//TODO: set title
-                    "</head>" +
-                    "<body>";
-            htmlAnswer += "<head>" +
-                          "   <title>Ответы</title>" +
+            string html = "<!DOCTYPE html>" +
+                           "<html>" +
+                           "<head>" +
+                           "	<title>Задания</title>" +
+                           "	<style>" +
+                           "		.brd {" +
+                           "			border: 1px solid black;" +
+                           "            padding: 5px;" +
+                           "		}" +
+                           "		.wrapper {" +
+                           "			display: grid;" +
+                           "			grid-template-columns: 50% 50%;";
+            html += breakPageAfterVariants ? "page-break-after:always;" : "";
+            html += "		}" +
+                          "	</style>" +
                           "</head>" +
                           "<body>";
+            string htmlAnswer = "<!DOCTYPE html>" +
+                                "<html>" +
+                                "<head>" +
+                                "	<title>Ответы</title>" +
+                                "	<style>" +
+                                "		.brd {" +
+                                "			border: 1px solid black;" +
+                                "			padding: 5px;" +
+                                "			width: auto;" +
+                                "			height: auto;" +
+                                "			float: left;" +
+                                "		}" +
+                                "		.wrapper {" +
+                                "			display: grid;" +
+                                "			grid-template-columns: 50% 50%;" +
+                                "		}" +
+                                "	</style>" +
+                                "</head>" +
+                                "<body>";
 
             for (int i = 1; i <= numOfVariants; i++)
             {
-                html += $"<h1>Вариант {i}</h1>";
+                html += $"<h1>Вариант {i}</h1>" +
+                        $"<br>";
+                html += "<div class=\"wrapper\">";
+
                 htmlAnswer += $"<h1>Ответы к варианту {i}</h1>";
                 for (int j = 0; j < AllMissions.Count; j++)
                 {
+                    html += "<div class=\"brd\">";
                     html += AllMissions[j].AppendHTMLMission(pathToFolder);
-                    html += "\n<br>\n";
+                    html += "</div>";
 
-                    htmlAnswer += AllMissions[j].String_AnswerExpecting + "\n<br>\n";
+                    htmlAnswer += $"{j + 1}. " + AllMissions[j].String_AnswerExpecting + "\n<br>\n";
                 }
+                html += "</div>";
                 RegenerateMissions();
             }
 

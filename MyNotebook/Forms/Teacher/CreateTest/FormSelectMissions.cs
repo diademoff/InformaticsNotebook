@@ -244,7 +244,7 @@ namespace MyNotebook.Forms
         {
             var test = GetCreatedTest();
             test.RegenerateMissions();
-            test.OpenHTMLMissionSolve(GetPathOnDesktop(), (int)ud_numOfVariants.Value);
+            test.OpenHTMLMissionSolve(GetPathOnDesktop(), (int)ud_numOfVariants.Value, checkbx_breakpage.Checked);
         }
         Random rnd = new Random();
         string GetPathOnDesktop()

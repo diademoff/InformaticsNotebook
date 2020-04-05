@@ -281,11 +281,11 @@ namespace MyNotebook.Models.MissionTypes
         public override string AppendHTMLMission(string pathToFolder)
         {
             string html = "";
-            html += $"<div class=\"brd\">" +
+            html += $"<div>" +
                     $"<h3>{Question}</h3>";
             for (int i = 0; i < Pictures.Length; i++)
             {
-                html += $"<img src=\"{SavePictute(Pictures[i])}\", width=\"250\", height=\"250\">";
+                html += $"<img src=\"{SavePictute(Pictures[i])}\", width=\"220\", height=\"200\">";
             }
 
             html += "</div>";

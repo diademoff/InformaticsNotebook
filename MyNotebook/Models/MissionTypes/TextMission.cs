@@ -198,7 +198,7 @@ namespace MyNotebook.Models
         public override string AppendHTMLMission(string pathToFolder)
         {
             string html = "";
-            html += $"<div class=\"brd\">" +
+            html += $"<div>" +
                     $"  {string.Join("<br>", Question.Split('\n'))}" +
                     $"<br>" +
                     $"  Ответ: ____________________" +

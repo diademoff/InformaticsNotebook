@@ -279,7 +279,7 @@ namespace MyNotebook.Models
         public override string AppendHTMLMission(string pathToFolder)
         {
             string html = "";
-            html += $"<div class=\"brd\">" +
+            html += $"<div>" +
                     $"<h3>Впишите термины: {string.Join(", ", Terms)}</h3>";
             for (int i = 0; i < Definitions.Length; i++)
             {
