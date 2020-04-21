@@ -75,7 +75,8 @@ namespace MyNotebook.ViewModels
             new MissionGeneratorCategory("Задачи для профильного класса",
                 new MissionGenerator[]
                 {
-                    new Mission25()
+                    new Mission25(),
+                    new Mission26()
                 })
         };
 
