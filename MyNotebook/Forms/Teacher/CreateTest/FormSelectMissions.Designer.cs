@@ -128,10 +128,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_missions.AutoScroll = true;
+            this.panel_missions.BackColor = System.Drawing.SystemColors.Info;
+            this.panel_missions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_missions.Location = new System.Drawing.Point(17, 37);
             this.panel_missions.Name = "panel_missions";
             this.panel_missions.Size = new System.Drawing.Size(956, 434);
             this.panel_missions.TabIndex = 11;
+            this.panel_missions.Tag = "no";
             // 
             // checkbx_onebyoneBlocks
             // 
@@ -196,6 +199,7 @@
             this.gb_settings.Controls.Add(this.checkbx_topMost);
             this.gb_settings.Controls.Add(this.checkbx_disableCalc);
             this.gb_settings.Controls.Add(this.checkbx_showAnswerAtOnce);
+            this.gb_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gb_settings.Location = new System.Drawing.Point(17, 475);
             this.gb_settings.Name = "gb_settings";
             this.gb_settings.Size = new System.Drawing.Size(349, 105);
@@ -232,6 +236,7 @@
             this.gb_showType.Controls.Add(this.checkbx_onebyoneBlocks);
             this.gb_showType.Controls.Add(this.checkbx_onebyoneMissions);
             this.gb_showType.Controls.Add(this.checkbx_randomOrder);
+            this.gb_showType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gb_showType.Location = new System.Drawing.Point(369, 475);
             this.gb_showType.Name = "gb_showType";
             this.gb_showType.Size = new System.Drawing.Size(384, 66);
@@ -245,6 +250,7 @@
             this.gb_print.Controls.Add(this.label2);
             this.gb_print.Controls.Add(this.ud_numOfVariants);
             this.gb_print.Controls.Add(this.btn_print);
+            this.gb_print.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gb_print.Location = new System.Drawing.Point(757, 475);
             this.gb_print.Name = "gb_print";
             this.gb_print.Size = new System.Drawing.Size(216, 100);

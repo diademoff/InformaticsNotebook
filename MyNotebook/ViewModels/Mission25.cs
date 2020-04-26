@@ -17,8 +17,8 @@ namespace MyNotebook.ViewModels
             switch (rnd.Next(1, 3))
             {
                 case 1:
-                    // Берём степень двойки люубую (от 5 до 12)
-                    var pwr = rnd.Next(5, 13);
+                    // Берём степень двойки люубую (от 6 до 12)
+                    var pwr = rnd.Next(6, 13);
 
                     // Переводим 2^pwr в двоичную систему
                     var bin = Convert.ToString((int)Math.Pow(2, pwr), 2);

@@ -31,8 +31,6 @@ namespace MyNotebook.ViewModels
                 new MissionGenerator[]
                 {
                     new Mission2(),
-                    new Mission18(),
-                    new Mission20()
                 }),
             new MissionGeneratorCategory("Компьютер как универсальное устройство для работы с информацией",
                 new MissionGenerator[]
@@ -66,6 +64,13 @@ namespace MyNotebook.ViewModels
                 {
                     new Mission10(),
                     new Mission17()
+                }),
+            new MissionGeneratorCategory("Коммуникационные технологии", 
+                new MissionGenerator[]
+                {
+                    new Mission27(),
+                    new Mission18(),
+                    new Mission20()
                 }),
             new MissionGeneratorCategory("Дополнительные темы",
                 new MissionGenerator[]
