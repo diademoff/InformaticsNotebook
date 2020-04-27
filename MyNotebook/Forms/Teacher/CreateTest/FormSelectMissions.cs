@@ -269,7 +269,7 @@ namespace MyNotebook.Forms
         public List<RawControls> RawControls = new List<RawControls>();
         Action RefreshUI;
         public bool Hidden { get; private set; } = false;
-        int intervalBetweenRaws = 25;
+        int intervalBetweenRaws = 28;
         public CategoryControl(MissionGeneratorCategory category, int yPosition, Action RefreshUITotal, Action RefreshLabels)
         {
             this.RefreshUI = RefreshUITotal;
@@ -414,10 +414,14 @@ namespace MyNotebook.Forms
             };
             Preview = new Button()
             {
-                Text = "Предпросмотр",
+                //Text = "Предпросмотр",
                 Location = new Point(CheckBox.Location.X + 800, CheckBox.Location.Y),
-                Width = 100
+                Width = 30,
+                Height = 15,
+                BackgroundImage = Properties.Resources.view,
+                BackgroundImageLayout = ImageLayout.Stretch
             };
+
             Preview.Click += (s, e) =>
             {
                 TabPage tab = mg.Generate().GetTabPage(true);
@@ -458,6 +462,19 @@ namespace MyNotebook.Forms
             pnl.Controls.Add(TimeToSolve);
             pnl.Controls.Add(MissionType);
             pnl.Controls.Add(Preview);
+
+            // help line
+            Graphics g = pnl.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1.2f);
+            CheckBox.MouseHover += (s, e) =>
+            {
+                g = pnl.CreateGraphics();
+                g.DrawLine(p, CheckBox.Location.X, CheckBox.Location.Y + 24, Preview.Location.X + 30, CheckBox.Location.Y + 24);
+            };
+            CheckBox.MouseLeave += (s, e) =>
+            {
+                g.Clear(pnl.BackColor);
+            };
         }
 
         public void VisibleControls(bool visible)

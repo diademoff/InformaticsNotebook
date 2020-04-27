@@ -128,7 +128,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_missions.AutoScroll = true;
-            this.panel_missions.BackColor = System.Drawing.SystemColors.Info;
+            this.panel_missions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(243)))), ((int)(((byte)(250)))));
             this.panel_missions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_missions.Location = new System.Drawing.Point(17, 37);
             this.panel_missions.Name = "panel_missions";

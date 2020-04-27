@@ -266,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\view.png" />
     <None Include="Resources\pm_eat.png" />
     <None Include="Resources\pm_closed.png" />
     <None Include="Resources\pm_U.png" />
