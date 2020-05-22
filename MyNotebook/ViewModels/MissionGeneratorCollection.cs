@@ -82,7 +82,8 @@ namespace MyNotebook.ViewModels
                 {
                     new Mission25(),
                     new Mission26(),
-                    new Mission28()
+                    new Mission28(),
+                    new Mission29()
                 })
         };
 
