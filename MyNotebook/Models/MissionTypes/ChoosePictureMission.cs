@@ -176,6 +176,7 @@ namespace MyNotebook.Models.MissionTypes
                 else
                 {
                     tp.Text = IsSolvedRight() ? "✓" : "✖";
+                    give_answer.Text = IsSolvedRight() ? "Верно" : $"Ошибка ({IndexOfRightAnswer + 1})";
                 }
             };
 

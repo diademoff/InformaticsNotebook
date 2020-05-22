@@ -112,7 +112,7 @@ namespace MyNotebook.Models
                 }
                 else
                 {
-                    btn_answer.Text = IsSolvedRight() ? "Верно" : "Ошибка";
+                    btn_answer.Text = IsSolvedRight() ? "Верно" : $"Ошибка ({this.Answer})";
                     btn_answer.BackColor = IsSolvedRight() ? Color.Green : Color.Red;
                     tp.Text = IsSolvedRight() ? "✓" : "✖";
                 }
