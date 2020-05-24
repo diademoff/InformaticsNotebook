@@ -33,6 +33,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
             this.lbl_score = new System.Windows.Forms.Label();
+            this.cb_style = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -78,11 +79,23 @@
             this.lbl_score.Text = "Очки: ";
             this.lbl_score.Visible = false;
             // 
+            // cb_style
+            // 
+            this.cb_style.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cb_style.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_style.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cb_style.FormattingEnabled = true;
+            this.cb_style.Location = new System.Drawing.Point(12, 358);
+            this.cb_style.Name = "cb_style";
+            this.cb_style.Size = new System.Drawing.Size(150, 21);
+            this.cb_style.TabIndex = 12;
+            // 
             // FormSelectStartType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 391);
+            this.Controls.Add(this.cb_style);
             this.Controls.Add(this.lbl_score);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.button2);
@@ -104,5 +117,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Label lbl_score;
+        private System.Windows.Forms.ComboBox cb_style;
     }
 }

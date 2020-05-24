@@ -67,11 +67,12 @@
             this.listbx_users.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listbx_users.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listbx_users.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listbx_users.FormattingEnabled = true;
             this.listbx_users.Location = new System.Drawing.Point(12, 42);
             this.listbx_users.Name = "listbx_users";
-            this.listbx_users.Size = new System.Drawing.Size(779, 329);
+            this.listbx_users.Size = new System.Drawing.Size(779, 325);
             this.listbx_users.TabIndex = 12;
             // 
             // btn_union

@@ -65,7 +65,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 25);
             this.label1.TabIndex = 0;
-            this.label1.Tag = "no";
+            this.label1.Tag = "";
             this.label1.Text = "Выберите задания";
             // 
             // btn_save
@@ -109,7 +109,7 @@
             this.lbl_numOfMissionsSelected.Name = "lbl_numOfMissionsSelected";
             this.lbl_numOfMissionsSelected.Size = new System.Drawing.Size(109, 13);
             this.lbl_numOfMissionsSelected.TabIndex = 9;
-            this.lbl_numOfMissionsSelected.Tag = "no";
+            this.lbl_numOfMissionsSelected.Tag = "";
             this.lbl_numOfMissionsSelected.Text = "Заданий выбрано: 0";
             // 
             // checkbx_showAnswerAtOnce
@@ -134,7 +134,7 @@
             this.panel_missions.Name = "panel_missions";
             this.panel_missions.Size = new System.Drawing.Size(956, 434);
             this.panel_missions.TabIndex = 11;
-            this.panel_missions.Tag = "no";
+            this.panel_missions.Tag = "";
             // 
             // checkbx_onebyoneBlocks
             // 
@@ -200,6 +200,7 @@
             this.gb_settings.Controls.Add(this.checkbx_disableCalc);
             this.gb_settings.Controls.Add(this.checkbx_showAnswerAtOnce);
             this.gb_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gb_settings.ForeColor = System.Drawing.Color.Black;
             this.gb_settings.Location = new System.Drawing.Point(17, 475);
             this.gb_settings.Name = "gb_settings";
             this.gb_settings.Size = new System.Drawing.Size(349, 105);
@@ -227,7 +228,7 @@
             this.lbl_timeNeed.Name = "lbl_timeNeed";
             this.lbl_timeNeed.Size = new System.Drawing.Size(130, 13);
             this.lbl_timeNeed.TabIndex = 18;
-            this.lbl_timeNeed.Tag = "no";
+            this.lbl_timeNeed.Tag = "";
             this.lbl_timeNeed.Text = "Времяни потребуется: 0";
             // 
             // gb_showType

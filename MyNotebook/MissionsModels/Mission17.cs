@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyNotebook.MissionsModels
 {
@@ -154,16 +152,23 @@ namespace MyNotebook.MissionsModels
         List<Crypt> crypts;
         bool IsSolvedRight(string answerGiven)
         {
-            if (answerGiven == null)
+            try
+            {
+                if (answerGiven == null)
+                {
+                    return false;
+                }
+                string answerCodeGiven = "";
+                for (int i = 0; i < answerGiven.Length; i++)
+                {
+                    answerCodeGiven += crypts.Where(x => x.Letter == answerGiven[i].ToString()).ToArray()[0].Code;
+                }
+                return answerCodeGiven == cryptedString;
+            }
+            catch
             {
                 return false;
             }
-            string answerCodeGiven = "";
-            for (int i = 0; i < answerGiven.Length; i++)
-            {
-                answerCodeGiven += crypts.Where(x => x.Letter == answerGiven[i].ToString()).ToArray()[0].Code;
-            }
-            return answerCodeGiven == cryptedString;
         }
     }
 }

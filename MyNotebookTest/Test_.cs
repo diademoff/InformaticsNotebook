@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyNotebook.ViewModels;
+using MyNotebook.MissionsModels;
 using System.Windows.Forms;
 
 namespace MyNotebook.Models.Test_
@@ -9,14 +9,20 @@ namespace MyNotebook.Models.Test_
     {
         class MissionGenerateExample : MissionGenerator
         {
+            public override string MissionName => "test";
+
+            public override int NumOfMission => 0;
+
+            public override int TimeToSolveMission => 120;
+
+            public override int MaxNumInTest => 5;
+
+            public override MissionType TypeOfMission => MissionType.Theory;
+
             public override MissionBase Generate()
             {
                 // int randomNum = rnd.Next(); 
-                TextMission randomMission = new TextMission(1, "Заголовок", "Попрос", "Ответ");
-                randomMission.MaxNumInTest = 5;
-                randomMission.TypeOfMission = MissionType.Theory;
-                randomMission.TimeNeedToSolveMissionSeconds = 250;
-                randomMission.Tooltip = "Подсказка (пояснение)";
+                TextMission randomMission = new TextMission(NumOfMission, MissionName, "Вопрос", "Ответ");
                 return randomMission;
             }
         }
@@ -24,18 +30,20 @@ namespace MyNotebook.Models.Test_
         public void MissionGenerator()
         {
             MissionGenerateExample generator = new MissionGenerateExample();
+            #region check mission
+            Assert.AreEqual(0, generator.NumOfMission);
+            Assert.AreEqual(120, generator.TimeToSolveMission);
+            Assert.AreEqual(MissionType.Theory, generator.TypeOfMission);
+            Assert.AreEqual(5, generator.MaxNumInTest);
+            #endregion     
             MissionGeneratorCategory missionGeneratorCatagory = new MissionGeneratorCategory("Название категории заданий", new MissionGenerator[]
             {
                 generator
             });
-            MissionBase generatedMission = missionGeneratorCatagory.Missions[0].Generate();
-            #region check generated mission
-            Assert.AreEqual(1, generatedMission.NumOfMission);
-            Assert.AreEqual("Подсказка (пояснение)", generatedMission.Tooltip);
-            Assert.AreEqual(250, generatedMission.TimeNeedToSolveMissionSeconds);
-            Assert.AreEqual(MissionType.Theory, generatedMission.TypeOfMission);
-            Assert.AreEqual(5, generatedMission.MaxNumInTest);
-            #endregion     
+            TextMission generatedMission = missionGeneratorCatagory.Missions[0].Generate() as TextMission;
+
+            Assert.AreEqual("Вопрос", generatedMission.Question);
+            Assert.AreEqual("Ответ", generatedMission.Answer);
         }
 
         [TestMethod()]

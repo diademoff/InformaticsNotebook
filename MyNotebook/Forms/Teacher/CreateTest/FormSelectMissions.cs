@@ -281,7 +281,6 @@ namespace MyNotebook.Forms
                 AutoSize = true,
                 Cursor = Cursors.Hand,
                 ForeColor = Color.FromArgb(51, 51, 51),
-                Tag = "no"
             };
             Title.Click += (s, e) =>
             {
@@ -408,7 +407,7 @@ namespace MyNotebook.Forms
             MissionType = new Label()
             {
                 Location = new Point(CheckBox.Location.X + 700, yPosition),
-                Text = Extentions.GetStringMissionType(mg.TypeOfMission),
+                Text = GlobalExtentions.GetStringMissionType(mg.TypeOfMission),
                 Font = new Font(new FontFamily("Arial"), 12, FontStyle.Regular, GraphicsUnit.Pixel),
                 AutoSize = false
             };
@@ -440,6 +439,8 @@ namespace MyNotebook.Forms
                 tc.Controls.Add(tab);
 
                 previewForm.Controls.Add(tc);
+
+                StyleApply.ForForm(previewForm, changeHeader:false);
 
                 previewForm.ShowDialog();
             };

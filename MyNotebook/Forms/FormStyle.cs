@@ -327,11 +327,15 @@ namespace MyNotebook.Forms
             }
             catch { return; }
 
-            // Огранечение по Y
-            if (Form.Location.Y < Screen.FromHandle(Form.Handle).WorkingArea.Y)
+            try
             {
-                Form.Location = new Point(Form.Location.X, Screen.FromHandle(Form.Handle).WorkingArea.Y);
+                // Огранечение по Y
+                if (Form.Location.Y < Screen.FromHandle(Form.Handle).WorkingArea.Y)
+                {
+                    Form.Location = new Point(Form.Location.X, Screen.FromHandle(Form.Handle).WorkingArea.Y);
+                }
             }
+            catch { return; }
 
             if (e.Button == MouseButtons.Left && Form.ControlBox == true)
             {

@@ -1,4 +1,5 @@
 ﻿using MyNotebook.Models;
+using MyNotebook.StaticCollections;
 using System;
 using System.Drawing;
 using System.Threading;
@@ -11,7 +12,6 @@ namespace MyNotebook.Forms
         public FormSelectStartType()
         {
             InitializeComponent();
-            StyleApply.ForForm(this);
             TopMost = true;
             this.DoubleClick += Form_DoubleClick_Feature;
             this.Shown += (s, e) =>
@@ -112,6 +112,21 @@ namespace MyNotebook.Forms
                 Interval = 200
             };
             updateFrame.Tick += (ss, ee) => UpdateFrame();
+
+            // for combobox style
+            foreach (var item in StyleCollection.Styles)
+            {
+                cb_style.Items.Add((item as StyleNotebook).Name);
+            }
+            cb_style.SelectedIndexChanged += (s, e) =>
+            {
+                string selectedStyleName = cb_style.Items[cb_style.SelectedIndex].ToString();
+                StyleApply.CurrentStyle = StyleCollection.GetStyleByName(selectedStyleName);
+                StyleApply.ForForm(this);
+            };
+            cb_style.SelectedIndex = 0; // set default style
+
+            StyleApply.ForForm(this);
         }
 
         #region pacman game
@@ -320,10 +335,12 @@ namespace MyNotebook.Forms
             btn_update.Visible = false;
             button1.Visible = false;
             button2.Visible = false;
+            cb_style.Visible = false;
 
             btn_update.Enabled = false;
             button1.Enabled = false;
             button2.Enabled = false;
+            cb_style.Enabled = false;
         }
 
         void ShowAllElements()
@@ -331,10 +348,12 @@ namespace MyNotebook.Forms
             btn_update.Visible = true;
             button1.Visible = true;
             button2.Visible = true;
+            cb_style.Visible = true;
 
             btn_update.Enabled = true;
             button1.Enabled = true;
             button2.Enabled = true;
+            cb_style.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)

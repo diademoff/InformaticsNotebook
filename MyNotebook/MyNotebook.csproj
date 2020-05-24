@@ -52,6 +52,9 @@
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MyNotebook.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -69,7 +72,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extentions.cs" />
+    <Compile Include="GlobalExtentions.cs" />
     <Compile Include="Forms\FormStyle.cs" />
     <Compile Include="Forms\Teacher\CreateTest\FormCreateVariants.cs">
       <SubType>Form</SubType>
@@ -197,6 +200,7 @@
     <Compile Include="MissionsModels\Mission9.cs" />
     <Compile Include="StaticCollections\DataCollection.cs" />
     <Compile Include="StaticCollections\MissionGeneratorCollection.cs" />
+    <Compile Include="StaticCollections\StyleCollection.cs" />
     <Compile Include="StaticCollections\UserCollection.cs" />
     <EmbeddedResource Include="Forms\Teacher\CreateTest\FormCreateVariants.resx">
       <DependentUpon>FormCreateVariants.cs</DependentUpon>

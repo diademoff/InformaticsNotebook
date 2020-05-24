@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyNotebook.MissionsModels
+﻿namespace MyNotebook.MissionsModels
 {
     public static class Extentions
     {

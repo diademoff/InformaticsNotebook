@@ -56,7 +56,7 @@
             this.lbl_state.Name = "lbl_state";
             this.lbl_state.Size = new System.Drawing.Size(47, 13);
             this.lbl_state.TabIndex = 0;
-            this.lbl_state.Tag = "no";
+            this.lbl_state.Tag = "";
             this.lbl_state.Text = "Статус: ";
             // 
             // lbl_timeStart
@@ -66,7 +66,7 @@
             this.lbl_timeStart.Name = "lbl_timeStart";
             this.lbl_timeStart.Size = new System.Drawing.Size(84, 13);
             this.lbl_timeStart.TabIndex = 1;
-            this.lbl_timeStart.Tag = "no";
+            this.lbl_timeStart.Tag = "";
             this.lbl_timeStart.Text = "Время начала: ";
             // 
             // lbl_timeEnd
@@ -76,7 +76,7 @@
             this.lbl_timeEnd.Name = "lbl_timeEnd";
             this.lbl_timeEnd.Size = new System.Drawing.Size(111, 13);
             this.lbl_timeEnd.TabIndex = 2;
-            this.lbl_timeEnd.Tag = "no";
+            this.lbl_timeEnd.Tag = "";
             this.lbl_timeEnd.Text = "Время завершения: ";
             // 
             // lbl_wasCalcDiabled
@@ -86,13 +86,15 @@
             this.lbl_wasCalcDiabled.Name = "lbl_wasCalcDiabled";
             this.lbl_wasCalcDiabled.Size = new System.Drawing.Size(75, 13);
             this.lbl_wasCalcDiabled.TabIndex = 3;
-            this.lbl_wasCalcDiabled.Tag = "no";
+            this.lbl_wasCalcDiabled.Tag = "";
             this.lbl_wasCalcDiabled.Text = "Калькулятор:";
             // 
             // txtbx_log
             // 
             this.txtbx_log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtbx_log.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.txtbx_log.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtbx_log.Location = new System.Drawing.Point(308, 30);
             this.txtbx_log.Name = "txtbx_log";
             this.txtbx_log.ReadOnly = true;
@@ -118,7 +120,7 @@
             this.lbl_solvedPercent.Name = "lbl_solvedPercent";
             this.lbl_solvedPercent.Size = new System.Drawing.Size(49, 13);
             this.lbl_solvedPercent.TabIndex = 6;
-            this.lbl_solvedPercent.Tag = "no";
+            this.lbl_solvedPercent.Tag = "";
             this.lbl_solvedPercent.Text = "Решено:";
             // 
             // lbl_timeSpend
@@ -128,7 +130,7 @@
             this.lbl_timeSpend.Name = "lbl_timeSpend";
             this.lbl_timeSpend.Size = new System.Drawing.Size(101, 13);
             this.lbl_timeSpend.TabIndex = 7;
-            this.lbl_timeSpend.Tag = "no";
+            this.lbl_timeSpend.Tag = "";
             this.lbl_timeSpend.Text = "Время затрачено: ";
             // 
             // lbl_topmost
@@ -138,7 +140,7 @@
             this.lbl_topmost.Name = "lbl_topmost";
             this.lbl_topmost.Size = new System.Drawing.Size(118, 13);
             this.lbl_topmost.TabIndex = 8;
-            this.lbl_topmost.Tag = "no";
+            this.lbl_topmost.Tag = "";
             this.lbl_topmost.Text = "Монопольный режим:";
             // 
             // picture_diagram
@@ -156,7 +158,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 52);
             this.label1.TabIndex = 10;
-            this.label1.Tag = "no";
+            this.label1.Tag = "";
             this.label1.Text = "< 50% - \"2\"\r\n50 - 74 - \"3\"\r\n75 - 89 - \"4\"\r\n90 - 100 - \"5\"";
             // 
             // btn_preview
@@ -178,7 +180,7 @@
             this.lbl_name.Name = "lbl_name";
             this.lbl_name.Size = new System.Drawing.Size(134, 31);
             this.lbl_name.TabIndex = 12;
-            this.lbl_name.Tag = "no";
+            this.lbl_name.Tag = "";
             this.lbl_name.Text = "username";
             // 
             // btn_showHTML

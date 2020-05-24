@@ -19,8 +19,7 @@ namespace MyNotebook
 
         public FormUsers()
         {
-            InitializeComponent();
-            StyleApply.ForForm(this);
+            InitializeComponent();            
 
             //start monitoring if calc is active, method depends on bool disable calc
             new Thread(() => DisableCalc()) { IsBackground = true }.Start();
@@ -46,6 +45,8 @@ namespace MyNotebook
                 isAnimatingSearch = true;
                 txtbx_searchUsers.ForeColor = Color.Gray;
             };
+
+            StyleApply.ForForm(this);
         }
 
         bool isAnimatingSearch = true;
@@ -124,10 +125,10 @@ namespace MyNotebook
                 };
 
                 usersLabels.Last().MouseEnter += (s, e) => (s as Label).ForeColor = Color.Blue;
-                usersLabels.Last().MouseLeave += (s, e) => (s as Label).ForeColor = Color.Black;
+                usersLabels.Last().MouseLeave += (s, e) => (s as Label).ForeColor = StyleApply.CurrentStyle.TextForeColor;
 
                 usersLabels.Last().Cursor = Cursors.Hand;
-                usersLabels.Last().ForeColor = Color.Black;
+                usersLabels.Last().ForeColor = StyleApply.CurrentStyle.TextForeColor;
                 usersLabels.Last().AutoSize = true;
                 usersLabels.Last().Tag = "no";
                 pnl_users.Controls.Add(usersLabels.Last());

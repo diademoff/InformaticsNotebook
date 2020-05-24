@@ -169,7 +169,7 @@
             // btn_export
             // 
             this.btn_export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_export.Location = new System.Drawing.Point(969, 490);
+            this.btn_export.Location = new System.Drawing.Point(969, 463);
             this.btn_export.Name = "btn_export";
             this.btn_export.Size = new System.Drawing.Size(120, 26);
             this.btn_export.TabIndex = 7;
@@ -233,7 +233,7 @@
             this.pnl_leaderBoard.AutoScroll = true;
             this.pnl_leaderBoard.Location = new System.Drawing.Point(15, 308);
             this.pnl_leaderBoard.Name = "pnl_leaderBoard";
-            this.pnl_leaderBoard.Size = new System.Drawing.Size(497, 208);
+            this.pnl_leaderBoard.Size = new System.Drawing.Size(497, 181);
             this.pnl_leaderBoard.TabIndex = 9;
             // 
             // label1

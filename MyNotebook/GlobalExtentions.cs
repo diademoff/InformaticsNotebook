@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace MyNotebook
 {
-    public static class Extentions
+    public static class GlobalExtentions
     {
         public static void FullHideForm(this Form form)
         {

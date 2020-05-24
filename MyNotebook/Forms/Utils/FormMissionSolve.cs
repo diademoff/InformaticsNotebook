@@ -262,11 +262,15 @@ namespace MyNotebook.Forms
                         }
                         if (allAnswersGiven)
                         {
-                            tabControl.Invoke(new MethodInvoker(() =>
+                            try
                             {
-                                tabControl.TabPages[(int)currIndex].Text = "*";
-                            }));
-                            break;
+                                tabControl.Invoke(new MethodInvoker(() =>
+                                {
+                                    tabControl.TabPages[(int)currIndex].Text = "*";
+                                }));
+                                break;
+                            }
+                            catch { }
                         }
                         Thread.Sleep(250);
                     }
