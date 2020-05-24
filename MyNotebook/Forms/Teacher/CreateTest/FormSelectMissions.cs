@@ -1,5 +1,5 @@
 ﻿using MyNotebook.Models;
-using MyNotebook.ViewModels;
+using MyNotebook.MissionsModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

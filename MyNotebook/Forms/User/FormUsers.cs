@@ -1,7 +1,7 @@
 ﻿using MyNotebook.Forms;
 using MyNotebook.Models;
 using MyNotebook.Models.Network;
-using MyNotebook.ViewModels;
+using MyNotebook.MissionsModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
