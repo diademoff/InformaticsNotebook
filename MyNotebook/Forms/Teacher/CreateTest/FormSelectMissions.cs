@@ -429,7 +429,8 @@ namespace MyNotebook.Forms
                     Width = 900,
                     Height = 550,
                     Icon = Properties.Resources.icon,
-                    Text = $"Предпросмотр задания {NumOfMission} \"{mg.MissionName}\""
+                    Text = $"Предпросмотр задания {NumOfMission} \"{mg.MissionName}\"",
+                    StartPosition = FormStartPosition.CenterScreen
                 };
 
                 TabControl tc = new TabControl()
