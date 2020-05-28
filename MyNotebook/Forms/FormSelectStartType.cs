@@ -123,8 +123,10 @@ namespace MyNotebook.Forms
                 string selectedStyleName = cb_style.Items[cb_style.SelectedIndex].ToString();
                 StyleApply.CurrentStyle = StyleCollection.GetStyleByName(selectedStyleName);
                 StyleApply.ForForm(this);
+
+                ConfigCollection.Instance.SelectedFormStyleName = selectedStyleName;
             };
-            cb_style.SelectedIndex = 0; // set default style
+            cb_style.Text = StyleCollection.GetStyleByName(ConfigCollection.Instance.SelectedFormStyleName).Name;
 
             StyleApply.ForForm(this);
         }

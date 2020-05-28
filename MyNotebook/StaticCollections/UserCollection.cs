@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNotebook.StaticCollections;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
@@ -6,10 +7,9 @@ using System.Xml.Serialization;
 namespace MyNotebook.MissionsModels
 {
     [Serializable]
-    public class UserCollection
+    public class UserCollection : Serializer
     {
-        static string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Notebook";
-        public static string dataPath = folder + "\\data.bin";
+        public static string dataPath = SerializationFolder + "\\data.bin";
 
         public static UserCollection Instance = new UserCollection() { Users = new UserCollection().DeserializeSingle(dataPath) };
         private UserCollection()
@@ -90,14 +90,11 @@ namespace MyNotebook.MissionsModels
             }
         }
 
-        public void Serialize()
+        public override void Serialize()
         {
             try
             {
-                if (!Directory.Exists(folder))
-                {
-                    Directory.CreateDirectory(folder);
-                }
+                CheckFolderExists();
 
                 XmlSerializer bf = new XmlSerializer(new List<User>().GetType());
                 using (FileStream fs = new FileStream(dataPath, FileMode.Create))

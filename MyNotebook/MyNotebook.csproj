@@ -198,8 +198,10 @@
     <Compile Include="MissionsModels\Mission7.cs" />
     <Compile Include="MissionsModels\Mission8.cs" />
     <Compile Include="MissionsModels\Mission9.cs" />
+    <Compile Include="StaticCollections\ConfigCollection.cs" />
     <Compile Include="StaticCollections\DataCollection.cs" />
     <Compile Include="StaticCollections\MissionGeneratorCollection.cs" />
+    <Compile Include="StaticCollections\Serializer.cs" />
     <Compile Include="StaticCollections\StyleCollection.cs" />
     <Compile Include="StaticCollections\UserCollection.cs" />
     <EmbeddedResource Include="Forms\Teacher\CreateTest\FormCreateVariants.resx">

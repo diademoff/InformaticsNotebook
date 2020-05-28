@@ -35,6 +35,7 @@ namespace MyNotebook.MissionsModels
                     return new TextMission(NumOfMission, MissionName, q, Math.Pow(2, i).ToString());
                 #endregion
                 case 3:
+                    #region
                     while (true)
                     {
                         double x = Math.Pow(2, rnd.Next(5, 11));
@@ -68,6 +69,7 @@ namespace MyNotebook.MissionsModels
                             return new TextMission(NumOfMission, MissionName, q, answer.ToString());
                         }
                     }
+                    #endregion
                 default:
                     throw new Exception("ex mission 21");
             }
