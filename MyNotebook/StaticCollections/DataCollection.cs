@@ -76,5 +76,14 @@ namespace MyNotebook.StaticCollections
             }
             return res.ToArray();
         }
+
+        public static string[] InformationUnits = new string[]
+        {
+            "Бит",
+            "Байт",
+            "Килобайт",
+            "Мегабайт",
+            "Гигабайт"
+        };
     }
 }

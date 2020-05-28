@@ -1,4 +1,5 @@
 ﻿using MyNotebook.Models;
+using MyNotebook.StaticCollections;
 using System;
 
 namespace MyNotebook.MissionsModels
@@ -14,15 +15,6 @@ namespace MyNotebook.MissionsModels
         public override int TimeToSolveMission => 120;
         public override int MaxNumInTest => 10;
         public override MissionType TypeOfMission => MissionType.Practice;
-
-        string[] units = new string[]
-        {
-            "Бит",
-            "Байт",
-            "Килобайт",
-            "Мегабайт",
-            "Гигабайт"
-        };
 
         public override MissionBase Generate()
         {
@@ -89,9 +81,9 @@ namespace MyNotebook.MissionsModels
 
         int GetNumOfUnitInArray(string unit)
         {
-            for (int i = 0; i < units.Length; i++)
+            for (int i = 0; i < DataCollection.InformationUnits.Length; i++)
             {
-                if (unit == units[i])
+                if (unit == DataCollection.InformationUnits[i])
                 {
                     return i;
                 }
@@ -128,8 +120,8 @@ namespace MyNotebook.MissionsModels
 
                 return new string[]
                 {
-                    units[n1],
-                    units[n2]
+                    DataCollection.InformationUnits[n1],
+                    DataCollection.InformationUnits[n2]
                 };
             }
         }

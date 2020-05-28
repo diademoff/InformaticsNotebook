@@ -1,4 +1,5 @@
 ﻿using MyNotebook.Models;
+using MyNotebook.StaticCollections;
 using System;
 
 namespace MyNotebook.MissionsModels
@@ -14,9 +15,8 @@ namespace MyNotebook.MissionsModels
         public override MissionBase Generate()
         {
             string q = "";
-            int i = 0;
-            i = rnd.Next(3, 10);
-            switch (rnd.Next(5, 8))
+            int i;
+            switch (rnd.Next(5, 9))
             {
                 case 5:
                     #region
@@ -71,6 +71,32 @@ namespace MyNotebook.MissionsModels
                             $"в палитре?";
 
                         double res = Math.Pow(2, (Convert.ToDouble(x) * 8.0) / (Convert.ToDouble(i) * Convert.ToDouble(j)));
+                        if (res == Convert.ToDouble((int)res))
+                        {
+                            return new TextMission(NumOfMission, MissionName, q, res.ToString());
+                        }
+                    }
+                #endregion
+                case 8:
+                    #region
+                    while (true)
+                    {
+                        double a = rnd.Next(3, 6);
+                        double y = rnd.Next(3, 7);
+                        double x = y * a;
+                        double m = rnd.Next(10, 35);
+
+                        string unit = DataCollection.InformationUnits[rnd.Next(1, 4)];
+
+                        q = $"Автоматическая фотокамера делает фотографии высокого разрешения\n" +
+                            $"с палитрой, содержащей {Math.Pow(2, x)} (2^{x}) цветов. Средний размер фотографии\n" +
+                            $"составляет {m} {unit}. Для хранения в базе данных фотографии преобразуютn\n" +
+                            $"в чёрно-белый формат с палитрой, содержащей {Math.Pow(2, y)} цветов. Другие\n" +
+                            $"преобразования и дополнительные методы сжатия не используются. Сколько\n" +
+                            $"{unit} составляет средний размер преобразованной фотографии?";
+
+                        double res = m / a;
+
                         if (res == Convert.ToDouble((int)res))
                         {
                             return new TextMission(NumOfMission, MissionName, q, res.ToString());
