@@ -169,8 +169,8 @@ namespace MyNotebook.Models
                 htmlAnswer += $"<h1>Ответы к варианту {i}</h1>";
                 for (int j = 0; j < AllMissions.Count; j++)
                 {
-                    html += $"<p> Задание №{j + 1} ({AllMissions[j].NumOfMission}) </p>";
                     html += "<div class=\"brd\">";
+                    html += $"<p> Задание №{j + 1} ({AllMissions[j].NumOfMission}) </p>";
                     html += AllMissions[j].AppendHTMLMission(pathToFolder);
                     html += "</div>";
 
