@@ -169,6 +169,7 @@ namespace MyNotebook.Models
                 htmlAnswer += $"<h1>Ответы к варианту {i}</h1>";
                 for (int j = 0; j < AllMissions.Count; j++)
                 {
+                    html += $"<p> Задание №{j + 1} ({AllMissions[j].NumOfMission}) </p>";
                     html += "<div class=\"brd\">";
                     html += AllMissions[j].AppendHTMLMission(pathToFolder);
                     html += "</div>";
@@ -197,11 +198,6 @@ namespace MyNotebook.Models
         /// </summary>
         public void RegenerateMissions()
         {
-            for (int i = 0; i < AllMissonsGenerator.Count; i++)
-            {
-                AllMissonsGenerator[i].rnd = new Random();
-            }
-
             AllMissions.Clear();
             for (int i = 0; i < AllMissonsGenerator.Count; i++)
             {
