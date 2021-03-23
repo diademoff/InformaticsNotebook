@@ -42,7 +42,7 @@ namespace MyNotebook.MissionsModels
             while (index != 9)
             {
                 int n_s = rnd.Next(-20, 20);
-                int n_t = rnd.Next(-20, 200);
+                int n_t = rnd.Next(-20, 20);
 
                 if (!answers.Contains($"({n_s}, {n_t}); "))
                 {
