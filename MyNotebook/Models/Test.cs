@@ -288,10 +288,6 @@ namespace MyNotebook.Models
             Test result = testToCorrect.MemberwiseClone() as Test;
 
             result.AllMissions = new List<MissionBase>();
-            for (int i = 0; i < result.AllMissonsGenerator.Count; i++)
-            {
-                result.AllMissonsGenerator[i].rnd = new Random();
-            }
 
             for (int i = 0; i < testToCorrect.AllMissions.Count; i++)
             {

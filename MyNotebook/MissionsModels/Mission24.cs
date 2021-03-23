@@ -41,16 +41,20 @@ namespace MyNotebook.MissionsModels
             int index = 0;
             while (index != 9)
             {
-                int n_s = rnd.Next(-12, 13);
-                int n_t = rnd.Next(-12, 13);
+                int n_s = rnd.Next(-20, 20);
+                int n_t = rnd.Next(-20, 200);
 
-                answers.Add($"({n_s}, {n_t}); ");
+                if (!answers.Contains($"({n_s}, {n_t}); "))
+                {
+                    answers.Add($"({n_s}, {n_t}); ");
+                    index++;
+                }
+
                 if (IsOK(n_s, n_t, s, t, or))
                 {
                     expected.Add(index + 1);
                 }
 
-                index++;
             }
             if (expected.Count == 0 || expected.Count == answers.Count)
             {

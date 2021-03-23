@@ -5,7 +5,7 @@ namespace MyNotebook.Models
     [Serializable]
     public abstract class MissionGenerator
     {
-        public Random rnd = new Random();
+        public Random rnd => new Random();
         public abstract string MissionName { get; }
         public abstract int NumOfMission { get; }
         public abstract int TimeToSolveMission { get; }
