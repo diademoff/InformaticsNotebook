@@ -41,7 +41,12 @@ namespace MyNotebook.MissionsModels
                        $"{url}";
 
             return new TextMission(NumOfMission, MissionName, q, answer,
-                (answerGiven) => { return answerGiven.ToLower() == answer.ToLower(); });
+                (answerGiven) => 
+                {
+                    if (answerGiven == null)
+                        return false;
+                    return answerGiven.ToLower() == answer.ToLower(); 
+                });
         }
     }
 }
