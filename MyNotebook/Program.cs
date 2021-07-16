@@ -29,7 +29,14 @@ namespace MyNotebook
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += Application_ThreadException;
             Application.Run(new FormSelectStartType());
+        }
+
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            string text = $"Во время выполнения программы возникла ошибка, пожалуйста сообщите об этом разработчику.\n\n{e.Exception.Message}\n\nStackTrace:\n{e.Exception.StackTrace}";
+            MessageBox.Show(text, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
         }
     }
 }
