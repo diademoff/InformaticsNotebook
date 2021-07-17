@@ -6,6 +6,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace MyNotebook.Forms
 {
@@ -243,9 +245,55 @@ namespace MyNotebook.Forms
         void btn_print_Click(object sender, EventArgs e)
         {
             var test = GetCreatedTest();
-            test.RegenerateMissions();
-            test.OpenHTMLMissionSolve(GetPathOnDesktop(), (int)ud_numOfVariants.Value, checkbx_breakpage.Checked);
+
+            btn_print.Enabled = false;
+            ud_numOfVariants.Enabled = false;
+            checkbx_breakpage.Enabled = false;
+
+            var src = new CancellationTokenSource();
+            LoadingAnimationGeneratingHTML(btn_print, src.Token);
+
+            CreateHtmlPageAsync(
+                generator: () => { test.RegenerateMissions(); test.OpenHTMLMissionSolve(GetPathOnDesktop(), (int)ud_numOfVariants.Value, checkbx_breakpage.Checked); },
+                callback: () => { src.Cancel(); btn_print.Enabled = true; ud_numOfVariants.Enabled = true; checkbx_breakpage.Enabled = true; });
         }
+
+        async void LoadingAnimationGeneratingHTML(Button btn, CancellationToken cancellation)
+        {
+            string textWas = btn.Text;
+            Action<string> setText = (string text) =>
+            {
+                try
+                {
+                    btn.Invoke(new MethodInvoker(() => btn.Text = text));
+                }
+                catch { }
+            };
+
+            await Task.Run(() =>
+            {
+                while (true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        setText("Генерация" + new string('.', i));
+                        Thread.Sleep(200);
+                        if (cancellation.IsCancellationRequested)
+                        {
+                            setText(textWas);
+                            return;
+                        }
+                    }
+                }
+            });
+        }
+
+        async void CreateHtmlPageAsync(Action generator, Action callback)
+        {
+            await Task.Run(generator);
+            callback();
+        }
+
         Random rnd = new Random();
         string GetPathOnDesktop()
         {
