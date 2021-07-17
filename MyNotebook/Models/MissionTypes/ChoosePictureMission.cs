@@ -286,7 +286,7 @@ namespace MyNotebook.Models.MissionTypes
                     $"<h3>{Question}</h3>";
             for (int i = 0; i < Pictures.Length; i++)
             {
-                html += $"<img src=\"{SavePictute(Pictures[i])}\", width=\"220\", height=\"200\">";
+                html += $"<img src=\"{SavePictute(Pictures[i])}\" width=\"220\" height=\"200\">";
             }
 
             html += "</div>";
@@ -301,7 +301,7 @@ namespace MyNotebook.Models.MissionTypes
                     if (!File.Exists(Path.Combine(pathToFolder, fileName)))
                     {
                         bitmap.Save(Path.Combine(pathToFolder, fileName));
-                        return Path.Combine(pathToFolder, fileName);
+                        return fileName;
                     }
                 }
             }

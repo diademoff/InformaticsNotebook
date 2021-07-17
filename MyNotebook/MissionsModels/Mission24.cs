@@ -52,7 +52,8 @@ namespace MyNotebook.MissionsModels
 
                 if (IsOK(n_s, n_t, s, t, or))
                 {
-                    expected.Add(index + 1);
+                    if (!expected.Contains(index))
+                        expected.Add(index);
                 }
 
             }
